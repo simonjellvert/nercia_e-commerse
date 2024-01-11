@@ -4,7 +4,7 @@
         "model": "products.product",
         "fields": {
             "product": "Leadership, 3 days",
-            "category": "Leadership",
+            "category": 1,
             "descriptionShort": "Leadership training where participants get an increased opportunity to grow in their personality to cope with the role of group leader, team leader, coordinator, foreman, preparer, planner, etc.",
             "description": "In the leadership training course 'Lead without being a boss,' participants get an increased opportunity to grow in their personality to cope with the role of group leader, team leader, coordinator, foreman, preparer, planner, etc. The training aims for you to be able to grow in your role as a leader. You will gain knowledge and understanding in the areas of personal leadership, group development, and how you can prevent and manage conflicts through your way of communicating.\n\nIn order to successfully apply your knowledge in everyday life, you will receive concrete tools and tips to convert your newly acquired knowledge into competence in the best possible way. The days are alternated between lectures, discussions, exercises, and self-reflection to best create a good balance and understanding for both yourself as a leader and your employees.",
             "programContent": [
@@ -56,7 +56,7 @@
         "model": "products.product",
         "fields": {
             "product": "Leadership, 6 days",
-            "category": "Leadership",
+            "category": 1,
             "descriptionShort": "The training is designed to strengthen the leader's role in the company. The aim of the leadership training is to give the participants basic skills in personal leadership etc.",
             "description": "This training is designed to strengthen the leader's role in the company. The aim is to give the participant basic skills in personal leadership, group development, and communication, with effects such as increased efficiency and better collaboration. The trainer keeps the process going, lets the participants highlight their own experiences and possibly problem situations that can arise in the leadership role.",
             "programContent": [
@@ -151,7 +151,7 @@
         "model": "products.product",
         "fields": {
             "product": "Leadership, 14 days",
-            "category": "Leadership",
+            "category": 1,
             "descriptionShort": "The training is aimed at those who currently have some form of managerial or leadership responsibility. Being able to lead oneself is the first step on the leadership ladder.",
             "description": "The leadership training for managers and leaders is aimed at participants who currently hold some form of managerial or leadership responsibility. Being able to lead oneself is the first step on the leadership ladder and something you should master before taking on the challenge of leading a company or other individuals. Leading oneself increases your understanding of leading others. Besides becoming more present and focused in your leadership, you also become more empathetic towards those you lead. Key elements of the program include clarifying the role of the manager/leader linked to tasks and goals.",
             "programContent": [
@@ -331,7 +331,7 @@
         "model": "products.product",
         "fields": {
             "product": "Coaching, 3 days",
-            "category": "Leadership",
+            "category": 1,
             "shortDescription": "In the coaching leadership training, we focus on your leadership skills, where challenges turn into areas for development, and we inspire each other.",
             "description": "Coaching leadership is the pedagogy and approach of the future, we are convinced. This training takes you on a journey that will touch you. You get a unique opportunity to delve into the possibilities of coaching leadership.\n\nChallenge yourself in your view of leadership and your own approach, learn to inspire and motivate your employees. It is exciting to contemplate how one can go further in their business and leadership, even as a person. Can coaching leadership take us further, to new solutions, to new heights?\n\nIn the training, we work with experiential pedagogy. Theory is interspersed with practice. As a participant, you have the opportunity to practice, test tools and models, and exchange thoughts and reflections with colleagues from other organizations.",
             "programContent": [
@@ -384,7 +384,7 @@
         "model": "products.product",
         "fields": {
             "product": "Electricity for mechanics, 5 days",
-            "category": "Electricity",
+            "category": 2,
             "descriptionShort": "The training is designed to strengthen the leader's role in the company. The goal of the leadership training is to give the participants basic skills in personal leadership etc.",
             "description": "This training is designed to strengthen the leader's role in the company. The aim is to give the participant basic skills in personal leadership, group development and communication, with effects such as increased efficiency and better collaboration. The trainer keeps the process going, lets the participants highlight their own experiences and possibly problem situations that can arise in the leadership role.",
             "programContent": [
@@ -464,7 +464,7 @@
         "model": "products.product",
         "fields": {
             "product": "Electrical safety at work, 1 day",
-            "category": "Electricity",
+            "category": 2,
             "descriptionShort": "To go through the maintenance regulations in order to be able to carry out and participate in maintenance in a safe way and to meet the requirements of the Swedish Working Environment Agency (AFS 2001:1) for knowledge and training",
             "description": "According to the Work Environment Act, everyone who works where there is an electrical hazard must have training and knowledge of the consequences of the hazard and the safety measures that are justified for the work task. In the training, we review the regulations of the Work Environment Act and general advice on electrical safety. We also go through risk management and assessment of electrical safety, safety distances and more. The training is primarily aimed at personnel who work in an environment where there is an electrical hazard.",
             "programContent": [
@@ -495,7 +495,7 @@
         "model": "products.product",
         "fields": {
             "product": "Authorization A, 4 days",
-            "category": "Electricity",
+            "category": 2,
             "descriptionShort": "The training follows current knowledge and skill requirements according to the Electrical Safety Authority's regulations on authorization as an electrical installer ELSAK-FS 2017:4.",
             "description": "This training gives you the theoretical knowledge to apply for Authorization A. The knowledge requirements are regulated in the Electrical Safety Authority's regulations ELSAK-FS 2017:4. The training is aimed at electricians who intend to work as electrical installers for regulatory compliance and for those who intend to carry out their own work.",
             "programContent": [
@@ -529,7 +529,7 @@
         "model": "products.product",
         "fields": {
             "product": "Microsoft Excel, 4 half-days",
-            "category": "IT",
+            "category": 3,
             "descriptionShort": "Learn to understand and manage both the basics and more advanced functions of Excel.",
             "description": "The training aims to increase competence in Excel. This provides increased security and better self-confidence. The training is aimed at all target groups for e.g. economists, HR or project managers.",
             "programContent": [
@@ -576,7 +576,7 @@
         "model": "products.product",
         "fields": {
             "product": "Microsoft Project, 2 days",
-            "category": "IT",
+            "category": 3,
             "shortDescription": "This training is aimed at you as a project manager and also project employees who want to be able to use Microsoft Project.",
             "description": "In order to effectively run a project, a powerful project planning tool is required that frees up time from the employees who can instead focus on the progress of the project. With Microsoft Project, the participant gets a good tool for planning and following up projects. In the training, you learn to manage resources, activities, and budget. We also go through how you create different types of reports for the project's stakeholders. As a participant, you will gain good knowledge of how MS Project can be used effectively in daily work. The training is primarily aimed at you who are project managers, but also at project administrators and project employees.",
             "programContent": [
@@ -621,7 +621,7 @@
         "model": "products.product",
         "fields": {
             "product": "Improved Working Environment, 3 days",
-            "category": "Working Environment",  // Change to numeric
+            "category": 4,
             "shortDescription": "The aim of the training is to actively work with and carry out systematic work environment work in one's own organisation. The training aims to work for a good working environment.",
             "description": "A good work environment does not come by itself. In order to prevent accidents and ill health, target-oriented and systematic work environment work is necessary for every company today. Violating the work environment law can be expensive. Our training Better working environment (BAM) is aimed at you who are managers, leaders or safety representatives. During three days, you will get the basics of the most important laws and regulations, knowledge of risk management and insights into what a good working environment means for the individual, the company and society.\n\nThe training includes the Swedish Work Environment Agency's new regulations on organizational and social work environment, which include bullying and abusive discrimination. The goal of the training is for you to learn systematic work environment work - to practically investigate, implement and follow up the work environment in your own organization.",
             "programContent": [
@@ -687,7 +687,7 @@
         "model": "products.product",
         "fields": {
             "product": "Internal audit, 2 days",
-            "category": "Working Environment",
+            "category": 4,
             "descriptionShort": "The goal is more influence over future events so that the unpredictability will interfere less when you lead, administer and develop.",
             "description": "In order to carry out environmental audits, knowledge of ISO 14001:2015, important environmental issues and environmental legislation as well as skills in audit technology is required. In order to carry out quality audits, knowledge of the requirements according to ISO 9001 is required. Quality audits can be carried out in different ways with different orientations, for example system-oriented, process-oriented and product-oriented quality audits.\n\nThe goal is more influence over future events and thus that the unpredictable should disturb less when leading, administering and developing the audit tool. The training for you who will become an internal auditor or be responsible for internal audits in the business.",
             "programContent": [
@@ -716,7 +716,7 @@
         "model": "products.product",
         "fields": {
             "product": "Quality and environmental manager, 22 days",
-            "category": "Working Environment",
+            "category": 4,
             "descriptionShort": "22 fully-fed training days give you the basics of quality management and standardized management systems such as ISO. You get broad knowledge in business development and inspiration from successful business leaders.",
             "description": "Are you already a quality and environmental manager at your company - or do you want to be? Train with us and become a certified quality and environmental manager! Our full-fledged program of 22 training days gives you the basics of quality management and standardized management systems such as ISO. At the same time, you gain broad knowledge in business development and inspiration from successful business leaders - knowledge that you can use directly in your work.\n\nThe training includes both theory and many practical exercises so that you can effectively work with the work environment, sustainability and safety. After completing the training, you have plenty of tools to lead and support your organization and take responsibility for everything that a quality and environmental manager needs to handle.",
             "programContent": [
@@ -793,7 +793,7 @@
         "model": "products.product",
         "fields": {
             "product": "Dare to speak, 1 day",
-            "category": "Marketing and Sales",
+            "category": 5,
             "descriptionShort": "This is the training for you who feel you would like to speak, but don't really know how and feel comfortable. The training gives you the tools to better manage talent and find your safety zone",
             "description": "Do you feel limited by nervousness and maybe even stage fright when it comes to speaking in front of a group, leading meetings, lecturing or presenting a pitch? Dare to speak is the training for you who feel you would like to speak, but don't really dare. Here you get concrete tools to manage your nervousness and reduce fear. Everyone can learn to manage their nervousness and stop letting it limit their lives.\n\nDuring the Dare to Speak training, you get to meet others in the same situation, which allows you to grow together. From experience, we know that the group should be kept small in order for us to dare to challenge and overcome our anxiety in the face of what we find unpleasant, therefore we never have more than 12 participants on our training dare to speak.",
             "programContent": [
@@ -823,7 +823,7 @@
         "model": "products.product",
         "fields": {
             "product": "Basic sales, 3 days",
-            "category": "Marketing and Sales",
+            "category": 5,
             "descriptionShort": "This training is aimed at salespeople and people in sales positions who are either relatively new to their role or, despite experience, want to improve their awareness in and about the sales process.",
             "description": "This training is aimed at salespeople and people in sales positions who are either relatively new to their role or, despite experience, wish to increase their awareness in and about the sales process. Having a focus on sales and profitability is a must for companies today. In an increasingly competitive world, proactive and professional sales work is becoming increasingly important. The importance of processing and establishing new customer contacts in a good and efficient manner cannot be overestimated.",
             "programContent": [
@@ -883,7 +883,7 @@
         "model": "products.product",
         "fields": {
             "product": "Key Account Management, 8 days",
-            "category": "Marketing and Sales",
+            "category": 5,
             "descriptionShort": "Key account management (KAM) means working with strategic sales and key customer processing.",
             "description": "As a Key Account Manager (KAM), you work with the company's most important customers. How can you maintain and develop the key customers and at the same time identify the smaller customers who can develop into large ones? How can you adapt your sales communication as the market changes? Our training gives you the basics of systematic sales, key customer strategy, segmentation, KAM economics, negotiation techniques – and much more.\n\nDuring the KAM training, you carry out individual project work that connects the theories with the practical work in your everyday life. It gives you the ability to map which customers should be prioritized and how you should process them. You get valuable tools to build long-term and profitable relationships with the right customers.",
             "programContent": [
@@ -944,7 +944,7 @@
         "model": "products.product",
         "fields": {
             "product": "Maintenence Manager, 6 days",
-            "category": "Maintenance",
+            "category": 6,
             "descriptionShort": "Everything you need to know about maintenance and everything you need to know to create operational reliability and optimal maintenance economy - you get that with the help of our Diplomad Maintenance Manager training",
             "description": "As a maintenance manager, you lead a team of everyday heroes who strive to increase operational reliability through preventive maintenance measures. Your focus is to create motivation through inspiring and knowledgeable leadership to develop a modern maintenance business through improvement work and a standardized way of working.\n\nAfter 14 well-planned training days, you will have gained in-depth knowledge of maintenance and operational safety, maintenance economics and standardized working methods, among other things.",
             "programContent": [
@@ -1076,7 +1076,7 @@
         "model": "products.product",
         "fields": {
             "product": "Hydraulics, 4 days",
-            "category": "Maintenance",
+            "category": 6,
             "descriptionShort": "The training gives the participants knowledge of the function of different valves and being able to read, decipher simpler hydraulic diagrams and connect circuits etc.",
             "description": "The aim of the training is for the participants to learn about the function of different valves and to be able to read and decipher simpler hydraulic diagrams. The training also creates awareness of the risks involved when working with hydraulic machines and how accidents can be avoided.\n\nParticipants gain basic knowledge of the structure and function of hydraulic systems and their components. The ability to perform common maintenance operations, commissioning and troubleshooting. The understanding of which operating conditions are required for a hydraulic system with high reliability. Environmental impact of hydraulic fluids and management of emissions. The participants must also be able to connect circuits of the degree of difficulty we worked with during the training.",
             "programContent": [
@@ -1121,7 +1121,7 @@
         "model": "products.product",
         "fields": {
             "product": "Siemens-7, 2 days",
-            "category": "Maintenance",
+            "category": 6,
             "descriptionShort": "After the training, participants must be able to make program changes, as well as debug and test existing STEP-7 programs.",
             "description": "After the Siemens S7 training, the participants must be able to perform program changes, troubleshoot and test existing STEP 7 programs. Participants must also know the structure, capacity and function of the systems. The training should provide knowledge to solve minor control tasks",
             "programContent": [

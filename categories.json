@@ -7,4 +7,44 @@
             "friendly_name": "Leadership"
         }
     },
+    {
+        "pk": 2,
+        "model": "products.category",
+        "fields": {
+            "name": "electricity",
+            "friendly_name": "Electricity"
+        }
+    },
+    {
+        "pk": 3,
+        "model": "products.category",
+        "fields": {
+            "name": "it",
+            "friendly_name": "IT"
+        }
+    },
+    {
+        "pk": 4,
+        "model": "products.category",
+        "fields": {
+            "name": "work_environment",
+            "friendly_name": "Working Environment"
+        }
+    },
+    {
+        "pk": 1,
+        "model": "products.category",
+        "fields": {
+            "name": "marketing_and_sales",
+            "friendly_name": "Marketing and Sales"
+        }
+    },
+    {
+        "pk": 1,
+        "model": "products.category",
+        "fields": {
+            "name": "maintenance",
+            "friendly_name": "Maintenance"
+        }
+    }
 ]
