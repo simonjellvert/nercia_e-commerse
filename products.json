@@ -48,7 +48,7 @@
             "duration": "3 days",
             "included": "Lunch, coffee and course material",
             "image_url": "#",
-            "image": "#"
+            "image": "leadership_3_days.jpg"
         }
     },
     {
@@ -143,7 +143,7 @@
             "duration": "6 days",
             "included": "Lunch, coffee and course material",
             "image_url": "#",
-            "image": "#"
+            "image": "leadership_6_days.jpg"
         }
     },
     {
@@ -323,7 +323,7 @@
             "duration": "14 days",
             "included": "Lunch, coffee and course material",
             "image_url": "#",
-            "image": "#"
+            "image": "leadership_14_days.jpeg"
         }
     },
     {
@@ -376,7 +376,7 @@
             "duration": "3 days",
             "included": "Lunch, coffee and course material",
             "image_url": "#",
-            "image": "#"
+            "image": "coaching_3_days.jpg"
         }
     },
     {
@@ -456,14 +456,14 @@
             "duration": "5 days",
             "included": "Lunch, coffee and course material",
             "image_url": "#",
-            "image": "#"
+            "image": "electricity_for_mechanics.jpg"
         }
     },
     {
         "pk": 6,
         "model": "products.product",
         "fields": {
-            "product": "Electrical safety at work, 1 day",
+            "product": "Electrical safety, 1 day",
             "category": 2,
             "descriptionShort": "To go through the maintenance regulations in order to be able to carry out and participate in maintenance in a safe way and to meet the requirements of the Swedish Working Environment Agency (AFS 2001:1) for knowledge and training",
             "description": "According to the Work Environment Act, everyone who works where there is an electrical hazard must have training and knowledge of the consequences of the hazard and the safety measures that are justified for the work task. In the training, we review the regulations of the Work Environment Act and general advice on electrical safety. We also go through risk management and assessment of electrical safety, safety distances and more. The training is primarily aimed at personnel who work in an environment where there is an electrical hazard.",
@@ -487,7 +487,7 @@
             "duration": "1 day",
             "included": "Lunch, coffee and course material",
             "image_url": "#",
-            "image": "#"
+            "image": "electrical_safety.jpg"
         }
     },
     {
@@ -521,7 +521,7 @@
             "duration": "4 days",
             "included": "Lunch, coffee and course material",
             "image_url": "#",
-            "image": "#"
+            "image": "electrical_authorization_a.jpeg"
         }
     },
     {
@@ -568,7 +568,7 @@
             "duration": "4 half-days",
             "included": "Course material",
             "image_url": "#",
-            "image": "#"
+            "image": "microsoft_excel.jpg"
         }
     },
     {
@@ -613,7 +613,7 @@
             "duration": "2 days",
             "included": "Lunch, coffee and course material",
             "image_url": "#",
-            "image": "#"
+            "image": "microsoft_project.jpeg"
         }
     },
     {
@@ -679,7 +679,7 @@
             "duration": "3 days",
             "included": "Lunch, coffee and course material",
             "image_url": "#",
-            "image": "#"
+            "image": "improved_working_environment.jpg"
         }
     },
     {
@@ -708,7 +708,7 @@
             "duration": "2 days",
             "included": "Lunch, coffee and course material",
             "image_url": "#",
-            "image": "#"
+            "image": "internal_audit.jpg"
         }
     },
     {
@@ -785,7 +785,7 @@
             "duration": "22 days",
             "included": "Lunch, coffee and course material",
             "image_url": "#",
-            "image": "#"
+            "image": "quality_manager.jpg"
         }
     },
     {
@@ -815,7 +815,7 @@
             "duration": "1 day",
             "included": "Lunch, coffee and course material",
             "image_url": "#",
-            "image": "#"
+            "image": "dare_to_speak.jpeg"
         }
     },
     {
@@ -875,7 +875,7 @@
             "duration": "3 days",
             "included": "Lunch, coffee and course material",
             "image_url": "#",
-            "image": "#"
+            "image": "basic_sales.jpg"
         }
     },
     {
@@ -936,7 +936,7 @@
             "duration": "8 days",
             "included": "Lunch, coffee and course material",
             "image_url": "#",
-            "image": "#"
+            "image": "key_account_management.jpg"
         }
     },
     {
@@ -1068,59 +1068,94 @@
             "duration": "14 days",
             "included": "Lunch, coffee and course material",
             "image_url": "#",
-            "image": "#"
+            "image": "maintenance_manager.jpg"
         }
     },
     {
         "pk": 17,
         "model": "products.product",
         "fields": {
-            "product": "Hydraulics, 4 days",
+            "product": "Electricity for mechanics, 5 days",
             "category": 6,
-            "descriptionShort": "The training gives the participants knowledge of the function of different valves and being able to read, decipher simpler hydraulic diagrams and connect circuits etc.",
-            "description": "The aim of the training is for the participants to learn about the function of different valves and to be able to read and decipher simpler hydraulic diagrams. The training also creates awareness of the risks involved when working with hydraulic machines and how accidents can be avoided.\n\nParticipants gain basic knowledge of the structure and function of hydraulic systems and their components. The ability to perform common maintenance operations, commissioning and troubleshooting. The understanding of which operating conditions are required for a hydraulic system with high reliability. Environmental impact of hydraulic fluids and management of emissions. The participants must also be able to connect circuits of the degree of difficulty we worked with during the training.",
+            "descriptionShort": "The training is designed to strengthen the leader's role in the company. The goal of the leadership training is to give the participants basic skills in personal leadership etc.",
+            "description": "This training is designed to strengthen the leader's role in the company. The aim is to give the participant basic skills in personal leadership, group development and communication, with effects such as increased efficiency and better collaboration. The trainer keeps the process going, lets the participants highlight their own experiences and possibly problem situations that can arise in the leadership role.",
             "programContent": [
                 {
-                    "title": "Theory",
+                    "day": "Day 1",
+                    "title": "Electrical safety at work",
+                    "purpose": "Review of electrical safety, understand the danger of electricity and be able to minimize the risk of electrical accidents. To be able to carry out and participate in the maintenance and care of electrical installations in a safe manner and to fulfill the Work Environment Authority's requirements for knowledge and training.",
                     "topics": [
-                        "Hydraulic basics and safety",
-                        "Regulation of pressure, power, flow and speed",
-                        "Hydraulic components, pumps, motors, valves, cylinders, Accumulators, tanks and coolers",
-                        "Electrically operated hydraulics",
-                        "Schema symbols and system structure",
-                        "Hydraulic fluids and their properties",
-                        "Impurities, cleanliness levels and filtration",
-                        "Couplings and sealing elements",
-                        "Wire elements"
+                        "Electrical accidents",
+                        "Electrical danger",
+                        "Structure of the electricity system",
+                        "Protection against dangerous voltage",
+                        "Laws and regulations",
+                        "Elsak-FS 2022:3 (holder's obligations)",
+                        "SS-EN 501 10-1 Edition 3 Swedish Standard"
                     ]
                 },
                 {
-                    "title": "Practical",
+                    "day": "Day 2",
+                    "title": "Electrical theory",
+                    "purpose": "The participant gains knowledge of basic concepts and simpler formulas such as Ohm's law, series connection, parallel connection and the ability to carry out simpler measurements and connections.",
                     "topics": [
-                        "Control and adjustment of maximum pressure with safety valve",
-                        "Limitation of flow and speed",
-                        "Limitation of pressure and force",
-                        "Load retention with hydraulic lock or over center valve",
-                        "Electrically operated hydraulics",
-                        "Installation of hose coupling and pipe coupling",
-                        "Check precharge pressure in accumulator",
-                        "Schedule reading",
-                        "Construction task"
+                        "Ohm's law",
+                        "Series connection",
+                        "Parallel connection",
+                        "Measurement exercises",
+                        "Effect",
+                        "3-phase",
+                        "Y-D connections",
+                        "Laboratories"
+                    ]
+                },
+                {
+                    "day": "Day 3",
+                    "title": "Electrical schedules",
+                    "purpose": "Here the participants gain knowledge about different electrical schemes and the most common symbols.",
+                    "topics": [
+                        "Symbols",
+                        "Circuit diagrams",
+                        "Main circuit diagrams"
+                    ]
+                },
+                {
+                    "day": "Day 4",
+                    "title": "Sensors and frequency converters",
+                    "purpose": "During the day we look at the most common sensors to be able to troubleshoot, replace and make the correct connection. Be able to plug in and change frequency converters and set the most common parameters.",
+                    "topics": [
+                        "Inductive",
+                        "Capacitive",
+                        "Optical sensors",
+                        "General, connection",
+                        "Parameters",
+                        "Test drive"
+                    ]
+                },
+                {
+                    "day": "Day 5",
+                    "title": "Practical exercises",
+                    "purpose": "The training ends with being able to practically apply troubleshooting, schematic reading, contactor exercises and frequency converters. We use e.g. electrical safety boards, troubleshooting trainers, engine fault simulator, contactor boards and frequency converters.",
+                    "topics": [
+                        "Electrical safety board",
+                        "Troubleshooting trainer",
+                        "Error simulator engine",
+                        "Contactor board"
                     ]
                 }
             ],
-            "price": 1849.99,
-            "duration": "4 days",
-            "included": "Course material",
+            "price": 1899.99,
+            "duration": "5 days",
+            "included": "Lunch, coffee and course material",
             "image_url": "#",
-            "image": "#"
+            "image": "electricity_for_mechanics.jpg"
         }
     },
     {
         "pk": 18,
         "model": "products.product",
         "fields": {
-            "product": "Siemens-7, 2 days",
+            "product": "Siemens S7, 2 days",
             "category": 6,
             "descriptionShort": "After the training, participants must be able to make program changes, as well as debug and test existing STEP-7 programs.",
             "description": "After the Siemens S7 training, the participants must be able to perform program changes, troubleshoot and test existing STEP 7 programs. Participants must also know the structure, capacity and function of the systems. The training should provide knowledge to solve minor control tasks",
@@ -1152,7 +1187,7 @@
             "duration": "2 days",
             "included": "Lunch, coffee and course material",
             "image_url": "#",
-            "image": "#"
+            "image": "siemens_s7.jpg"
         }
     }
 ]
