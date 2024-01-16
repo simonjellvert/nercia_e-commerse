@@ -2,5 +2,20 @@
 {% load static %}
 
 {% block content %}
-
+    <div class="container-fluid mt-5">
+        <div class="row w-100">
+            <div class="col-md-6">
+                <div class="d-flex flex-column justify-content-center align-items-center h-100 ml-5">
+                    <h1>Welcome to Nercia Webshop!</h2>
+                    <p>
+                        On this page you can read about the trainings you are interested in,
+                        find out when the next start is planned and book yourself a seat on that specific training.
+                    </p>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <img src="{% static 'img/product_img/background_home.jpg' %}" alt="Trainer speaking in front of group" class="background-home w-100">
+            </div>
+        </div>
+    </div>
 {% endblock %}

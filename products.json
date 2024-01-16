@@ -48,6 +48,1163 @@
             "duration": "3 days",
             "included": "Lunch, coffee and course material",
             "image_url": "#",
+            "image": "#"
+        }
+    },
+    {
+        "pk": 2,
+        "model": "products.product",
+        "fields": {
+            "product": "Leadership, 6 days",
+            "category": 1,
+            "descriptionShort": "The training is designed to strengthen the leader's role in the company. The aim of the leadership training is to give the participants basic skills in personal leadership etc.",
+            "description": "This training is designed to strengthen the leader's role in the company. The aim is to give the participant basic skills in personal leadership, group development, and communication, with effects such as increased efficiency and better collaboration. The trainer keeps the process going, lets the participants highlight their own experiences and possibly problem situations that can arise in the leadership role.",
+            "programContent": [
+                {
+                    "day": "Day 1",
+                    "title": "The leadership role - an introduction",
+                    "purpose": "The training starts with clarifying personal leadership. It is important to clarify the role and task as a leader to create an increased 'we feeling' within the company and the local organization.",
+                    "topics": [
+                        "The leadership role",
+                        "Leadership qualities",
+                        "Manager or leader??",
+                        "Situational leadership",
+                        "Self-confidence, self-esteem",
+                        "To lead oneself and others"
+                    ]
+                },
+                {
+                    "day": "Day 2",
+                    "title": "Changes and stress",
+                    "purpose": "Here, the participant gets knowledge and tools to identify the different phases in a change process, what is needed to move forward. The aim is also to understand what can arouse resistance to change, how people react differently, and how stress affects us.",
+                    "topics": [
+                        "The process of change",
+                        "What questions do we need answers to?",
+                        "How do people react to change?",
+                        "To motivate and lead in change",
+                        "Stress and warning signs",
+                        "Exercise in active listening"
+                    ]
+                },
+                {
+                    "day": "Day 3",
+                    "title": "Teams and team development",
+                    "purpose": "Now we take a closer look at the individual in the group, as well as how we behave in groups. Which phases do we need to recognize to adapt our leadership to the situation? Deepening in the coaching leadership.",
+                    "topics": [
+                        "FIRO - the group's process",
+                        "Roles in the group",
+                        "Behavior in the group",
+                        "To create effective workgroups",
+                        "Coaching leadership",
+                        "Open questions/practices in conversation techniques"
+                    ]
+                },
+                {
+                    "day": "Day 4",
+                    "title": "Communication - to prevent and manage conflicts",
+                    "purpose": "The participant gains increased insight into different communication styles and gets keys to create a better conversation climate. We also look at how learning and communication are connected. We practice communicating in different ways, in writing, orally, and without words (signals and messages).",
+                    "topics": [
+                        "What is communication?",
+                        "Feedback - to give feedback in time",
+                        "The different phases of the conversation",
+                        "Customized communication",
+                        "The coaching process",
+                        "To coach others to development"
+                    ]
+                },
+                {
+                    "day": "Day 5",
+                    "title": "Work environment - Ethics and Morality",
+                    "purpose": "We go through what the Work Environment Act says and look a little extra at the organizational and social work environment. What does the new regulation say? We also look at the importance of working with basic values, bringing values to life, and increasing cooperation outside our workplaces. What happens in the brain during social stress, and how do we work on health promotion and prevention?",
+                    "topics": [
+                        "Overview of the law and regulation AFS 2015:4",
+                        "Systematic work environment work",
+                        "Bullying and abusive discrimination",
+                        "Values and norms",
+                        "Honest communication",
+                        "Homework; put into practice to report on day 6. Based on the participant's role and situation, we identify a task/case from reality, which must be done and reported on the last day."
+                    ]
+                },
+                {
+                    "day": "Day 6",
+                    "title": "Follow-up and summary",
+                    "purpose": "After a break of 2 weeks, we summarize and tie together the different parts from all occasions. The participant can present their homework, something they have chosen to challenge themselves within. What was the result? What did the participant learn? What will be the next step?",
+                    "topics": [
+                        "Reporting of the homework you have chosen to complete yourself",
+                        "The group provides feedback and feed-forward",
+                        "Reflection on lessons learned",
+                        "What have we learned about ourselves and from each other?",
+                        "New personal development goals",
+                        "Summary of the entire education, joint reflection."
+                    ]
+                }
+            ],
+            "price": 2899.99,
+            "duration": "6 days",
+            "included": "Lunch, coffee and course material",
+            "image_url": "#",
+            "image": "#"
+        }
+    },
+    {
+        "pk": 3,
+        "model": "products.product",
+        "fields": {
+            "product": "Leadership, 14 days",
+            "category": 1,
+            "descriptionShort": "The training is aimed at those who currently have some form of managerial or leadership responsibility. Being able to lead oneself is the first step on the leadership ladder.",
+            "description": "The leadership training for managers and leaders is aimed at participants who currently hold some form of managerial or leadership responsibility. Being able to lead oneself is the first step on the leadership ladder and something you should master before taking on the challenge of leading a company or other individuals. Leading oneself increases your understanding of leading others. Besides becoming more present and focused in your leadership, you also become more empathetic towards those you lead. Key elements of the program include clarifying the role of the manager/leader linked to tasks and goals.",
+            "programContent": [
+                {
+                    "day": "Day 1",
+                    "title": "The Group and the Leader",
+                    "topics": [
+                        "Introduction to the FIRO Group",
+                        "Personal Leadership - Who am I?",
+                        "Leader's Confidence and Self-Esteem",
+                        "Tools for My Leadership Journey",
+                        "Tasks for Individual Work",
+                        "Coaching Relationships",
+                        "DISC Analysis"
+                    ]
+                },
+                {
+                    "day": "Day 2",
+                    "title": "Role and Creativity",
+                    "topics": [
+                        "Having the Right Person in the Right Place",
+                        "Review of DISC Analyses",
+                        "Roles in the Group",
+                        "Decision-Making",
+                        "Creative Environments and Effective Groups"
+                    ]
+                },
+                {
+                    "day": "Day 3",
+                    "title": "Culture and Conflict",
+                    "topics": [
+                        "Creating a Positive Workplace Culture",
+                        "Defining an 'Us' Mentality",
+                        "Individual and Group Development",
+                        "Leading Change",
+                        "Mature and Courageous Leadership",
+                        "Being Each Other's Coaches"
+                    ]
+                },
+                {
+                    "day": "Day 4",
+                    "title": "Daring to Be a Leader",
+                    "topics": [
+                        "Generational Conflicts",
+                        "New Employees",
+                        "Cultural Conflicts",
+                        "Inter-Cultural Communication"
+                    ]
+                },
+                {
+                    "day": "Day 5",
+                    "title": "The Difficult Conversation",
+                    "topics": [
+                        "Conflicts",
+                        "Conflict Styles",
+                        "Behaving Like a Leader in Difficult Situations",
+                        "Working with Cases on Difficult Conversations"
+                    ]
+                },
+                {
+                    "day": "Day 6",
+                    "title": "Communication and Rhetoric",
+                    "topics": [
+                        "Communicating So Everyone Understands",
+                        "Effective Communication",
+                        "Rhetoric for Managers",
+                        "Body Language",
+                        "Using Technology as Support",
+                        "Giving and Receiving Criticism",
+                        "Feedback Loop"
+                    ]
+                },
+                {
+                    "day": "Day 7",
+                    "title": "Development Discussions and Recruitment",
+                    "topics": [
+                        "Conversation Methods",
+                        "Confidentiality",
+                        "Ethics and Morality in Employee Discussions",
+                        "Responsibility/Checklist, Archiving, and Follow-up",
+                        "An Annual Cycle of Employee Discussions",
+                        "Recruiting Personnel",
+                        "Understanding People",
+                        "Reading a CV",
+                        "Conducting Good Interviews",
+                        "Selection Processes"
+                    ]
+                },
+                {
+                    "day": "Day 8",
+                    "title": "Labor Law and Substance Abuse Management",
+                    "topics": [
+                        "Rules of the Labor Market",
+                        "Allocation of Responsibilities",
+                        "Employment, Environment, and Leave Regulations",
+                        "Loyalty",
+                        "Harassment",
+                        "Alcohol and Drugs at Work",
+                        "What is the Manager's Responsibility?",
+                        "Action Plans"
+                    ]
+                },
+                {
+                    "day": "Day 9",
+                    "title": "Work Environment and Stress Management",
+                    "topics": [
+                        "Stress Management",
+                        "Work Environment and the Manager's Responsibility",
+                        "Concrete Tools for Handling Stress",
+                        "Discussions in Coaching Groups"
+                    ]
+                },
+                {
+                    "day": "Day 10",
+                    "title": "Working with Goals and Visions",
+                    "topics": [
+                        "Setting Goals Individually and for the Group",
+                        "Working with Smart Visions",
+                        "Habits versus Values",
+                        "Ethics and Morality and Understanding One's Own Value System"
+                    ]
+                },
+                {
+                    "day": "Day 11",
+                    "title": "Economic Relationships and Productivity",
+                    "topics": [
+                        "Basic Economic Concepts",
+                        "Income and Balance Sheets",
+                        "Productivity",
+                        "Key Ratios such as Liquidity, Solvency, Growth"
+                    ]
+                },
+                {
+                    "day": "Day 12",
+                    "title": "My Development as a Leader",
+                    "topics": [
+                        "Leading through Security",
+                        "Humor and Internal Jargon",
+                        "Leading in Change",
+                        "My Own Attitude; Being Who I Pretend to Be",
+                        "Understanding the Culture I Create",
+                        "Delegation; Responsibility and Mandate",
+                        "My Own Clarity as a Leader"
+                    ]
+                },
+                {
+                    "day": "Day 13",
+                    "title": "Reflection Day and Action Plan",
+                    "topics": [
+                        "Who am I?",
+                        "Where am I going?",
+                        "Written Assignment",
+                        "Action Plan"
+                    ]
+                },
+                {
+                    "day": "Day 14",
+                    "title": "Feedback",
+                    "topics": [
+                        "Summary",
+                        "Evaluation Using Various Tools",
+                        "Coaching Conversations in Coaching Groups",
+                        "Review of Action Plans",
+                        "Discussion on Continued Collaboration"
+                    ]
+                }
+            ],
+            "price": 5249.99,
+            "duration": "14 days",
+            "included": "Lunch, coffee and course material",
+            "image_url": "#",
+            "image": "#"
+        }
+    },
+    {
+        "pk": 4,
+        "model": "products.product",
+        "fields": {
+            "product": "Coaching, 3 days",
+            "category": 1,
+            "shortDescription": "In the coaching leadership training, we focus on your leadership skills, where challenges turn into areas for development, and we inspire each other.",
+            "description": "Coaching leadership is the pedagogy and approach of the future, we are convinced. This training takes you on a journey that will touch you. You get a unique opportunity to delve into the possibilities of coaching leadership.\n\nChallenge yourself in your view of leadership and your own approach, learn to inspire and motivate your employees. It is exciting to contemplate how one can go further in their business and leadership, even as a person. Can coaching leadership take us further, to new solutions, to new heights?\n\nIn the training, we work with experiential pedagogy. Theory is interspersed with practice. As a participant, you have the opportunity to practice, test tools and models, and exchange thoughts and reflections with colleagues from other organizations.",
+            "programContent": [
+                {
+                    "day": "Day 1",
+                    "topics": [
+                        "Foundations of Coaching Approach",
+                        "Pedagogical Methods for Self-determination and Self-regulated Learning",
+                        "Assessing My Current Situation",
+                        "Where Am I Today in My Leadership and My Company?",
+                        "The Coaching Conversation",
+                        "Coaching Tools - Exercises",
+                        "Summary of the Day - What Takeaways Do You Have?"
+                    ]
+                },
+                {
+                    "day": "Day 2",
+                    "topics": [
+                        "Reflection from Day 1",
+                        "Advanced Foundations of Coaching Approach",
+                        "Key Skills in Coaching",
+                        "Coaching Conversations",
+                        "Communication and Conflict Management",
+                        "Additional Tools for Successful Coaching",
+                        "Summary of the Day - What Takeaways Do You Have?"
+                    ]
+                },
+                {
+                    "day": "Day 3",
+                    "topics": [
+                        "Reflection from Day 2",
+                        "Group and Team Coaching",
+                        "Coaching Leadership and its Barriers and Opportunities",
+                        "Presentation of Homework",
+                        "Questions Related to Homework",
+                        "We Summarize and Evaluate the Training",
+                        "Finally, each participant sets individual and realistic development goals."
+                    ]
+                }
+            ],
+            "price": 1499.99,
+            "duration": "3 days",
+            "included": "Lunch, coffee and course material",
+            "image_url": "#",
+            "image": "#"
+        }
+    },
+    {
+        "pk": 5,
+        "model": "products.product",
+        "fields": {
+            "product": "Electricity for mechanics, 5 days",
+            "category": 2,
+            "descriptionShort": "The training is designed to strengthen the leader's role in the company. The goal of the leadership training is to give the participants basic skills in personal leadership etc.",
+            "description": "This training is designed to strengthen the leader's role in the company. The aim is to give the participant basic skills in personal leadership, group development and communication, with effects such as increased efficiency and better collaboration. The trainer keeps the process going, lets the participants highlight their own experiences and possibly problem situations that can arise in the leadership role.",
+            "programContent": [
+                {
+                    "day": "Day 1",
+                    "title": "Electrical safety at work",
+                    "purpose": "Review of electrical safety, understand the danger of electricity and be able to minimize the risk of electrical accidents. To be able to carry out and participate in the maintenance and care of electrical installations in a safe manner and to fulfill the Work Environment Authority's requirements for knowledge and training.",
+                    "topics": [
+                        "Electrical accidents",
+                        "Electrical danger",
+                        "Structure of the electricity system",
+                        "Protection against dangerous voltage",
+                        "Laws and regulations",
+                        "Elsak-FS 2022:3 (holder's obligations)",
+                        "SS-EN 501 10-1 Edition 3 Swedish Standard"
+                    ]
+                },
+                {
+                    "day": "Day 2",
+                    "title": "Electrical theory",
+                    "purpose": "The participant gains knowledge of basic concepts and simpler formulas such as Ohm's law, series connection, parallel connection and the ability to carry out simpler measurements and connections.",
+                    "topics": [
+                        "Ohm's law",
+                        "Series connection",
+                        "Parallel connection",
+                        "Measurement exercises",
+                        "Effect",
+                        "3-phase",
+                        "Y-D connections",
+                        "Laboratories"
+                    ]
+                },
+                {
+                    "day": "Day 3",
+                    "title": "Electrical schedules",
+                    "purpose": "Here the participants gain knowledge about different electrical schemes and the most common symbols.",
+                    "topics": [
+                        "Symbols",
+                        "Circuit diagrams",
+                        "Main circuit diagrams"
+                    ]
+                },
+                {
+                    "day": "Day 4",
+                    "title": "Sensors and frequency converters",
+                    "purpose": "During the day we look at the most common sensors to be able to troubleshoot, replace and make the correct connection. Be able to plug in and change frequency converters and set the most common parameters.",
+                    "topics": [
+                        "Inductive",
+                        "Capacitive",
+                        "Optical sensors",
+                        "General, connection",
+                        "Parameters",
+                        "Test drive"
+                    ]
+                },
+                {
+                    "day": "Day 5",
+                    "title": "Practical exercises",
+                    "purpose": "The training ends with being able to practically apply troubleshooting, schematic reading, contactor exercises and frequency converters. We use e.g. electrical safety boards, troubleshooting trainers, engine fault simulator, contactor boards and frequency converters.",
+                    "topics": [
+                        "Electrical safety board",
+                        "Troubleshooting trainer",
+                        "Error simulator engine",
+                        "Contactor board"
+                    ]
+                }
+            ],
+            "price": 1899.99,
+            "duration": "5 days",
+            "included": "Lunch, coffee and course material",
+            "image_url": "#",
+            "image": "#"
+        }
+    },
+    {
+        "pk": 6,
+        "model": "products.product",
+        "fields": {
+            "product": "Electrical safety at work, 1 day",
+            "category": 2,
+            "descriptionShort": "To go through the maintenance regulations in order to be able to carry out and participate in maintenance in a safe way and to meet the requirements of the Swedish Working Environment Agency (AFS 2001:1) for knowledge and training",
+            "description": "According to the Work Environment Act, everyone who works where there is an electrical hazard must have training and knowledge of the consequences of the hazard and the safety measures that are justified for the work task. In the training, we review the regulations of the Work Environment Act and general advice on electrical safety. We also go through risk management and assessment of electrical safety, safety distances and more. The training is primarily aimed at personnel who work in an environment where there is an electrical hazard.",
+            "programContent": [
+                {
+                    "day": "Day 1",
+                    "title": "Electrical safety at work",
+                    "purpose": "Review of electrical safety, understand the danger of electricity and be able to minimize the risk of electrical accidents. To be able to carry out and participate in the maintenance and care of electrical installations in a safe manner and to fulfill the Work Environment Authority's requirements for knowledge and training.",
+                    "topics": [
+                        "Electrical accidents",
+                        "Electrical danger",
+                        "Structure of the electricity system",
+                        "Protection against dangerous voltage",
+                        "Laws and regulations",
+                        "Elsak-FS 2022:3 (holder's obligations)",
+                        "SS-EN 501 10-1 Edition 3 Swedish Standard"
+                    ]
+                }
+            ],
+            "price": 489.99,
+            "duration": "1 day",
+            "included": "Lunch, coffee and course material",
+            "image_url": "#",
+            "image": "#"
+        }
+    },
+    {
+        "pk": 7,
+        "model": "products.product",
+        "fields": {
+            "product": "Authorization A, 4 days",
+            "category": 2,
+            "descriptionShort": "The training follows current knowledge and skill requirements according to the Electrical Safety Authority's regulations on authorization as an electrical installer ELSAK-FS 2017:4.",
+            "description": "This training gives you the theoretical knowledge to apply for Authorization A. The knowledge requirements are regulated in the Electrical Safety Authority's regulations ELSAK-FS 2017:4. The training is aimed at electricians who intend to work as electrical installers for regulatory compliance and for those who intend to carry out their own work.",
+            "programContent": [
+                {
+                    "title": "Electrical safety at work",
+                    "topics": [
+                        "What is high voltage",
+                        "HSP facilities",
+                        "Earth roof",
+                        "System grounding",
+                        "Tension in the exposed part",
+                        "Earth fault",
+                        "Relay protection",
+                        "Selective plans",
+                        "Calculation of short-circuit current",
+                        "Certificate of operation",
+                        "Test before commissioning",
+                        "Test after voltage application"
+                    ]
+                }
+            ],
+            "price": 1849.99,
+            "duration": "4 days",
+            "included": "Lunch, coffee and course material",
+            "image_url": "#",
+            "image": "#"
+        }
+    },
+    {
+        "pk": 8,
+        "model": "products.product",
+        "fields": {
+            "product": "Microsoft Excel, 4 half-days",
+            "category": 3,
+            "descriptionShort": "Learn to understand and manage both the basics and more advanced functions of Excel.",
+            "description": "The training aims to increase competence in Excel. This provides increased security and better self-confidence. The training is aimed at all target groups for e.g. economists, HR or project managers.",
+            "programContent": [
+                {
+                    "title": "Basics in Microsoft Excel",
+                    "topics": [
+                        "The Cursor, Marking and Moving",
+                        "Copy and move content",
+                        "Format cells",
+                        "Create series and autofill",
+                        "Create your own formulas and calculations",
+                        "Appearance in Excel",
+                        "Toolbar",
+                        "Help functions",
+                        "Create charts",
+                        "Diagram on separate sheet",
+                        "Lock row and column headers",
+                        "Auto filter"
+                    ]
+                },
+                {
+                    "title": "Advanced Microsoft Excel",
+                    "topics": [
+                        "Printouts",
+                        "Formatting",
+                        "Formulas & functions",
+                        "Several magazines & books",
+                        "Lists and Tables",
+                        "Macros",
+                        "Pivot Tables (If needed)",
+                        "Data exchange (If necessary)"
+                    ]
+                }
+            ],
+            "price": 849.99,
+            "duration": "4 half-days",
+            "included": "Course material",
+            "image_url": "#",
+            "image": "#"
+        }
+    },
+    {
+        "pk": 9,
+        "model": "products.product",
+        "fields": {
+            "product": "Microsoft Project, 2 days",
+            "category": 3,
+            "shortDescription": "This training is aimed at you as a project manager and also project employees who want to be able to use Microsoft Project.",
+            "description": "In order to effectively run a project, a powerful project planning tool is required that frees up time from the employees who can instead focus on the progress of the project. With Microsoft Project, the participant gets a good tool for planning and following up projects. In the training, you learn to manage resources, activities, and budget. We also go through how you create different types of reports for the project's stakeholders. As a participant, you will gain good knowledge of how MS Project can be used effectively in daily work. The training is primarily aimed at you who are project managers, but also at project administrators and project employees.",
+            "programContent": [
+                {
+                    "day": "Day 1",
+                    "title": "Project planning",
+                    "purpose": "During day 1 create and work on a project from start to finish. During the course of the work, the participants learn to use the program's functions in their place.",
+                    "topics": [
+                        "Overview of Microsoft Project and basic settings",
+                        "Views and toolbars",
+                        "Break down and structure the work with WBS",
+                        "Create activities and activity descriptions",
+                        "Define dependencies between activities",
+                        "Create GANTT chart",
+                        "Plan resources",
+                        "Determine key milestones and decision points",
+                        "Printing and selection"
+                    ]
+                },
+                {
+                    "day": "Day 2",
+                    "title": "Follow-up and closing",
+                    "topics": [
+                        "Reflection from Day 1",
+                        "Analyze and monitor the project",
+                        "Follow up working hours",
+                        "Manage changes",
+                        "Take out reports",
+                        "Evaluation"
+                    ]
+                }
+            ],
+            "price": 1049.99,
+            "duration": "2 days",
+            "included": "Lunch, coffee and course material",
+            "image_url": "#",
+            "image": "#"
+        }
+    },
+    {
+        "pk": 10,
+        "model": "products.product",
+        "fields": {
+            "product": "Improved Working Environment, 3 days",
+            "category": 4,
+            "shortDescription": "The aim of the training is to actively work with and carry out systematic work environment work in one's own organisation. The training aims to work for a good working environment.",
+            "description": "A good work environment does not come by itself. In order to prevent accidents and ill health, target-oriented and systematic work environment work is necessary for every company today. Violating the work environment law can be expensive. Our training Better working environment (BAM) is aimed at you who are managers, leaders or safety representatives. During three days, you will get the basics of the most important laws and regulations, knowledge of risk management and insights into what a good working environment means for the individual, the company and society.\n\nThe training includes the Swedish Work Environment Agency's new regulations on organizational and social work environment, which include bullying and abusive discrimination. The goal of the training is for you to learn systematic work environment work - to practically investigate, implement and follow up the work environment in your own organization.",
+            "programContent": [
+                {
+                    "day": "Day 1",
+                    "title": "Laws and regulations regarding work environment",
+                    "purpose": "We provide you with basic knowledge of laws, regulations, agreements and regulations. You will learn systematic work environment work (AFS 2001:1), which involves investigating, implementing and following up activities to prevent accidents and ill health. You learn to work with risk assessment, risk management and action plans. Among the regulations is also the new AFS 2015:4, which is about preventing bullying and abusive discrimination.",
+                    "topics": [
+                        "Background, creation and structure of the Work Environment Act",
+                        "The meaning of the regulations",
+                        "The Work Environment Ordinance",
+                        "The role of the Work Environment Agency",
+                        "Violation of the Work Environment Act - penalty fees",
+                        "New AFS 2015:4 - Organizational and social work environment",
+                        "Systematic work environment work (SAM) according to AFS 2001:1",
+                        "Action plan"
+                    ]
+                },
+                {
+                    "day": "Day 2",
+                    "title": "Distribution of responsibilities - managers, leaders and safety representatives",
+                    "purpose": "Managers and safety representatives have different roles and responsibilities in work environment work and need to cooperate in the best way. It is also important to understand how the change work can affect the individual, the group and the organization.",
+                    "topics": [
+                        "Reflection on day 1 and feedback on the homework",
+                        "Risk analysis - routine",
+                        "Deepening of work environment responsibility",
+                        "Organization of work environment work (SAM)",
+                        "The preventive work: incident reporting, accident reporting, injuries, etc",
+                        "Employer's responsibility",
+                        "Managers and leaders, distribution of tasks",
+                        "Employee responsibility",
+                        "The protection organization. Chief safety officer, safety officer and the safety committee",
+                        "Landlords, tenants, contractors",
+                        "Coordination responsibility",
+                        "The psychosocial work environment",
+                        "Lathund for introduction of new employees",
+                        "The role of occupational health care"
+                    ]
+                },
+                {
+                    "day": "Day 3",
+                    "title": "More about systematic work environment work - risk management and action plans",
+                    "purpose": "We show how you can identify and manage positive and negative factors for the work environment. You get tools to carry out preventive and systematic work environment work.",
+                    "topics": [
+                        "Reflection on day 2 and feedback on the homework",
+                        "Personal protective equipment",
+                        "Work-related injuries and incidents: follow-up and reporting",
+                        "Work adaptation and rehabilitation - early signals",
+                        "Presentation of action plan",
+                        "Evaluation and conclusion"
+                    ]
+                }
+            ],
+            "price": 999.99,
+            "duration": "3 days",
+            "included": "Lunch, coffee and course material",
+            "image_url": "#",
+            "image": "#"
+        }
+    },
+    {
+        "pk": 11,
+        "model": "products.product",
+        "fields": {
+            "product": "Internal audit, 2 days",
+            "category": 4,
+            "descriptionShort": "The goal is more influence over future events so that the unpredictability will interfere less when you lead, administer and develop.",
+            "description": "In order to carry out environmental audits, knowledge of ISO 14001:2015, important environmental issues and environmental legislation as well as skills in audit technology is required. In order to carry out quality audits, knowledge of the requirements according to ISO 9001 is required. Quality audits can be carried out in different ways with different orientations, for example system-oriented, process-oriented and product-oriented quality audits.\n\nThe goal is more influence over future events and thus that the unpredictable should disturb less when leading, administering and developing the audit tool. The training for you who will become an internal auditor or be responsible for internal audits in the business.",
+            "programContent": [
+                {
+                    "purpose": "Most companies have self-designed processes for how the audits are to be carried out. Own documents and regulations. During the training, we look at the basic requirements and try to connect these to the business's own methodology.",
+                    "topics": [
+                        "The requirements of the standard",
+                        "The organization and its processes",
+                        "Auditing technology",
+                        "Documentation and deviation management",
+                        "Theoretical exercises",
+                        "Practical exercises (including preparation)",
+                        "Final exam"
+                    ]
+                }
+            ],
+            "price": 1049.99,
+            "duration": "2 days",
+            "included": "Lunch, coffee and course material",
+            "image_url": "#",
+            "image": "#"
+        }
+    },
+    {
+        "pk": 12,
+        "model": "products.product",
+        "fields": {
+            "product": "Quality and environmental manager, 22 days",
+            "category": 4,
+            "descriptionShort": "22 fully-fed training days give you the basics of quality management and standardized management systems such as ISO. You get broad knowledge in business development and inspiration from successful business leaders.",
+            "description": "Are you already a quality and environmental manager at your company - or do you want to be? Train with us and become a certified quality and environmental manager! Our full-fledged program of 22 training days gives you the basics of quality management and standardized management systems such as ISO. At the same time, you gain broad knowledge in business development and inspiration from successful business leaders - knowledge that you can use directly in your work.\n\nThe training includes both theory and many practical exercises so that you can effectively work with the work environment, sustainability and safety. After completing the training, you have plenty of tools to lead and support your organization and take responsibility for everything that a quality and environmental manager needs to handle.",
+            "programContent": [
+                {
+                    "title": "Quality and environmental project",
+                    "purpose": "Throughout the training, you will work on your own project that affects the business you are in. You will receive personal supervision and coaching to be able to translate the theories into practical action. The project work will also help you in your personal development as you are forced to reflect on your own leadership and the tasks you face. On the last day, there is a joint presentation of your and the other participants' individual projects. The moment when you present your own project work can be the proudest moment during the entire education."
+                },
+                {
+                    "title": "The basics of quality and environmental management",
+                    "purpose": "Understand the background to quality and environmental management. We start a project work that gives you the opportunity to practice what we go through during the training and which can be applied in your organization. The project work is presented at the end of the education."
+                },
+                {
+                    "title": "Taking social responsibility internally and externally",
+                    "purpose": "Do all employees have a good working environment? Is there any discrimination both internally and externally? Do you produce in other countries? Social responsibility is about companies taking responsibility for how they affect society, from an economic, environmental and social perspective."
+                },
+                {
+                    "title": "Business management, management systems and standards",
+                    "purpose": "We take a firm grip on the development of international standards (ISO). We go through ISO 9001, ISO 14001 and inform about ISO/TS 16949, ISO 17025/17020, HACCP and OHSAS. During the day, we look at so-called soft values such as relationships, as we do an SDI mapping of the strengths and driving forces of the participants and the group."
+                },
+                {
+                    "title": "Effective teams and work environment",
+                    "purpose": "During the day, we continue with 'effective teams' with the goal of accepting the differences of individuals, so that everyone's varying experiences, background and culture can become an asset in an organization. We also address the Work Environment Act (AML), the Work Environment Agency's regulations (AFS) and what is meant by systematic work environment work (SAM)."
+                },
+                {
+                    "title": "Customer and supplier concepts",
+                    "purpose": "How can you as a quality and environmental manager integrate the factors of leadership, business and governance? Clarity and the ability to 'translate the deal' are important ingredients. During these days, you get tools to create an efficient structure, clarity and methodology in the organization to make optimal use of all resources. A connection between strategies and goals as well as effective operational management is necessary."
+                },
+                {
+                    "title": "Audit - To plan and implement",
+                    "purpose": "Auditing in the quality and environmental area is based on ISO 19011:2011. The goal is more influence over future events so that the unpredictability will interfere less when you lead, administer and develop. We carry out an audit in a critical situation within a manufacturing industry where the goal is for you to be able to use the audit tool adapted to the business."
+                },
+                {
+                    "title": "Risk management and process tools",
+                    "purpose": "We go through risk management and how you can recognize warning signs – and address them in time to create a healthy business. We also look at process tools such as failure effect analysis (FMEA), pre-planned quality assurance (APQP), statistical process control (SPS) and capability."
+                },
+                {
+                    "title": "Lean, improvement work and value flow",
+                    "purpose": "We go through a flowchart that shows step by step activities that together make up a process. The day is devoted to LEAN, which is about maximizing customer benefit and minimizing waste. Based on Toyota's 14 principles, soundness in action and smartness in management, all organizations can be better in different ways. You get answers to questions such as: What is meant by value flow? How well do flows work in manufacturing? How quickly do we get a customer commitment through? How can the lead time be reduced and the value creation time increased?"
+                },
+                {
+                    "title": "Process and environmental goals and shortage costs",
+                    "purpose": "We review goals, KPIs (key figures) and other metrics as well as the outside world's and our own requirements and objectives. What do laws and regulations mean for business management? We also reflect on questions such as: What does 'Constant improvement' mean? What is the basis for systematically getting better? Better than what? What is meant by shortage cost?"
+                },
+                {
+                    "title": "Product responsibility and implementation of business systems",
+                    "purpose": "What is required to run a business? What is meant by product liability? How do we choose the right business system? We take up the concepts from several aspects and discuss the issues. We cover theoretical cases and encourage you and the other participants to bring your own examples for discussion and suggestions for handling."
+                },
+                {
+                    "title": "Evaluation models and refinement of the project work",
+                    "purpose": "Among other things, we look at how business systems can support the business. Or do you have to adapt it? Based on the knowledge you have now acquired, you should be able to set up systems and get the various owners of the system (process owners) to understand the benefits themselves. What do the evaluation models say and what views does the certification auditor have? During these days, you also refine your project work."
+                },
+                {
+                    "title": "Reporting of the quality and environmental project",
+                    "purpose": "The project that started at the beginning of the training is now presented to all the participants as well as invitees from various companies and organizations. It will be a fantastic day with lots of knowledge transfer and time to reflect. This day is planned together with the whole group and will be around two weeks after the end of basic training."
+                },
+                {
+                    "title": "Feedback and reflection",
+                    "purpose": "Feedback, reflection and exchange of experience takes place during one day approximately six months after the end of the program. We look in the rearview mirror where you and other participants get to tell us about your current situation. We also cover current news in the area of quality and the environment."
+                },
+                {
+                    "title": "Graduation",
+                    "purpose": "When your project work is approved, you will receive your long-awaited degree certificate and diploma in pleasant forms. These can then be added to your CV and you can in the future title yourself 'Diplomed quality and environmental manager'."
+                }
+            ],
+            "price": 8899.99,
+            "duration": "22 days",
+            "included": "Lunch, coffee and course material",
+            "image_url": "#",
+            "image": "#"
+        }
+    },
+    {
+        "pk": 13,
+        "model": "products.product",
+        "fields": {
+            "product": "Dare to speak, 1 day",
+            "category": 5,
+            "descriptionShort": "This is the training for you who feel you would like to speak, but don't really know how and feel comfortable. The training gives you the tools to better manage talent and find your safety zone",
+            "description": "Do you feel limited by nervousness and maybe even stage fright when it comes to speaking in front of a group, leading meetings, lecturing or presenting a pitch? Dare to speak is the training for you who feel you would like to speak, but don't really dare. Here you get concrete tools to manage your nervousness and reduce fear. Everyone can learn to manage their nervousness and stop letting it limit their lives.\n\nDuring the Dare to Speak training, you get to meet others in the same situation, which allows you to grow together. From experience, we know that the group should be kept small in order for us to dare to challenge and overcome our anxiety in the face of what we find unpleasant, therefore we never have more than 12 participants on our training dare to speak.",
+            "programContent": [
+                {
+                    "purpose": "During the training day, theory is interspersed with interactive exercises in an easy and educational way. You meet others in the same situation, which allows you to grow together. This is what we go through during the day:",
+                    "topics": [
+                        "Gain an understanding of your nervousness and where it comes from",
+                        "Creating safe spaces: how you prepare to dare",
+                        "List your fears - refuse to let them control you",
+                        "Then you will be brave enough to overcome your doubts",
+                        "Physical movements to reduce tension",
+                        "What do I lose and what do I gain - put your nervousness into perspective",
+                        "Rhetorical tools for reducing fear of speaking",
+                        "Practical exercises with feedback"
+                    ]
+                }
+            ],
+            "price": 549.99,
+            "duration": "1 day",
+            "included": "Lunch, coffee and course material",
+            "image_url": "#",
+            "image": "#"
+        }
+    },
+    {
+        "pk": 14,
+        "model": "products.product",
+        "fields": {
+            "product": "Basic sales, 3 days",
+            "category": 5,
+            "descriptionShort": "This training is aimed at salespeople and people in sales positions who are either relatively new to their role or, despite experience, want to improve their awareness in and about the sales process.",
+            "description": "This training is aimed at salespeople and people in sales positions who are either relatively new to their role or, despite experience, wish to increase their awareness in and about the sales process. Having a focus on sales and profitability is a must for companies today. In an increasingly competitive world, proactive and professional sales work is becoming increasingly important. The importance of processing and establishing new customer contacts in a good and efficient manner cannot be overestimated.",
+            "programContent": [
+                {
+                    "day": "Day 1",
+                    "title": "The market and the customers",
+                    "purpose": "It often involves long sales cycles and difficult-to-understand decision-making processes, which can also be very variable in character depending on who the customer is. Systematic selling provides a platform to effectively build long-term sales and profitable business relationships with the right customers. We discuss about e.g. the questions:",
+                    "topics": [
+                        "Current situation - where do I want to go?",
+                        "Your sales process",
+                        "Needs analysis – Find out your customer's needs",
+                        "How do you categorize customers?",
+                        "What exactly is a key customer?",
+                        "Consultative selling: the sales process for visiting sales",
+                        "How you behave in a way that inspires confidence and creates an interest in your presentation",
+                        "How to deal with resistance during the presentation",
+                        "The importance of the voice and body language"
+                    ]
+                },
+                {
+                    "day": "Day 2",
+                    "title": "Sales technique",
+                    "purpose": "In the role of salesperson, it is important to have an understanding of the importance of good presentation techniques, needs analysis, question methodology and closing techniques.",
+                    "topics": [
+                        "How to build a structure in your presentation",
+                        "Open questions",
+                        "Question methodology as you ask you get answers",
+                        "Active objection handling",
+                        "To clarify and simplify the solution for your customer",
+                        "On Getting a Client to Say Yes - Closing Techniques",
+                        "To present a solution and conclude"
+                    ]
+                },
+                {
+                    "day": "Day 3",
+                    "title": "The offer and customer needs",
+                    "purpose": "That the offer is properly packaged is becoming increasingly important in the battle for customers. Among other things, we look at what it really means to be market-oriented and how we communicate the offer to the customer.",
+                    "topics": [
+                        "Different personality styles and adaptation of the message",
+                        "Customer benefit is what the customer buys",
+                        "Create rewarding relationships with your customer",
+                        "Negotiation techniques",
+                        "What you as a seller are responsible for",
+                        "Additional sales"
+                    ]
+                }
+            ],
+            "price": 1449.99,
+            "duration": "3 days",
+            "included": "Lunch, coffee and course material",
+            "image_url": "#",
+            "image": "#"
+        }
+    },
+    {
+        "pk": 15,
+        "model": "products.product",
+        "fields": {
+            "product": "Key Account Management, 8 days",
+            "category": 5,
+            "descriptionShort": "Key account management (KAM) means working with strategic sales and key customer processing.",
+            "description": "As a Key Account Manager (KAM), you work with the company's most important customers. How can you maintain and develop the key customers and at the same time identify the smaller customers who can develop into large ones? How can you adapt your sales communication as the market changes? Our training gives you the basics of systematic sales, key customer strategy, segmentation, KAM economics, negotiation techniques – and much more.\n\nDuring the KAM training, you carry out individual project work that connects the theories with the practical work in your everyday life. It gives you the ability to map which customers should be prioritized and how you should process them. You get valuable tools to build long-term and profitable relationships with the right customers.",
+            "programContent": [
+                {
+                    "title": "Traditional sales and KAM sales",
+                    "purpose": "During the first few days, we look at the role of Key Account Manager/major account manager and discuss, among other things: What does it actually mean to work with KAM? What is the difference between traditional sales and KAM sales?",
+                    "topics": [
+                        "The role of Key Account Manager and its responsibilities",
+                        "Sales methodology. How are you and the other participants doing at your companies today?",
+                        "Complex and consultative sales - what is meant?",
+                        "To position itself as a key supplier",
+                        "The KAM process and its development phases"
+                    ]
+                },
+                {
+                    "title": "Segmentation, systematic sales and key customer strategy",
+                    "purpose": "What exactly is a key customer? How should you categorize customers? How do you identify today's and tomorrow's key customers? Successful KAM sales are often about long sales cycles and difficult-to-understand decision-making processes. These can also be very variable in character depending on who the customer is. Systematic selling provides a platform to effectively build long-term sales. The right key customer strategy provides profitable business relationships with the right customers.",
+                    "topics": [
+                        "Segmentation – Identifying key customers",
+                        "Competitive strategy",
+                        "Buying behavior and buying processes",
+                        "Analysis of customer potential",
+                        "To create synergy effects between the marketing department and the sales department"
+                    ]
+                },
+                {
+                    "title": "KAM economics and negotiation techniques",
+                    "purpose": "Keeping track of which customers I should prioritize requires an understanding of financial relationships. It also requires answers to questions such as: How do you set a price? What is the right price? Which key figures do you as a salesperson benefit from in your sales and in a customer relationship?",
+                    "topics": [
+                        "Different models for billing",
+                        "KAM finances and key figures",
+                        "Negotiation techniques and negotiation processes"
+                    ]
+                },
+                {
+                    "title": "The offer and customer needs",
+                    "purpose": "How can you package your company's offering? What does it really mean to be market-oriented? How do you communicate the offer to the customer? We go through, among other things:",
+                    "topics": [
+                        "To focus on customer needs and customer benefit",
+                        "Customer value analysis",
+                        "Relationship marketing"
+                    ]
+                },
+                {
+                    "title": "Project reporting and closure",
+                    "purpose": "At the very end of the KAM training, you present your individual project work - and the other participants present theirs. A project work may for example include a customer care plan, key customer analysis or KAM plan. It will be a day with lots of reflections and knowledge transfer. Now you have acquired the ability to map which customers should be prioritized and how to process them. And you have been given the tools to build long-term and profitable relationships with the right customers."
+                }
+            ],
+            "price": 4499.99,
+            "duration": "8 days",
+            "included": "Lunch, coffee and course material",
+            "image_url": "#",
+            "image": "#"
+        }
+    },
+    {
+        "pk": 16,
+        "model": "products.product",
+        "fields": {
+            "product": "Maintenence Manager, 6 days",
+            "category": 6,
+            "descriptionShort": "Everything you need to know about maintenance and everything you need to know to create operational reliability and optimal maintenance economy - you get that with the help of our Diplomad Maintenance Manager training",
+            "description": "As a maintenance manager, you lead a team of everyday heroes who strive to increase operational reliability through preventive maintenance measures. Your focus is to create motivation through inspiring and knowledgeable leadership to develop a modern maintenance business through improvement work and a standardized way of working.\n\nAfter 14 well-planned training days, you will have gained in-depth knowledge of maintenance and operational safety, maintenance economics and standardized working methods, among other things.",
+            "programContent": [
+                {
+                    "day": "Block 1",
+                    "title": "Maintenance management",
+                    "purpose": "In order to raise all participants to the same level within the area, we begin the training by going through the basics regarding maintenance and operational safety.",
+                    "topics": [
+                        "Maintenance and reliability",
+                        "Plant efficiency",
+                        "Environmental impact",
+                        "Asset Management",
+                        "Value stream analysis",
+                        "Business objectives and master plan",
+                        "The maintenance process",
+                        "Maintenance organization",
+                        "Maintenance economy",
+                        "Results measurement",
+                        "Verification of the business",
+                        "Standardization"
+                    ]
+                },
+                {
+                    "day": "Block 2",
+                    "title": "Leadership and team development",
+                    "purpose": "As a maintenance manager, you are expected to continuously lead and develop your team. In effective teams, the differences of individuals are accepted. In this way, different experiences, background and culture become an asset.",
+                    "topics": [
+                        "Leadership",
+                        "Team development",
+                        "Group dynamics",
+                        "Presentation technology",
+                        "Effective feedback and feedback"
+                    ]
+                },
+                {
+                    "day": "Block 3",
+                    "title": "Preventive maintenance",
+                    "purpose": "Through a standardized way of working, sustainable and quality-assured routines are created.",
+                    "topics": [
+                        "Maintenance plan",
+                        "Maintenance planning",
+                        "Preparation",
+                        "Scheduling",
+                        "Backlog",
+                        "Results measurement",
+                        "Preventive maintenance",
+                        "Condition-based maintenance",
+                        "Preventive maintenance plan",
+                        "Implementation"
+                    ]
+                },
+                {
+                    "day": "Block 4",
+                    "title": "Reactive maintenance",
+                    "purpose": "With the right methods, troubleshooting is faster and it is easier to prevent new errors. In cases where errors do occur, it is important to find and remedy them as soon as possible.",
+                    "topics": [
+                        "Supportive maintenance",
+                        "Systematic problem solving",
+                        "Seven quality management tools",
+                        "Rotor case analysis",
+                        "Work environment and personal safety",
+                        "Electrical and electronic components",
+                        "Mechanical components",
+                        "Material theory",
+                        "Welding"
+                    ]
+                },
+                {
+                    "day": "Block 5",
+                    "title": "Proactive maintenance",
+                    "purpose": "We go through the positive effects of properly applied operator maintenance and the opportunities that the maintenance organization has when introducing operator maintenance.",
+                    "topics": [
+                        "Continuous improvement",
+                        "The improvement process",
+                        "Methods and tools",
+                        "Improvement work",
+                        "Maintenance development",
+                        "TPM - Total Productive Maintenance",
+                        "Operator maintenance"
+                    ]
+                },
+                {
+                    "day": "Block 6",
+                    "title": "Maintenance support",
+                    "purpose": "An adapted infrastructure is a prerequisite for effective maintenance. Here you will learn about how you can create order and order in your business.",
+                    "topics": [
+                        "Documentation",
+                        "Data management",
+                        "Infrastructure",
+                        "Design and modification",
+                        "Human resources",
+                        "Competence development",
+                        "Spare parts",
+                        "Special tools"
+                    ]
+                },
+                {
+                    "day": "Block 7",
+                    "title": "New acquisition",
+                    "purpose": "In this block, we go through the prerequisites for a maintenance procurement by first evaluating the life cycle economics of the intended equipment and then choosing the right supplier, concept and technology.",
+                    "topics": [
+                        "Purpose and goal",
+                        "Life cycle economics",
+                        "Effective projects",
+                        "The new procurement process"
+                    ]
+                },
+                {
+                    "title": "Finale",
+                    "purpose": "The training for maintenance managers ends with a day filled with rehearsal and coaching based on the group's joint results on the knowledge tests that end each block.",
+                    "topics": [
+                        "Repetition of important moments",
+                        "Review of knowledge tests",
+                        "Discussion and reflection",
+                        "Maintenance of the future",
+                        "EFNMS exam in maintenance management"
+                    ]
+                }
+            ],
+            "price": 5549.99,
+            "duration": "14 days",
+            "included": "Lunch, coffee and course material",
+            "image_url": "#",
+            "image": "#"
+        }
+    },
+    {
+        "pk": 17,
+        "model": "products.product",
+        "fields": {
+            "product": "Hydraulics, 4 days",
+            "category": 6,
+            "descriptionShort": "The training gives the participants knowledge of the function of different valves and being able to read, decipher simpler hydraulic diagrams and connect circuits etc.",
+            "description": "The aim of the training is for the participants to learn about the function of different valves and to be able to read and decipher simpler hydraulic diagrams. The training also creates awareness of the risks involved when working with hydraulic machines and how accidents can be avoided.\n\nParticipants gain basic knowledge of the structure and function of hydraulic systems and their components. The ability to perform common maintenance operations, commissioning and troubleshooting. The understanding of which operating conditions are required for a hydraulic system with high reliability. Environmental impact of hydraulic fluids and management of emissions. The participants must also be able to connect circuits of the degree of difficulty we worked with during the training.",
+            "programContent": [
+                {
+                    "title": "Theory",
+                    "topics": [
+                        "Hydraulic basics and safety",
+                        "Regulation of pressure, power, flow and speed",
+                        "Hydraulic components, pumps, motors, valves, cylinders, Accumulators, tanks and coolers",
+                        "Electrically operated hydraulics",
+                        "Schema symbols and system structure",
+                        "Hydraulic fluids and their properties",
+                        "Impurities, cleanliness levels and filtration",
+                        "Couplings and sealing elements",
+                        "Wire elements"
+                    ]
+                },
+                {
+                    "title": "Practical",
+                    "topics": [
+                        "Control and adjustment of maximum pressure with safety valve",
+                        "Limitation of flow and speed",
+                        "Limitation of pressure and force",
+                        "Load retention with hydraulic lock or over center valve",
+                        "Electrically operated hydraulics",
+                        "Installation of hose coupling and pipe coupling",
+                        "Check precharge pressure in accumulator",
+                        "Schedule reading",
+                        "Construction task"
+                    ]
+                }
+            ],
+            "price": 1849.99,
+            "duration": "4 days",
+            "included": "Course material",
+            "image_url": "#",
+            "image": "#"
+        }
+    },
+    {
+        "pk": 18,
+        "model": "products.product",
+        "fields": {
+            "product": "Siemens-7, 2 days",
+            "category": 6,
+            "descriptionShort": "After the training, participants must be able to make program changes, as well as debug and test existing STEP-7 programs.",
+            "description": "After the Siemens S7 training, the participants must be able to perform program changes, troubleshoot and test existing STEP 7 programs. Participants must also know the structure, capacity and function of the systems. The training should provide knowledge to solve minor control tasks",
+            "programContent": [
+                {
+                    "day": "Day 1",
+                    "title": "The control system",
+                    "purpose": "We go through the Siemens Simatic S7 control system and basic troubleshooting methodology using computer-based contactor control. Furthermore, troubleshooting also takes place in circuit diagrams with simulated errors and logical thinking.",
+                    "topics": [
+                        "The control system Siemens Simatic",
+                        "Basic troubleshooting methodology using computer based contactor control",
+                        "Circuit diagram troubleshooting with simulated faults",
+                        "Logical thinking"
+                    ]
+                },
+                {
+                    "title": "Troubleshooting",
+                    "topics": [
+                        "Troubleshooting Siemens S7",
+                        "Troubleshooting online",
+                        "Simulated errors",
+                        "Cross reference list",
+                        "Symbolic and absolute address",
+                        "Symbol table"
+                    ]
+                }
+            ],
+            "price": 1149.99,
+            "duration": "2 days",
+            "included": "Lunch, coffee and course material",
+            "image_url": "#",
+            "image": "#"
+        }
+    }
+][
+    {
+        "pk": 1,
+        "model": "products.product",
+        "fields": {
+            "product": "Leadership, 3 days",
+            "category": 1,
+            "descriptionShort": "Leadership training where participants get an increased opportunity to grow in their personality to cope with the role of group leader, team leader, coordinator, foreman, preparer, planner, etc.",
+            "description": "In the leadership training course 'Lead without being a boss,' participants get an increased opportunity to grow in their personality to cope with the role of group leader, team leader, coordinator, foreman, preparer, planner, etc. The training aims for you to be able to grow in your role as a leader. You will gain knowledge and understanding in the areas of personal leadership, group development, and how you can prevent and manage conflicts through your way of communicating.\n\nIn order to successfully apply your knowledge in everyday life, you will receive concrete tools and tips to convert your newly acquired knowledge into competence in the best possible way. The days are alternated between lectures, discussions, exercises, and self-reflection to best create a good balance and understanding for both yourself as a leader and your employees.",
+            "programContent": [
+                {
+                    "day": "Day 1",
+                    "title": "Personal leadership",
+                    "purpose": "The aim of the day is for you to gain a better understanding of who you are, both as a person and as a leader. You also get tools to be able to apply in a simple way in your everyday life and your work role.",
+                    "topics": [
+                        "Learning - How do I learn best? What can I do to transform knowledge into competence?",
+                        "Self-knowledge - How am I as a person and leader? How do I want to be? What can I do to get where I want?",
+                        "Your role - is it clear? Are you getting enough support? What challenges are you facing?",
+                        "Mindset - What is the difference between Growth and Fixed mindset? Which mindset do I have? What influences our mindset?",
+                        "Values - what values do I have and what values do others have? Are there any values that are right or wrong?",
+                        "Don't take anything personally - Do I take things personally? How does it make me feel if I do? How does it help me? What can I do to take things less personally?"
+                    ]
+                },
+                {
+                    "day": "Day 2",
+                    "title": "The group's development",
+                    "purpose": "Today's organization consists of individuals with different experiences and different backgrounds and cultures. In this section, we focus on group and team development. We create an understanding of how a group develops, as well as how I, as a leader, can respond to the group depending on where it is in development.",
+                    "topics": [
+                        "The group theory FIRO - what makes groups succeed? What does my group need? What do I do as a leader depending on where my group is?",
+                        "Situational leadership - how do I adapt my leadership to what my group needs?",
+                        "Psychological safety - What does psychological safety mean? How can it help us as a group and company to develop? How can I as a leader help create a higher psychological safety in my group?",
+                        "Feedback - how do I give/take feedback? How do we create an environment where we help each other develop?"
+                    ]
+                },
+                {
+                    "day": "Day 3",
+                    "title": "Communication, coaching leadership, motivation, and conflict management",
+                    "purpose": "The day aims to create a better understanding that people are different, perceive things differently and communicate differently. After the end of the day, you have also gained an insight into how you can manage and prevent conflicts.",
+                    "topics": [
+                        "Communication - What is communication? How do we communicate? How do we absorb what is said?",
+                        "Coaching leadership - What is coaching leadership? What can it lead to? How can I practice it?",
+                        "Motivation - What motivates? Can I motivate others? What can I do to be motivated even though I am doing, in my opinion, boring tasks?",
+                        "Conflict Management - How do I manage conflicts? What can I think about to manage conflicts?"
+                    ]
+                }
+            ],
+            "price": 1299.99,
+            "duration": "3 days",
+            "included": "Lunch, coffee and course material",
+            "image_url": "#",
             "image": "leadership_3_days.jpg"
         }
     },

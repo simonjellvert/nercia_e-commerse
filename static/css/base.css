@@ -1,0 +1,23 @@
+@media (max-width: 768px) {
+    h1 {
+        font-size: 2rem;
+    }
+    
+    p {
+        font-size: 0.8rem;
+    }
+}
+
+@media (max-width: 425px) {
+    h1 {
+        font-size: 1.5rem;
+    }
+
+    p {
+        font-size: 0.6rem;
+    }
+    
+    .info-text-home {
+        margin-left: 2rem;
+    }
+}
