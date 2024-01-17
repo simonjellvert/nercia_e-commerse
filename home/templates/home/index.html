@@ -2,20 +2,71 @@
 {% load static %}
 
 {% block content %}
-    <div class="container-fluid mt-5">
-        <div class="row w-100 d-flex justify-content-center align-items-center">
-            <div class="col-12 col-md-6 col-lg-6 col-xl-4 pl-3">
-                <div class="center">
-                    <h1>Welcome to our Webshop!</h2>
+<div class="container-fluid mt-5">
+    <div class="row w-100 d-flex justify-content-center align-items-center welcome">
+        <div class="col-12 col-md-6 col-lg-6 col-xl-6 mb-3 mb-md-0">
+            <div class="center">
+                <h1>Welcome to our Webshop!</h2>
                     <p>
                         On this page you can read about the trainings you are interested in,
-                        find out when the next start is planned and book yourself a seat on that specific training.
+                        find out when the next start is planned and book yourself a seat on that specific training. <br>
+                        You can also create your own account to be able to save billing information and keep track of
+                        previous bookings.
                     </p>
-                </div>
-            </div>
-            <div class="col-12 col-md-6 col-lg-6 col-xl-4">
-                <img src="{% static 'img/product_img/background_home.jpg' %}" alt="Trainer speaking in front of group" class="background-home w-100">
+                    <a href="" class="shop-now-link">
+                        <span>
+                            <strong>
+                                Search and shop your trainings <i class="fas fa-arrow-right"></i>
+                            </strong>
+                        </span>
+                    </a>
             </div>
         </div>
+        <div class="col-12 col-md-6 col-lg-6 col-xl-6">
+            <img src="{% static 'img/product_img/background_home.jpg' %}" alt="Trainer speaking in front of group"
+                class="background-home">
+        </div>
     </div>
+</div>
+
+<div class="container-fluid mt-3 d-flex justify-content-center align-items-center text-center circles-container">
+    <div class="row row-circle text-center mt-3">
+
+        <!-- Circle 1 -->
+        <div class="col-12 col-md-4 d-flex justify-content-center align-items-center">
+            <a href="">
+                <div class=" circle circle-1">
+                    {% if user.is_authenticated %}
+                    Go to profile
+                    {% else %}
+                    Create account
+                    {% endif %}
+                </div>
+            </a>
+        </div>
+
+        <!-- Circle 2 -->
+        <div class="col-12 col-md-4 d-flex justify-content-center align-items-center">
+            <a href="">
+                <div class="circle">
+                    Shop trainings
+                </div>
+            </a>
+        </div>
+
+        <!-- Circle 3 -->
+        <div class="col-12 col-md-4 d-flex justify-content-center align-items-center">
+            <a href="">
+                <div class="circle circle-3">
+                    {% if user.is_authenticated %}
+                    Order history
+                    {% else %}
+                    Head back to main page
+                    {% endif %}
+                </div>
+            </a>
+        </div>
+
+    </div>
+</div>
 {% endblock %}
