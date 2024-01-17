@@ -50,38 +50,49 @@
 </head>
 
 <body>
-    <header class="container-fluid fixed-top">
-        
-    </header>
+    <nav class="navbar navbar-expand-lg navbar-light">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="{% url 'home' %}">
+                <img src="{% static 'img/logotype/logotype_nercia.png' %}" alt="Nercia logotype" class="logotype">
+            </a>
+            <div class="ml-auto navbar-toggler-wrapper">
+                <button class="navbar-toggler collapsed" type="button" data-toggle="collapse" data-target="#navbarNav"
+                    aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+            </div>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ml-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Main page</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Profile (if logged in)</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Shop</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Login/Logut</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Bag</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
 
-    <!-- {% if messages %}
-    <div class="message-container">
-        {% for message in messages %}
-            {% with message.level as level %}
-                {% if level == 40 %}
-                    {% include 'includes/toasts/toast_error.html' %}
-                {% elif level == 30 %}
-                    {% include 'includes/toasts/toast_warning.html' %}
-                {% elif level == 25 %}
-                    {% include 'includes/toasts/toast_success.html' %}
-                {% else %}
-                    {% include 'includes/toasts/toast_info.html' %}
-                {% endif %}
-            {% endwith %}
-        {% endfor %}
-    </div>
-    {% endif %} -->
-    
-    {% block page_header %}
-    {% endblock %}
-    
-    {% block content %}
-    {% endblock %}
-    
+    <main class="content mt-lg-0">
+        {% block content %}
+        {% endblock %}
+    </main>
+
+
     {% block postloadjs %}
-    <script type="text/javascript">
+    <!-- <script type="text/javascript">
         $(".toast").toast("show");
-    </script>
+    </script> -->
     {% endblock %}
 </body>
 

@@ -1,10 +1,11 @@
 /* ------------------------ Basics */
 
-* {
+body {
+    font-family: 'Ubuntu', sans-serif;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
     margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-    text-decoration: none;
 }
 
 h1,
@@ -20,6 +21,31 @@ h6 {
 p, a {
     font-family: 'Ubuntu', sans-serif;
 }
+
+/* ------------------------ Navbar */
+
+.logotype {
+    max-height: 35px;
+    height: auto;
+}
+
+.navbar {
+    height: 102px;
+    background-color: #fff;
+    margin: 0 80px 0 80px;
+}
+
+.navbar-light .navbar-nav .nav-link {
+    color: #000;
+    font-weight: 100;
+    margin: 15px;
+}
+
+.navbar-light .navbar-toggler {
+    border-color: #fff;
+    color: #dadada;
+}
+
 
 /* ------------------------ Index page */
 
@@ -73,7 +99,7 @@ p, a {
     display: flex;
     align-items: center;
     justify-content: center;
-    margin: 30px;
+    margin: 60px;
     transition: all 0.3s ease-in-out;
     border: 2px solid transparent;
 }
@@ -94,12 +120,16 @@ p, a {
 
 /* ------------------------ Media querie wide screens */
 
-@media (min-width: 1800px) {
+@media (min-width: 2500px) {
     h1 {
         font-size: 3.5rem;
     }
 
     p {
+        font-size: 1.5rem;
+    }
+
+    .circle {
         font-size: 1.5rem;
     }
 }
@@ -123,6 +153,16 @@ p, a {
         font-size: 0.8rem;
     }
 
+    .navbar {
+        margin: 20px 30px 20px 30px;
+        padding: 0;
+        height: 75px;
+    }
+
+    .navbar-light .navbar-nav .nav-link {
+        margin: 0;
+    }
+
     .welcome {
         padding: 0;
     }
@@ -131,10 +171,15 @@ p, a {
         height: 175px;
         width: 175px;
         margin: 15px;
+        font-size: 0.8rem;
     }
 
     .circles-container {
         padding-left: 0;
+    }
+
+    .center {
+        margin-bottom: 30px;
     }
 }
 
@@ -143,6 +188,10 @@ p, a {
 @media (max-width: 425px) {
     p {
         font-size: 1rem;
+    }
+
+    .navbar {
+        margin: 0 30px 0 30px;
     }
     
     .info-text-home {
@@ -161,6 +210,7 @@ p, a {
     .circle {
         height: 150px;
         width: 150px;
+        font-size: 1rem;
     }
     
 }
