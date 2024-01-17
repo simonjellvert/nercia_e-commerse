@@ -1,12 +1,17 @@
 /* ------------------------ Basics */
 
-body {
+html {
+    height: 100%;
+}
+
+
+/* body {
     font-family: 'Ubuntu', sans-serif;
     display: flex;
     flex-direction: column;
     min-height: 100vh;
     margin: 0;
-}
+} */
 
 h1,
 h2,
@@ -22,6 +27,10 @@ p, a {
     font-family: 'Ubuntu', sans-serif;
 }
 
+hr {
+    display: none;
+}
+
 /* ------------------------ Navbar */
 
 .logotype {
@@ -30,15 +39,25 @@ p, a {
 }
 
 .navbar {
-    height: 102px;
     background-color: #fff;
-    margin: 0 80px 0 80px;
+    margin: 15px 0 0 0;
+    z-index: 1000;
+    padding: 0;
+}
+
+.navbar-toggler-wrapper {
+    z-index: 1001;
 }
 
 .navbar-light .navbar-nav .nav-link {
     color: #000;
     font-weight: 100;
     margin: 15px;
+    transition: color 0.3s;
+}
+
+.navbar-light .navbar-nav .nav-link:hover {
+    color: #007ec1;
 }
 
 .navbar-light .navbar-toggler {
@@ -46,6 +65,13 @@ p, a {
     color: #dadada;
 }
 
+.dropdown-item {
+    font-weight: 100;
+}
+
+.fa-solid {
+    font-size: 20px;
+}
 
 /* ------------------------ Index page */
 
@@ -91,10 +117,10 @@ p, a {
 }
 
 .circle {
-    width: 200px;
-    height: 200px;
+    width: 150px;
+    height: 150px;
     background-color: #fff;
-    border-radius: 50%;
+    border-radius: 50% 50% 50% 0;
     color: #000;
     display: flex;
     align-items: center;
@@ -114,8 +140,8 @@ p, a {
     transform: scale(1.05);
 }
 
-.circle:hover a {
-    text-decoration: none !important;
+.row-circle a:hover {
+    text-decoration: none;
 }
 
 /* ------------------------ Media querie wide screens */
@@ -125,20 +151,77 @@ p, a {
         font-size: 3.5rem;
     }
 
-    p {
+    p,
+    a {
         font-size: 1.5rem;
     }
 
     .circle {
         font-size: 1.5rem;
     }
+
 }
 
 /* ------------------------ Media querie large screens */
 
-@media (max-width: 1024px) {
+@media (max-width: 992px) {
+    h1 {
+        font-size: 2rem;
+    }
+
+    a {
+        font-size: 0.8rem;
+    }
+
+    .logotype {
+        margin-left: 80px;
+    }
+
+    .navbar-toggler {
+        margin-right: 30px;
+    }
+    
     .welcome {
         padding: 0 20px;
+    }
+
+    .container-fluid {
+        margin-top: 30px;
+    }
+
+    .nav-link-color {
+        color: #333;
+        margin-left: 30px;
+        font-size: 0.8rem;
+    }
+
+    .navbar-collapse {
+        width: 100%;
+        margin-top: 15px;
+    }
+
+    .navbar-light .navbar-nav .nav-link {
+        margin: 0;
+    }
+
+    .nav-item {
+        background-color: #f2f3f5;
+        margin-right: 0;
+    }
+
+    .dropdown-menu {
+        padding: 0;
+        margin: 0;
+        background-color: #f2f3f5;
+    }
+    
+    .dropdown-item {
+        margin-left: 60px;
+    }
+
+    .fa-solid .fa-chevron-down {
+        margin-right: 20px;
+        font-size: 15px;
     }
 }
 
@@ -149,22 +232,47 @@ p, a {
         font-size: 2rem;
     }
     
-    p {
+    p,
+    a {
         font-size: 0.8rem;
     }
 
     .navbar {
-        margin: 20px 30px 20px 30px;
+        margin: 20px 0 0 0;
         padding: 0;
-        height: 75px;
+    }
+
+    .navbar-brand {
+        margin-left: 30px;
+    }
+
+    .navbar-toggler-icon {
+        margin-right: 30px;
     }
 
     .navbar-light .navbar-nav .nav-link {
         margin: 0;
     }
 
+    .list-inline-item:not(:last-child) {
+        margin-right: 0;
+    }
+
+    .nav-link-color {
+        color: #333;
+    }
+
+    .text-left {
+        margin-left: 30px;
+    }
+
+    .container-fluid {
+        padding-right: 0;
+        padding-left: 0;
+    }
+
     .welcome {
-        padding: 0;
+        margin-top: 40px;
     }
 
     .circle {
@@ -190,8 +298,12 @@ p, a {
         font-size: 1rem;
     }
 
-    .navbar {
-        margin: 0 30px 0 30px;
+    .navbar-brand {
+        margin-left: 0;
+    }
+
+    .navbar-toggler {
+        margin-right: 0;
     }
     
     .info-text-home {
