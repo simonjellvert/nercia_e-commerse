@@ -1,7 +1,8 @@
 /* ------------------------ Basics */
 
-html {
+html, body {
     height: 100%;
+    margin: 0;
 }
 
 
@@ -23,19 +24,25 @@ h6 {
     color: #353535;
 }
 
+h4 {
+    font-size: 14px;
+    color: #fff;
+}
+
 p, a {
     font-family: 'Ubuntu', sans-serif;
 }
 
-hr {
+/* hr {
     display: none;
-}
+} */
 
 /* ------------------------ Navbar */
 
 .logotype {
     max-height: 35px;
     height: auto;
+    margin-left: 156px;
 }
 
 .navbar {
@@ -43,6 +50,10 @@ hr {
     margin: 15px 0 0 0;
     z-index: 1000;
     padding: 0;
+}
+
+.navbar-collapse {
+    margin-right: 156px;
 }
 
 .navbar-toggler-wrapper {
@@ -65,12 +76,21 @@ hr {
     color: #dadada;
 }
 
+.nav-link-color {
+    font-size: 15px;
+}
+
 .dropdown-item {
     font-weight: 100;
+    font-size: 15px;
 }
 
 .fa-solid {
-    font-size: 20px;
+    font-size: 17px;
+}
+
+i.fa-chevron-down {
+    display: none;
 }
 
 /* ------------------------ Index page */
@@ -81,6 +101,7 @@ hr {
 
 .welcome {
     padding: 0 60px;
+    margin-top: 30px;
 }
 
 .background-home {
@@ -119,15 +140,14 @@ hr {
 .circle {
     width: 150px;
     height: 150px;
-    background-color: #fff;
+    background-color: rgb(157, 34, 53);
     border-radius: 50% 50% 50% 0;
-    color: #000;
+    color: #fff;
     display: flex;
     align-items: center;
     justify-content: center;
     margin: 60px;
     transition: all 0.3s ease-in-out;
-    border: 2px solid transparent;
 }
 
 .circle a {
@@ -136,12 +156,124 @@ hr {
 }
 
 .circle:hover {
-    border: 2px solid #007ec1;
     transform: scale(1.05);
 }
 
 .row-circle a:hover {
     text-decoration: none;
+}
+
+.circle-padding {
+    padding: 50px 0;
+}
+
+/* ------------------------ Wrapper */
+
+.wrapper {
+    min-height: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+.content {
+    flex: 1;
+}
+
+/* ------------------------ Footer */
+
+.footer-container {
+    min-height: 100%;
+    position: relative;
+    background-color: #141617;
+    flex-shrink: 0;
+    color: #fff;
+    padding: 50px 30px;
+}
+
+.footer-content {
+    margin-bottom: 60px;
+}
+
+.footer {
+    width: 100%;
+}
+
+.footer-logotype {
+    width: 150px;
+}
+
+.remove-decoration {
+    text-decoration: none;
+    cursor: pointer;
+    color: inherit;
+}
+
+ul {
+    list-style: none;
+    padding: 0;
+}
+
+li {
+    margin-bottom: 10px;
+}
+
+.logotype-footer {
+    margin-bottom: 50px;
+    padding: 0 15px;
+}
+
+.contact-header-footer {
+    padding: 0 15px;
+}
+
+.contact-content-footer {
+    padding: 0 15px;
+}
+
+.contact-header-footer,
+.news-header-footer,
+.social-header-footer,
+.links-header-footer {
+    margin-bottom: 28px;
+}
+
+.fa-brands {
+    margin: 0 5.5px 14px 0;
+    font-size: 25px;
+    color: #fff;
+}
+
+.fa-angle-right {
+    font-size: 14px;
+}
+
+.footer-container a,
+.footer-container p {
+    font-size: 14.5px;
+    font-weight: 100;
+}
+
+.footer-container a {
+    transition: color 0.3s;
+}
+
+.footer-container a:hover {
+    color: #007ec1;
+    text-decoration: none;
+}
+
+.footer-container h4 {
+    font-weight: 400;
+}
+
+.text-padding {
+    padding: 0 15px;
+}
+
+.post-date {
+    font-size: 12px;
+    font-weight: 100;
+    font-family: 'Ubuntu', sans-serif;
 }
 
 /* ------------------------ Media querie wide screens */
@@ -169,24 +301,33 @@ hr {
         font-size: 2rem;
     }
 
-    a {
+    p {
         font-size: 0.8rem;
+        margin-top: 15px;
+    }
+
+    a {
+        font-size: 1rem;
+    }
+
+    .navbar-brand {
+        margin-left: 30px;
     }
 
     .logotype {
-        margin-left: 80px;
+        margin-left: 0;
     }
 
     .navbar-toggler {
         margin-right: 30px;
     }
-    
-    .welcome {
-        padding: 0 20px;
-    }
 
     .container-fluid {
         margin-top: 30px;
+    }
+
+    .welcome {
+        padding: 0;
     }
 
     .nav-link-color {
@@ -198,30 +339,54 @@ hr {
     .navbar-collapse {
         width: 100%;
         margin-top: 15px;
+        margin-right: 0;
     }
 
     .navbar-light .navbar-nav .nav-link {
         margin: 0;
     }
 
+    .nav-item .nav-link-color {
+        transition: color 0.3s;
+    }
+
+    .nav-item:hover .nav-link-color {
+        color: #007ec1;
+    }
+
     .nav-item {
-        background-color: #f2f3f5;
         margin-right: 0;
     }
 
     .dropdown-menu {
         padding: 0;
         margin: 0;
-        background-color: #f2f3f5;
     }
     
     .dropdown-item {
         margin-left: 60px;
     }
 
-    .fa-solid .fa-chevron-down {
+    i.fa-chevron-down {
         margin-right: 20px;
         font-size: 15px;
+        display: inline-block;
+    }
+
+    .welcome-text {
+        padding: 0;
+    }
+
+    .social-header-footer {
+        padding-left: 15px;
+    }
+
+    .fa-facebook-f {
+        margin-left: 15px;
+    }
+
+    .footer-container {
+        margin-top: 0;
     }
 }
 
@@ -235,6 +400,10 @@ hr {
     p,
     a {
         font-size: 0.8rem;
+    }
+
+    h4 {
+        margin-bottom: 0;
     }
 
     .navbar {
@@ -275,6 +444,13 @@ hr {
         margin-top: 40px;
     }
 
+    .background-home {
+        width: 80%;
+        margin-left: auto;
+        margin-right: auto;
+        display: block;
+    }
+
     .circle {
         height: 175px;
         width: 175px;
@@ -289,17 +465,62 @@ hr {
     .center {
         margin-bottom: 30px;
     }
+
+    .contact {
+        margin-top: 0;
+    }
+
+    .news-header-footer {
+        margin-top: 30px;
+        margin-bottom: 15px;
+    }
+
+    .social.header-footer {
+        padding-left: 0;
+    }
+
+    .fa-facebook-f {
+        margin-left: 0;
+    }
+
+    .contact-header-footer,
+    .contact-content-footer,
+    .social-header-footer {
+        padding-left: 0;
+    }
+
+    .contact-content-footer p {
+        margin-top: 0;
+    }
+
+    .contact-header-footer,
+    .news-header-footer,
+    .social-header-footer,
+    .links-header-footer {
+        margin-bottom: 15px;
+        margin-top: 30px;
+    }
+
+    .footer-logotype {
+        margin: 0 auto;
+        display: block;
+    }
+
 }
 
 /* ------------------------ Media querie small screens */
 
 @media (max-width: 425px) {
     p {
-        font-size: 1rem;
+        font-size: 0.8rem;
     }
 
     .navbar-brand {
         margin-left: 0;
+    }
+
+    .logotype {
+        margin-left: 15px;
     }
 
     .navbar-toggler {
@@ -317,6 +538,7 @@ hr {
 
     .welcome {
         padding: 0 15px;
+        margin-bottom: 0;
     }
 
     .circle {
@@ -324,5 +546,25 @@ hr {
         width: 150px;
         font-size: 1rem;
     }
-    
+
+    .background-home {
+        width: 100%;
+    }
+
+    .circle-padding {
+        padding: 25px 0;
+    }
+
+    .footer-container {
+        margin-top: 0;
+    }
+
+}
+
+@media (max-width: 335px) {
+    .navbar-toggler {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
 }

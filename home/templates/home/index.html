@@ -4,7 +4,7 @@
 {% block content %}
 <div class="container-fluid welcome mb-5">
     <div class="row w-100 d-flex justify-content-center align-items-center welcome">
-        <div class="col-12 col-md-6 col-lg-6 col-xl-6 mb-3 mb-md-0">
+        <div class="col-12 col-md-6 col-lg-6 col-xl-6 mb-3 mb-md-0 welcome-text">
             <div class="center">
                 <h1>Welcome to our Webshop!</h2>
                     <p>
@@ -33,7 +33,7 @@
     <div class="row row-circle text-center">
 
         <!-- Circle 1 -->
-        <div class="col-12 col-md-4 d-flex justify-content-center align-items-center">
+        <div class="col-12 col-md-4 d-flex justify-content-center align-items-center circle-padding">
             <a href="">
                 <div class=" circle circle-1">
                     {% if user.is_authenticated %}
@@ -46,7 +46,7 @@
         </div>
 
         <!-- Circle 2 -->
-        <div class="col-12 col-md-4 d-flex justify-content-center align-items-center">
+        <div class="col-12 col-md-4 d-flex justify-content-center align-items-center circle-padding">
             <a href="">
                 <div class="circle">
                     Shop trainings
@@ -55,7 +55,7 @@
         </div>
 
         <!-- Circle 3 -->
-        <div class="col-12 col-md-4 d-flex justify-content-center align-items-center">
+        <div class="col-12 col-md-4 d-flex justify-content-center align-items-center circle-padding">
             <a href="">
                 <div class="circle circle-3">
                     {% if user.is_authenticated %}

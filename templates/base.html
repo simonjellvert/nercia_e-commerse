@@ -64,7 +64,7 @@
                 <li class="nav-item list-inline-item">
                     <a class="nav-link" href="#">
                         <div class="text-left">
-                            <p class="my-0 nav-link-color"><i class="fa-solid fa-shop mr-2"></i>Shop</p>
+                            <p class="my-0 nav-link-color text-uppercase"><i class="fa-solid fa-shop mr-2"></i>Shop</p>
                         </div>
                     </a>
                 </li>
@@ -73,7 +73,7 @@
                         aria-expanded="false">
                         <div class="d-flex justify-content-between">
                             <div class="text-left">
-                                <p class="my-0 nav-link-color"><i class="fa-solid fa-user mr-2"></i>My Account</p>
+                                <p class="my-0 nav-link-color text-uppercase"><i class="fa-solid fa-user mr-2"></i>Account</p>
                             </div>
                             <i class="fa-solid fa-chevron-down text-right"></i>
                         </div>
@@ -109,12 +109,106 @@
             </ul>
         </div>
     </nav>
+    <div class="wrapper">
+        <main class="content">
+            {% block content %}
+            {% endblock %}
+        </main>
 
-    <main class="content">
-        {% block content %}
-        {% endblock %}
-    </main>
-
+        <footer>
+            <div class="container-fluid footer-container d-flex justify-content-center align-items-center">
+                <div class="row footer-content">
+                    <div class="col-lg-3 col-md-6 col-sm-12">
+                        <section class="logotype-footer footer-column">
+                            <div class="row text-left text-padding">
+                                <img src="{% static 'img/logotype/nercia_logotype_white.png' %}" alt="Nercia logotype" class="footer-logotype">
+                            </div>
+                        </section>
+                        <section class="contact-header-footer">
+                            <div class="row text-left text-uppercase text-padding">
+                                <h4>Contact</h4>
+                            </div>
+                        </section>
+                        <section class="contact-content-footer">
+                            <div class="row text-left text-padding">
+                                <p>Phone: <a href="tel:004619206700" class="remove-decoration">+4619-20 67 00</a></p>
+                            </div>
+                            <div class="row text-left text-padding">
+                                <p>E-mail: <a href="mailto:info@nercia.se" class="remove-decoration">info@nercia.se</a></p>
+                            </div>
+                        </section>
+                    </div>
+                    <div class="col-lg-3 col-md-6 col-sm-12">
+                        <section class="news-header-footer">
+                            <div class="row text-left text-uppercase text-padding">
+                                <h4>Latest News</h4>
+                            </div>
+                        </section>
+                        <section class="news-content-footer"></section>
+                            <div class="row text-left text-padding">
+                                <ul>
+                                    <li>
+                                        <i class="fa-solid fa-angle-right"></i><a href="https://nercia.se/artiklar/nercia-zero-harm-dagar-pa-zinkgruvan/" class="remove-decoration">
+                                            Nercia is contributing to a safe security culture at Zinkgruvan Mining (text in swedish)
+                                        </a>
+                                        <br>
+                                        <span class="post-date">January 12, 2024</span>
+                                    </li>
+                                    <li>
+                                        <i class="fa-solid fa-angle-right"></i><a href="https://nercia.se/artiklar/forelasning-16-januari/" class="remove-decoration">
+                                            Lecture and breakfast with Natthawhat from Snacka Snyggt (text in swedish)
+                                        </a>
+                                        <br>
+                                        <span class="post-date">Januari 3, 2024</span>
+                                    </li>
+                                    <li>
+                                        <i class="fa-solid fa-angle-right"></i><a href="https://nercia.se/artiklar/traversutbildning-nercias-konsulter/" class="remove-decoration">
+                                            Full focus on the crane training for Nercia's leased consultants (text in swedish)
+                                        </a>
+                                        <br>
+                                        <span class="post-date">November 27, 2023</span>
+                                    </li>
+                                </ul>
+                            </div>
+                        </section>
+                    </div>
+                    <div class="col-lg-3 col-md-6 col-sm-12">
+                        <section class="social-header-footer">
+                            <div class="row text-left text-uppercase text-padding">
+                                <h4>Follow Us</h4>
+                            </div>
+                        </section>
+                        <section class="social-content-footer"></section>
+                            <div class="row text-left text-padding">
+                                <a href="https://www.facebook.com/Nercia.se/" target="_blank"><i class="fa-brands fa-facebook-f p-1" class="remove-decoration"></i></a>
+                                <a href="https://www.tiktok.com/@nercia1992?lang=sv-SE" target="_blank"><i class="fa-brands fa-tiktok p-1" class="remove-decoration"></i></a>
+                                <a href="https://www.instagram.com/nercia1992/" target="_blank"><i class="fa-brands fa-instagram p-1" class="remove-decoration"></i></a>
+                                <a href="https://www.linkedin.com/company/4988997/" target="_blank"><i class="fa-brands fa-linkedin-in p-1" class="remove-decoration"></i></a>
+                            </div>
+                        </section>
+                    </div>
+                    <div class="col-lg-3 col-md-6 col-sm-12">
+                        <section class="links-header-footer">
+                            <div class="row text-left text-uppercase text-padding">
+                                <h4>Links</h4>
+                            </div>
+                        </section>
+                        <section class="links-content-footer">
+                            <div class="row text-left text-padding mb-2">
+                                <a href="https://auth.nercia.se/auth/realms/nercia/protocol/openid-connect/auth?client_id=security-admin-console&redirect_uri=https%3A%2F%2Fauth.nercia.se%2Fauth%2Fadmin%2Fnercia%2Fconsole%2F&state=f6dc9211-daf1-4b2a-89ac-d10921b0caef&response_mode=fragment&response_type=code&scope=openid&nonce=e9f75215-45c7-462d-87db-96fbefdf281c&code_challenge=CCS17yEgsRSrplmwcgMeQbwRDGqriGwWYhdc62iWfwc&code_challenge_method=S256" target="_blank" class="remove-decoration">Login to training platform</a>
+                            </div>
+                            <div class="row text-left mb-2 text-padding">
+                                <a href="https://nercia.se/" target="_blank" class="remove-decoration">Nercia home page (text in swedish)</a>
+                            </div>
+                            <div class="row text-left mb-2 text-padding">
+                                <a href="https://nercia.se/bemanning-och-rekrytering/lediga-tjanster/" target="_blank" class="remove-decoration">Job Openings (text in swedish)</a>
+                            </div>
+                        </section>
+                    </div>
+                </div>
+            </div>
+        </footer>
+    </div>
 
     {% block postloadjs %}  
     <!-- <script type="text/javascript">
