@@ -1,12 +1,99 @@
-{% extends 'base.html' %}
+{% extends "base.html" %}
 {% load static %}
 
 {% block content %}
-    <div class="container-fluid">
-        <div class="row">
-            <div class="col">
-                {{ products }}
-            </div>
+<div class="container-fluid container-products">
+    <div class="row">
+        <div class="col-12 p-0">
+            <img src="{% static 'img/background_img/background_products.png' %}" alt="Skydiver falling from the air"
+                class="background-products">
         </div>
     </div>
+    <div class="row">
+        <div class="col-12 mb-5 d-flex flex-column align-items-center text-center">
+            <h1 class="mb-3">
+                Webshop - Your future starts here!
+            </h1>
+            <p class="products-header-p">
+                In this webshop, you will find all of our trainings available for online shopping.
+            </p>
+            <p class="products-header-p mb-3">
+                Simply scroll, filter, or search for the training you are interested in. Read about the content of that
+                specific training and when the next start is.
+            </p>
+            <p class="products-header-p">
+                When you are done - add the training to your shopping bag, check out, and you are ready to meet the
+                better you!
+            </p>
+        </div>
+    </div>
+</div>
+<div class="container-fluid container-cards mx-auto d-flex justify-content-center align-items-center">
+    <div class="row">
+        <!-- Column for Categories List (Collapsible Dropdown on Small Screens) -->
+        <div class="col-lg-3 col-md-6 col-sm-12">
+            <section>
+                <h3 class="text-left category-header">
+                    Search training
+                </h3>
+                <form action="GET" action="">
+                    <div class="input-group w-100">
+                        <input class="form-control border border-black rounded-0" type="text" name="q"
+                            placeholder="e.g Leadership">
+                        <div class="input-group-append">
+                            <button class="form-control btn border rounded-0" type="submit">
+                                <span class="icon">
+                                    <i class="fa-solid fa-magnifying-glass"></i>
+                                </span>
+                            </button>
+                        </div>
+                    </div>
+                </form>
+                <hr>
+                <h3 class="text-left category-header">
+                    Choose by category
+                </h3>
+                <ul class="list-unstyled">
+                    {% for category in categories %}
+                    <li>
+                        <label for="category-{{ category.name }}">
+                            <input class="category-text" type="checkbox" id="category-{{ category.name }}" name="category"
+                                value="{{ category.name }}">{{ category.friendly_name }}
+                        </label>
+                    </li>
+                    {% endfor %}
+                </ul>
+                <hr>
+            </section>
+        </div>
+
+        <!-- Column for Bootstrap 4 Cards -->
+        <div class="col-lg-9 col-md-12">
+            <section>
+                <div class="row">
+                    {% for product in products %}
+                    <div class="col-lg-4 col-md-6 m-0 p-0 w-100">
+                        <div class="card rounded-0">
+                            {% if product.image %}
+                            <a href="">
+                                <img src="{{ product.image.url }}" class="card-img-top rounded-0" alt="{{ product.alt_atr }}">
+                            </a>
+                            {% else %}
+                            <a href="">
+                                <img src="{{ MEDIA_URL }}no_image.png" class="card-img-top" alt="{{ product.alt_atr }}">
+                            </a>
+                            {% endif %}
+                            <div class="card-body border-top-4">
+                                <h5 class="card-title">{{ product.name }}</h5>
+                                <p class="card-text">{{ product.description_short }}</p>
+                            </div>
+                        </div>
+                    </div>
+                    {% endfor %}
+                </div>
+            </section>
+        </div>
+    </div>
+</div>
+
 {% endblock %}
