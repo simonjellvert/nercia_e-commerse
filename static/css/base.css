@@ -379,6 +379,10 @@ li {
         margin-top: 30px;
     }
 
+    .container-cards {
+        margin-top: 0;
+    }
+
     .container-products {
         margin-top: 0;
     }
