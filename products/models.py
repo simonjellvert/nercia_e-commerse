@@ -29,6 +29,7 @@ class Product(models.Model):
 
     name = models.CharField(max_length=254)
     description_short = models.TextField()
+    description = models.TextField(default='Description of the training')
     category = models.ForeignKey(
         'Category', null=True, blank=True, on_delete=models.SET_NULL
     )
@@ -51,10 +52,9 @@ class ProductContent(models.Model):
     product = models.ForeignKey(
         'Product', null=True, blank=True, on_delete=models.SET_NULL
     )
-    description = models.TextField()
     day = models.CharField(max_length=254, null=True, blank=True)
-    title = models.CharField(max_length=254)
-    purpose = models.TextField()
+    title = models.CharField(max_length=254, null=True, blank=True)
+    purpose = models.TextField(null=True, blank=True)
     topics = models.TextField()
 
     def __str__(self):

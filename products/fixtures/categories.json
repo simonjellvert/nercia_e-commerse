@@ -32,7 +32,7 @@
         }
     },
     {
-        "pk": 1,
+        "pk": 5,
         "model": "products.category",
         "fields": {
             "name": "marketing_and_sales",
@@ -40,7 +40,7 @@
         }
     },
     {
-        "pk": 1,
+        "pk": 6,
         "model": "products.category",
         "fields": {
             "name": "maintenance",
