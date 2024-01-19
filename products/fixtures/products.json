@@ -1148,6 +1148,7 @@
         "model": "products.productcontent",
         "pk": 59,
         "fields": {
+            "product": 14,
             "day": "Day 2",
             "title": "Sales technique",
             "purpose": "In the role of salesperson, it is important to have an understanding of the importance of good presentation techniques, needs analysis, question methodology and closing techniques.",
@@ -1166,6 +1167,7 @@
         "model": "products.productcontent",
         "pk": 60,
         "fields": {
+            "product": 14,
             "day": "Day 3",
             "title": "The offer and customer needs",
             "purpose": "That the offer is properly packaged is becoming increasingly important in the battle for customers. Among other things, we look at what it really means to be market-oriented and how we communicate the offer to the customer.",
