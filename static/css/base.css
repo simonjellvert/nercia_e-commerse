@@ -45,7 +45,7 @@ label {
     padding: 0;
 }
 
-.navbar-collapse {
+.header {
     margin-right: 156px;
 }
 
@@ -452,6 +452,32 @@ li {
 
     .background-products {
         height: 352px;
+    }
+
+    .navbar-toggler {
+        width: 100%;
+        text-align: center;
+    }
+
+    .navbar-toggler div {
+        width: 100%;
+        display: inline-block;
+        text-align: center;
+    }
+
+    .navbar-toggler i {
+        float: right;
+    }
+
+    .navbar-collapse {
+        text-align: center;
+        margin-top: 10px;
+        /* Adjust this margin as needed */
+    }
+
+    .search-button {
+        display: flex;
+        justify-content: center;
     }
 }
 

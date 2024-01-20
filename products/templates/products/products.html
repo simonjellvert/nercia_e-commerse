@@ -30,43 +30,52 @@
 </div>
 <div class="container-fluid container-cards mx-auto d-flex justify-content-center align-items-center">
     <div class="row">
-        <div class="col-lg-3 col-md-6 col-sm-12">
-            <!-- Add collapslible menu -->
-            <section>
-                <h3 class="text-left category-header">
-                    Search training
-                </h3>
-                <form action="GET" action="">
-                    <div class="input-group w-100">
-                        <input class="form-control border border-black rounded-0" type="text" name="q"
-                            placeholder="e.g Leadership">
-                        <div class="input-group-append">
-                            <button class="form-control btn border rounded-0" type="submit">
-                                <span class="icon">
-                                    <i class="fa-solid fa-magnifying-glass"></i>
-                                </span>
-                            </button>
-                        </div>
-                    </div>
-                </form>
-                <hr>
-                <h3 class="text-left category-header">
-                    Choose by category
-                </h3>
-                <ul class="list-unstyled">
-                    {% for category in categories %}
-                    <li>
-                        <label for="category-{{ category.name }}">
-                            <input class="category-text" type="checkbox" id="category-{{ category.name }}" name="category"
-                                value="{{ category.name }}">{{ category.friendly_name }}
-                        </label>
-                    </li>
-                    {% endfor %}
-                </ul>
-                <hr>
-            </section>
-        </div>
+        <div class="col-lg-3 col-md-12 col-sm-12">
+            <nav class="navbar navbar-expand-lg search-button" style="background-color: #f2f3f5;">
+                <button class="navbar-toggler d-lg-none" type="button" data-toggle="collapse" data-target="#collapsible-menu"
+                    aria-controls="collapsible-menu" aria-expanded="false" aria-label="Toggle navigation">
+                    <div>Search and filter</div>
+                    <i class="fa-solid fa-sliders"></i>
+                </button>
 
+                <div class="collapse navbar-collapse m-0" id="collapsible-menu">
+                    <section>
+                        <h3 class="text-left category-header">
+                            Search training
+                        </h3>
+                        <form action="GET" action="">
+                            <div class="input-group w-100">
+                                <input class="form-control border border-black rounded-0" type="text" name="q"
+                                    placeholder="e.g Leadership">
+                                <div class="input-group-append">
+                                    <button class="form-control btn border rounded-0" type="submit">
+                                        <span class="icon">
+                                            <i class="fa-solid fa-magnifying-glass"></i>
+                                        </span>
+                                    </button>
+                                </div>
+                            </div>
+                        </form>
+                        <hr>
+                        <h3 class="text-left category-header">
+                            Choose by category
+                        </h3>
+                        <ul class="list-unstyled">
+                            {% for category in categories %}
+                            <li>
+                                <label for="category-{{ category.name }}">
+                                    <input class="category-text" type="checkbox" id="category-{{ category.name }}" name="category"
+                                        value="{{ category.name }}">{{ category.friendly_name }}
+                                </label>
+                            </li>
+                            {% endfor %}
+                        </ul>
+                        <hr>
+                    </section>
+                </div>
+            </nav>
+        </div>
+        <!-- Column for Bootstrap 4 Cards -->
         <div class="col-lg-9 col-md-12">
             <section>
                 <div class="row">

@@ -34,20 +34,24 @@
 
         <!-- Circle 1 -->
         <div class="col-12 col-md-4 d-flex justify-content-center align-items-center circle-padding">
-            <a href="">
-                <div class=" circle circle-1">
-                    {% if user.is_authenticated %}
-                    Go to profile
-                    {% else %}
-                    Create account
-                    {% endif %}
-                </div>
-            </a>
+            {% if user.is_authenticated %}
+                <a href="">
+                    <div class=" circle circle-1">
+                        Go to profile                       
+                    </div>
+                </a>
+            {% else %}
+                <a href="">
+                    <div class=" circle circle-1">
+                        Create account
+                    </div>
+                </a>
+            {% endif %}
         </div>
 
         <!-- Circle 2 -->
         <div class="col-12 col-md-4 d-flex justify-content-center align-items-center circle-padding">
-            <a href="">
+            <a href="{% url 'products' %}">
                 <div class="circle">
                     Shop trainings
                 </div>
@@ -55,18 +59,22 @@
         </div>
 
         <!-- Circle 3 -->
-        <div class="col-12 col-md-4 d-flex justify-content-center align-items-center circle-padding">
+        <div class="col-12 col-md-4 d-flex flex-column justify-content-center align-items-center circle-padding">
+            {% if user.is_authenticated %}
             <a href="">
                 <div class="circle circle-3">
-                    {% if user.is_authenticated %}
                     Order history
-                    {% else %}
-                    Head back to main page
-                    {% endif %}
                 </div>
             </a>
+            {% else %}
+            <a href="https://nercia.se/foretagsutbildning/">
+                <div class="circle circle-3 d-flex flex-column justify-content-center align-items-center">
+                    <div>Home page</div>
+                    <span style="font-size: 12px;">text in swedish</span>
+                </div>
+            </a>
+            {% endif %}
         </div>
-
     </div>
 </div>
 {% endblock %}
