@@ -475,9 +475,39 @@ li {
         /* Adjust this margin as needed */
     }
 
-    .search-button {
+    .search-nav {
         display: flex;
         justify-content: center;
+    }
+
+    .search-button {
+        width: 100%;
+        padding: 0;
+        margin: 0 0 16px 0;
+        color: #fff;
+        background-color: #0082d3;
+        transition: background-color 0.3s;
+
+    }
+
+    .search-button:hover {
+        background-color: #0299e5;
+        color: #fff;
+    }
+
+    button.form-control:hover {
+        background-color: #0299e5;
+        color: #fff;
+    }
+
+    .button-text {
+        font-family: 'Ubuntu', sans-serif;
+        font-weight: 100;
+        font-size: 14px;
+    }
+
+    .category-header {
+        display: none;
     }
 }
 
@@ -595,6 +625,10 @@ li {
     .footer-logotype {
         margin: 0 auto;
         display: block;
+    }
+
+    .search-nav {
+        padding: 15px 15px 0 15px;
     }
 
 }
