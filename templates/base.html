@@ -52,7 +52,7 @@
 </head>
 
 <body>
-    <nav class="navbar navbar-expand-lg navbar-light">
+    <nav class="navbar base-navbar navbar-expand-lg navbar-light">
         <a class="navbar-brand" href="{% url 'home' %}">
             <img src="{% static 'img/logotype/logotype_nercia.png' %}" alt="Nercia logotype" class="logotype">
         </a>
@@ -64,7 +64,7 @@
                 <li class="nav-item list-inline-item">
                     <a class="nav-link" href="#">
                         <div class="text-left">
-                            <p class="my-0 nav-link-color text-uppercase"><i class="fa-solid fa-shop mr-2"></i>Shop</p>
+                            <p class="my-0 nav-link-color"><i class="fa-solid fa-shop mr-2"></i>Shop</p>
                         </div>
                     </a>
                 </li>
@@ -73,7 +73,7 @@
                         aria-expanded="false">
                         <div class="d-flex justify-content-between">
                             <div class="text-left">
-                                <p class="my-0 nav-link-color text-uppercase"><i class="fa-solid fa-user mr-2"></i>Account</p>
+                                <p class="my-0 nav-link-color"><i class="fa-solid fa-user mr-2"></i>Account</p>
                             </div>
                             <i class="fa-solid fa-chevron-down text-right"></i>
                         </div>
@@ -214,6 +214,25 @@
     <!-- <script type="text/javascript">
         $(".toast").toast("show");
     </script> -->
+
+    <script>
+        // Using jQuery for simplicity, make sure to include jQuery in your project if not already done
+        $(document).ready(function () {
+            $('.category-checkbox').change(function () {
+                // Get the value of the selected category
+                var selectedCategory = $(this).val();
+
+                // Show/hide products based on the selected category
+                $('.product-item').each(function () {
+                    if ($(this).data('categories').includes(selectedCategory)) {
+                        $(this).show();
+                    } else {
+                        $(this).hide();
+                    }
+                });
+            });
+        });
+    </script>
     {% endblock %}
 </body>
 

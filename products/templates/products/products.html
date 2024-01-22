@@ -10,7 +10,7 @@
         </div>
     </div>
     <div class="row">
-        <div class="col-12 mb-5 mt-5 d-flex flex-column align-items-center text-center">
+        <div class="col-12 mb-3 mt-5 d-flex flex-column align-items-center text-center">
             <h1 class="mb-3">
                 Webshop - Your future starts here!
             </h1>
@@ -29,7 +29,7 @@
     </div>
 </div>
 <div class="container-fluid container-cards mx-auto d-flex justify-content-center align-items-center">
-    <div class="row">
+    <div class="row mx-2">
         <div class="col-lg-3 col-md-12 col-sm-12">
             <nav class="navbar navbar-expand-lg search-nav" style="background-color: #f2f3f5;">
                 <button class="navbar-toggler d-lg-none search-button rounded-0" type="button" data-toggle="collapse" data-target="#collapsible-menu"
@@ -64,12 +64,12 @@
                         </h3>
                         <ul class="list-unstyled">
                             {% for category in categories %}
-                            <li>
+                            <div class="category-item">
                                 <label for="category-{{ category.name }}">
-                                    <input class="category-text" type="checkbox" id="category-{{ category.name }}" name="category"
+                                    <input class="category-text mr-2" type="checkbox" id="category-{{ category.name }}" name="category"
                                         value="{{ category.name }}">{{ category.friendly_name }}
                                 </label>
-                            </li>
+                            </div>
                             {% endfor %}
                         </ul>
                         <hr>
@@ -82,22 +82,20 @@
             <section>
                 <div class="row">
                     {% for product in products %}
-                    <div class="col-lg-4 col-md-6 m-0 p-0 w-100">
-                        <div class="card rounded-0">
-                            {% if product.image %}
-                            <a href="">
-                                <img src="{{ product.image.url }}" class="card-img-top rounded-0" alt="{{ product.alt_atr }}">
-                            </a>
-                            {% else %}
-                            <a href="">
-                                <img src="{{ MEDIA_URL }}no_image.png" class="card-img-top" alt="{{ product.alt_atr }}">
-                            </a>
-                            {% endif %}
-                            <div class="card-body border-top-4">
-                                <h5 class="card-title">{{ product.name }}</h5>
-                                <p class="card-text">{{ product.description_short }}</p>
+                    <div class="col-lg-4 col-md-6 p-2 w-100">
+                        <a href="" class="card-hover">
+                            <div class="card rounded-0">
+                                {% if product.image %}
+                                    <img src="{{ product.image.url }}" class="card-img-top rounded-0" alt="{{ product.alt_atr }}">
+                                {% else %}
+                                    <img src="{{ MEDIA_URL }}no_image.png" class="card-img-top" alt="{{ product.alt_atr }}">
+                                {% endif %}
+                                <div class="card-body border-top-4">
+                                    <h5 class="card-title">{{ product.name }}</h5>
+                                    <p class="card-text">{{ product.description_short }}</p>
+                                </div>
                             </div>
-                        </div>
+                        </a>
                     </div>
                     {% endfor %}
                 </div>

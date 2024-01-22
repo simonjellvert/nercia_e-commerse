@@ -182,7 +182,6 @@ i.fa-chevron-down {
 }
 
 .card {
-    margin: 15px;
     height: 450px;
 }
 
@@ -209,6 +208,11 @@ i.fa-chevron-down {
     font-size: 14.5px;
 }
 
+input.form-control {
+    font-size: 'Ubuntu', sans-serif;
+    font-size: 14.5px;
+}
+
 button.form-control {
     background-color: #0082d3;
     color: #fff;
@@ -219,6 +223,18 @@ button.form-control:hover {
     background-color: #0299e5;
     color: #fff;
 }
+
+.card-hover {
+    text-decoration: none;
+    color: #000;
+}
+
+.card-hover:hover {
+    text-decoration: none;
+    cursor: pointer;
+    color: #000;
+}
+
 
 /* ------------------------ Wrapper */
 
@@ -347,6 +363,20 @@ li {
 
 }
 
+
+/* ------------------------ Media querie xl screens */
+
+@media (max-width: 1024px) {
+    .navbar-brand {
+        margin-left: 30px;
+    }
+
+    .header {
+        margin-right: 30px;
+    }
+}
+
+
 /* ------------------------ Media querie large screens */
 
 @media (max-width: 992px) {
@@ -363,8 +393,9 @@ li {
         font-size: 1rem;
     }
 
-    .navbar-brand {
-        margin-left: 30px;
+    .base-navbar {
+        margin: 0;
+        height: 75px;
     }
 
     .logotype {
@@ -455,12 +486,10 @@ li {
     }
 
     .navbar-toggler {
-        width: 100%;
         text-align: center;
     }
 
     .navbar-toggler div {
-        width: 100%;
         display: inline-block;
         text-align: center;
     }
@@ -506,6 +535,10 @@ li {
         font-size: 14px;
     }
 
+    .card {
+        height: 450px;
+    }
+
     .category-header {
         display: none;
     }
@@ -527,8 +560,7 @@ li {
         margin-bottom: 0;
     }
 
-    .navbar {
-        margin: 20px 0 0 0;
+    .base-navbar {
         padding: 0;
     }
 
@@ -627,8 +659,12 @@ li {
         display: block;
     }
 
+    .card {
+        height: auto;
+    }
+
     .search-nav {
-        padding: 15px 15px 0 15px;
+        padding: 15px 30px 0 30px;
     }
 
 }
