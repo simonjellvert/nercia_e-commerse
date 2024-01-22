@@ -33,9 +33,7 @@ class Product(models.Model):
     name = models.CharField(max_length=254)
     description_short = models.TextField()
     description = models.TextField(default='Description of the training')
-    category = models.ForeignKey(
-        'Category', null=True, blank=True, on_delete=models.SET_NULL
-    )
+    category = models.ManyToManyField(Category, blank=True)
     price = models.DecimalField(max_digits=8, decimal_places=2)
     duration = models.CharField(max_length=254, null=True, blank=True)
     perks = models.CharField(max_length=254, null=True, blank=True)

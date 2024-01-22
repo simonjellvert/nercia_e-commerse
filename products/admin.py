@@ -12,7 +12,6 @@ class CategoryAdmin(admin.ModelAdmin):
 class ProductAdmin(admin.ModelAdmin):
     list_display = (
         'name',
-        'category',
         'duration',
         'online_onsite',
         'price',

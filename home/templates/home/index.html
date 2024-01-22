@@ -13,7 +13,7 @@
                         You can also create your own account to be able to save billing information and keep track of
                         previous bookings.
                     </p>
-                    <a href="" class="shop-now-link">
+                    <a href="{% url 'products' %}" class="shop-now-link">
                         <span>
                             <strong>
                                 Search and shop your trainings <i class="fas fa-arrow-right"></i>
@@ -67,7 +67,7 @@
                 </div>
             </a>
             {% else %}
-            <a href="https://nercia.se/foretagsutbildning/">
+            <a href="https://nercia.se/foretagsutbildning/" target="_blank">
                 <div class="circle circle-3 d-flex flex-column justify-content-center align-items-center">
                     <div>Home page</div>
                     <span style="font-size: 12px;">text in swedish</span>
