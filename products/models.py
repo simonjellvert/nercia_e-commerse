@@ -1,4 +1,5 @@
 from django.db import models
+from django.contrib.postgres.fields import ArrayField
 
 
 class Category(models.Model):
@@ -56,7 +57,9 @@ class ProductContent(models.Model):
     day = models.CharField(max_length=254, null=True, blank=True)
     title = models.CharField(max_length=254, null=True, blank=True)
     purpose = models.TextField(null=True, blank=True)
-    topics = models.TextField()
+    topics = ArrayField(models.CharField(
+        max_length=200), blank=True, null=True)
 
     def __str__(self):
-        return f"{self.product.name if self.product else 'No Product'} - {self.title}"
+        product_name = self.product.name if self.product else 'No Product'
+        return f"{product_name} - {self.title}"

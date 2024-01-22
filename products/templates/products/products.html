@@ -83,7 +83,7 @@
                 <div class="row">
                     {% for product in products %}
                     <div class="col-lg-4 col-md-6 p-2 w-100">
-                        <a href="" class="card-hover">
+                        <a href="{% url 'product_detail' product.id %}" class="card-hover">
                             <div class="card rounded-0">
                                 {% if product.image %}
                                     <img src="{{ product.image.url }}" class="card-img-top rounded-0" alt="{{ product.alt_atr }}">

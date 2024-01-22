@@ -5,31 +5,28 @@
 <div class="container-fluid container-products">
     <div class="page-header text-left">
         <h1>
-            Product name
+            {{ product.name }}
         </h1>
     </div>
     <hr>
     <div class="col-md-8 col-12">
         <div class="w-100 mb-5">
-            <p class="text-left">description</p>
+            <p class="text-left">{{ product.description }}</p>
         </div>
         <div class="w-100">
-            <h2>
-                Program Content
-            </h2>
-            {% with all_days=product.productcontent_set.values_list('day', flat=True) %}
-                {% for day in all_days|dictsort %}
-                <h3>{{ day }} {{ title }}</h3>
-                    {% for product_content in product.productcontent_set.filter(day=day) %}
-                        <p>Purpose: {{ product_content.purpose }}</p>
-                        <ul>
-                            {% for topic in product_content.topics.split('\n') %}
-                            <li>{{ topic }}</li>
-                            {% endfor %}
-                        </ul>
-                    {% endfor %}
-                {% endfor %}
-            {% endwith %}
+            <h2>Program Content</h2>
+            {% for product_content in product_contents %}
+                <h3>{{ product_content.day }} {{ product_content.title }}</h3>
+                <p>{{ product_content.purpose }}</p>
+                {% if product_content.topics %}
+                    <ul>
+                        {% for topic in product_content.topics %}
+                            <li>{{ topic|linebreaks }}</li>
+                        {% endfor %}
+                    </ul>
+                {% endif %}
+
+            {% endfor %}
         </div>
     </div>
     <div class="col-md-4 col-12">
