@@ -1,0 +1,40 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block content %}
+<div class="container-fluid container-products">
+    <div class="page-header text-left">
+        <h1>
+            Product name
+        </h1>
+    </div>
+    <hr>
+    <div class="col-md-8 col-12">
+        <div class="w-100 mb-5">
+            <p class="text-left">description</p>
+        </div>
+        <div class="w-100">
+            <h2>
+                Program Content
+            </h2>
+            {% with all_days=product.productcontent_set.values_list('day', flat=True) %}
+                {% for day in all_days|dictsort %}
+                <h3>{{ day }} {{ title }}</h3>
+                    {% for product_content in product.productcontent_set.filter(day=day) %}
+                        <p>Purpose: {{ product_content.purpose }}</p>
+                        <ul>
+                            {% for topic in product_content.topics.split('\n') %}
+                            <li>{{ topic }}</li>
+                            {% endfor %}
+                        </ul>
+                    {% endfor %}
+                {% endfor %}
+            {% endwith %}
+        </div>
+    </div>
+    <div class="col-md-4 col-12">
+
+    </div>
+</div>
+
+{% endblock %}
