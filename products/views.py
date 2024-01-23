@@ -1,7 +1,8 @@
-from django.shortcuts import render, get_object_or_404
-from .models import Product, ProductContent, Category
+from django.shortcuts import render, redirect, reverse, get_object_or_404
 from django.core.serializers.json import DjangoJSONEncoder
-from django.utils.html import json_script
+from .models import Product, ProductContent, Category
+from django.contrib import messages
+from django.db.models import Q
 import json
 
 
@@ -13,11 +14,32 @@ def all_products(request):
     products = Product.objects.all()
     product_contents = ProductContent.objects.all()
     categories = Category.objects.all()
+    query = None
+
+    if request.GET:
+        if 'q' in request.GET:
+            query = request.GET['q']
+            if not query:
+                messages.error(request, "You didn't enter any search criteria!")
+            else:
+                queries = Q(name__icontains=query) | Q(description__icontains=query)
+                products = products.filter(queries)
+            
+            if not products.exists():
+                # Redirect to the main products page if there are no search results
+                return redirect(reverse('products'))
+
+            product_queries = Q(name__icontains=query) | Q(description__icontains=query)
+            content_queries = Q(title__icontains=query) | Q(topics__icontains=query)
+
+            products = products.filter(product_queries)
+            product_contents = product_contents.filter(content_queries)
 
     context = {
         'products': products,
         'product_contents': product_contents,
         'categories': categories,
+        'search_terms': query,
     }
 
     return render(request, 'products/products.html', context)
