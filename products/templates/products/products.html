@@ -64,12 +64,14 @@
                         </h3>
                         <ul class="list-unstyled">
                             {% for category in categories %}
-                            <div class="category-item">
-                                <label for="category-{{ category.name }}">
-                                    <input class="category-text mr-2" type="checkbox" id="category-{{ category.name }}" name="category"
-                                        value="{{ category.name }}">{{ category.friendly_name }}
-                                </label>
-                            </div>
+                                <div class="category-item" data-categories="{{ category.pk }}">
+                                    <a href="{% url 'products' %}?category={{ category.name }}" class="text-decoration-none">
+                                        <label for="category-{{ category.name }}">
+                                            <input class="category-text mr-2 category-checkbox" type="checkbox" id="category-{{ category.name }}" name="category"
+                                                value="{{ category.name }}">{{ category.friendly_name }}
+                                        </label>
+                                    </a>
+                                </div>
                             {% endfor %}
                         </ul>
                         <hr>
@@ -82,21 +84,21 @@
             <section>
                 <div class="row">
                     {% for product in products %}
-                    <div class="col-xl-4 col-lg-6 col-md-6 p-2 w-100">
-                        <a href="{% url 'product_detail' product.id %}" class="card-hover">
-                            <div class="card rounded-0">
-                                {% if product.image %}
-                                    <img src="{{ product.image.url }}" class="card-img-top rounded-0" alt="{{ product.alt_atr }}">
-                                {% else %}
-                                    <img src="{{ MEDIA_URL }}no_image.png" class="card-img-top" alt="{{ product.alt_atr }}">
-                                {% endif %}
-                                <div class="card-body border-top-4">
-                                    <h5 class="card-title">{{ product.name }}</h5>
-                                    <p class="card-text">{{ product.description_short }}</p>
+                    <div class="col-xl-4 col-lg-6 col-md-6 p-2 w-100 product-item" data-categories="{{ product.category.all|join:',' }}">
+                            <a href="{% url 'product_detail' product.id %}" class="card-hover">
+                                <div class="card rounded-0">
+                                    {% if product.image %}
+                                        <img src="{{ product.image.url }}" class="card-img-top rounded-0" alt="{{ product.alt_atr }}">
+                                    {% else %}
+                                        <img src="{{ MEDIA_URL }}no_image.png" class="card-img-top" alt="{{ product.alt_atr }}">
+                                    {% endif %}
+                                    <div class="card-body border-top-4">
+                                        <h5 class="card-title">{{ product.name }}</h5>
+                                        <p class="card-text">{{ product.description_short }}</p>
+                                    </div>
                                 </div>
-                            </div>
-                        </a>
-                    </div>
+                            </a>
+                        </div>
                     {% endfor %}
                 </div>
             </section>
@@ -104,4 +106,41 @@
     </div>
 </div>
 
+{% endblock %}
+
+{% block postloadjs %}
+{{ block.super }}
+<script>
+    $(document).ready(function () {
+        $('.category-checkbox').change(function () {
+            filterProducts();
+        });
+
+        // Handle the click event on category labels
+        $('.category-item label').click(function () {
+            var checkbox = $(this).find('.category-checkbox');
+            checkbox.prop('checked', !checkbox.prop('checked'));
+            filterProducts();
+        });
+
+        function filterProducts() {
+            // Get the values of the selected category names
+            var selectedCategories = $('.category-checkbox:checked').map(function () {
+                return $(this).val();
+            }).get();
+
+            // Show/hide products based on the selected categories
+            $('.product-item').each(function () {
+                var productCategories = $(this).data('categories').split(',');
+
+                // Show the product if any selected category matches
+                if (selectedCategories.length === 0 || selectedCategories.some(category => productCategories.includes(category))) {
+                    $(this).show();
+                } else {
+                    $(this).hide();
+                }
+            });
+        }
+    });
+</script>
 {% endblock %}

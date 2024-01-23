@@ -16,6 +16,12 @@ def all_products(request):
     categories = Category.objects.all()
     query = None
 
+    if 'category' in request.GET:
+        category_name = request.GET['category']
+        if category_name:
+            products = products.filter(category__name=category_name)
+            product_contents = product_contents.filter(product__category__name=category_name)
+
     if request.GET:
         if 'q' in request.GET:
             query = request.GET['q']
