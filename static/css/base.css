@@ -235,11 +235,22 @@ button.form-control:hover {
     color: #000;
 }
 
+.category-link {
+    text-decoration: none;
+    color: #000;
+}
+
 /* ------------------------ Product Detail */
+
+.container-product-header {
+    padding: 0;
+}
 
 .page-header {
     font-size: 39px;
+    margin-left: 156px;
 }
+
 
 .product-description {
     font-size: 20px;
@@ -267,10 +278,9 @@ button.form-control:hover {
 
 .container-product-detail {
     background-color: #fff;
-    margin: 5rem 3rem 5rem 3rem;
 }
 
-.contatiner-product-detail ul {
+.content-col ul {
     list-style: disc;
     list-style-position: inside;
     padding-left: 15px;
@@ -408,13 +418,15 @@ li {
 /* ------------------------ Media querie xl screens */
 
 @media (max-width: 1024px) {
-    .navbar-brand {
-        margin-left: 30px;
-    }
-
     .header {
         margin-right: 30px;
     }
+
+    .logotype,
+    .page-header {
+        margin-left: 30px;
+    }
+
 }
 
 
@@ -440,7 +452,7 @@ li {
     }
 
     .logotype {
-        margin-left: 0;
+        margin-left: 30px;
     }
 
     .navbar-toggler {
@@ -542,7 +554,6 @@ li {
     .navbar-collapse {
         text-align: center;
         margin-top: 10px;
-        /* Adjust this margin as needed */
     }
 
     .search-nav {
@@ -583,7 +594,6 @@ li {
     .category-header {
         display: none;
     }
-}
 
 /* ------------------------ Media querie medium screens */
 
@@ -603,10 +613,6 @@ li {
 
     .base-navbar {
         padding: 0;
-    }
-
-    .navbar-brand {
-        margin-left: 30px;
     }
 
     .navbar-toggler-icon {

@@ -65,8 +65,8 @@
                         <ul class="list-unstyled">
                             {% for category in categories %}
                                 <div class="category-item" data-categories="{{ category.pk }}">
-                                    <a href="{% url 'products' %}?category={{ category.name }}" class="text-decoration-none">
-                                        <label for="category-{{ category.name }}">
+                                    <a href="{% url 'products' %}?category={{ category.name }}" class="category-link">
+                                        <label class="d-flex align-items-center" for="category-{{ category.name }}">
                                             <input class="category-text mr-2 category-checkbox" type="checkbox" id="category-{{ category.name }}" name="category"
                                                 value="{{ category.name }}">{{ category.friendly_name }}
                                         </label>

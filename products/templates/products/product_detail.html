@@ -2,19 +2,19 @@
 {% load static %}
 
 {% block content %}
-<div class="container-fluid container-product-header">
-    <div class="text-left">
+<div class="container-fluid container-product-header mt-5">
+    <div>
         <h1 class="page-header">
             {{ product.name }}
         </h1>
     </div>
-    <hr>
 </div>
-<div class="container-fluid contatiner-product-detail">
+<hr class="custom-hr-pr-detail">
+<div class="container-fluid container-fluid-detail">
     <div class="row">
-        <div class="col-md-8 col-12">
+        <div class="col-lg-6 col-12 content-col">
             <div class="mb-5">
-                <p class="text-left product-description">{{ product.description }}</p>
+                <p class="product-description">{{ product.description }}</p>
             </div>
             <div>
                 <h2 class="product-content-header">Program Content</h2>
@@ -31,7 +31,7 @@
                 {% endfor %}
             </div>
         </div>
-        <div class="col-md-4 col-12">
+        <div class="col-lg-4 col-12 detail-col">
             <h3>Training Information</h3>
             <div class="row">
                 <div class="col-6">Duration</div>
@@ -44,12 +44,14 @@
             </div>
             <h4>Schedule</h4>
             <!-- If more than one start, iterate over dates per start -->
-            <div class="row">Training dates</div>
+            <div class="row">
+                <div class="col-12">Training dates</div>
+            </div>
             <h4>Perks</h4>
             <p>{{ product.perks }}</p>
             <h4>Price</h4>
             <p>{{ product.price }}</p>
-            <button>Add to bag</button>
+            <button class="btn btn-primary">Add to bag</button>
         </div>
     </div>
 </div>
