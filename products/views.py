@@ -1,5 +1,8 @@
 from django.shortcuts import render, get_object_or_404
 from .models import Product, ProductContent, Category
+from django.core.serializers.json import DjangoJSONEncoder
+from django.utils.html import json_script
+import json
 
 
 def all_products(request):
@@ -27,6 +30,12 @@ def product_detail(request, product_id):
 
     product = get_object_or_404(Product, pk=product_id)
     product_contents = ProductContent.objects.filter(product=product)
+
+    for product_content in product_contents:
+        topics = product_content.topics
+        if isinstance(topics, str):
+            # Split the string and strip quotes and brackets
+            product_content.topics = [topic.strip(" '[]") for topic in topics.split(',')]
 
     context = {
         'product': product,

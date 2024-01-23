@@ -633,15 +633,7 @@
             "day": "Day 1",
             "title": "Electrical safety at work",
             "purpose": "Review of electrical safety, understand the danger of electricity and be able to minimize the risk of electrical accidents. To be able to carry out and participate in the maintenance and care of electrical installations in a safe manner and to fulfill the Work Environment Authority's requirements for knowledge and training.",
-            "topics": [
-                "Electrical accidents",
-                "Electrical danger",
-                "Structure of the electricity system",
-                "Protection against dangerous voltage",
-                "Laws and regulations",
-                "Elsak-FS 2022:3 (holder's obligations)",
-                "SS-EN 501 10-1 Edition 3 Swedish Standard"
-            ]
+            "topics": "Electrical accidents, Electrical danger, Structure of the electricity system, Protection against dangerous voltage, Laws and regulations, Elsak-FS 2022:3 (holder's obligations), SS-EN 501 10-1 Edition 3 Swedish Standard"
         }
     },
     {

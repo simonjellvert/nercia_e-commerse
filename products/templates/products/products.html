@@ -29,7 +29,7 @@
     </div>
 </div>
 <div class="container-fluid container-cards mx-auto d-flex justify-content-center align-items-center">
-    <div class="row mx-2">
+    <div class="row mx-2 mb-5">
         <div class="col-lg-3 col-md-12 col-sm-12">
             <nav class="navbar navbar-expand-lg search-nav" style="background-color: #f2f3f5;">
                 <button class="navbar-toggler d-lg-none search-button rounded-0" type="button" data-toggle="collapse" data-target="#collapsible-menu"
@@ -41,7 +41,7 @@
                 </button>
 
                 <div class="collapse navbar-collapse m-0" id="collapsible-menu">
-                    <section>
+                    <section class="w-100">
                         <h3 class="text-left category-header">
                             Search training
                         </h3>
@@ -82,7 +82,7 @@
             <section>
                 <div class="row">
                     {% for product in products %}
-                    <div class="col-lg-4 col-md-6 p-2 w-100">
+                    <div class="col-xl-4 col-lg-6 col-md-6 p-2 w-100">
                         <a href="{% url 'product_detail' product.id %}" class="card-hover">
                             <div class="card rounded-0">
                                 {% if product.image %}

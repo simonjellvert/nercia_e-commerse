@@ -2,35 +2,55 @@
 {% load static %}
 
 {% block content %}
-<div class="container-fluid container-products">
-    <div class="page-header text-left">
-        <h1>
+<div class="container-fluid container-product-header">
+    <div class="text-left">
+        <h1 class="page-header">
             {{ product.name }}
         </h1>
     </div>
     <hr>
-    <div class="col-md-8 col-12">
-        <div class="w-100 mb-5">
-            <p class="text-left">{{ product.description }}</p>
+</div>
+<div class="container-fluid contatiner-product-detail">
+    <div class="row">
+        <div class="col-md-8 col-12">
+            <div class="mb-5">
+                <p class="text-left product-description">{{ product.description }}</p>
+            </div>
+            <div>
+                <h2 class="product-content-header">Program Content</h2>
+                {% for product_content in product_contents %}
+                    <h3 class="day-title">{{ product_content.day }} {{ product_content.title }}</h3>
+                    <p class="purpose">{{ product_content.purpose }}</p>
+                    {% if product_content.topics %}
+                        <ul>
+                            {% for topic in product_content.topics %}
+                                <li class="topics">{{ topic }}</li>
+                            {% endfor %}
+                        </ul>
+                    {% endif %}
+                {% endfor %}
+            </div>
         </div>
-        <div class="w-100">
-            <h2>Program Content</h2>
-            {% for product_content in product_contents %}
-                <h3>{{ product_content.day }} {{ product_content.title }}</h3>
-                <p>{{ product_content.purpose }}</p>
-                {% if product_content.topics %}
-                    <ul>
-                        {% for topic in product_content.topics %}
-                            <li>{{ topic|linebreaks }}</li>
-                        {% endfor %}
-                    </ul>
-                {% endif %}
-
-            {% endfor %}
+        <div class="col-md-4 col-12">
+            <h3>Training Information</h3>
+            <div class="row">
+                <div class="col-6">Duration</div>
+                <div class="col-6">{{ product.duration }}</div>
+            </div>
+            <h4>Upcoming starts</h4>
+            <div class="row">
+                <div class="col-6">City</div>
+                <div class="col-6">First day</div>
+            </div>
+            <h4>Schedule</h4>
+            <!-- If more than one start, iterate over dates per start -->
+            <div class="row">Training dates</div>
+            <h4>Perks</h4>
+            <p>{{ product.perks }}</p>
+            <h4>Price</h4>
+            <p>{{ product.price }}</p>
+            <button>Add to bag</button>
         </div>
-    </div>
-    <div class="col-md-4 col-12">
-
     </div>
 </div>
 
