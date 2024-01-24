@@ -276,6 +276,17 @@ button.form-control:hover {
     font-weight: 100;
 }
 
+.detail-col {
+    margin-left: 30px;
+    background-color: #f2f3f5;
+    border-radius: 20px;
+    padding: 20px;
+}
+
+.detail-header {
+    font-size: 18px;
+}
+
 .container-product-detail {
     background-color: #fff;
 }
@@ -284,6 +295,21 @@ button.form-control:hover {
     list-style: disc;
     list-style-position: inside;
     padding-left: 15px;
+}
+
+.add-item-button {
+    font-family: 'Ubuntu', sans-serif;
+    font-weight: 100;
+    font-size: 13px;
+    color: #fff;
+    background: #0082d3;
+    border: none;
+    padding: 12px 25px;
+    transition: background-color 0.3s;
+}
+
+.add-item-button:hover {
+    background-color: #0299e5;
 }
 
 
