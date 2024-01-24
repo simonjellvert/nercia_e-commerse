@@ -1,6 +1,7 @@
 /* ------------------------ Basics */
 
-html, body {
+html,
+body {
     height: 100%;
     margin: 0;
 }
@@ -20,7 +21,8 @@ h4 {
     color: #fff;
 }
 
-p, a {
+p,
+a {
     font-family: 'Ubuntu', sans-serif;
 }
 
@@ -86,7 +88,7 @@ i.fa-chevron-down {
     display: none;
 }
 
-.message-container{
+.message-container {
     position: fixed;
     top: 75px;
     right: 156px;
@@ -95,6 +97,11 @@ i.fa-chevron-down {
 
 .custom-toast {
     overflow: visible;
+}
+
+.toast-header,
+.toast-body {
+    font-family: 'Ubuntu', sans-serif;
 }
 
 /* ------------------------ Index page */
@@ -178,7 +185,7 @@ i.fa-chevron-down {
     background-color: #f2f3f5;
 }
 
-.background-products{
+.background-products {
     width: 100%;
     height: 462px;
     object-fit: cover;
@@ -557,7 +564,7 @@ li {
         padding: 0;
         margin: 0;
     }
-    
+
     .dropdown-item {
         margin-left: 60px;
     }
@@ -645,7 +652,7 @@ li {
         display: none;
     }
 
-    .message-container{
+    .message-container {
         right: 30px;
     }
 }
@@ -656,7 +663,7 @@ li {
     h1 {
         font-size: 2rem;
     }
-    
+
     p,
     a {
         font-size: 0.8rem;
@@ -789,7 +796,7 @@ li {
     .navbar-toggler {
         margin-right: 0;
     }
-    
+
     .info-text-home {
         margin-left: 2rem;
     }
