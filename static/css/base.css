@@ -312,6 +312,19 @@ button.form-control:hover {
     background-color: #0299e5;
 }
 
+/* ------------------------ Bag */
+
+.update-link,
+.remove-item {
+    cursor: pointer;
+    transition: text-decoration;
+}
+
+.update-link:hover,
+.remove-item:hover {
+    text-decoration: none;
+}
+
 
 /* ------------------------ Wrapper */
 
