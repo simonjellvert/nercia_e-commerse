@@ -90,7 +90,7 @@
                                     {% if product.image %}
                                         <img src="{{ product.image.url }}" class="card-img-top rounded-0" alt="{{ product.alt_atr }}">
                                     {% else %}
-                                        <img src="{{ MEDIA_URL }}no_image.png" class="card-img-top" alt="{{ product.alt_atr }}">
+                                        <img src="{{ MEDIA_URL }}no_image.jpg" class="card-img-top" alt="No image">
                                     {% endif %}
                                     <div class="card-body border-top-4">
                                         <h5 class="card-title">{{ product.name }}</h5>

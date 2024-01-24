@@ -21,10 +21,13 @@ def bag_contents(request):
         })
 
     grand_total = total
+    tax_rate = Decimal('0.25')
+    tax = grand_total * tax_rate
 
     context = {
         'bag_items': bag_items,
         'total': total,
+        'tax': tax,
         'product_count': product_count,
         'grand_total': grand_total,
     }
