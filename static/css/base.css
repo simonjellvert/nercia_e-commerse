@@ -86,6 +86,17 @@ i.fa-chevron-down {
     display: none;
 }
 
+.message-container{
+    position: fixed;
+    top: 75px;
+    right: 156px;
+    z-index: 999999999999;
+}
+
+.custom-toast {
+    overflow: visible;
+}
+
 /* ------------------------ Index page */
 
 .center {
@@ -633,6 +644,11 @@ li {
     .category-header {
         display: none;
     }
+
+    .message-container{
+        right: 30px;
+    }
+}
 
 /* ------------------------ Media querie medium screens */
 
