@@ -4,7 +4,58 @@
 {% block content %}
 <div class="container-fluid welcome mb-5">
     <div class="row w-100 d-flex justify-content-center align-items-center welcome">
-    
+        <div class="col-lg-6">
+            <h1>Your Cart</h1>
+            <!-- If empty -->
+                <div>
+                    <h4>Your cart is empty!</h4>
+                    <button>Head back to products</button>
+                </div>
+            <!-- else -->
+            <!-- If not authenticated -->
+            <div>
+                <h4>Do you have an account?</h4>
+                <p>Sign up for faster checkout and receive newsletters about upcoming trainings and deals. link to sign-in</p>
+            </div>
+            <!-- If authenticated -->
+            <!-- Do not display above div-->
+
+            <h3>Products <span>(quantity count)</span></h3>
+            <div>
+                <div class="row">
+                    <div class="col-3">image</div>
+                    <div class="col-9">
+                        <h4>Product name</h4>
+                        <p>Start date</p>
+                        <div class="row">
+                            <div class="col">quantity</div>
+                            <div class="col">price</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-6">
+            <h3>Order summary</h3>
+            <div class="row">
+                <div class="col">Subtotal</div>
+                <div class="col">all products x prize</div>
+            </div>
+            <div class="row">
+                <div class="col">Discount</div>
+                <div class="col">
+                    <!-- if discount -->
+                        discount money
+                    <!-- else -->
+                        $0.00
+                    <!-- endif -->
+                </div>
+            </div>
+            <hr>
+            <button>Checkout</button>
+            <!-- dropdown input field for promocode -->
+            <div>Do you have a promo code?</div>
+        </div>
     </div>
 </div>
 {% endblock %}
