@@ -13,7 +13,7 @@ class Company(models.Model):
     street_address2 = models.CharField(max_length=80, null=True, blank=True)
     postcode = models.CharField(max_length=20, null=False, blank=False)
     city = models.CharField(max_length=40, null=False, blank=False)
-    country = CountryField(blank_label='Country *', null=False, blank=False)
+    country = CountryField(blank_label='Country', null=False, blank=False)
     invoice_email = models.EmailField(max_length=254, null=True, blank=True)
 
     def __str__(self):
