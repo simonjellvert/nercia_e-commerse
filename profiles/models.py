@@ -9,10 +9,12 @@ class UserProfile(models.Model):
     """
     User profile model
     """
-    user = models.OneToOneField(User, on_delete=models.CASCADE)
+    user = models.OneToOneField(
+        User,
+        on_delete=models.CASCADE,
+        unique=True
+    )
     companies = models.ManyToManyField(Company, through='UserCompany')
-    first_name = models.CharField(max_length=30)
-    last_name = models.CharField(max_length=30)
 
     def __str__(self):
         return self.user.username
@@ -35,7 +37,7 @@ def create_or_update_user_profile(sender, instance, created, **kwargs):
     """
     Create or update the user profile
     """
-    if created:
-        UserProfile.objects.create(user=instance)
+    # if created:
+        # UserProfile.objects.create(user=instance)
     # Existing users: just save the profile
-    instance.userprofile.save()
+    # instance.userprofile.save()

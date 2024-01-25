@@ -34,7 +34,8 @@ class Order(models.Model):
         blank=True,
         on_delete=models.SET_NULL
     )
-    full_name = models.CharField(max_length=50, null=False, blank=False)
+    first_name = models.CharField(max_length=30)
+    last_name = models.CharField(max_length=30)
     email = models.EmailField(max_length=254, null=False, blank=False)
     phone_number = models.CharField(max_length=20, null=False, blank=False)
     created = models.DateTimeField(auto_now_add=True)

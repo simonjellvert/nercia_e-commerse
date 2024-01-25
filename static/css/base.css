@@ -343,6 +343,31 @@ button.form-control:hover {
     text-decoration: none;
 }
 
+/* ------------------------ Allauth */
+
+.allauth-form-inner-content button,
+.allauth-form-inner-intent input[type="submit"] {
+    display: inline-block;
+    font-weight: 100;
+    color: #fff;
+    background-color: #0082d3;
+    text-align: center;
+    vertical-align: middle;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    border: none;
+    padding: .375rem .75rem;
+    font-size: 14.5px;
+    border-radius: 0;
+    transition: background-color 0.3s;
+}
+
+.allauth-form-inner-content button:hover,
+.allauth-form-inner-intent input[type="submit"]:hover {
+    background-color: #0299e5;
+}
 
 /* ------------------------ Wrapper */
 
