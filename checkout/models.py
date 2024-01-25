@@ -20,7 +20,7 @@ class Order(models.Model):
     ]
 
     order_number = models.CharField(max_length=32, null=False, editable=False)
-    user_profile = models.ForeignKey(UserProfile, on_delete=models.CASCADE)
+    user_profile = models.ForeignKey(UserProfile, on_delete=models.CASCADE, related_name='orders')
     company_name = models.ForeignKey(
         Company,
         on_delete=models.SET_NULL,
