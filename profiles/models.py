@@ -1,23 +1,27 @@
-from django.contrib.auth.models import User
+from django.contrib.auth.models import AbstractUser
 from django.db import models
 from django.db.models.signals import post_save
 from django.dispatch import receiver
 
 from companies.models import Company
 
+
+class CustomUser(AbstractUser):
+    email = models.EmailField(unique=True)
+
 class UserProfile(models.Model):
     """
     User profile model
     """
     user = models.OneToOneField(
-        User,
+        CustomUser,
         on_delete=models.CASCADE,
         unique=True
     )
     companies = models.ManyToManyField(Company, through='UserCompany')
 
     def __str__(self):
-        return self.user.username
+        return self.user.email
 
 class UserCompany(models.Model):
     """
@@ -29,15 +33,15 @@ class UserCompany(models.Model):
     is_primary = models.BooleanField(default=False)
 
     def __str__(self):
-        return f"{self.user_profile.user.username} - {self.company.name}"
+        return f"{self.user_profile.user.email} - {self.company.name}"
 
 
-@receiver(post_save, sender=User)
+@receiver(post_save, sender=CustomUser)
 def create_or_update_user_profile(sender, instance, created, **kwargs):
     """
     Create or update the user profile
     """
-    # if created:
-        # UserProfile.objects.create(user=instance)
+    if created:
+        UserProfile.objects.create(user=instance)
     # Existing users: just save the profile
-    # instance.userprofile.save()
+    instance.userprofile.save()

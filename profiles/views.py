@@ -1,20 +1,21 @@
 from django.shortcuts import render, get_object_or_404
 from django.contrib import messages
 from .models import UserProfile
+import logging
+
+logger = logging.getLogger(__name__)
 
 def profile(request):
-    if request.method == 'POST':
-        form = YourSignupForm(request.POST)
-        if form.is_valid():
-            # Your form processing logic here
-            messages.success(request, 'User created successfully')
-        else:
-            for field, errors in form.errors.items():
-                for error in errors:
-                    messages.error(request, f"{field}: {error}")
-    else:
-        form = YourSignupForm()
+    """
+    Display users profile
+    """
+    print(f"Requested user: {request.user}")
+    try:
+        profile = get_object_or_404(UserProfile, user=request.user)
+    except UserProfile.DoesNotExist:
+        logger.warning(f"No UserProfile found for user {request.user}")
+        raise
 
     template = 'profiles/profile.html'
-    context = {'form': form}
+    context = {'profile': profile}
     return render(request, template, context)

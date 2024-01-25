@@ -108,6 +108,8 @@ LOGIN_REDIRECT_URL = '/'
 
 ACCOUNT_FORMS = {'signup': 'profiles.forms.CustomSignupForm'}
 
+AUTH_USER_MODEL = 'profiles.CustomUser'
+
 WSGI_APPLICATION = 'nercia_webshop.wsgi.application'
 
 
