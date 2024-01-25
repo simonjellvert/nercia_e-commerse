@@ -1,16 +1,33 @@
-from django.contrib.auth.forms import AuthenticationForm
-from django.contrib.auth import login, authenticate
-from django.shortcuts import render, redirect
+from django.shortcuts import render, get_object_or_404
+from django.contrib import messages
+from django.contrib.auth.decorators import login_required
+from .models import UserProfile
 
-def user_login(request):
+from checkout.models import Order
+
+@login_required
+def profile(request):
+    """ Display the user's profile. """
+    profile = get_object_or_404(UserProfile, user=request.user)
+
     if request.method == 'POST':
-        form = AuthenticationForm(request, request.POST)
+        form = UserProfileForm(request.POST, instance=profile)
         if form.is_valid():
-            user = form.get_user()
-            login(request, user)
-            return redirect('home')  # Replace 'home' with your desired redirect URL
+            form.save()
+            messages.success(request, 'Profile updated successfully')
+        else:
+            messages.error(request,
+                           ('Update failed. Please ensure '
+                            'the form is valid.'))
     else:
-        form = AuthenticationForm()
+        form = UserProfileForm(instance=profile)
+    orders = profile.orders.all()
 
-    return render(request, 'registration/login.html', {'form': form})
-    
+    template = 'profiles/profile.html'
+    context = {
+        'form': form,
+        'orders': orders,
+        'on_profile_page': True
+    }
+
+    return render(request, template, context)
