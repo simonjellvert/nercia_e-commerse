@@ -21,12 +21,12 @@
                     </p>
                     <form class="mt-3" action="{% url 'profile' %}" method="POST" id="profile-update-form">
                         {% csrf_token %}
-                        {{ user_profile_form.as_p }}
+                        {{ user_profile_form | as_crispy_field  }}
                         <hr>
                         <p class="text-muted">
                             Company Information
                         </p>
-                        {{ company_form.as_p }}
+                        {{ company_form | as_crispy_field }}
                         <button type="submit">Update Information</button>
                     </form>
                 </div>

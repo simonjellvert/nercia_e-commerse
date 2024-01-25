@@ -2,8 +2,8 @@ from allauth.account.forms import SignupForm
 from django import forms
 from django_countries.fields import CountryField
 
-from .models import UserProfile, UserCompany
-from companies.models import Company, Address
+from .models import UserProfile
+from companies.models import Company
 from checkout.models import Order
 
 class CustomSignupForm(SignupForm):

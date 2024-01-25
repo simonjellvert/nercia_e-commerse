@@ -6,7 +6,7 @@ from django.conf import settings
 
 from products.models import Product
 from profiles.models import UserProfile
-from companies.models import Company, Address
+from companies.models import Company
 from bag.models import PromoCode
 
 
@@ -27,13 +27,6 @@ class Order(models.Model):
         null=True,
         blank=True
     )
-    billing_address = models.ForeignKey(
-        Address,
-        related_name='billing_address',
-        null=True,
-        blank=True,
-        on_delete=models.SET_NULL
-    )
     first_name = models.CharField(max_length=30)
     last_name = models.CharField(max_length=30)
     email = models.EmailField(max_length=254, null=False, blank=False)
@@ -50,7 +43,6 @@ class Order(models.Model):
     tax = models.DecimalField(max_digits=8, decimal_places=2, null=False, blank=False)
     payment_option = models.CharField(max_length=20, choices=PAYMENT_OPTIONS, default=INVOICE)
 
-    # Additional fields for invoice payment option
     invoice_email = models.EmailField(max_length=254, null=True, blank=True)
     invoice_ref = models.CharField(max_length=254, null=True, blank=True)
     

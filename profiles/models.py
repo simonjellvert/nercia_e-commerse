@@ -18,22 +18,15 @@ class UserProfile(models.Model):
         on_delete=models.CASCADE,
         unique=True
     )
-    companies = models.ManyToManyField(Company, through='UserCompany')
+    companies = models.ForeignKey(
+        Company,
+        on_delete=models.SET_NULL,
+        null=True,
+        blank=True
+    )
 
     def __str__(self):
         return self.user.email
-
-class UserCompany(models.Model):
-    """
-    A model for the user to be able to choose between different 
-    commpanies that they represent
-    """
-    user_profile = models.ForeignKey(UserProfile, on_delete=models.CASCADE)
-    company = models.ForeignKey(Company, on_delete=models.CASCADE)
-    is_primary = models.BooleanField(default=False)
-
-    def __str__(self):
-        return f"{self.user_profile.user.email} - {self.company.name}"
 
 
 @receiver(post_save, sender=CustomUser)
