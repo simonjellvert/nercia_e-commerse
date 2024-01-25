@@ -5,7 +5,9 @@ from django.db.models import Sum
 from django.conf import settings
 
 from products.models import Product
-from profiles.models import UserProfile, CompanyName, Address
+from profiles.models import UserProfile
+from companies.models import Company, Address
+from bag.models import PromoCode
 
 
 class Order(models.Model):
@@ -18,9 +20,9 @@ class Order(models.Model):
     ]
 
     order_number = models.CharField(max_length=32, null=False, editable=False)
-    user = models.ForeignKey(UserProfile, on_delete=models.CASCADE)
+    user_profile = models.ForeignKey(UserProfile, on_delete=models.CASCADE)
     company_name = models.ForeignKey(
-        CompanyName,
+        Company,
         on_delete=models.SET_NULL,
         null=True,
         blank=True
@@ -38,7 +40,7 @@ class Order(models.Model):
     created = models.DateTimeField(auto_now_add=True)
     order_total = models.DecimalField(max_digits=8, decimal_places=2, null=False, blank=False)
     grand_total = models.DecimalField(max_digits=8, decimal_places=2, null=False, blank=False)
-    promo_code = ForeignKey(
+    promo_code = models.ForeignKey(
         PromoCode,
         on_delete=models.SET_NULL,
         null=True,
@@ -50,9 +52,6 @@ class Order(models.Model):
     # Additional fields for invoice payment option
     invoice_email = models.EmailField(max_length=254, null=True, blank=True)
     invoice_ref = models.CharField(max_length=254, null=True, blank=True)
-
-    def __str__(self):
-        return f"Order {self.order_number}"
     
     def clean(self):
         """
@@ -77,7 +76,13 @@ class Order(models.Model):
         """
         if not self.order_number:
             self.order_number = self._generate_order_number()
+        if not self.full_name:
+            self.full_name = f"{self.user_profile.first_name} {self.user_profile.last_name}"
+
         super().save(*args, **kwargs)
+
+    def __str__(self):
+        return f"Order {self.order_number} - {self.full_name}"
 
 
 class OrderLineItem(models.Model):
@@ -88,12 +93,12 @@ class OrderLineItem(models.Model):
         on_delete=models.CASCADE,
         related_name='lineitems'
     )
-    product = models.ForeignKey(
-        Product,
-        null=False,
-        blank=False,
-        on_delete=models.CASCADE
-    )
+    # product = models.ForeignKey(
+        # Product,
+        # null=False,
+        # blank=False,
+        # on_delete=models.CASCADE
+    # )
     quantity = models.IntegerField(null=False, blank=False, default=0)
     lineitem_total = models.DecimalField(
         max_digits=8,
