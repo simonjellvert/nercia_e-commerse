@@ -20,7 +20,7 @@ class Company(models.Model):
     userprofile = models.OneToOneField(
         settings.AUTH_USER_MODEL,
         on_delete=models.CASCADE,
-        related_name='company',
+        related_name='user_profile',
         blank=True,
         null=True
     )

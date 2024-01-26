@@ -19,7 +19,7 @@ def profile(request):
     profile = get_object_or_404(UserProfile, user=request.user)
     
     # Fetch the associated company for the current user
-    user_company = get_object_or_404(Company, userprofile=profile)
+    user_company = get_object_or_404(Company, user_profile=profile)
 
     user_profile_form = UserProfileForm(instance=profile)
     company_form = CompanyForm(instance=user_company)
