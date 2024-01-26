@@ -1,7 +1,8 @@
 from django import forms
 
 from .models import Order
-from profiles.forms import UserProfileForm, CompanyForm
+from profiles.forms import UserProfileForm
+from companies.forms import CompanyForm
 
 class CheckoutForm(forms.ModelForm):
     INVOICE = 'invoice'

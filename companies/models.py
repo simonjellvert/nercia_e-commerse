@@ -1,6 +1,7 @@
 from django.db import models
-
 from django_countries.fields import CountryField
+
+from django.conf import settings
 
 
 class Company(models.Model):
@@ -16,5 +17,14 @@ class Company(models.Model):
     country = CountryField(blank_label='Country', null=False, blank=False)
     invoice_email = models.EmailField(max_length=254, null=True, blank=True)
 
+    userprofile = models.OneToOneField(
+        settings.AUTH_USER_MODEL,
+        on_delete=models.CASCADE,
+        related_name='company',
+        blank=True,
+        null=True
+    )
+
     def __str__(self):
-        return f"{self.name} ({self.org_num})"
+        return self.name
+

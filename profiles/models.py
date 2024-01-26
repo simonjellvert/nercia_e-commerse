@@ -22,8 +22,12 @@ class UserProfile(models.Model):
         Company,
         on_delete=models.SET_NULL,
         null=True,
-        blank=True
+        blank=True,
+        related_name='user_profiles'
     )
+    first_name = models.CharField(max_length=30)
+    last_name = models.CharField(max_length=30)
+    phone_number = models.CharField(max_length=20, null=False, blank=False)
 
     def __str__(self):
         return self.user.email
@@ -36,5 +40,5 @@ def create_or_update_user_profile(sender, instance, created, **kwargs):
     """
     if created:
         UserProfile.objects.create(user=instance)
-    # Existing users: just save the profile
-    instance.userprofile.save()
+        instance.userprofile.save()
+
