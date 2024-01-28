@@ -22,35 +22,69 @@
                     </p>
                     <form class="mt-3" action="{% url 'checkout' %}" method="POST" id="payment-form">
                         {% csrf_token %}
+                        
+                        <!-- Billing Address (Company Form) -->
                         <fieldset>
                             <legend>
                                 Billing Address
                             </legend>
-                            {{ checkout_form.company_form|crispy }}
-                            <div class="form-check form-check-inline float-right mr-0">
-                                {% if user.is_authenticated %}
-                                    <label class="form-check-label" for="id-save-info">Save this delivery information to my profile</label>
-                                    <input class="form-check-input ml-2 mr-0" type="checkbox" id="id-save-info" name="save-info" checked>
-                                {% else %}
-                                    <label class="form-check-label" for="id-save-info">
-                                        <a class="text-info" href="{% url 'account_signup' %}">Create an account</a> or 
-                                        <a class="text-info" href="{% url 'account_login' %}">login</a> to save this information
-                                    </label>
-                                {% endif %}
-                            </div>
+                            {{ checkout_form.company_form.name|as_crispy_field }}
+                            {{ checkout_form.company_form.org_num|as_crispy_field }}
+                            {{ checkout_form.company_form.street_address1|as_crispy_field }}
+                            <!-- Add other company form fields as needed -->
                         </fieldset>
+
+                        <!-- Purchaser (User Profile Form) -->
                         <fieldset>
                             <legend>
                                 Purchaser
                             </legend>
-                            {{ checkout_form.user_profile_form|crispy }}
+                            {{ checkout_form.user_profile_form.first_name|as_crispy_field }}
+                            {{ checkout_form.user_profile_form.last_name|as_crispy_field }}
+                            {{ checkout_form.user_profile_form.phone_number|as_crispy_field }}
+                            <!-- Add other user profile form fields as needed -->
                         </fieldset>
+
+                        <!-- Payment -->
                         <fieldset>
                             <legend>
                                 Payment
                             </legend>
-                            {{ checkout_form.payment_option|crispy }}
-                            <!-- If payment_option is card display card div, if payment_option is invoice display invoice_email input field and input field for invoice referens -->
+                            <div>
+                                {% for option_value, option_label in checkout_form.payment_option.field.choices %}
+                                    <div class="form-check form-check-inline">
+                                        <input class="form-check-input" type="checkbox" name="{{ checkout_form.payment_option.name }}" value="{{ option_value }}" id="id_{{ checkout_form.payment_option.name }}_{{ forloop.counter }}">
+                                        <label class="form-check-label" for="id_{{ checkout_form.payment_option.name }}_{{ forloop.counter }}">{{ option_label }}</label>
+                                    </div>
+                                {% endfor %}
+                            </div>
+
+                            <div id="invoice-fields" style="display: none;">
+                                {{ checkout_form.invoice_ref|as_crispy_field }}
+                                {{ checkout_form.invoice_email|as_crispy_field }}
+                            </div>
+
+                            <div id="card-fields" style="display: none;">
+                                <!-- Add card input fields here -->
+                            </div>
+
+                            <script>
+                                document.querySelectorAll('input[name="{{ checkout_form.payment_option.name }}"]').forEach(function(checkbox) {
+                                    checkbox.addEventListener('change', function() {
+                                        var invoiceFields = document.getElementById('invoice-fields');
+                                        var cardFields = document.getElementById('card-fields');
+
+                                        if (this.value === 'invoice') {
+                                            invoiceFields.style.display = this.checked ? 'block' : 'none';
+                                            cardFields.style.display = 'none';
+                                        } else {
+                                            invoiceFields.style.display = 'none';
+                                            cardFields.style.display = this.checked ? 'block' : 'none';
+                                        }
+                                    });
+                                });
+                            </script>
+
                             <button type="submit">Complete order</button>
                         </fieldset>
                     </form>
