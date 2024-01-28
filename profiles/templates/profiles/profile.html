@@ -1,6 +1,9 @@
 {% extends 'base.html' %}
 {% load static %}
 
+{% load crispy_forms_tags %}
+{{ form|crispy }}
+
 {% block extra_css %}
     <link rel="stylesheet" href="{% static 'profiles/css/profile.css' %}">
 {% endblock %}
@@ -11,7 +14,7 @@
             <div class="row">
                 <div class="col">
                     <h1>My Profile</h1>
-                <hr>
+                    <hr>
                 </div>
             </div>
             <div class="row">
@@ -21,13 +24,17 @@
                     </p>
                     <form class="mt-3" action="{% url 'profile' %}" method="POST" id="profile-update-form">
                         {% csrf_token %}
-                        {{ user_profile_form|crispy  }}
-                        <hr>
-                        <p class="text-muted">
-                            Company Information
-                        </p>
+                        {{ profile_form|crispy }}
+                        <button type="submit" name="profile-update-form">Update Profile</button>
+                    </form>
+                    <hr>
+                    <p class="text-muted">
+                        Company Information
+                    </p>
+                    <form class="mt-3" action="{% url 'profile' %}" method="POST" id="company-update-form">
+                        {% csrf_token %}
                         {{ company_form|crispy }}
-                        <button type="submit">Update Information</button>
+                        <button type="submit" name="company-update-form">Update Company</button>
                     </form>
                 </div>
             </div>

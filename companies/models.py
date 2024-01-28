@@ -1,8 +1,6 @@
 from django.db import models
 from django_countries.fields import CountryField
 
-from django.conf import settings
-
 
 class Company(models.Model):
     """
@@ -18,9 +16,9 @@ class Company(models.Model):
     invoice_email = models.EmailField(max_length=254, null=True, blank=True)
 
     userprofile = models.OneToOneField(
-        settings.AUTH_USER_MODEL,
+        'profiles.UserProfile',
         on_delete=models.CASCADE,
-        related_name='user_profile',
+        related_name='company',
         blank=True,
         null=True
     )

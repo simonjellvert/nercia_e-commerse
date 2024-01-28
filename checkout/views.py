@@ -1,18 +1,34 @@
-from django.shortcuts import render, redirect, reverse
+# checkout/views.py
+from django.shortcuts import render
+from django.contrib.auth.decorators import login_required
 from django.contrib import messages
 
-from .forms import CheckoutForm
+from profiles.forms import UserProfileForm
+from companies.forms import CompanyForm
+from checkout.forms import CheckoutForm
 
+@login_required
 def checkout(request):
-    bag = request.session.get('bag', {})
-    if not bag:
-        messages.error(request, "There is noting in your bag right now!")
-        return redirect(reverse('products'))
+    user_profile = request.user.userprofile
+    existing_company = user_profile.company
 
-    checkout_form = CheckoutForm()
-    template = 'checkout/checkout.html'
-    context = {
-        'checkout_form': checkout_form,
-    }
+    if request.method == 'POST':
+        checkout_form = CheckoutForm(request.POST, instance=user_profile)
+        company_form = CompanyForm(request.POST, instance=existing_company)
 
-    return render(request, template, context)
+        if checkout_form.is_valid() and company_form.is_valid():
+            checkout_form.save()
+            company = company_form.save(commit=False)
+            user_profile.company = company
+            user_profile.save()
+
+            messages.success(request, 'Your profile and company information were successfully updated!')
+            return redirect('checkout')
+        else:
+            messages.error(request, 'Ops, something went wrong, check your details.')
+
+    else:
+        checkout_form = CheckoutForm(instance=user_profile)
+        company_form = CompanyForm(instance=existing_company)
+
+    return render(request, 'checkout/checkout.html', {'checkout_form': checkout_form, 'company_form': company_form})

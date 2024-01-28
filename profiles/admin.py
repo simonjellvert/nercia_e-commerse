@@ -1,19 +1,14 @@
 from django.contrib import admin
-from .models import UserProfile
-from companies.models import Company
+from django.contrib.auth.admin import UserAdmin
+from .models import CustomUser, UserProfile
 
 
-class ProfilesAdmin(admin.ModelAdmin):
-    list_display = (
-        'user',
-    )
+class UserProfileInline(admin.StackedInline):
+    model = UserProfile
 
 
-class CompaniesAdmin(admin.ModelAdmin):
-    list_display = (
-        'name',
-    )
+class CustomUserAdmin(UserAdmin):
+    inlines = [UserProfileInline]
 
 
-admin.site.register(UserProfile, ProfilesAdmin)
-admin.site.register(Company, CompaniesAdmin)
+admin.site.register(CustomUser, CustomUserAdmin)

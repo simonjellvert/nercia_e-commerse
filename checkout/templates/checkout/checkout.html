@@ -1,5 +1,6 @@
 {% extends 'base.html' %}
 {% load static %}
+{% load crispy_forms_tags %}
 
 {% block extra_css %}
     <link rel="stylesheet" href="{% static 'checkout/css/checkout/css' %}">
@@ -11,7 +12,7 @@
             <div class="row">
                 <div class="col">
                     <h1>Checkout</h1>
-                <hr>
+                    <hr>
                 </div>
             </div>
             <div class="row">
@@ -23,15 +24,9 @@
                         {% csrf_token %}
                         <fieldset>
                             <legend>
-                                Purchaser
-                            </legend>
-                            {{ checkout_form.user_profile_form | as_crispy_field }}
-                        </fieldset>
-                        <fieldset>
-                            <legend>
                                 Billing Address
                             </legend>
-                            {{ checkout_form.company_form | as_crispy_field }}
+                            {{ checkout_form.company_form|crispy }}
                             <div class="form-check form-check-inline float-right mr-0">
                                 {% if user.is_authenticated %}
                                     <label class="form-check-label" for="id-save-info">Save this delivery information to my profile</label>
@@ -46,12 +41,18 @@
                         </fieldset>
                         <fieldset>
                             <legend>
+                                Purchaser
+                            </legend>
+                            {{ checkout_form.user_profile_form|crispy }}
+                        </fieldset>
+                        <fieldset>
+                            <legend>
                                 Payment
                             </legend>
-                            {{ checkout_form.payment_option | as_crispy_field }}
-
-                        <!-- If payment_option is card display card div, if payment_option is invoice display invoice_email input field and input field for invoice referens -->
-                        <button type="submit">Complete order</button>
+                            {{ checkout_form.payment_option|crispy }}
+                            <!-- If payment_option is card display card div, if payment_option is invoice display invoice_email input field and input field for invoice referens -->
+                            <button type="submit">Complete order</button>
+                        </fieldset>
                     </form>
                 </div>
             </div>

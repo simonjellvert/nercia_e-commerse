@@ -18,7 +18,7 @@ class UserProfile(models.Model):
         on_delete=models.CASCADE,
         unique=True
     )
-    companies = models.ForeignKey(
+    companies = models.OneToOneField(
         Company,
         on_delete=models.SET_NULL,
         null=True,
