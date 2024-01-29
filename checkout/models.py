@@ -8,6 +8,7 @@ from products.models import Product
 from profiles.models import UserProfile
 from companies.models import Company
 from bag.models import PromoCode
+from bag.contexts import bag_contents
 
 
 class Order(models.Model):
@@ -59,7 +60,30 @@ class Order(models.Model):
         """
         return uuid.uuid4().hex.upper()
     
-    
+    def update_total(self):
+        """
+        Update order_total, grand_total based on line items and promo code
+        """
+        self.order_total = self.lineitems.aggregate(Sum('lineitem_total'))['lineitem_total__sum'] or 0
+
+        # Apply promo code discount if available
+        if self.promo_code:
+            self.grand_total = self.calculate_grand_total_with_promo_code()
+        else:
+            self.grand_total = self.order_total
+
+        bag_context = bag_contents(request)
+        self.tax = bag_context['tax']
+
+        self.save()
+
+    def calculate_grand_total_with_promo_code(self):
+        """
+        Calculate grand_total with promo code discount
+        """
+        promo_discount = self.promo_code.calculate_discount(self.order_total)
+        return self.order_total - promo_discount
+
     def save(self, *args, **kwargs):
         """
         Override original save method to set the order number
@@ -73,6 +97,14 @@ class Order(models.Model):
 
     def __str__(self):
         return f"Order {self.order_number} - {self.full_name}"
+
+
+class ParticipantInfo(models.Model):
+    participant_name = models.CharField(max_length=255)
+    participant_email = models.EmailField()
+
+    def __str__(self):
+        return f"{self.participant_name} - {self.participant_email}"
 
 
 class OrderLineItem(models.Model):

@@ -44,6 +44,7 @@ class Product(models.Model):
         choices=ONLINE_ONSITE_CHOICES,
         default=ONSITE,
     )
+    quantity = models.PositiveIntegerField(default=0)
 
     def __str__(self):
         return self.name
