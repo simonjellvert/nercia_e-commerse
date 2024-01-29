@@ -8,9 +8,6 @@ from companies.forms import CompanyForm
 from .forms import CheckoutForm, ParticipantInfoForm
 
 
-def get_quantity_list(quantity):
-    return list(range(quantity))
-
 @login_required
 def checkout(request):
     user_profile = request.user.userprofile
@@ -42,7 +39,5 @@ def checkout(request):
     
     participant_info_form = ParticipantInfoForm()
     bag = request.session.get('bag', {})
-    bag_items = [get_object_or_404(Product, pk=item_id) for item_id in bag.keys()]
-    quantity_lists = {item.id: get_quantity_list(item.quantity) for item in bag_items}
 
-    return render(request, 'checkout/checkout.html', {'checkout_form': checkout_form, 'company_form': company_form, 'participant_info_form': participant_info_form, 'quantity_lists': quantity_lists})
+    return render(request, 'checkout/checkout.html', {'checkout_form': checkout_form, 'company_form': company_form})

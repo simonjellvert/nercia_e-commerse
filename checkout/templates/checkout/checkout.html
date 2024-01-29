@@ -79,14 +79,10 @@
                             <p>Add participant information</p>
                             <form method="post">
                                 {% csrf_token %}
-                                <input type="hidden" name="product_id" value="{{ product.product_id }}">
-                                <div class="row">
-                                    {% for quantity in quantity_lists.item.id %}
-                                        {{ participant_info_form.participant_name|as_crispy_field }}
-                                        {{ participant_info_form.participant_email|as_crispy_field }}
-                                    {% endfor %}
-                                    <button type="submit">Add Participant</button>
-                                </div>
+                                <input type="hidden" name="product_id" value="{{ item.product.id }}">
+                                {{ participant_info_form.participant_name|crispy }}
+                                {{ participant_info_form.participant_email|crispy }}
+                                <button type="submit">Add Participant</button>
                             </form>
                         </div>
                     {% endfor %}

@@ -9,27 +9,28 @@ from products.models import Product
 def bag_contents(request):
 
     bag_items = []
-    total = 0
+    grand_total = Decimal(0)
     product_count = 0
     bag = request.session.get('bag', {})
 
     for item_id, quantity in bag.items():
         product = get_object_or_404(Product, pk=item_id)
-        total += quantity * product.price
+        item_total = quantity * product.price
+        grand_total += item_total
         product_count += quantity
         bag_items.append({
             'item_id': item_id,
             'quantity': quantity,
             'product': product,
+            'item_total': item_total,  # Add this line to store item total
         })
 
-    grand_total = Decimal(total)
     tax_rate = Decimal('0.25')
     tax = grand_total * tax_rate
 
     context = {
         'bag_items': bag_items,
-        'total': total,
+        'total': grand_total,
         'tax': tax,
         'product_count': product_count,
         'grand_total': grand_total,
