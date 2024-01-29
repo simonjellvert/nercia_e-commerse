@@ -23,9 +23,13 @@ class CheckoutForm(forms.ModelForm):
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
 
-        self.user_profile_form = UserProfileForm(*args, **kwargs)
-        self.company_form = CompanyForm(*args, **kwargs)
+        user_profile_instance = kwargs.get('instance', None)
+        company_instance = user_profile_instance.company if user_profile_instance else None
 
+        self.user_profile_form = UserProfileForm(*args, instance=user_profile_instance)
+        self.company_form = CompanyForm(*args, instance=company_instance)
+
+        # Include CompanyForm fields in the CheckoutForm fields
         self.fields.update(self.user_profile_form.fields)
         self.fields.update(self.company_form.fields)
 

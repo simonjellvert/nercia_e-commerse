@@ -59,6 +59,7 @@ class Order(models.Model):
         """
         return uuid.uuid4().hex.upper()
     
+    
     def save(self, *args, **kwargs):
         """
         Override original save method to set the order number
@@ -82,12 +83,12 @@ class OrderLineItem(models.Model):
         on_delete=models.CASCADE,
         related_name='lineitems'
     )
-    # product = models.ForeignKey(
-        # Product,
-        # null=False,
-        # blank=False,
-        # on_delete=models.CASCADE
-    # )
+    product = models.ForeignKey(
+        Product,
+        null=False,
+        blank=False,
+        on_delete=models.CASCADE
+    )
     quantity = models.IntegerField(null=False, blank=False, default=0)
     lineitem_total = models.DecimalField(
         max_digits=8,

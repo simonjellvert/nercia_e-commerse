@@ -1,11 +1,10 @@
-# checkout/views.py
 from django.shortcuts import render
 from django.contrib.auth.decorators import login_required
 from django.contrib import messages
 
 from profiles.forms import UserProfileForm
 from companies.forms import CompanyForm
-from checkout.forms import CheckoutForm
+from .forms import CheckoutForm
 
 @login_required
 def checkout(request):
@@ -22,8 +21,13 @@ def checkout(request):
             user_profile.company = company
             user_profile.save()
 
+            if request.POST.get('save-info'):
+                user_profile.save()
+                company.save()
+
             messages.success(request, 'Your profile and company information were successfully updated!')
             return redirect('checkout')
+
         else:
             messages.error(request, 'Ops, something went wrong, check your details.')
 
