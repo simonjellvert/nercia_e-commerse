@@ -100,6 +100,8 @@ def checkout(request):
             'bag_items': total_items,
             'bag_total': bag_total,
             'tax': tax,
+            'stripe_public_key': 'pk_test_51OeMjyEt17VYJ8rjXFSyYURmOkFDjpGMp9JVJsnxKTFt7lPMULuPPel8gi9H5YupLk7LORhooA3XFNK3oHEP2hQU00VVdNz1MU',
+            'client_secret': 'test client secret',
         })
 
 @login_required
