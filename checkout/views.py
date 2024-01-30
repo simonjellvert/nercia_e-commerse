@@ -1,10 +1,13 @@
 from decimal import Decimal
 
+import stripe
+
 from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth.decorators import login_required
 from django.contrib import messages
 from django.forms import formset_factory
 from django.http import JsonResponse
+from django.conf import settings
 
 from profiles.forms import UserProfileForm
 from products.models import Product
@@ -14,12 +17,18 @@ from .forms import CheckoutForm, ParticipantInfoForm
 
 @login_required
 def checkout(request):
+    stripe_public_key = settings.STRIPE_PUBLIC_KEY
+    stripe_secret_key = settings.STRIPE_SECRET_KEY
+
     user_profile = request.user.userprofile
     existing_company = user_profile.company
 
     ParticipantInfoFormSet = formset_factory(ParticipantInfoForm, extra=1)
 
     bag_items = request.session['bag']
+
+    participant_info_formsets = []
+    intent = None  # Initialize the intent variable
 
     if request.method == 'POST':
         checkout_form = CheckoutForm(request.POST, instance=user_profile)
@@ -54,10 +63,21 @@ def checkout(request):
             return redirect('checkout')
         else:
             messages.error(request, 'Ops, something went wrong, check your details.')
+            # In case of form errors, initialize intent to avoid UnboundLocalError
+            intent = stripe.PaymentIntent.create(
+                amount=0,
+                currency=settings.STRIPE_CURRENCY,
+            )
+            return render(request, 'checkout/checkout.html', {
+                'checkout_form': checkout_form,
+                'company_form': company_form,
+                'participant_info_formsets': participant_info_formsets,
+                'stripe_public_key': stripe_public_key,
+                'client_secret': intent.client_secret,
+            })
     else:
         checkout_form = CheckoutForm(instance=user_profile)
         company_form = CompanyForm(instance=existing_company)
-        participant_info_formsets = []
         total_items = []
         bag_total = 0
         tax = Decimal(0)
@@ -81,6 +101,17 @@ def checkout(request):
             grand_total = bag_total - promo_code
             tax = Decimal(grand_total) * Decimal(0.25)
 
+            stripe_total = round((grand_total + tax) * 100)
+            stripe.api_key = stripe_secret_key
+            intent = stripe.PaymentIntent.create(
+                amount=max(stripe_total, 100),  # Set a minimum value of 1
+                currency=settings.STRIPE_CURRENCY,
+            )
+
+            if not stripe_public_key:
+                messages.warning(request, 'Stripe public key is missing. \
+                    Did you forget to set it in your environment?')
+
             for i in range(quantity):
                 prefix = f'product_{item_id}_participant_{i}'
                 participant_info_form = ParticipantInfoForm(prefix=prefix)
@@ -100,8 +131,8 @@ def checkout(request):
             'bag_items': total_items,
             'bag_total': bag_total,
             'tax': tax,
-            'stripe_public_key': 'pk_test_51OeMjyEt17VYJ8rjXFSyYURmOkFDjpGMp9JVJsnxKTFt7lPMULuPPel8gi9H5YupLk7LORhooA3XFNK3oHEP2hQU00VVdNz1MU',
-            'client_secret': 'test client secret',
+            'stripe_public_key': stripe_public_key,
+            'client_secret': intent.client_secret,
         })
 
 @login_required
