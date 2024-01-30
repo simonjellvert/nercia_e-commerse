@@ -73,25 +73,65 @@
                     </form>
                 </div>
                 <div class="col-12 col-lg-6">
-                    <p>Add participant information for your trainings</p>
-                    {% for item in participant_info_formsets %}
-                        <div class="col">
-                            <form method="post" class="participant-form">
-                                {% csrf_token %}
-                                <input type="hidden" name="product_id" value="{{ item.product.id }}">
-                                <div class="participant-form">
-                                    {{ item.formset.management_form }}
-                                    {{ item.formset.non_form_errors }}
-                                    {% for form in item.formset %}
-                                        <p><strong>{{ item.product.name }}</strong></p>
-                                        <p class="text-muted">{{ quantity }}</p>
-                                        {{ form.participant_name|as_crispy_field }}
-                                        {{ form.participant_email|as_crispy_field }}
-                                    {% endfor %}
-                                </div>
-                            </form>
+                    <div class="col">
+                        <legend>
+                            Overview
+                        </legend>
+                        {% for item in bag_items %}
+                            <div class="row">
+                                <div class="col">{{ item.product_name }}</div>
+                                <div class="col">Quantity: {{ item.quantity }}</div>
+                                <div class="col">Total: ${{ item.product_price_total  }}</div>
+                            </div>
+                        {% endfor %}
+                        <hr>
+                        <div class="row">
+                            <div class="col"></div>
+                            <div class="col">Order total:</div>
+                            <div class="col">${{ bag_total|floatformat:2 }}</div>
                         </div>
-                    {% endfor %}
+                        <div class="row">
+                            {% if promo_code %}
+                                <div class="col"></div>
+                                <div class="col">Discount</div>
+                                <div class="col">${{ total_discount }}</div>
+                            {% else %}
+                                <div class="col"></div>
+                                <div class="col">Discount</div>
+                                <div class="col">$0.00</div>
+                            {% endif %}
+                        </div>
+                        <div class="row">
+                            <div class="col"></div>
+                            <div class="col">Grand total (excl. VAT):</div>
+                            <div class="col">${{ grand_total|floatformat:2 }}</div>
+                        </div>
+                        <div class="row">
+                            <div class="col"></div>
+                            <div class="col">VAT:</div>
+                            <div class="col">${{ tax|floatformat:2 }}</div>
+                        </div>
+                    </div>
+                    <div class="col">
+                        <p>Add participant information for your trainings</p>
+                        {% for item in participant_info_formsets %}
+                            <div class="col">
+                                <form method="post" class="participant-form">
+                                    {% csrf_token %}
+                                    <input type="hidden" name="product_id" value="{{ item.product.id }}">
+                                    <div class="participant-form">
+                                        {{ item.formset.management_form }}
+                                        {{ item.formset.non_form_errors }}
+                                        {% for form in item.formset %}
+                                            <p><strong>{{ item.product.name }}</strong></p>
+                                            {{ form.participant_name|as_crispy_field }}
+                                            {{ form.participant_email|as_crispy_field }}
+                                        {% endfor %}
+                                    </div>
+                                </form>
+                            </div>
+                        {% endfor %}
+                    </div>
                 </div>
             </div>
         </div>

@@ -11,10 +11,10 @@ def bag_contents(request):
     A context processor to use bag information across all templates
     """
     bag_items = []
-    total = 0
+    total = Decimal(0)
     product_count = 0
     grand_total = 0
-    tax = 0
+    tax = Decimal(0)
     bag = request.session.get('bag', {})
     print("Bag in bag_contents:", bag)
 
@@ -43,6 +43,9 @@ def bag_contents(request):
                 'product': product,
                 'item_total': item_total,
             })
+
+    total = item_total
+    tax = Decimal(total) * Decimal(0)
 
     context = {
         'bag_items': bag_items,

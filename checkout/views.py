@@ -1,3 +1,5 @@
+from decimal import Decimal
+
 from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth.decorators import login_required
 from django.contrib import messages
@@ -17,7 +19,7 @@ def checkout(request):
 
     ParticipantInfoFormSet = formset_factory(ParticipantInfoForm, extra=1)
 
-    bag_items = request.session['bag'].items()
+    bag_items = request.session['bag']
 
     if request.method == 'POST':
         checkout_form = CheckoutForm(request.POST, instance=user_profile)
@@ -31,7 +33,10 @@ def checkout(request):
             user_profile.save()
 
             for item_id, quantity_data in bag_items:
-                quantity = quantity_data if isinstance(quantity_data, int) else quantity_data['quantity']
+                if isinstance(quantity_data, dict):
+                    quantity = quantity_data['quantity']
+                else:
+                    quantity = quantity_data
                 product = get_object_or_404(Product, pk=item_id)
                 for i in range(quantity):
                     prefix = f'product_{item_id}_participant_{i}'
@@ -53,10 +58,28 @@ def checkout(request):
         checkout_form = CheckoutForm(instance=user_profile)
         company_form = CompanyForm(instance=existing_company)
         participant_info_formsets = []
+        total_items = []
+        bag_total = 0
+        tax = Decimal(0)
+        promo_code = 0
 
-        for item_id, quantity_data in bag_items:
-            quantity = quantity_data if isinstance(quantity_data, int) else quantity_data['quantity']
+        for item_id, quantity_data in bag_items.items():
+            if isinstance(quantity_data, dict):
+                quantity = quantity_data['quantity']
+            else:
+                quantity = quantity_data
+
             product = get_object_or_404(Product, pk=item_id)
+            product_price_total = product.price * quantity
+
+            total_items.append({
+                'product_name': product.name,
+                'quantity': quantity,
+                'product_price_total': product_price_total,
+            })
+            bag_total += product_price_total
+            grand_total = bag_total - promo_code
+            tax = Decimal(grand_total) * Decimal(0.25)
 
             for i in range(quantity):
                 prefix = f'product_{item_id}_participant_{i}'
@@ -74,7 +97,9 @@ def checkout(request):
             'checkout_form': checkout_form,
             'company_form': company_form,
             'participant_info_formsets': participant_info_formsets,
-            'bag_items': request.session['bag'],
+            'bag_items': total_items,
+            'bag_total': bag_total,
+            'tax': tax,
         })
 
 @login_required
