@@ -3,6 +3,7 @@ import uuid
 from django.db import models
 from django.db.models import Sum
 from django.conf import settings
+from django.core.validators import MinValueValidator
 
 from products.models import Product
 from profiles.models import UserProfile
@@ -99,9 +100,12 @@ class Order(models.Model):
         return f"Order {self.order_number} - {self.full_name}"
 
 
-class ParticipantInfo(models.Model):
-    participant_name = models.CharField(max_length=255)
-    participant_email = models.EmailField()
+class Participant(models.Model):
+    user = models.ForeignKey(UserProfile, on_delete=models.CASCADE)
+    product = models.ForeignKey(Product, on_delete=models.CASCADE)
+    participant_name = models.CharField(max_length=255, null=False, blank=False)
+    participant_email = models.EmailField(null=False, blank=False)
+    quantity = models.PositiveIntegerField(default=1, validators=[MinValueValidator(1)])
 
     def __str__(self):
         return f"{self.participant_name} - {self.participant_email}"

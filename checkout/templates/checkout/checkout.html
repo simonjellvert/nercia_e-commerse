@@ -69,20 +69,26 @@
                         <button>
                             <a href="{% url 'view_bag' %}"><i class="fas fa-chevron-left"></i>Edit bag</a>
                         </button>
-                        <button type="submit">Complete order</button>
+                        <button id="complete-order-button">Complete order</button>
                     </form>
                 </div>
                 <div class="col-12 col-lg-6">
-                    {% for item in bag_items %}
+                    <p>Add participant information for your trainings</p>
+                    {% for item in participant_info_formsets %}
                         <div class="col">
-                            <p><strong>{{ item.product.name }}</strong></p>
-                            <p>Add participant information</p>
-                            <form method="post">
+                            <form method="post" class="participant-form">
                                 {% csrf_token %}
                                 <input type="hidden" name="product_id" value="{{ item.product.id }}">
-                                {{ participant_info_form.participant_name|crispy }}
-                                {{ participant_info_form.participant_email|crispy }}
-                                <button type="submit">Add Participant</button>
+                                <div class="participant-form">
+                                    {{ item.formset.management_form }}
+                                    {{ item.formset.non_form_errors }}
+                                    {% for form in item.formset %}
+                                        <p><strong>{{ item.product.name }}</strong></p>
+                                        <p class="text-muted">{{ quantity }}</p>
+                                        {{ form.participant_name|as_crispy_field }}
+                                        {{ form.participant_email|as_crispy_field }}
+                                    {% endfor %}
+                                </div>
                             </form>
                         </div>
                     {% endfor %}
@@ -114,6 +120,33 @@
                 cardFields.style.display = this.checked ? 'block' : 'none';
             }
         });
+    });
+    document.getElementById('complete-order-button').addEventListener('click', function (event) {
+        // Validate participant forms before proceeding
+        var participantFormsValid = true;
+
+        document.querySelectorAll('.participant-form').forEach(function (form) {
+            var formValid = true;
+
+            form.querySelectorAll('input[type="text"]').forEach(function (input) {
+                if (!input.value.trim()) {
+                    formValid = false;
+                    participantFormsValid = false;
+                    alert('Please fill out all participant fields.');
+                    return;
+                }
+            });
+
+            if (!formValid) {
+                // Prevent the default form submission if any form is invalid
+                event.preventDefault();
+            }
+        });
+
+        if (participantFormsValid) {
+            // Proceed with submitting the main checkout form
+            document.getElementById('payment-form').submit();
+        }
     });
 </script>
 {% endblock %}

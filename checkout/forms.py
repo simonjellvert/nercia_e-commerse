@@ -1,6 +1,6 @@
 from django import forms
 
-from .models import Order, ParticipantInfo
+from .models import Order, Participant
 from profiles.forms import UserProfileForm
 from companies.forms import CompanyForm
 
@@ -78,7 +78,7 @@ class CheckoutForm(forms.ModelForm):
 
 class ParticipantInfoForm(forms.ModelForm):
     class Meta:
-        model = ParticipantInfo
+        model = Participant
         fields = ['participant_name', 'participant_email']
     
     def __init__(self, *args, **kwargs):

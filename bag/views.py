@@ -12,44 +12,40 @@ def view_bag(request):
     return render(request, 'bag/bag.html')
 
 def add_to_bag(request, item_id):
-    """
-    A view to add quantity of a product to the bag
-    """
-
     product = get_object_or_404(Product, pk=item_id)
     quantity = int(request.POST.get('quantity', 1))
     redirect_url = request.POST.get('redirect_url')
     bag = request.session.get('bag', {})
 
-    if item_id in list(bag.keys()):
-        bag[item_id] += quantity
-        messages.success(request, f'Updated {product.name} quantity to {bag[item_id]}')
+    if item_id in bag:
+        bag[item_id]['quantity'] += quantity
+        messages.success(request, f'Updated {product.name} quantity to {bag[item_id]["quantity"]}')
     else:
-        bag[item_id] = quantity
+        bag[item_id] = {'quantity': quantity}
         messages.success(request, f'Added {product.name} to your bag')
-    
+
     request.session['bag'] = bag
     return redirect(redirect_url)
 
-
 def edit_bag(request, item_id):
     """
-    A view to edit quantity of a product to the bag
+    A view to edit quantity of a product in the bag
     """
     product = get_object_or_404(Product, pk=item_id)
     quantity = int(request.POST.get('quantity'))
     bag = request.session.get('bag', {})
 
-    if quantity > 0:
-        bag[item_id] = quantity
-        messages.success(request, f'Updated {product.name} quantity to {bag[item_id]}')
+    if item_id in bag:
+        if isinstance(bag[item_id], int):
+            bag[item_id] = quantity
+        else:
+            bag[item_id]['quantity'] = quantity
+        messages.success(request, f'Updated {product.name} quantity to {quantity}')
     else:
-        bag.pop(item_id)
-        messages.success(request, f'Deleted {product.name} from your bag')
-    
+        messages.error(request, f'Error updating {product.name} quantity')
+
     request.session['bag'] = bag
     return redirect(reverse('view_bag'))
-
 
 def delete_item(request, item_id):
     """
