@@ -6,8 +6,8 @@ class Company(models.Model):
     """
     Model for the user to add billing information to a company
     """
-    name = models.CharField(max_length=100, unique=True)
-    org_num = models.CharField(max_length=20, unique=True)
+    name = models.CharField(max_length=100)
+    org_num = models.CharField(max_length=20)
     street_address1 = models.CharField(max_length=80, null=False, blank=False)
     street_address2 = models.CharField(max_length=80, null=True, blank=True)
     postcode = models.CharField(max_length=20, null=False, blank=False)

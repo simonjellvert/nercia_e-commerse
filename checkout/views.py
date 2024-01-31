@@ -2,20 +2,24 @@ from decimal import Decimal
 
 import stripe
 
-from django.shortcuts import render, redirect, get_object_or_404
-from django.contrib.auth.decorators import login_required
+from django.shortcuts import render, reverse, redirect, get_object_or_404
+from django.db import transaction
 from django.contrib import messages
-from django.forms import formset_factory
+from django.forms.models import inlineformset_factory
 from django.http import JsonResponse
 from django.conf import settings
 
 from profiles.forms import UserProfileForm
+from profiles.models import UserProfile
 from products.models import Product
+from companies.models import Company
 from companies.forms import CompanyForm
 from .forms import CheckoutForm, ParticipantInfoForm
+from .models import Order, OrderLineItem, Participant
+from bag.contexts import bag_contents
 
 
-@login_required
+@transaction.atomic
 def checkout(request):
     stripe_public_key = settings.STRIPE_PUBLIC_KEY
     stripe_secret_key = settings.STRIPE_SECRET_KEY
@@ -23,8 +27,7 @@ def checkout(request):
     user_profile = request.user.userprofile
     existing_company = user_profile.company
 
-    ParticipantInfoFormSet = formset_factory(ParticipantInfoForm, extra=1)
-    participant_info_formsets = []
+    ParticipantInfoFormSet = inlineformset_factory(Product, Participant, form=ParticipantInfoForm, extra=1, can_delete=False)
 
     bag_items = request.session['bag']
     total_items = []
@@ -32,15 +35,28 @@ def checkout(request):
     tax = Decimal(0)
     promo_code = 0
 
+    checkout_form = CheckoutForm(instance=user_profile)
+    company_form = CompanyForm(instance=existing_company)
+
+    participant_info_formsets = []
+
+    order_instance = None  # Initialize order_instance
+
     for item_id, quantity_data in bag_items.items():
-        product = None  # Initialize product outside the loop
-
-        if isinstance(quantity_data, dict):
-            quantity = quantity_data['quantity']
-        else:
-            quantity = quantity_data
-
         product = get_object_or_404(Product, pk=item_id)
+        quantity = quantity_data['quantity']
+
+        # Initialize ParticipantInfoFormSet for each product
+        participant_info_formset = ParticipantInfoFormSet(prefix=f'product_{item_id}')
+
+        # Attach the product and quantity to the formset
+        participant_info_formset.product = product
+        participant_info_formset.quantity = quantity
+
+        # Create the correct number of formsets based on quantity
+        for _ in range(quantity):
+            participant_info_formsets.append(participant_info_formset)
+
         product_price_total = product.price * quantity
 
         total_items.append({
@@ -51,7 +67,6 @@ def checkout(request):
 
         bag_total += product_price_total
 
-    # Move these lines outside the loop
     grand_total = bag_total - promo_code
     tax = Decimal(grand_total) * Decimal(0.25)
 
@@ -63,99 +78,83 @@ def checkout(request):
     )
 
     if request.method == 'POST':
-        checkout_form = CheckoutForm(request.POST, instance=user_profile)
-        company_form = CompanyForm(request.POST, instance=existing_company)
-        participant_info_formset = ParticipantInfoFormSet(request.POST, prefix='participant')
+        print("Received POST request")
+        print(request.POST)
+        user_profile_instance, created = UserProfile.objects.get_or_create(user=request.user)
+        print(f"User Profile Instance: {user_profile_instance}")
+        checkout_form = CheckoutForm(request.POST, instance=order_instance)
+        print(f"Checkout Form: {checkout_form}")
+        checkout_form.fields['user_profile'].initial = user_profile_instance
+        company_form = CompanyForm(request.POST)
 
-        if checkout_form.is_valid() and company_form.is_valid() and participant_info_formset.is_valid():
+        participant_info_formsets = []
+    
+        # New order_instance should be created here
+        order_instance = checkout_form.save(commit=False)
+        order_instance.user_profile = user_profile_instance
+        order_instance.save()
+
+        if checkout_form.is_valid() and company_form.is_valid():
+            # Process checkout form 
+            print("Forms are valid")
+
+            checkout_form.instance.user_profile = user_profile_instance
+            checkout_form.instance.order_total = bag_total
+            checkout_form.instance.grand_total = grand_total
+            checkout_form.instance.tax = tax
+            checkout_form.instance.company_name = new_company  # Assign the new company to order_instance
             checkout_form.save()
-            company = company_form.save(commit=False)
-            user_profile.company = company
-            user_profile.save()
 
+            # Process participant info formsets for each product
             for item_id, quantity_data in bag_items.items():
-                if isinstance(quantity_data, dict):
-                    quantity = quantity_data['quantity']
-                else:
-                    quantity = quantity_data
                 product = get_object_or_404(Product, pk=item_id)
-                for i in range(quantity):
-                    prefix = f'product_{item_id}_participant_{i}'
-                    participant_info_form = ParticipantInfoForm(prefix=prefix)
-                    participant_info = participant_info_form.save(commit=False)
-                    participant_info.user = user_profile
-                    participant_info.product = product
-                    participant_info.save()
-
-            if request.POST.get('save-info'):
-                user_profile.save()
-                company.save()
-
-            messages.success(request, 'Your profile and company information were successfully updated!')
-            return redirect('checkout')
+                participant_info_formset = ParticipantInfoFormSet(request.POST, prefix=f'product_{item_id}', instance=order_instance)
+                
+                if participant_info_formset.is_valid():
+                    for form in participant_info_formset:
+                        if form.cleaned_data:
+                            participant = form.save(commit=False)
+                            participant.product = product
+                            participant.order = order_instance
+                            participant.save()
+                else:
+                    messages.error(request, 'Invalid participant information.')
+                    return redirect('checkout')
+                    
+            return redirect('checkout_success', order_number=order_instance.order_number)
         else:
-            messages.error(request, 'Ops, something went wrong, check your details.')
-            # In case of form errors, initialize intent to avoid UnboundLocalError
-            return render(request, 'checkout/checkout.html', {
-                'checkout_form': checkout_form,
-                'company_form': company_form,
-                'participant_info_formsets': participant_info_formsets,
-                'stripe_public_key': stripe_public_key,
-                'client_secret': intent.client_secret,
-            })
-    else:
-        checkout_form = CheckoutForm(instance=user_profile)
-        company_form = CompanyForm(instance=existing_company)
+            print("Forms are NOT valid")
+            print(checkout_form.errors)
+            print(company_form.errors)
+            messages.error(request, 'Invalid form submission.')
 
-        for item_id, quantity_data in bag_items.items():
-            product = None  # Initialize product outside the loop
+    return render(request, 'checkout/checkout.html', {
+        'checkout_form': checkout_form,
+        'company_form': company_form,
+        'participant_info_formsets': participant_info_formsets,
+        'bag_items': total_items,
+        'bag_total': bag_total,
+        'tax': tax,
+        'stripe_public_key': stripe_public_key,
+        'client_secret': intent.client_secret,
+    })
 
-            if isinstance(quantity_data, dict):
-                quantity = quantity_data['quantity']
-            else:
-                quantity = quantity_data
+def checkout_success(request, order_number):
+    """
+    Handle successful checkouts
+    """
+    save_info = request.session.get('save_info')
+    order = get_object_or_404(Order, order_number=order_number)
+    messages.success(request, f'Order successfully processed! \
+        Your order number is {order_number}. A confirmation \
+        email will be sent to {order.email}.')
 
-            product = get_object_or_404(Product, pk=item_id)
-            product_price_total = product.price * quantity
+    if 'bag' in request.session:
+        del request.session['bag']
 
-            for i in range(quantity):
-                prefix = f'product_{item_id}_participant_{i}'
-                participant_info_form = ParticipantInfoForm(prefix=prefix)
-                participant_info = participant_info_form.save(commit=False)
-                participant_info.user = user_profile
-                participant_info.product = product
-                participant_info.save()
+    template = 'checkout/checkout_success.html'
+    context = {
+        'order': order,
+    }
 
-            ParticipantInfoFormSet = formset_factory(ParticipantInfoForm, extra=quantity)
-            participant_info_formset = ParticipantInfoFormSet(prefix=f'product_{item_id}')
-            participant_info_formsets.append({'product': product, 'formset': participant_info_formset})
-
-        return render(request, 'checkout/checkout.html', {
-            'checkout_form': checkout_form,
-            'company_form': company_form,
-            'participant_info_formsets': participant_info_formsets,
-            'bag_items': total_items,
-            'bag_total': bag_total,
-            'tax': tax,
-            'stripe_public_key': stripe_public_key,
-            'client_secret': intent.client_secret,
-        })
-
-@login_required
-def add_participant(request):
-    response_data = {'success': False, 'message': 'Error adding participant'}
-
-    if request.method == 'POST':
-        participant_info_form = ParticipantInfoForm(request.POST)
-        if participant_info_form.is_valid():
-            participant_info = participant_info_form.save(commit=False)
-            participant_info.user = request.user
-            participant_info.product = Product.objects.get(pk=request.POST['product_id'])
-            participant_info.save()
-
-            response_data['success'] = True
-            response_data['message'] = 'Participant successfully added'
-            return JsonResponse(response_data)
-
-    response_data['message'] = 'Error adding participant. Please check your data.'
-    return JsonResponse(response_data)
+    return render(request, template, context)

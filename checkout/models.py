@@ -65,16 +65,22 @@ class Order(models.Model):
         """
         Update order_total, grand_total based on line items and promo code
         """
-        self.order_total = self.lineitems.aggregate(Sum('lineitem_total'))['lineitem_total__sum'] or 0
+        # Calculate line item total sum
+        lineitem_total_sum = self.lineitems.aggregate(Sum('lineitem_total'))['lineitem_total__sum'] or Decimal('0.00')
+        self.order_total = lineitem_total_sum
 
         # Apply promo code discount if available
         if self.promo_code:
-            self.grand_total = self.calculate_grand_total_with_promo_code()
+            promo_discount = self.promo_code.calculate_discount(self.order_total)
+            self.grand_total = self.order_total - promo_discount
         else:
             self.grand_total = self.order_total
 
-        bag_context = bag_contents(request)
-        self.tax = bag_context['tax']
+        # Calculate tax as 25% of grand total
+        self.tax = self.grand_total * Decimal('0.25')
+
+        # Update order_total to include tax
+        self.order_total = self.grand_total + self.tax
 
         self.save()
 
@@ -107,8 +113,11 @@ class Participant(models.Model):
     participant_email = models.EmailField(null=False, blank=False)
     quantity = models.PositiveIntegerField(default=1, validators=[MinValueValidator(1)])
 
+    # Remove this if not working
+    participant_identifier = models.CharField(max_length=255, null=True, blank=True)   
+
     def __str__(self):
-        return f"{self.participant_name} - {self.participant_email}"
+        return f"{self.participant_name} - {self.participant_email} ({self.quantity} x {self.product.name})"
 
 
 class OrderLineItem(models.Model):

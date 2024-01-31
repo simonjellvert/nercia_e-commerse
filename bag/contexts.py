@@ -31,6 +31,7 @@ def bag_contents(request):
                 'product': product,
                 'item_total': item_total,
             })
+            total += item_total  # Accumulate item_total in total
         else:
             # Handle the case where item_data is a dictionary
             product = get_object_or_404(Product, pk=item_id)
@@ -43,8 +44,8 @@ def bag_contents(request):
                 'product': product,
                 'item_total': item_total,
             })
+            total += item_total  # Accumulate item_total in total
 
-    total = item_total
     tax = Decimal(total) * Decimal(0)
 
     context = {

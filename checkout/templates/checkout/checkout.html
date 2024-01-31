@@ -119,13 +119,19 @@
                                 <form method="post" class="participant-form">
                                     {% csrf_token %}
                                     <input type="hidden" name="product_id" value="{{ item.product.id }}">
+                                    
+                                    {# Include the management form outside the formset loop #}
+                                    {{ item.management_form }}
+                                    
                                     <div class="participant-form">
-                                        {{ item.formset.management_form }}
-                                        {{ item.formset.non_form_errors }}
-                                        {% for form in item.formset %}
+                                        {{ item.non_form_errors }}
+                                        
+                                        {% for form in item %}
                                             <p><strong>{{ item.product.name }}</strong></p>
-                                            {{ form.participant_name|as_crispy_field }}
-                                            {{ form.participant_email|as_crispy_field }}
+                                            {% for i in form.visible_fields %}
+                                                {{ i|as_crispy_field }}
+                                            {% endfor %}
+                                            {{ form.non_field_errors }} {# Display non-field errors for each form #}
                                         {% endfor %}
                                     </div>
                                 </form>
@@ -144,26 +150,26 @@
 {{ client_secret|json_script:"id_client_secret" }}
 <script src="{% static 'checkout/js/stripe_elements.js' %}"></script>
 <script>
-    document.querySelectorAll('input[name="{{ checkout_form.payment_option.name }}"]').forEach(function(checkbox) {
-        checkbox.addEventListener('change', function() {
+    document.querySelectorAll('input[name="{{ checkout_form.payment_option.name }}"]').forEach(function (checkbox) {
+        checkbox.addEventListener('change', function () {
             var invoiceFields = document.getElementById('invoice-fields');
             var cardFields = document.getElementById('card-fields');
 
-            document.querySelectorAll('input[name="{{ checkout_form.payment_option.name }}"]').forEach(function(otherCheckbox) {
-                if (otherCheckbox !== checkbox) {
-                    otherCheckbox.checked = false;
-                }
+            // Uncheck other checkboxes when one is checked
+            document.querySelectorAll('input[name="{{ checkout_form.payment_option.name }}"]').forEach(function (otherCheckbox) {
+                otherCheckbox.checked = (otherCheckbox === checkbox) && checkbox.checked;
             });
 
-            if (this.value === 'invoice') {
-                invoiceFields.style.display = this.checked ? 'block' : 'none';
+            if (checkbox.value === 'invoice') {
+                invoiceFields.style.display = checkbox.checked ? 'block' : 'none';
                 cardFields.style.display = 'none';
-            } else {
+            } else if (checkbox.value === 'card') {
                 invoiceFields.style.display = 'none';
-                cardFields.style.display = this.checked ? 'block' : 'none';
+                cardFields.style.display = checkbox.checked ? 'block' : 'none';
             }
         });
     });
+
     document.getElementById('complete-order-button').addEventListener('click', function (event) {
         // Validate participant forms before proceeding
         var participantFormsValid = true;
@@ -175,8 +181,11 @@
                 if (!input.value.trim()) {
                     formValid = false;
                     participantFormsValid = false;
-                    alert('Please fill out all participant fields.');
-                    return;
+                    // Add a class to highlight the empty field
+                    input.classList.add('is-invalid');
+                } else {
+                    // Remove the class if the field is filled
+                    input.classList.remove('is-invalid');
                 }
             });
 
@@ -186,7 +195,30 @@
             }
         });
 
+        // Only prevent the form submission if participant forms are invalid
         if (participantFormsValid) {
+            // Check the selected payment option
+            var selectedPaymentOption = document.querySelector('input[name="{{ checkout_form.payment_option.name }}"]:checked');
+
+            if (selectedPaymentOption && selectedPaymentOption.value === 'invoice') {
+                // Proceed with handling invoice payment
+                var invoiceRefField = document.getElementById('id_invoice_ref');
+
+                // Validate and handle the invoice_ref field if needed
+                if (invoiceRefField) {
+                    if (!invoiceRefField.value.trim()) {
+                        // Add a class to highlight the empty field
+                        invoiceRefField.classList.add('is-invalid');
+                        // Prevent the default form submission
+                        event.preventDefault();
+                        return;
+                    } else {
+                        // Remove the class if the field is filled
+                        invoiceRefField.classList.remove('is-invalid');
+                    }
+                }
+            }
+
             // Proceed with submitting the main checkout form
             document.getElementById('payment-form').submit();
         }
