@@ -24,11 +24,43 @@ def checkout(request):
     existing_company = user_profile.company
 
     ParticipantInfoFormSet = formset_factory(ParticipantInfoForm, extra=1)
+    participant_info_formsets = []
 
     bag_items = request.session['bag']
+    total_items = []
+    bag_total = 0
+    tax = Decimal(0)
+    promo_code = 0
 
-    participant_info_formsets = []
-    intent = None  # Initialize the intent variable
+    for item_id, quantity_data in bag_items.items():
+        product = None  # Initialize product outside the loop
+
+        if isinstance(quantity_data, dict):
+            quantity = quantity_data['quantity']
+        else:
+            quantity = quantity_data
+
+        product = get_object_or_404(Product, pk=item_id)
+        product_price_total = product.price * quantity
+
+        total_items.append({
+            'product_name': product.name,
+            'quantity': quantity,
+            'product_price_total': product_price_total,
+        })
+
+        bag_total += product_price_total
+
+    # Move these lines outside the loop
+    grand_total = bag_total - promo_code
+    tax = Decimal(grand_total) * Decimal(0.25)
+
+    stripe_total = round((grand_total + tax) * 100)
+    stripe.api_key = stripe_secret_key
+    intent = stripe.PaymentIntent.create(
+        amount=stripe_total,
+        currency=settings.STRIPE_CURRENCY,
+    )
 
     if request.method == 'POST':
         checkout_form = CheckoutForm(request.POST, instance=user_profile)
@@ -41,7 +73,7 @@ def checkout(request):
             user_profile.company = company
             user_profile.save()
 
-            for item_id, quantity_data in bag_items:
+            for item_id, quantity_data in bag_items.items():
                 if isinstance(quantity_data, dict):
                     quantity = quantity_data['quantity']
                 else:
@@ -64,10 +96,6 @@ def checkout(request):
         else:
             messages.error(request, 'Ops, something went wrong, check your details.')
             # In case of form errors, initialize intent to avoid UnboundLocalError
-            intent = stripe.PaymentIntent.create(
-                amount=0,
-                currency=settings.STRIPE_CURRENCY,
-            )
             return render(request, 'checkout/checkout.html', {
                 'checkout_form': checkout_form,
                 'company_form': company_form,
@@ -78,12 +106,10 @@ def checkout(request):
     else:
         checkout_form = CheckoutForm(instance=user_profile)
         company_form = CompanyForm(instance=existing_company)
-        total_items = []
-        bag_total = 0
-        tax = Decimal(0)
-        promo_code = 0
 
         for item_id, quantity_data in bag_items.items():
+            product = None  # Initialize product outside the loop
+
             if isinstance(quantity_data, dict):
                 quantity = quantity_data['quantity']
             else:
@@ -91,26 +117,6 @@ def checkout(request):
 
             product = get_object_or_404(Product, pk=item_id)
             product_price_total = product.price * quantity
-
-            total_items.append({
-                'product_name': product.name,
-                'quantity': quantity,
-                'product_price_total': product_price_total,
-            })
-            bag_total += product_price_total
-            grand_total = bag_total - promo_code
-            tax = Decimal(grand_total) * Decimal(0.25)
-
-            stripe_total = round((grand_total + tax) * 100)
-            stripe.api_key = stripe_secret_key
-            intent = stripe.PaymentIntent.create(
-                amount=max(stripe_total, 100),  # Set a minimum value of 1
-                currency=settings.STRIPE_CURRENCY,
-            )
-
-            if not stripe_public_key:
-                messages.warning(request, 'Stripe public key is missing. \
-                    Did you forget to set it in your environment?')
 
             for i in range(quantity):
                 prefix = f'product_{item_id}_participant_{i}'
