@@ -17,7 +17,6 @@ class CheckoutForm(forms.ModelForm):
     ]
 
     payment_option = forms.ChoiceField(choices=PAYMENT_OPTIONS, required=True)
-    invoice_ref = forms.CharField(max_length=254, required=False)
 
     class Meta:
         model = Order
@@ -25,7 +24,6 @@ class CheckoutForm(forms.ModelForm):
             'user_profile',
             'order_total',
             'grand_total',
-            'promo_code',
             'tax',
             'payment_option',
         )
@@ -36,7 +34,7 @@ class CheckoutForm(forms.ModelForm):
         placeholders = {
             'first_name': 'First Name',
             'last_name': 'Last Name',
-            'email': 'Email'
+            'email': 'Email',
             'phone_number': 'Phone Number',
             'company_name': 'Company Name',
             'org_num': 'Org. Number',
@@ -80,14 +78,11 @@ class CheckoutForm(forms.ModelForm):
         order = super().save(commit=False)
 
         # Get or create user profile based on the form data
-        user_profile_instance, created = UserProfile.objects.get_or_create(
+        user_profile_instance, _ = UserProfile.objects.get_or_create(
             user=self.cleaned_data['user_profile']
         )
 
-        # Reload user_profile_instance and company_instance from the database
-        user_profile_instance.refresh_from_db()
-
-        # Update order with the refreshed instances
+        # Update order with the user profile
         order.user_profile = user_profile_instance
         order.save()
 

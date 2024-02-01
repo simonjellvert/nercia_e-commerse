@@ -21,7 +21,7 @@ class UserProfileForm(forms.ModelForm):
         fields = [
             'first_name',
             'last_name',
-            'emauil',
+            'email',
             'phone_number',
             'company_name',
             'org_num',
@@ -38,7 +38,7 @@ class UserProfileForm(forms.ModelForm):
         placeholders = {
             'first_name': 'First Name',
             'last_name': 'Last Name',
-            'email': 'Email'
+            'email': 'Email',
             'phone_number': 'Phone Number',
             'company_name': 'Company Name',
             'org_num': 'Org. Number',
