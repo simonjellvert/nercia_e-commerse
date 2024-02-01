@@ -23,16 +23,16 @@
                             <legend>
                                 Purchaser
                             </legend>
-                            {{ checkout_form.user_profile_form.first_name|as_crispy_field }}
-                            {{ checkout_form.user_profile_form.last_name|as_crispy_field }}
-                            {{ checkout_form.user_profile_form.phone_number|as_crispy_field }}
+                            {{ order_form.first_name|as_crispy_field }}
+                            {{ order_form.last_name|as_crispy_field }}
+                            {{ order_form.phone_number|as_crispy_field }}
                         </fieldset>
                         <fieldset>
                             <legend>
                                 Payment
                             </legend>
                             <div>
-                                {% for option_value, option_label in checkout_form.payment_option.field.choices %}
+                                {% for option_value, option_label in order_form.payment_option.field.choices %}
                                     <div class="form-check form-check-inline">
                                         <input class="form-check-input" type="checkbox" name="{{ checkout_form.payment_option.name }}" value="{{ option_value }}" id="id_{{ checkout_form.payment_option.name }}_{{ forloop.counter }}">
                                         <label class="form-check-label" for="id_{{ checkout_form.payment_option.name }}_{{ forloop.counter }}">{{ option_label }}</label>
@@ -44,16 +44,8 @@
                                 <legend>
                                     Billing Address
                                 </legend>
-                                {{ checkout_form.company_form.name|as_crispy_field }}
-                                {{ checkout_form.company_form.org_num|as_crispy_field }}
-                                {{ checkout_form.company_form.street_address1|as_crispy_field }}
-                                {{ checkout_form.company_form.street_address2|as_crispy_field }}
-                                {{ checkout_form.company_form.postcode|as_crispy_field }}
-                                {{ checkout_form.company_form.city|as_crispy_field }}
-                                {{ checkout_form.company_form.country|as_crispy_field }}
-                                {{ checkout_form.invoice_ref|as_crispy_field }}
-                                {{ checkout_form.company_form.invoice_email|as_crispy_field }}
-
+                                {{ order_form.company_name|as_crispy_field }}
+                                {{ order_form.org_num|as_crispy_field }}
                                 <label class="form-check-label" for="id-save-info">Save this delivery information to my profile</label>
                                 <input class="form-check-input ml-2 mr-0" type="checkbox" id="id-save-info" name="save-info" checked>
                             </div>

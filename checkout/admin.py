@@ -21,7 +21,7 @@ class OrderAdmin(admin.ModelAdmin):
         'order_number',
         'created',
         'user_profile',
-        'company_name',
+        'company',
         'payment_option',
         'invoice_ref',
         'order_total',
@@ -31,7 +31,6 @@ class OrderAdmin(admin.ModelAdmin):
 
     list_display = (
         'order_number',
-        'company_name',
         'payment_option',
         'order_total',
         'grand_total',

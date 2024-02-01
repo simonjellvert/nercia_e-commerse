@@ -21,7 +21,16 @@ class UserProfileForm(forms.ModelForm):
         fields = [
             'first_name',
             'last_name',
+            'emauil',
             'phone_number',
+            'company_name',
+            'org_num',
+            'street_address1',
+            'street_address2',
+            'postcode',
+            'city',
+            'country',
+            'invoice_email'
         ]
 
     def __init__(self, *args, **kwargs):
@@ -29,7 +38,16 @@ class UserProfileForm(forms.ModelForm):
         placeholders = {
             'first_name': 'First Name',
             'last_name': 'Last Name',
+            'email': 'Email'
             'phone_number': 'Phone Number',
+            'company_name': 'Company Name',
+            'org_num': 'Org. Number',
+            'street_address1': 'Street Address 1',
+            'street_address2': 'Street Address 2',
+            'postcode': 'Postal Code',
+            'city': 'Town or City',
+            'country': 'Country',
+            'invoice_email': 'Invoice Email',
         }
 
         for field in self.fields:
