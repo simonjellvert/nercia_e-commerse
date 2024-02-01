@@ -11,20 +11,32 @@
 
 <form class="signup" id="signup_form" method="post" action="{% url 'account_signup' %}">
   {% csrf_token %}
-  {% for field, errors in form.errors.items %}
-    {% for error in errors %}
-      <div class="alert alert-danger">{{ field }}: {{ error }}</div>
+
+  <div class="form-group">
+    {{ form.email }}
+    {% for error in form.email.errors %}
+      <div class="alert alert-danger">{{ error }}</div>
     {% endfor %}
-  {% endfor %}
-  {{ form.email.label_tag }}
-  {{ form.email }}
-  {{ form.password1.label_tag }}
-  {{ form.password1 }}
-  {{ form.password2.label_tag }}
-  {{ form.password2 }}
+  </div>
+
+  <div class="form-group">
+    {{ form.password1 }}
+    {% for error in form.password1.errors %}
+      <div class="alert alert-danger">{{ error }}</div>
+    {% endfor %}
+  </div>
+
+  <div class="form-group">
+    {{ form.password2 }}
+    {% for error in form.password2.errors %}
+      <div class="alert alert-danger">{{ error }}</div>
+    {% endfor %}
+  </div>
+
   {% if redirect_field_value %}
-  <input type="hidden" name="{{ redirect_field_name }}" value="{{ redirect_field_value }}" />
+    <input type="hidden" name="{{ redirect_field_name }}" value="{{ redirect_field_value }}" />
   {% endif %}
+
   <button type="submit">{% trans "Sign Up" %} &raquo;</button>
 </form>
 

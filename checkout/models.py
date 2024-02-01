@@ -97,8 +97,6 @@ class Participant(models.Model):
     participant_name = models.CharField(max_length=255, null=False, blank=False)
     participant_email = models.EmailField(null=False, blank=False)
     quantity = models.PositiveIntegerField(default=1, validators=[MinValueValidator(1)])
-
-    # Remove this if not working
     participant_identifier = models.CharField(max_length=255, null=True, blank=True)   
 
     def __str__(self):
@@ -119,7 +117,7 @@ class OrderLineItem(models.Model):
         blank=False,
         on_delete=models.CASCADE
     )
-    quantity = models.IntegerField(null=False, blank=False, default=0)
+    quantity = models.PositiveIntegerField(default=1, validators=[MinValueValidator(1)])
     lineitem_total = models.DecimalField(
         max_digits=8,
         decimal_places=2,

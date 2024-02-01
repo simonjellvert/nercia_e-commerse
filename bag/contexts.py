@@ -16,7 +16,6 @@ def bag_contents(request):
     grand_total = 0
     tax = Decimal(0)
     bag = request.session.get('bag', {})
-    print("Bag in bag_contents:", bag)
 
     for item_id, item_data in bag.items():
         if isinstance(item_data, int):

@@ -6,9 +6,6 @@ from .models import UserProfile
 
 
 class CustomSignupForm(SignupForm):
-    """
-    Custom signup form to remove username
-    """
 
     def __init__(self, *args, **kwargs):
         super(CustomSignupForm, self).__init__(*args, **kwargs)
@@ -45,16 +42,21 @@ class UserProfileForm(forms.ModelForm):
             'street_address1': 'Street Address 1',
             'street_address2': 'Street Address 2',
             'postcode': 'Postal Code',
-            'city': 'Town or City',
+            'city': 'City',
             'country': 'Country',
             'invoice_email': 'Invoice Email',
         }
 
         for field in self.fields:
+            if 'class' in self.fields[field].widget.attrs:
+                del self.fields[field].widget.attrs['class']
+
             if self.fields[field].required:
                 placeholder = f'{placeholders[field]} *'
             else:
                 placeholder = placeholders[field]
+
+            # Set placeholder and class separately
             self.fields[field].widget.attrs['placeholder'] = placeholder
             self.fields[field].widget.attrs['class'] = 'stripe-style-input'
             self.fields[field].label = False

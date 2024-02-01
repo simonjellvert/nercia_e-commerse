@@ -24,26 +24,24 @@
                     </p>
                     <form class="mt-3" action="{% url 'profile' %}" method="POST" id="profile-update-form">
                         {% csrf_token %}
-                        {{ profile_form.first_name|as_crispy_field }}
-                        {{ profile_form.last_name|as_crispy_field }}
-                        {{ profile_form.phone_number|as_crispy_field }}
-                        <button type="submit" name="profile-update-form">Update Profile</button>
-                    </form>
+                        {{ profile_form.first_name }}
+                        {{ profile_form.last_name }}
+                        {{ profile_form.email }}
+                        {{ profile_form.phone_number }}
                     <hr>
                     <p class="text-muted">
                         Company Information
                     </p>
-                    <form class="mt-3" action="{% url 'profile' %}" method="POST" id="company-update-form">
                         {% csrf_token %}
-                        {{ company_form.name|as_crispy_field }}
-                        {{ company_form.org_num|as_crispy_field }}
-                        {{ company_form.street_address1|as_crispy_field }}
-                        {{ company_form.street_address2|as_crispy_field }}
-                        {{ company_form.postcode|as_crispy_field }}
-                        {{ company_form.city|as_crispy_field }}
-                        {{ company_form.country|as_crispy_field }}
-                        {{ company_form.invoice_email|as_crispy_field }}
-                        <button type="submit" name="company-update-form">Update Company</button>
+                        {{ profile_form.company_name }}
+                        {{ profile_form.org_num }}
+                        {{ profile_form.street_address1 }}
+                        {{ profile_form.street_address2 }}
+                        {{ profile_form.postcode }}
+                        {{ profile_form.city }}
+                        {{ profile_form.country }}
+                        {{ profile_form.invoice_email }}
+                        <button type="submit" name="profile-update-form">Update Profile</button>
                     </form>
                 </div>
             </div>

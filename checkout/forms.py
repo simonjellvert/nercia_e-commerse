@@ -77,23 +77,18 @@ class CheckoutForm(forms.ModelForm):
     def save(self, commit=True):
         order = super().save(commit=False)
 
+        # Ensure that order.user_profile is set
+        if not order.user_profile:
+            raise ValueError("Order has no user_profile.")
+
         # Get or create user profile based on the form data
         user_profile_instance, _ = UserProfile.objects.get_or_create(
-            user=self.cleaned_data['user_profile']
+            user=order.user_profile
         )
 
         # Update order with the user profile
         order.user_profile = user_profile_instance
         order.save()
-
-        # Calculate and update order totals
-        order.update_total()
-
-        if self.errors:
-            print("Form validation errors:", self.errors)
-
-        if commit:
-            order.save()
 
         return order
 

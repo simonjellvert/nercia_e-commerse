@@ -21,10 +21,10 @@
                         {% csrf_token %}
                         <fieldset>
                             <legend>Purchaser</legend>
-                            {{ order_form.first_name|as_crispy_field }}
-                            {{ order_form.last_name|as_crispy_field }}
-                            {{ order_form.email|as_crispy_field }}
-                            {{ order_form.phone_number|as_crispy_field }}
+                            {{ order_form.first_name }}
+                            {{ order_form.last_name }}
+                            {{ order_form.email }}
+                            {{ order_form.phone_number }}
                         </fieldset>
                         <fieldset>
                             <legend>Payment</legend>
@@ -39,8 +39,15 @@
             
                             <div id="invoice-fields" style="display: none;">
                                 <legend>Billing Address</legend>
-                                {{ order_form.company_name|as_crispy_field }}
-                                {{ order_form.org_num|as_crispy_field }}
+                                {{ order_form.company_name }}
+                                {{ order_form.org_num }}
+                                {{ order_form.street_address1 }}
+                                {{ order_form.street_address2 }}
+                                {{ order_form.postcode }}
+                                {{ order_form.city }}
+                                {{ order_form.country }}
+                                {{ order_form.invoice_email }}
+                                {{ order_form.invoice_ref }}
                                 <label class="form-check-label" for="id-save-info">Save this delivery information to my profile</label>
                                 <input class="form-check-input ml-2 mr-0" type="checkbox" id="id-save-info" name="save-info" checked>
                             </div>
