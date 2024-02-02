@@ -1,6 +1,7 @@
 {% extends "account/base.html" %}
 
 {% load i18n %}
+{% load crispy_forms_tags %}
 
 {% block head_title %}{% trans "Signup" %}{% endblock %}
 
@@ -13,21 +14,21 @@
   {% csrf_token %}
 
   <div class="form-group">
-    {{ form.email }}
+    {{ form.email|as_crispy_field }}
     {% for error in form.email.errors %}
       <div class="alert alert-danger">{{ error }}</div>
     {% endfor %}
   </div>
 
   <div class="form-group">
-    {{ form.password1 }}
+    {{ form.password1|as_crispy_field }}
     {% for error in form.password1.errors %}
       <div class="alert alert-danger">{{ error }}</div>
     {% endfor %}
   </div>
 
   <div class="form-group">
-    {{ form.password2 }}
+    {{ form.password2|as_crispy_field }}
     {% for error in form.password2.errors %}
       <div class="alert alert-danger">{{ error }}</div>
     {% endfor %}

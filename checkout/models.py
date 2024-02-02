@@ -4,6 +4,7 @@ from django.db import models
 from django.db.models import Sum
 from django.conf import settings
 from django.core.validators import MinValueValidator
+from django.core.exceptions import ValidationError
 
 from products.models import Product
 from profiles.models import UserProfile
@@ -20,7 +21,7 @@ class Order(models.Model):
         (CARD, 'Card'),
     ]
 
-    order_number = models.CharField(max_length=32, null=False, editable=False)
+    order_number = models.UUIDField(max_length=32, default=uuid.uuid4, editable=False, unique=True)
     user_profile = models.ForeignKey(UserProfile, on_delete=models.CASCADE, related_name='orders')
     full_name = models.CharField(max_length=255, null=False, blank=False)
     created = models.DateTimeField(auto_now_add=True)
@@ -28,17 +29,19 @@ class Order(models.Model):
     grand_total = models.DecimalField(max_digits=8, decimal_places=2, null=False, blank=False)
     tax = models.DecimalField(max_digits=8, decimal_places=2, null=False, blank=False)
     payment_option = models.CharField(max_length=20, choices=PAYMENT_OPTIONS, default=INVOICE)
-    
+    invoice_ref = models.CharField(max_length=254, null=True, blank=True)    
+
     def clean(self):
         """
         If payment_option is 'invoice', ensure that invoice_email and 
         invoice_ref are provided
         """
-        if self.payment_option == self.INVOICE and (
-            not self.invoice_email or not self.invoice_ref):
-            raise models.ValidationError(
-                "Both invoice email and invoice reference are "
-                "required for invoice payment option.")
+        if self.payment_option == self.INVOICE:
+            if not hasattr(self, 'user_profile') or not hasattr(self.user_profile, 'invoice_email') or not self.invoice_ref:
+                raise ValidationError(
+                    "Both invoice email and invoice reference are "
+                    "required for invoice payment option."
+                )
 
     def _generate_order_number(self):
         """
@@ -82,25 +85,11 @@ class Order(models.Model):
         """
         if not self.order_number:
             self.order_number = self._generate_order_number()
-        if not self.full_name:
-            self.full_name = f"{self.user_profile.first_name} {self.user_profile.last_name}"
 
         super().save(*args, **kwargs)
 
     def __str__(self):
-        return f"Order {self.order_number} - {self.full_name}"
-
-
-class Participant(models.Model):
-    user = models.ForeignKey(UserProfile, on_delete=models.CASCADE)
-    product = models.ForeignKey(Product, on_delete=models.CASCADE)
-    participant_name = models.CharField(max_length=255, null=False, blank=False)
-    participant_email = models.EmailField(null=False, blank=False)
-    quantity = models.PositiveIntegerField(default=1, validators=[MinValueValidator(1)])
-    participant_identifier = models.CharField(max_length=255, null=True, blank=True)   
-
-    def __str__(self):
-        return f"{self.participant_name} - {self.participant_email} ({self.quantity} x {self.product.name})"
+        return f"Order {self.order_number} - {self.user_profile.company_name}"
 
 
 class OrderLineItem(models.Model):

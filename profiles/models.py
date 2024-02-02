@@ -71,7 +71,6 @@ class UserProfile(models.Model):
     city = models.CharField(max_length=40, null=False, blank=False)
     country = CountryField(blank_label='Country', null=False, blank=False)
     invoice_email = models.EmailField(max_length=254, null=True, blank=True)
-    invoice_ref = models.CharField(max_length=254, null=True, blank=True)
 
     def __str__(self):
         return self.user.email

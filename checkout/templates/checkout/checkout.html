@@ -21,10 +21,18 @@
                         {% csrf_token %}
                         <fieldset>
                             <legend>Purchaser</legend>
-                            {{ order_form.first_name }}
-                            {{ order_form.last_name }}
-                            {{ order_form.email }}
-                            {{ order_form.phone_number }}
+                            <div class="field-wrapper">
+                                <input type="text" class="readonly" value="{{ user_profile.first_name|default:'' }}" placeholder= "First Name" readonly>
+                            </div>
+                            <div class="field-wrapper">
+                                <input type="text" class="readonly" value="{{ user_profile.last_name|default:'' }}" placeholder= "First Name" readonly>
+                            </div>
+                            <div class="field-wrapper">
+                                <input type="text" class="readonly" value="{{ user_profile.email|default:'' }}" placeholder= "First Name" readonly>
+                            </div>
+                            <div class="field-wrapper">
+                                <input type="text" class="readonly" value="{{ user_profile.phone_number|default:'' }}" placeholder= "First Name" readonly>
+                            </div>
                         </fieldset>
                         <fieldset>
                             <legend>Payment</legend>
@@ -39,17 +47,33 @@
             
                             <div id="invoice-fields" style="display: none;">
                                 <legend>Billing Address</legend>
-                                {{ order_form.company_name }}
-                                {{ order_form.org_num }}
-                                {{ order_form.street_address1 }}
-                                {{ order_form.street_address2 }}
-                                {{ order_form.postcode }}
-                                {{ order_form.city }}
-                                {{ order_form.country }}
-                                {{ order_form.invoice_email }}
-                                {{ order_form.invoice_ref }}
-                                <label class="form-check-label" for="id-save-info">Save this delivery information to my profile</label>
-                                <input class="form-check-input ml-2 mr-0" type="checkbox" id="id-save-info" name="save-info" checked>
+                                <div class="field-wrapper">
+                                    <input type="text" class="readonly" value="{{ user_profile.company_name|default:'' }}" placeholder= "Company" readonly>
+                                </div>
+                                <div class="field-wrapper">
+                                    <input type="text" class="readonly" value="{{ user_profile.org_num|default:'' }}" placeholder= "Org. Number" readonly>
+                                </div>
+                                <div class="field-wrapper">
+                                    <input type="text" class="readonly" value="{{ user_profile.street_address1|default:'' }}" placeholder= "Street Address 1" readonly>
+                                </div>
+                                <div class="field-wrapper">
+                                    <input type="text" class="readonly" value="{{ user_profile.street_address2|default:'' }}" placeholder= "Street Address 2" readonly>
+                                </div>
+                                <div class="field-wrapper">
+                                    <input type="text" class="readonly" value="{{ user_profile.postcode|default:'' }}" placeholder= "Postcode" readonly>
+                                </div>
+                                <div class="field-wrapper">
+                                    <input type="text" class="readonly" value="{{ user_profile.city|default:'' }}" placeholder= "City" readonly>
+                                </div>
+                                <div class="field-wrapper">
+                                    <input type="text" class="readonly" value="{{ user_profile.country|default:'' }}" placeholder= "Country" readonly>
+                                </div>
+                                <div class="field-wrapper">
+                                    <input type="text" class="readonly" value="{{ user_profile.invoice_email|default:'' }}" placeholder= "Invoice Email" readonly>
+                                </div>
+                                <div class="field-wrapper">
+                                    <input type="text" class="readonly" value="{{ user_profile.Invoice_ref|default:'' }}" placeholder= "Invoice Referens">
+                                </div>
                             </div>
             
                             <div id="card-fields" style="display: none;">
@@ -103,33 +127,6 @@
                             <div class="col">VAT:</div>
                             <div class="col">${{ tax|floatformat:2 }}</div>
                         </div>
-                    </div>
-            
-                    <div class="col">
-                        <p>Add participant information for your trainings</p>
-                        {% for item in participant_info_formsets %}
-                            <div class="col">
-                                <form method="post" class="participant-form">
-                                    {% csrf_token %}
-                                    <input type="hidden" name="product_id" value="{{ item.product.id }}">
-                                    
-                                    {# Include the management form outside the formset loop #}
-                                    {{ item.management_form }}
-                                    
-                                    <div class="participant-form">
-                                        {{ item.non_form_errors }}
-                                        
-                                        {% for form in item %}
-                                            <p><strong>{{ item.product.name }}</strong></p>
-                                            {% for i in form.visible_fields %}
-                                                {{ i|as_crispy_field }}
-                                            {% endfor %}
-                                            {{ form.non_field_errors }} {# Display non-field errors for each form #}
-                                        {% endfor %}
-                                    </div>
-                                </form>
-                            </div>
-                        {% endfor %}
                     </div>
                 </div>
             </div>
