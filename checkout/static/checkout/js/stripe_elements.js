@@ -1,3 +1,6 @@
+console.log('Script loaded!');
+console.log(jQuery)
+
 var stripePublicKey = $('#id_stripe_public_key').text().slice(1, -1);
 var clientSecret = $('#id_client_secret').text().slice(1, -1);
 var stripe = Stripe(stripePublicKey);
@@ -5,7 +8,7 @@ var elements = stripe.elements();
 var style = {
     base: {
         color: '#000',
-        fontFamily: '"Helvetica Neue", Helvetica, sans-serif',
+        fontFamily: "'Ubuntu', sans-serif",
         fontSmoothing: 'antialiased',
         fontSize: '16px',
         '::placeholder': {
@@ -19,6 +22,7 @@ var style = {
 };
 var card = elements.create('card', {style: style});
 card.mount('#card-element');
+console.log('Stripe Elements initialized!');
 
 // Handle realtime validation errors on the card element
 card.addEventListener('change', function (event) {
@@ -37,40 +41,38 @@ card.addEventListener('change', function (event) {
 });
 
 // Handle form submit
-var form = $('#payment-form');
+var form = document.getElementById('payment-form');
 
-form.submit(function (ev) {
+form.addEventListener('submit', function(ev) {
     ev.preventDefault();
-
     card.update({ 'disabled': true });
     $('#complete-order-button').attr('disabled', true);
 
-    stripe.confirmCardPayment(clientSecret, {
-        payment_method: {
-            card: card,
-        }
-    }).then(function (result) {
-        if (result.error) {
-            var errorDiv = document.getElementById('card-errors');
-            var html = `
-                <span class="icon" role="alert">
-                <i class="fas fa-times"></i>
-                </span>
-                <span>${result.error.message}</span>`;
-            $(errorDiv).html(html);
+    // Use AJAX to confirm the payment
+    $.ajax({
+        type: 'POST',
+        url: '/confirm_payment/',
+        data: {'client_secret': clientSecret},
+        success: function(response) {
+            if (response.status === 'succeeded') {
+                form.submit();
+            } else {
+                console.error('Stripe error:', response.error);
+                var errorDiv = document.getElementById('card-errors');
+                var html = `
+                    <span class="icon" role="alert">
+                        <i class="fas fa-times"></i>
+                    </span>
+                    <span>${response.error}</span>`;
+                $(errorDiv).html(html);
+                card.update({ 'disabled': false });
+                $('#complete-order-button').attr('disabled', false);
+            }
+        },
+        error: function(xhr, status, error) {
+            console.error('AJAX Error:', error);
             card.update({ 'disabled': false });
             $('#complete-order-button').attr('disabled', false);
-        } else {
-            if (result.paymentIntent.status === 'succeeded') {
-                // If the payment succeeds, submit the form via AJAX
-                $.ajax({
-                    type: form.attr('method'),
-                    url: form.attr('action'),
-                    data: form.serialize(),
-                    success: function (response) {},
-                    error: function (xhr, status, error) {}
-                });
-            }
         }
     });
 });

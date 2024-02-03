@@ -8,15 +8,12 @@ from profiles.models import UserProfile
 
 
 class CheckoutForm(forms.ModelForm):
-    INVOICE = 'invoice'
-    CARD = 'card'
-
-    PAYMENT_OPTIONS = [
-        (INVOICE, 'Invoice'),
-        (CARD, 'Card'),
-    ]
-
-    payment_option = forms.ChoiceField(choices=PAYMENT_OPTIONS, required=True)
+    """
+    Choices to pay with card or invoice.
+    if user chose invoice, they need to add invoice_ref to the order info
+    """
+    payment_option = forms.ChoiceField(choices=[], required=True)
+    invoice_ref = forms.CharField(max_length=255, required=False)
 
     class Meta:
         model = Order
@@ -31,6 +28,8 @@ class CheckoutForm(forms.ModelForm):
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
 
+        self.fields['payment_option'].choices = self.get_payment_options()
+
         placeholders = {
             'invoice_ref': 'Invoice Referens',
         }
@@ -44,23 +43,26 @@ class CheckoutForm(forms.ModelForm):
                 self.fields[field].widget.attrs['placeholder'] = placeholder
                 self.fields[field].widget.attrs['class'] = 'stripe-style-input'
                 self.fields[field].label = False
-            else:
-                pass
+    
+    def get_payment_options(self):
+        """
+        Logic to fetch payment option dynamically
+        """
+        return [
+            ('invoice', 'Invoice'),
+            ('card', 'Card'),
+        ]
 
     def save(self, commit=True):
         order = super().save(commit=False)
 
-        # Ensure that order.user_profile is set
-        if not order.user_profile:
-            raise ValueError("Order has no user_profile.")
-
-        # Get or create user profile based on the form data
-        user_profile_instance, _ = UserProfile.objects.get_or_create(
-            user=order.user_profile
-        )
+        if not order.order_number:
+            order.order_number = order._generate_order_number()
 
         # Update order with the user profile
-        order.user_profile = user_profile_instance
-        order.save()
+        order.user_profile = user.user.profile
+
+        if commit:
+            order.save()
 
         return order

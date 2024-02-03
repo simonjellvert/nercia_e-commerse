@@ -14,7 +14,6 @@ def bag_contents(request):
     total = Decimal(0)
     product_count = 0
     grand_total = 0
-    tax = Decimal(0)
     bag = request.session.get('bag', {})
 
     for item_id, item_data in bag.items():
@@ -45,7 +44,7 @@ def bag_contents(request):
             })
             total += item_total  # Accumulate item_total in total
 
-    tax = Decimal(total) * Decimal(0)
+    tax = Decimal(total) * Decimal(0.25)
 
     context = {
         'bag_items': bag_items,

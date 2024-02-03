@@ -17,21 +17,24 @@
             </div>
             <div class="row">
                 <div class="col-12 col-lg-6 order-lg-last mb-5">
+                    <div>
+
+                    </div>
                     <form class="mt-3" action="{% url 'checkout' %}" method="POST" id="payment-form">
                         {% csrf_token %}
                         <fieldset>
                             <legend>Purchaser</legend>
                             <div class="field-wrapper">
-                                <input type="text" class="readonly" value="{{ user_profile.first_name|default:'' }}" placeholder= "First Name" readonly>
+                                <input type="text" class="readonly" value="{{ user_profile.first_name }}" placeholder= "First Name">
                             </div>
                             <div class="field-wrapper">
-                                <input type="text" class="readonly" value="{{ user_profile.last_name|default:'' }}" placeholder= "First Name" readonly>
+                                <input type="text" class="readonly" value="{{ user_profile.last_name }}" placeholder= "Last Name">
                             </div>
                             <div class="field-wrapper">
-                                <input type="text" class="readonly" value="{{ user_profile.email|default:'' }}" placeholder= "First Name" readonly>
+                                <input type="text" class="readonly" value="{{ user_profile.email }}" placeholder= "Email">
                             </div>
                             <div class="field-wrapper">
-                                <input type="text" class="readonly" value="{{ user_profile.phone_number|default:'' }}" placeholder= "First Name" readonly>
+                                <input type="text" class="readonly" value="{{ user_profile.phone_number }}" placeholder= "Phone Number">
                             </div>
                         </fieldset>
                         <fieldset>
@@ -48,31 +51,28 @@
                             <div id="invoice-fields" style="display: none;">
                                 <legend>Billing Address</legend>
                                 <div class="field-wrapper">
-                                    <input type="text" class="readonly" value="{{ user_profile.company_name|default:'' }}" placeholder= "Company" readonly>
+                                    <input type="text" class="readonly" value="{{ user_profile.company_name }}" placeholder= "Company">
                                 </div>
                                 <div class="field-wrapper">
-                                    <input type="text" class="readonly" value="{{ user_profile.org_num|default:'' }}" placeholder= "Org. Number" readonly>
+                                    <input type="text" class="readonly" value="{{ user_profile.org_num }}" placeholder= "Org. Number">
                                 </div>
                                 <div class="field-wrapper">
-                                    <input type="text" class="readonly" value="{{ user_profile.street_address1|default:'' }}" placeholder= "Street Address 1" readonly>
+                                    <input type="text" class="readonly" value="{{ user_profile.street_address1 }}" placeholder= "Street Address 1">
                                 </div>
                                 <div class="field-wrapper">
-                                    <input type="text" class="readonly" value="{{ user_profile.street_address2|default:'' }}" placeholder= "Street Address 2" readonly>
+                                    <input type="text" class="readonly" value="{{ user_profile.street_address2 }}" placeholder= "Street Address 2">
                                 </div>
                                 <div class="field-wrapper">
-                                    <input type="text" class="readonly" value="{{ user_profile.postcode|default:'' }}" placeholder= "Postcode" readonly>
+                                    <input type="text" class="readonly" value="{{ user_profile.postcode }}" placeholder= "Postcode">
                                 </div>
                                 <div class="field-wrapper">
-                                    <input type="text" class="readonly" value="{{ user_profile.city|default:'' }}" placeholder= "City" readonly>
+                                    <input type="text" class="readonly" value="{{ user_profile.city }}" placeholder= "City">
                                 </div>
                                 <div class="field-wrapper">
-                                    <input type="text" class="readonly" value="{{ user_profile.country|default:'' }}" placeholder= "Country" readonly>
+                                    <input type="text" class="readonly" value="{{ user_profile.country }}" placeholder= "Country">
                                 </div>
                                 <div class="field-wrapper">
-                                    <input type="text" class="readonly" value="{{ user_profile.invoice_email|default:'' }}" placeholder= "Invoice Email" readonly>
-                                </div>
-                                <div class="field-wrapper">
-                                    <input type="text" class="readonly" value="{{ user_profile.Invoice_ref|default:'' }}" placeholder= "Invoice Referens">
+                                    <input type="text" class="readonly" value="{{ user_profile.invoice_email }}" placeholder= "Invoice Email">
                                 </div>
                             </div>
             
@@ -95,9 +95,9 @@
                         <legend>Overview</legend>
                         {% for item in bag_items %}
                             <div class="row">
-                                <div class="col">{{ item.product_name }}</div>
+                                <div class="col">{{ item.product }}</div>
                                 <div class="col">Quantity: {{ item.quantity }}</div>
-                                <div class="col">Total: ${{ item.product_price_total|floatformat:2 }}</div>
+                                <div class="col">Total: ${{ item.item_total|floatformat:2 }}</div>
                             </div>
                         {% endfor %}
                         <hr>
@@ -138,6 +138,9 @@
 {{ block.super }}
 {{ stripe_public_key|json_script:"id_stripe_public_key" }}
 {{ client_secret|json_script:"id_client_secret" }}
+<script>
+    console.log('Client Secret:', JSON.parse(document.getElementById('id_client_secret').textContent));
+</script>
 <script src="{% static 'checkout/js/stripe_elements.js' %}"></script>
 <script>
     document.querySelectorAll('input[name="{{ order_form.payment_option.name }}"]').forEach(function (checkbox) {
