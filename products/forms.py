@@ -13,14 +13,14 @@ class ProductForm(forms.ModelForm):
         widget=forms.CheckboxSelectMultiple,
     )
 
-    day = forms.CharField(max_length=254, required=False)
-    title = forms.CharField(max_length=254, required=False)
-    purpose = forms.CharField(widget=forms.Textarea, required=False)
-    topics = forms.CharField(widget=forms.Textarea, required=False)
-
     class Meta:
         model = Product
-        fields = '__all__'
+        fields = [
+            'name', 'description_short',
+            'description', 'category',
+            'price', 'duration', 'perks',
+            'image', 'alt_atr', 'online_onsite',
+        ]
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)

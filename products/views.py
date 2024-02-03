@@ -2,6 +2,7 @@ from django.shortcuts import render, redirect, reverse, get_object_or_404
 from django.core.serializers.json import DjangoJSONEncoder
 from django.contrib import messages
 from django.db.models import Q
+from django.contrib.auth.decorators import login_required
 
 from .models import Product, ProductContent, Category
 from .forms import ProductForm, ProductContentForm, ProductContentFormSet
@@ -75,10 +76,37 @@ def product_detail(request, product_id):
 
     return render(request, 'products/product_detail.html', context)
 
+@login_required
+def product_management(request):
+    """
+    A view for administrators to either add new product or edit or delete excisting prodducts
+    """
+    if not request.user.is_superuser:
+        messages.error(request, 'Sorry, only store owners can do that.')
+        return redirect('home')
+
+    products = Product.objects.all()
+
+    if request.method == 'POST':
+        if 'add_product' in request.POST:
+            return redirect('add_product')
+
+    template = 'products/product_management.html'
+    context = {
+        'products': products,
+    }
+
+    return render(request, template, context)
+
+
+@login_required
 def add_product(request):
     """
     Add a new product
     """
+    if not request.user.is_superuser:
+        messages.error(request, 'Sorry, only store owners can do that.')
+        return redirect(reverse('home'))
     if request.method == 'POST':
         form = ProductForm(request.POST, request.FILES)
         if form.is_valid():
@@ -97,29 +125,80 @@ def add_product(request):
 
     return render(request, template, context)
 
+@login_required
 def add_product_content(request, product_id):
     """
-    Add product content to product
+    Add product content to product, from ProgramContent model
     """
+    if not request.user.is_superuser:
+        messages.error(request, 'Sorry, only store owners can do that.')
+        return redirect(reverse('home'))
     product = Product.objects.get(id=product_id)
+
     if request.method == 'POST':
-        form = ProductContentForm(request.POST)
-        formset = ProductContentFormSet(request.POST, prefix='product_content')
-        if form.is_valid() and formset.is_valid():
-            form.save()
+        formset = ProductContentFormSet(request.POST, instance=product, prefix='product_content')
+
+        if formset.is_valid():
             formset.save()
-            messages.success(request, f'Product content added to {product.name}')
-            return redirect('products')
+
+            if 'add_day' in request.POST:
+                print("Redirecting to add_product_content")
+                return redirect('add_product_content', product_id=product.id)
+
+            messages.success(request, 'Product content successfully added!')
+            return redirect('product_management')
         else:
-            messages.error(request, 'Something went wrong, check if form is valid!')
+            messages.error(request, 'Form is not valid.')
     else:
-        form = ProductContentForm
-        formset = ProductContentFormSet(prefix='product_content')
+        formset = ProductContentFormSet(instance=product, prefix='product_content')
 
     template = 'products/add_product_content.html'
     context = {
-        'form': form,
         'formset': formset,
+        'product_id': product_id,
     }
 
     return render(request, template, context)
+
+@login_required
+def edit_product(request, product_id):
+    """
+    Edit product info from Product model
+    """
+    if not request.user.is_superuser:
+        messages.error(request, 'Sorry, only store owners can do that.')
+        return redirect(reverse('home'))
+    
+    product = get_object_or_404(Product, pk=product_id)
+    if request.method == 'POST':
+        form = ProductForm(request.POST, request.FILES, instance=product)
+        if form.is_valid():
+            form.save()
+            messages.success(request, 'Successfully updated product!')
+            return redirect(reverse('product_detail', args=[product.id]))
+        else:
+            messages.error(
+                request, 'Failed to update product. Please ensure the form is valid.')
+    else:
+        form = ProductForm(instance=product)
+        messages.info(request, f'You are editing {product.name}')
+
+    template = 'products/edit_product.html'
+    context = {
+        'form': form,
+        'product': product,
+    }
+
+    return render(request, template, context)
+
+@login_required
+def delete_product(request, product_id):
+    """ Delete a product from the store """
+    if not request.user.is_superuser:
+        messages.error(request, 'Sorry, only store owners can do that.')
+        return redirect(reverse('home'))
+
+    product = get_object_or_404(Product, pk=product_id)
+    product.delete()
+    messages.success(request, 'Product deleted!')
+    return redirect(reverse('products'))
