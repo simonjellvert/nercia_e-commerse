@@ -67,6 +67,8 @@ def checkout(request):
                     )
                     order_line_item.save()
 
+                    bag_items = bag_context['bag_items']
+
                     messages.success(request, 'Your card payment was successful!')
                     return redirect('checkout_success', order_number=order.order_number)
                 else:
@@ -110,6 +112,8 @@ def checkout(request):
                             lineitem_total=lineitem_total,
                         )
                         order_line_item.save()
+                        
+                        bag_items = bag_context['bag_items']
 
                     messages.success(request, 'Invoice payment processed successfully.')
                     return redirect('checkout_success', order_number=order.order_number)
@@ -146,11 +150,13 @@ def checkout_success(request, order_number):
     """
     Handle successful checkouts
     """
-    save_info = request.session.get('save_info')
     order = get_object_or_404(Order, order_number=order_number)
     messages.success(request, f'Order successfully processed! \
-        Your order number is. A confirmation \
-        email will be sent to.')
+        Your order number is {order_number}. A confirmation \
+        email will be sent to {order.user_profile.user.email}.')
+
+    bag_context = bag_contents(request)
+    bag_items = bag_context['bag_items']
 
     if 'bag' in request.session:
         del request.session['bag']
@@ -158,6 +164,7 @@ def checkout_success(request, order_number):
     template = 'checkout/checkout_success.html'
     context = {
         'order': order,
+        'bag_items': bag_items,
     }
 
     return render(request, template, context)

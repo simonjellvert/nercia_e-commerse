@@ -8,16 +8,75 @@
 
 {% block content %}
     <div class="container-fluid">
-        <div class="row">
-            <div class="col">
-                <h1>Thank you!</h1>
-                <hr>
-                <p>Your order information is below. A confirmation email will be sent to </p>
+        <div class="container">
+            <div class="row">
+                <div class="col">
+                    <h1>Thank you!</h1>
+                    <hr>
+                </div>
             </div>
-        </div>
-        <div class="row">
-            
+            <div class="col-12 col-md-6">
+                <div class="row">
+                    <h3>Receipt</h3>
+                    <p>A order confirmation has been sent to your email</p>
+                </div>
+                <div class="row">
+                    <div class="col-6">
+                        <p><strong>Order Number:</strong></p>
+                    </div>
+                    <div class="col-6">
+                        <p>{{ order.order_number }}</p>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-6">
+                        <p><strong>Order Total:</strong></p>
+                    </div>
+                    <div class="col-6">
+                        <p>{{ order.order_total }}</p>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-6">
+                        <p><strong>Tax:</strong></p>
+                    </div>
+                    <div class="col-6">
+                        <p>{{ order.tax }}</p>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-6">
+                        <p><strong>Grand Total:</strong></p>
+                    </div>
+                    <div class="col-6">
+                        <p>{{ order.grand_total }}</p>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-6">
+                        <p><strong>Payment Option:</strong></p>
+                    </div>
+                    <div class="col-6">
+                        <p>{{ order.payment_option }}</p>
+                    </div>
+                </div>
+                <hr>
+                <div class="row">
+                    <div class="col-6">
+                        <p><strong>Products:</strong></p>
+                    </div>
+                </div>
+            {% for item in bag_items %}
+                <div class="row">
+                    <div class="col-6">
+                        <p>{{ item.product }}</p>
+                    </div>
+                    <div class="col-6">
+                        <p>Quantity: {{ item.quantity }}</p>
+                    </div>
+                </div>
+            {% endfor %}
+            </div>
         </div>
     </div>
 {% endblock %}
-

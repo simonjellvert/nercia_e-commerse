@@ -31,6 +31,7 @@ class Order(models.Model):
     payment_option = models.CharField(max_length=20, choices=PAYMENT_OPTIONS, default=INVOICE)
     invoice_ref = models.CharField(max_length=254, null=True, blank=True)
 
+
     def _generate_order_number(self):
         """
         Generates a random and unique order number using UUID
@@ -44,9 +45,11 @@ class Order(models.Model):
         lineitem_total_sum = self.lineitems.aggregate(Sum('lineitem_total'))['lineitem_total__sum'] or Decimal('0.00')
         self.order_total = lineitem_total_sum
 
-        self.tax = self.grand_total * Decimal('0.25')
+        # Calculate tax based on order_total
+        self.tax = self.order_total * Decimal('0.25')
 
-        self.order_total = self.grand_total + self.tax
+        # Calculate grand_total including tax
+        self.grand_total = self.order_total + self.tax
 
         self.save()
 
