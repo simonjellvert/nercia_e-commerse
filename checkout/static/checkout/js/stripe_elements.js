@@ -1,6 +1,3 @@
-console.log('Script loaded!');
-console.log(jQuery)
-
 var stripePublicKey = JSON.parse(document.getElementById('id_stripe_public_key').textContent);
 var clientSecret = JSON.parse(document.getElementById('id_client_secret').textContent);
 var stripe = Stripe(stripePublicKey);
@@ -22,7 +19,6 @@ var style = {
 };
 var card = elements.create('card', {style: style});
 card.mount('#card-element');
-console.log('Stripe Elements initialized!');
 
 // Handle realtime validation errors on the card element
 card.addEventListener('change', function (event) {
@@ -48,8 +44,6 @@ form.addEventListener('submit', function(ev) {
     card.update({ 'disabled': true });
     $('#complete-order-button').attr('disabled', true);
 
-    console.log('Payment method details:', card);
-
     // Declare result before the stripe.confirmCardPayment call
     var result;
 
@@ -64,7 +58,6 @@ form.addEventListener('submit', function(ev) {
         result = response;
 
         if (result.error) {
-            console.error('Stripe error:', result.error.message);
             var errorDiv = document.getElementById('card-errors');
             var html = `
                 <span class="icon" role="alert">
@@ -79,11 +72,4 @@ form.addEventListener('submit', function(ev) {
             form.submit();
         }
     });
-
-    // Print Stripe errors
-    if (result && result.error) {
-        console.error('Stripe error:', result.error);
-    }
-
-    console.log('Client Secret:', clientSecret);
 });

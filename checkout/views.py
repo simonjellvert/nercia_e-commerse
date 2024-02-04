@@ -3,9 +3,9 @@ from decimal import Decimal
 import stripe
 
 from django.shortcuts import render, reverse, redirect, get_object_or_404, HttpResponse
-from django.db import transaction
 from django.contrib import messages
 from django.conf import settings
+from django.contrib.auth.decorators import login_required
 
 from profiles.models import UserProfile
 from products.models import Product
@@ -15,12 +15,10 @@ from bag.contexts import bag_contents
 
 stripe.api_key = settings.STRIPE_SECRET_KEY
 
+@login_required
 def checkout(request):
     stripe_public_key = settings.STRIPE_PUBLIC_KEY
     stripe_secret_key = settings.STRIPE_SECRET_KEY
-
-    if not request.user.is_authenticated:
-        return redirect('login')
 
     bag_context = bag_contents(request)
     bag_items = bag_context['bag_items']

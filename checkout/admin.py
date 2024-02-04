@@ -13,7 +13,8 @@ class OrderAdmin(admin.ModelAdmin):
         'order_number',
         'created',
         'order_total',
-        'grand_total'
+        'grand_total',
+        'tax',
     )
 
     fields = (
@@ -34,5 +35,6 @@ class OrderAdmin(admin.ModelAdmin):
     )
 
     ordering = ('-created',)
+
 
 admin.site.register(Order, OrderAdmin)

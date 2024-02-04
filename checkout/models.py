@@ -24,13 +24,12 @@ class Order(models.Model):
 
     order_number = models.CharField(max_length=10, unique=True)
     user_profile = models.ForeignKey(UserProfile, on_delete=models.CASCADE, related_name='orders')
-    full_name = models.CharField(max_length=255, null=False, blank=False)
     created = models.DateTimeField(auto_now_add=True)
     order_total = models.DecimalField(max_digits=8, decimal_places=2, null=False, blank=False)
     grand_total = models.DecimalField(max_digits=8, decimal_places=2, null=False, blank=False)
     tax = models.DecimalField(max_digits=8, decimal_places=2, null=False, blank=False)
     payment_option = models.CharField(max_length=20, choices=PAYMENT_OPTIONS, default=INVOICE)
-    invoice_ref = models.CharField(max_length=254, null=True, blank=True)    
+    invoice_ref = models.CharField(max_length=254, null=True, blank=True)
 
     def _generate_order_number(self):
         """

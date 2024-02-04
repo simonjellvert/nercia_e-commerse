@@ -7,12 +7,6 @@
     <div class="row w-100 d-flex justify-content-center align-items-center">
         <h1>Your Cart</h1>
         <hr>
-        {% if not request.user.is_authenticated %}
-            <div>
-                <h4>Do you have an account?</h4>
-                <p>Sign up for faster checkout and receive newsletters about upcoming trainings and deals. link to sign-in</p>
-            </div>
-        {% endif %}
         {% if bag_items %}
             <div class="col-lg-6">
                 <h3>Products</h3>
