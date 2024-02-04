@@ -15,9 +15,11 @@
                     <hr>
                 </div>
             </div>
-            <div class="col-12 col-md-6">
+            <div class="col-12 col-md-8">
                 <div class="row">
                     <h3>Receipt</h3>
+                </div>
+                <div class="row">
                     <p>A order confirmation has been sent to your email</p>
                 </div>
                 <div class="row">
@@ -33,7 +35,7 @@
                         <p><strong>Order Total:</strong></p>
                     </div>
                     <div class="col-6">
-                        <p>{{ order.order_total }}</p>
+                        <p>$ {{ order.order_total }}</p>
                     </div>
                 </div>
                 <div class="row">
@@ -41,7 +43,7 @@
                         <p><strong>Tax:</strong></p>
                     </div>
                     <div class="col-6">
-                        <p>{{ order.tax }}</p>
+                        <p>$ {{ order.tax }}</p>
                     </div>
                 </div>
                 <div class="row">
@@ -49,7 +51,7 @@
                         <p><strong>Grand Total:</strong></p>
                     </div>
                     <div class="col-6">
-                        <p>{{ order.grand_total }}</p>
+                        <p>$ {{ order.grand_total }}</p>
                     </div>
                 </div>
                 <div class="row">
@@ -57,25 +59,77 @@
                         <p><strong>Payment Option:</strong></p>
                     </div>
                     <div class="col-6">
-                        <p>{{ order.payment_option }}</p>
+                        <p>{{ order.payment_option|upper }}</p>
                     </div>
                 </div>
-                <hr>
-                <div class="row">
-                    <div class="col-6">
-                        <p><strong>Products:</strong></p>
+                {% if order.payment_option == 'invoice' %}
+                    <div class="row">
+                        <p><strong>Invoice address</strong></p>
                     </div>
-                </div>
-            {% for item in bag_items %}
-                <div class="row">
-                    <div class="col-6">
-                        <p>{{ item.product }}</p>
+                    <div class="row">
+                        <div class="col-12">
+                            <p class="mb-0">{{ user_profile.company_name }}</p>
+                        </div>
                     </div>
-                    <div class="col-6">
-                        <p>Quantity: {{ item.quantity }}</p>
+                    <div class="row">
+                        <div class="col-12">
+                            <p class="mb-0">{{ user_profile.org_num }}</p>
+                        </div>
                     </div>
-                </div>
-            {% endfor %}
+                    <div class="row">
+                        <div class="col-12">
+                            <p class="mb-0">{{ user_profile.street_address1 }}</p>
+                        </div>
+                    </div>
+                    {% if user_profile.streetaddress2 %}
+                    <div class="row">
+                        <div class="col-12">
+                            <p class="mb-0">{{ user_profile.street_address2 }}</p>
+                        </div>
+                    </div>
+                    {% endif %}
+                    <div class="row">
+                        <div class="col-12">
+                            <p class="mb-0">{{ user_profile.postcode }}</p>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-12">
+                            <p class="mb-0">{{ user_profile.city }}</p>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-12">
+                            <p>{{ user_profile.country }}</p>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-12">
+                            <p class="mb-0">Invoice Email: {{ user_profile.invoice_email }}</p>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-12">
+                            <p class="mb-0">Order Referens: {{ order.invoice_ref }}</p>
+                        </div>
+                    </div>
+                {% endif %}
+                    <hr>
+                    <div class="row">
+                        <div class="col-6">
+                            <p><strong>Products:</strong></p>
+                        </div>
+                    </div>
+                {% for item in bag_items %}
+                    <div class="row">
+                        <div class="col-6">
+                            <p>{{ item.product }}</p>
+                        </div>
+                        <div class="col-6">
+                            <p>Quantity: {{ item.quantity }}</p>
+                        </div>
+                    </div>
+                {% endfor %}
             </div>
         </div>
     </div>

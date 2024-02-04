@@ -43,6 +43,8 @@ form.addEventListener('submit', function(ev) {
     ev.preventDefault();
     card.update({ 'disabled': true });
     $('#complete-order-button').attr('disabled', true);
+    $('#payment-form').fadeToggle(100);
+    $('div.overlay-wrapper').fadeToggle(100);
 
     // Declare result before the stripe.confirmCardPayment call
     var result;
@@ -65,6 +67,8 @@ form.addEventListener('submit', function(ev) {
                 </span>
                 <span>${result.error.message}</span>`;
             $(errorDiv).html(html);
+            $('#payment-form').fadeToggle(100);
+            $('div.overlay-wrapper').fadeToggle(100);
             card.update({ 'disabled': false });
             $('#complete-order-button').attr('disabled', false);
         } else {
