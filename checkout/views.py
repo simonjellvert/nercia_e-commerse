@@ -6,12 +6,28 @@ from django.shortcuts import render, reverse, redirect, get_object_or_404, HttpR
 from django.contrib import messages
 from django.conf import settings
 from django.contrib.auth.decorators import login_required
+from django.views.decorators.http import require_POST
 
 from profiles.models import UserProfile
 from products.models import Product
 from .forms import CheckoutForm
 from .models import Order, OrderLineItem
 from bag.contexts import bag_contents
+
+
+@require_POST
+def cache_checkout_data(request):
+    try:
+        pid = request.POST.get('client_secret').split('_secret')[0]
+        stripe.api_key = settings.STRIPE_SECRET_KEY
+        stripe.PaymentIntent.modify(pid, metadata={
+            'bag': json.dumps(request.session.get('bag', {})),
+        })
+        return HttpResponse(status=200)
+    except Exception as e:
+        massages.error(request, 'Sorry, you payment cannot be \
+            processed right now. Please try again later.')
+        return HttpResponse(content=e, status=400)
 
 stripe.api_key = settings.STRIPE_SECRET_KEY
 
