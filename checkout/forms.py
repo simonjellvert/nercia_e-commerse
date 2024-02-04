@@ -12,15 +12,11 @@ class CheckoutForm(forms.ModelForm):
     Choices to pay with card or invoice.
     if user chose invoice, they need to add invoice_ref to the order info
     """
-    payment_option = forms.ChoiceField(choices=[], required=True)
     invoice_ref = forms.CharField(max_length=255, required=False)
 
     class Meta:
         model = Order
         fields = (
-            'order_total',
-            'grand_total',
-            'tax',
             'payment_option',
             'invoice_ref',
         )
@@ -52,6 +48,16 @@ class CheckoutForm(forms.ModelForm):
             ('invoice', 'Invoice'),
             ('card', 'Card'),
         ]
+    
+    def clean(self):
+        cleaned_data = super().clean()
+        payment_option = cleaned_data.get('payment_option')
+        invoice_ref = cleaned_data.get('invoice_ref')
+
+        if payment_option == 'invoice' and not invoice_ref:
+            self.add_error('invoice_ref', 'This field is required for invoice payments.')
+
+        return cleaned_data
 
     def save(self, commit=True):
         order = super().save(commit=False)
@@ -61,6 +67,7 @@ class CheckoutForm(forms.ModelForm):
 
         # Update order with the user profile
         order.user_profile = user.user.profile
+        order.invoice_ref = self.cleaned_data.get('invoice_ref')
 
         if commit:
             order.save()

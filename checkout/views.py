@@ -22,74 +22,108 @@ def checkout(request):
     if not request.user.is_authenticated:
         return redirect('login')
 
-    order_form = CheckoutForm()
-
-    bag = request.session.get('bag', {})
-    bag_items = bag_contents(request)['bag_items']
-    total = bag_contents(request)['total']
-    grand_total = bag_contents(request)['grand_total']
-    tax = bag_contents(request)['tax']
+    bag_context = bag_contents(request)
+    bag_items = bag_context['bag_items']
+    total = bag_context['total']
+    grand_total = bag_context['grand_total']
+    tax = bag_context['tax']
 
     user_profile = request.user.userprofile
 
-    intent = None
+    intent = stripe.PaymentIntent.create(
+        amount=round(grand_total * 100),
+        currency=settings.STRIPE_CURRENCY,
+    )
 
     if request.method == 'POST':
+        order_form = CheckoutForm(request.POST)
         payment_method = request.POST.get('payment_option')
 
-        if payment_method == 'card':
-            order = Order.objects.create(
-                user_profile=user_profile,
-                order_total=total,
-                grand_total=grand_total,
-                tax=tax,
-                payment_option='card',
-            )
+        if order_form.is_valid():
+            if payment_method == 'card':
+                # Handle card payment logic here
+                order = Order.objects.create(
+                    user_profile=user_profile,
+                    order_total=total,
+                    grand_total=grand_total,
+                    tax=tax,
+                    payment_option='card',
+                )
 
-            for item_id, item_data in bag.items():
-                try:
-                    product = Product.objects.get(id=item_id)
-                except Product.DoesNotExist:
-                    messages.error(request, f'Product with ID {item_id} does not exist.')
+                for item_data in bag_context['bag_items']:
+                    item_id = item_data['item_id']
+                    try:
+                        product = Product.objects.get(id=item_id)
+                    except Product.DoesNotExist:
+                        messages.error(request, f'Product with ID {item_id} does not exist.')
+                        return redirect('checkout')
+
+                    quantity = item_data['quantity']
+                    lineitem_total = quantity * product.price
+
+                    order_line_item = OrderLineItem(
+                        order=order,
+                        product=product,
+                        quantity=quantity,
+                        lineitem_total=lineitem_total,
+                    )
+                    order_line_item.save()
+
+                    messages.success(request, 'Your card payment was successful!')
+                    return redirect('checkout_success', order_number=order.order_number)
+                else:
+                    messages.error(request, 'Your card payment was not successful, double-check your info!')
                     return redirect('checkout')
 
-                quantity = item_data['quantity']
-                lineitem_total = quantity * product.price
+            elif payment_method == 'invoice':
+                # Handle invoice payment logic here
+                order_form = CheckoutForm(request.POST)
+                if order_form.is_valid():
+                    invoice_ref = order_form.cleaned_data.get('invoice_ref')
 
-                order_line_item = OrderLineItem(
-                    order=order,
-                    product=product,
-                    quantity=quantity,
-                    lineitem_total=lineitem_total,
-                )
-                order_line_item.save()
+                    if not invoice_ref:
+                        messages.error(request, 'Please enter the invoice reference.')
+                        return redirect('checkout')
 
-            stripe_total = round(total * 100)
-            intent = stripe.PaymentIntent.create(
-                amount=stripe_total,
-                currency=settings.STRIPE_CURRENCY,
-                return_url=request.build_absolute_uri(reverse('checkout_success', args=[order.order_number])),
-            )
+                    order = Order.objects.create(
+                        user_profile=user_profile,
+                        order_total=total,
+                        grand_total=grand_total,
+                        tax=tax,
+                        payment_option='invoice',
+                        invoice_ref=invoice_ref
+                    )
 
-            try:
-                intent.confirm()
-            except stripe.error.CardError as e:
-                messages.error(request, f'Error processing your card: {e.error.message}')
-                return redirect('checkout')
+                    for item_data in bag_context['bag_items']:
+                        item_id = item_data['item_id']
+                        try:
+                            product = Product.objects.get(id=item_id)
+                        except Product.DoesNotExist:
+                            messages.error(request, f'Product with ID {item_id} does not exist.')
+                            return redirect('checkout')
 
-            if intent.status == 'succeeded':
-                messages.success(request, 'Your card payment was successful!')
-                return redirect('checkout_success', order_number=order.order_number)
-            else:
-                # If payment fails, delete the order and line items
-                order.delete()
-                messages.error(request, 'Your card payment was not successful, double-check your info!')
-                return redirect('checkout')
+                        quantity = item_data['quantity']
+                        lineitem_total = quantity * product.price
 
-        elif payment_method == 'invoice' and 'card' == None:
-            # Handle invoice payment logic here
-            messages.success(request, 'Invoice payment processed successfully.')
-            return redirect('order_confirmation')
+                        order_line_item = OrderLineItem(
+                            order=order,
+                            product=product,
+                            quantity=quantity,
+                            lineitem_total=lineitem_total,
+                        )
+                        order_line_item.save()
+
+                    messages.success(request, 'Invoice payment processed successfully.')
+                    return redirect('checkout_success', order_number=order.order_number)
+
+                else:
+                    messages.error(request, 'Invalid payment method selected.')
+                    return redirect('checkout')
+        else:
+            messages.error(request, 'There are errors in your form. Please correct them and try again.')
+            return redirect('checkout')
+    else:
+        order_form = CheckoutForm()
 
     if not stripe_public_key:
         messages.warning(request, 'Stripe public key is missing. \
@@ -100,7 +134,7 @@ def checkout(request):
         'user_profile': user_profile,
         'order_form': order_form,
         'stripe_public_key': stripe_public_key,
-        'client_secret': intent.client_secret if intent else '',
+        'client_secret': intent.client_secret,
         'bag_items': bag_items,
         'total': total,
         'grand_total': grand_total,
@@ -108,16 +142,6 @@ def checkout(request):
     }
 
     return render(request, template, context)
-
-def confirm_payment(request):
-    client_secret = request.POST.get('client_secret')
-    intent = stripe.PaymentIntent.retrieve(client_secret)
-    
-    try:
-        intent.confirm()
-        return JsonResponse({'status': 'succeeded'})
-    except stripe.error.CardError as e:
-        return JsonResponse({'status': 'failed', 'error': e.error.message})
 
 
 def checkout_success(request, order_number):

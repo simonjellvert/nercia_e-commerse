@@ -1,8 +1,8 @@
 console.log('Script loaded!');
 console.log(jQuery)
 
-var stripePublicKey = $('#id_stripe_public_key').text().slice(1, -1);
-var clientSecret = $('#id_client_secret').text().slice(1, -1);
+var stripePublicKey = JSON.parse(document.getElementById('id_stripe_public_key').textContent);
+var clientSecret = JSON.parse(document.getElementById('id_client_secret').textContent);
 var stripe = Stripe(stripePublicKey);
 var elements = stripe.elements();
 var style = {
@@ -48,31 +48,42 @@ form.addEventListener('submit', function(ev) {
     card.update({ 'disabled': true });
     $('#complete-order-button').attr('disabled', true);
 
-    // Use AJAX to confirm the payment
-    $.ajax({
-        type: 'POST',
-        url: '/confirm_payment/',
-        data: {'client_secret': clientSecret},
-        success: function(response) {
-            if (response.status === 'succeeded') {
-                form.submit();
-            } else {
-                console.error('Stripe error:', response.error);
-                var errorDiv = document.getElementById('card-errors');
-                var html = `
-                    <span class="icon" role="alert">
-                        <i class="fas fa-times"></i>
-                    </span>
-                    <span>${response.error}</span>`;
-                $(errorDiv).html(html);
-                card.update({ 'disabled': false });
-                $('#complete-order-button').attr('disabled', false);
+    console.log('Payment method details:', card);
+
+    // Declare result before the stripe.confirmCardPayment call
+    var result;
+
+    stripe.confirmCardPayment(clientSecret, {
+        payment_method: {
+            card: card,
+            billing_details: {
+                // Include billing details if needed
             }
-        },
-        error: function(xhr, status, error) {
-            console.error('AJAX Error:', error);
+        }
+    }).then(function(response) {
+        result = response;
+
+        if (result.error) {
+            console.error('Stripe error:', result.error.message);
+            var errorDiv = document.getElementById('card-errors');
+            var html = `
+                <span class="icon" role="alert">
+                    <i class="fas fa-times"></i>
+                </span>
+                <span>${result.error.message}</span>`;
+            $(errorDiv).html(html);
             card.update({ 'disabled': false });
             $('#complete-order-button').attr('disabled', false);
+        } else {
+            // The payment has been confirmed
+            form.submit();
         }
     });
+
+    // Print Stripe errors
+    if (result && result.error) {
+        console.error('Stripe error:', result.error);
+    }
+
+    console.log('Client Secret:', clientSecret);
 });

@@ -74,6 +74,7 @@
                                 <div class="field-wrapper">
                                     <input type="text" class="readonly" value="{{ user_profile.invoice_email }}" placeholder= "Invoice Email">
                                 </div>
+                                {{ order_form.invoice_ref }}
                             </div>
             
                             <div id="card-fields" style="display: none;">
@@ -156,6 +157,9 @@
             if (checkbox.value === 'invoice') {
                 invoiceFields.style.display = checkbox.checked ? 'block' : 'none';
                 cardFields.style.display = 'none';
+
+                // Clear or reset any invoice-related input values here
+                document.getElementById('id_invoice_ref').value = '';
             } else if (checkbox.value === 'card') {
                 invoiceFields.style.display = 'none';
                 cardFields.style.display = checkbox.checked ? 'block' : 'none';
@@ -164,57 +168,8 @@
     });
 
     document.getElementById('complete-order-button').addEventListener('click', function (event) {
-        // Validate participant forms before proceeding
-        var participantFormsValid = true;
-
-        document.querySelectorAll('.participant-form').forEach(function (form) {
-            var formValid = true;
-
-            form.querySelectorAll('input[type="text"]').forEach(function (input) {
-                if (!input.value.trim()) {
-                    formValid = false;
-                    participantFormsValid = false;
-                    // Add a class to highlight the empty field
-                    input.classList.add('is-invalid');
-                } else {
-                    // Remove the class if the field is filled
-                    input.classList.remove('is-invalid');
-                }
-            });
-
-            if (!formValid) {
-                // Prevent the default form submission if any form is invalid
-                event.preventDefault();
-            }
-        });
-
-        // Only prevent the form submission if participant forms are invalid
-        if (participantFormsValid) {
-            // Check the selected payment option
-            var selectedPaymentOption = document.querySelector('input[name="{{ order_form.payment_option.name }}"]:checked');
-
-            if (selectedPaymentOption && selectedPaymentOption.value === 'invoice') {
-                // Proceed with handling invoice payment
-                var invoiceRefField = document.getElementById('id_invoice_ref');
-
-                // Validate and handle the invoice_ref field if needed
-                if (invoiceRefField) {
-                    if (!invoiceRefField.value.trim()) {
-                        // Add a class to highlight the empty field
-                        invoiceRefField.classList.add('is-invalid');
-                        // Prevent the default form submission
-                        event.preventDefault();
-                        return;
-                    } else {
-                        // Remove the class if the field is filled
-                        invoiceRefField.classList.remove('is-invalid');
-                    }
-                }
-            }
-
-            // Proceed with submitting the main checkout form
-            document.getElementById('payment-form').submit();
-        }
+        // Proceed with submitting the main checkout form
+        document.getElementById('payment-form').submit();
     });
 </script>
 {% endblock %}
