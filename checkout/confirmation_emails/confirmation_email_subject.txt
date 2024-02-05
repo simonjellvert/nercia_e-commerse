@@ -1,0 +1,51 @@
+Hi, {{ order.user_profile.first_name }}!
+
+Thank you for chosing Nercia as your supplier!
+
+This is a confirmation email of your order {{ order.order_number }}:
+
+Order Date: {{ order.created }}
+
+Order Total: ${{ order.order_total }}
+Tax: ${{ order.tax }}
+Grand Total: ${{ order.grand_total }}
+
+Payment Method: {{ order.payment_option }}
+
+{% if payment_option == 'invoice' %}
+    Your invoice will be sent to:
+    Company: {{ order.user_profile.company_name }}
+    Org.nr: {{ order.user_profile.org_num }}
+    Street Address: {{ order.user_profile.street_address1 }}
+    {% if order.user_profile.street_address2 %}
+        Alt. Street Address:{{ order.user_profile.street_address2 }}
+    {% endif %}
+    Postcode: {{ order.user_profile.postcode }}
+    City: {{ order.user_profile.city }}
+    Country: {{ order.user_profile.country }}
+    Inovice Email: {{ order.user_profile.invoice_email }}
+    Invoice Ref: {{ order.invoice_ref }}
+
+    Payment Terms:
+    Invoicing takes place at the start of the training, 20 days net.
+{% endif %}
+
+Participants
+Please send us the participants name and email address to info@nercia.se, 
+so that we can prepare the invitation and send it directly to the participants. 
+Otherwise the invitation will be sent to your email.
+
+If you have any questions feel free to contact us. You'll find the contact info below.
+
+Best regards,
+
+Nercia
+
+Admin
++(46)19 - 20 67 00
+info@nercia.se
+
+Finance
++(46)19 - 20 67 00
+finance@nercia.se
+

@@ -8,6 +8,8 @@ from django.conf import settings
 from django.contrib.auth.decorators import login_required
 from django.contrib.admin.views.decorators import staff_member_required
 from django.views.decorators.http import require_POST
+from django.core.mail import send_mail
+from django.template.loader import render_to_string
 
 from profiles.models import UserProfile
 from products.models import Product
@@ -175,6 +177,8 @@ def checkout_success(request, order_number):
         profile = UserProfile.objects.get(user=request.user)
         order.user_profile = profile
         order.save()
+    
+    _send_confirmation_email(order)
 
     messages.success(request, f'Order successfully processed! \
         Your order number is {order_number}. A confirmation \
@@ -238,3 +242,22 @@ def delete_order(request, order_id):
     }
 
     return redirect(reverse('order_management'))
+
+def _send_confirmation_email(order):
+    """
+    Function to send a confirmation email when the user submit succsessfull order
+    """
+    cust_email = order.user_profile.email
+    subject = render_to_string(
+        'confirmation_emails/confirmation_email_subject.txt',
+        {'order': order})
+    body = render_to_string(
+        'confirmation_emails/confirmation_email_body.txt',
+        {'order': order, 'contact_email': settings.DEFAULT_FROM_EMAIL})
+    
+    send_mail(
+        subject,
+        body,
+        settings.DEFAULT_FROM_EMAIL,
+        [cust_email]
+    )   

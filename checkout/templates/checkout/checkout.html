@@ -54,30 +54,30 @@
                                     <p>If you want to update you billing information, you can do that in your <a href="{% url 'profile' %}">profile</a>.</p>
                                 </div>
                                 <div class="field-wrapper">
-                                    <input type="text" class="readonly" value="{{ user_profile.company_name }}" placeholder= "Company">
+                                    <input type="text" class="readonly" value="{{ user_profile.company_name }}" placeholder= "Company" readonly>
                                 </div>
                                 <div class="field-wrapper">
-                                    <input type="text" class="readonly" value="{{ user_profile.org_num }}" placeholder= "Org. Number">
+                                    <input type="text" class="readonly" value="{{ user_profile.org_num }}" placeholder= "Org. Number" readonly>
                                 </div>
                                 <div class="field-wrapper">
-                                    <input type="text" class="readonly" value="{{ user_profile.street_address1 }}" placeholder= "Street Address 1">
+                                    <input type="text" class="readonly" value="{{ user_profile.street_address1 }}" placeholder= "Street Address 1" readonly>
                                 </div>
                                 {% if user_profile.street_address2 %}
                                 <div class="field-wrapper">
-                                    <input type="text" class="readonly" value="{{ user_profile.street_address2 }}" placeholder= "Street Address 2">
+                                    <input type="text" class="readonly" value="{{ user_profile.street_address2 }}" placeholder= "Street Address 2" readonly>
                                 </div>
                                 {% endif %}
                                 <div class="field-wrapper">
-                                    <input type="text" class="readonly" value="{{ user_profile.postcode }}" placeholder= "Postcode">
+                                    <input type="text" class="readonly" value="{{ user_profile.postcode }}" placeholder= "Postcode" readonly>
                                 </div>
                                 <div class="field-wrapper">
-                                    <input type="text" class="readonly" value="{{ user_profile.city }}" placeholder= "City">
+                                    <input type="text" class="readonly" value="{{ user_profile.city }}" placeholder= "City" readonly>
                                 </div>
                                 <div class="field-wrapper">
-                                    <input type="text" class="readonly" value="{{ user_profile.country }}" placeholder= "Country">
+                                    <input type="text" class="readonly" value="{{ user_profile.country }}" placeholder= "Country" readonly>
                                 </div>
                                 <div class="field-wrapper">
-                                    <input type="text" class="readonly" value="{{ user_profile.invoice_email }}" placeholder= "Invoice Email">
+                                    <input type="text" class="readonly" value="{{ user_profile.invoice_email }}" placeholder= "Invoice Email" readonly>
                                 </div>
                                 {{ order_form.invoice_ref }}
                             </div>

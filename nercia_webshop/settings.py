@@ -189,3 +189,6 @@ STRIPE_WH_SECRET = os.environ.get('STRIPE_WH_SECRET', '')
 # https://docs.djangoproject.com/en/3.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+# Default email address
+DEFAULT_FROM_EMAIL = 'nerciawebshop@example.com'
