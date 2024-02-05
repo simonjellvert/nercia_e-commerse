@@ -50,6 +50,9 @@
             
                             <div id="invoice-fields" style="display: none;">
                                 <legend>Billing Address</legend>
+                                <div class="row">
+                                    <p>If you want to update you billing information, you can do that in your <a href="{% url 'profile' %}">profile</a>.</p>
+                                </div>
                                 <div class="field-wrapper">
                                     <input type="text" class="readonly" value="{{ user_profile.company_name }}" placeholder= "Company">
                                 </div>
@@ -59,9 +62,11 @@
                                 <div class="field-wrapper">
                                     <input type="text" class="readonly" value="{{ user_profile.street_address1 }}" placeholder= "Street Address 1">
                                 </div>
+                                {% if user_profile.street_address2 %}
                                 <div class="field-wrapper">
                                     <input type="text" class="readonly" value="{{ user_profile.street_address2 }}" placeholder= "Street Address 2">
                                 </div>
+                                {% endif %}
                                 <div class="field-wrapper">
                                     <input type="text" class="readonly" value="{{ user_profile.postcode }}" placeholder= "Postcode">
                                 </div>
@@ -164,7 +169,7 @@
         });
     });
 
-    document.getElementById('#complete-order-button').addEventListener('click', function (event) {
+    document.getElementById('complete-order-button').addEventListener('click', function (event) {
         // Proceed with submitting the main checkout form
         document.getElementById('payment-form').submit();
     });

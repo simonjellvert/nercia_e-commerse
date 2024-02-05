@@ -4,7 +4,7 @@
 {% load crispy_forms_tags %}
 
 {% block extra_css %}
-    <link rel="stylesheet" href="{% static 'profiles/css/profile.css' %}">
+    <link rel="stylesheet" href="{% static 'css/profiles.css' %}">
 {% endblock %}
 
 {% block content %}
@@ -42,6 +42,22 @@
                         {{ profile_form.invoice_email|as_crispy_field }}
                         <button type="submit" name="profile-update-form">Update Profile</button>
                     </form>
+                </div>
+                <div class="col-12 col-lg-6">
+                    <div class="order-history">
+                        <p class="text-muted">Order History</p>
+                        <ul>
+                            {% for order in orders %}
+                                <li>
+                                    Order Number: <a href="{% url 'order_history' order_number=order.order_number %}">{{ order.order_number }}</a><br>
+                                    Date: {{ order.created }}<br>
+                                    Total: ${{ order.grand_total }}<br>
+                                    <!-- Add other order information as needed -->
+                                </li>
+                                <hr>
+                            {% endfor %}
+                        </ul>
+                    </div>
                 </div>
             </div>
         </div>

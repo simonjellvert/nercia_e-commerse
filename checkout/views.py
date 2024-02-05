@@ -170,6 +170,11 @@ def checkout_success(request, order_number):
     Handle successful checkouts
     """
     order = get_object_or_404(Order, order_number=order_number)
+    if request.user.is_authenticated:
+        profile = UserProfile.objects.get(user=request.user)
+        oder.user_profile = profile
+        order.save()
+
     messages.success(request, f'Order successfully processed! \
         Your order number is {order_number}. A confirmation \
         email will be sent to {order.user_profile.user.email}.')

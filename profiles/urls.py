@@ -6,4 +6,5 @@ from .forms import CustomSignupForm
 urlpatterns = [
     path('', views.profile, name='profile'),
     path('accounts/signup/', SignupView.as_view(form_class=CustomSignupForm), name='account_signup'),
+    path('order_history/<order_number>/', views.order_history, name='order_history'),
 ]
