@@ -25,7 +25,7 @@ def cache_checkout_data(request):
         })
         return HttpResponse(status=200)
     except Exception as e:
-        massages.error(request, 'Sorry, you payment cannot be \
+        messages.error(request, 'Sorry, you payment cannot be \
             processed right now. Please try again later.')
         return HttpResponse(content=e, status=400)
 
