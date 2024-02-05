@@ -1,0 +1,107 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block content %}
+<div class="container-fluid container-product-header mt-5">
+    <div>
+        <h1 class="page-header">
+            Order Management
+        </h1>
+    </div>
+</div>
+<hr class="custom-hr-pr-detail">
+<div class="col-12">
+    <div class="customer-order table-responsive">
+        <table class="table table-sm table-borderless">
+            <thead>
+                <tr>
+                    <th>Order Number</th>
+                    <th>Company</th>
+                    <th>Date</th>
+                    <th>Products</th>
+                    <th>Order Total</th>
+                    <th>Tax</th>
+                    <th>Payment Option</th>
+                    <th>Invoice Info</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for order in orders %}
+                    <tr>
+                        <td>
+                            {{ order.order_number }} <br>
+                            <a href="#" data-toggle="modal" data-target="#deleteOrderModal{{ order.id }}">Delete</a>
+                        </td>
+                        <td>{{ order.user_profile.company_name }}</td>
+                        <td>{{ order.created }}</td>
+                        <td>
+                            <ul class="list-unstyled">
+                                {% for item in order.lineitems.all %}
+                                    <li class="small">
+                                        {{ item.product.name }} x{{ item.quantity }}
+                                    </li>
+                                {% endfor %}
+                            </ul>
+                        </td>
+                        <td>${{ order.order_total }}</td>
+                        <td>$ {{ order.tax }}</td>
+                        <td>{{ order.payment_option|upper }}</td>
+                        {% if order.payment_option == 'invoice' %}
+                        <td>
+                            {{ order.user_profile.company_name }} <br>
+                            <strong>Org.nr:</strong> {{ order.user_profile.org_num }} <br>
+                            {{ order.user_profile.street_address1 }} <br>
+                            {% if user_profile.street_address2 %}
+                                {{ order.user_profile.street_address2 }} <br>
+                            {% endif %}
+                            {{ order.user_profile.postcode }} <br>
+                            {{ order.user_profile.city }} <br>
+                            {{ order.user_profile.country }} <br>
+                            <strong>Invoice Email:</strong> {{ order.user_profile.invoice_email }} <br>
+                            <strong>Invoice Ref:</strong> {{ order.invoice_ref }} <br>
+                        </td>
+                        {% else %}
+                        <td>-</td>
+                        {% endif %}
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</div>
+    
+
+<!-- Modal for Delete Order -->
+{% for order in orders %}
+    <div class="modal fade" id="deleteOrderModal{{ order.id }}" tabindex="-1" role="dialog"
+        aria-labelledby="deleteOrderModalLabel{{ order.id }}" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="deleteProductModalLabel{{ order.id }}">Delete Order</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <p>Are you sure you want to delete {{ order.order_number }}?</p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+                    <a href="{% url 'delete_order' order_id=order.id %}" class="btn btn-danger">Delete</a>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endfor %}
+
+{% block postloadjs %}
+{% if order_deleted %}
+    <script>
+        // Reload the page after deleting an order
+        window.location.reload();
+    </script>
+{% endif %}
+{% endblock %}
+
+{% endblock %}

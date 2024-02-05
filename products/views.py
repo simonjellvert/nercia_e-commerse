@@ -3,6 +3,7 @@ from django.core.serializers.json import DjangoJSONEncoder
 from django.contrib import messages
 from django.db.models import Q
 from django.contrib.auth.decorators import login_required
+from django.contrib.admin.views.decorators import staff_member_required
 
 from .models import Product, ProductContent, Category
 from .forms import ProductForm, ProductContentForm, ProductContentFormSet
@@ -76,7 +77,7 @@ def product_detail(request, product_id):
 
     return render(request, 'products/product_detail.html', context)
 
-@login_required
+@staff_member_required
 def product_management(request):
     """
     A view for administrators to either add new product or edit or delete excisting prodducts
@@ -99,7 +100,7 @@ def product_management(request):
     return render(request, template, context)
 
 
-@login_required
+@staff_member_required
 def add_product(request):
     """
     Add a new product
@@ -125,7 +126,7 @@ def add_product(request):
 
     return render(request, template, context)
 
-@login_required
+@staff_member_required
 def add_product_content(request, product_id):
     """
     Add product content to product, from ProgramContent model
@@ -160,7 +161,7 @@ def add_product_content(request, product_id):
 
     return render(request, template, context)
 
-@login_required
+@staff_member_required
 def edit_product(request, product_id):
     """
     Edit product info from Product model
@@ -191,7 +192,7 @@ def edit_product(request, product_id):
 
     return render(request, template, context)
 
-@login_required
+@staff_member_required
 def delete_product(request, product_id):
     """ Delete a product from the store """
     if not request.user.is_superuser:

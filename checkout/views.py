@@ -6,6 +6,7 @@ from django.shortcuts import render, reverse, redirect, get_object_or_404, HttpR
 from django.contrib import messages
 from django.conf import settings
 from django.contrib.auth.decorators import login_required
+from django.contrib.admin.views.decorators import staff_member_required
 from django.views.decorators.http import require_POST
 
 from profiles.models import UserProfile
@@ -172,7 +173,7 @@ def checkout_success(request, order_number):
     order = get_object_or_404(Order, order_number=order_number)
     if request.user.is_authenticated:
         profile = UserProfile.objects.get(user=request.user)
-        oder.user_profile = profile
+        order.user_profile = profile
         order.save()
 
     messages.success(request, f'Order successfully processed! \
@@ -193,3 +194,47 @@ def checkout_success(request, order_number):
     }
 
     return render(request, template, context)
+
+@staff_member_required
+def order_management(request):
+    """
+    Administrator view to handle customers order
+    """
+    if not request.user.is_superuser:
+        messages.error(request, 'Sorry, only store owners can do that.')
+        return redirect(reverse('home'))
+
+    orders = Order.objects.all().order_by('-created')
+
+    template = 'checkout/order_management.html'
+    context = {
+        'orders': orders,
+    }
+
+    return render(request, template, context)
+
+@staff_member_required
+def delete_order(request, order_id):
+    """
+    Administrator view to delete an order
+    """
+    if not request.user.is_superuser:
+        messages.error(request, 'Sorry, only store owners can do that.')
+        return redirect(reverse('home'))
+    
+    order = get_object_or_404(Order, id=order_id)
+
+    if order.payment_option == Order.INVOICE:
+        order.delete()
+        order_deleted = True
+        messages.success(request, f'Order {order.order_number} has been deleted.')
+    else:
+        order_deleted = False
+        messages.error(request, 'You can only delete orders with the payment method invoice.')
+
+    template = 'checkout/order_management.html'
+    context = {
+        'order_deleted': order_deleted
+    }
+
+    return redirect(reverse('order_management'))
