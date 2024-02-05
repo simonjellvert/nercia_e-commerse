@@ -1,1 +1,0 @@
-Nercia | Your order {{ order.order_number }} is confirmed!
