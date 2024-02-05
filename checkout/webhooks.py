@@ -7,6 +7,8 @@ from checkout.webhook_handler import StripeWH_Handler
 
 import stripe
 
+
+# Webhooks created but not activated with the payment functionality
 @require_POST
 @csrf_exempt
 def webhook(request):

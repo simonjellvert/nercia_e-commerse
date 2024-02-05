@@ -33,6 +33,9 @@ stripe.api_key = settings.STRIPE_SECRET_KEY
 
 @login_required
 def checkout(request):
+    """
+    Function to handle invoice or card payment
+    """
     stripe_public_key = settings.STRIPE_PUBLIC_KEY
     stripe_secret_key = settings.STRIPE_SECRET_KEY
 

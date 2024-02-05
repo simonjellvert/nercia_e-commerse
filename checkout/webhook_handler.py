@@ -1,6 +1,7 @@
 from django.http import HttpResponse
 
 
+# Webhooks created but not activated with the payment functionality
 class StripeWH_Handler:
     """Handle Stripe webhooks"""
 
