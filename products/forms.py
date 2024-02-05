@@ -9,14 +9,11 @@ class CategoryForm(forms.ModelForm):
     """
     Form for adding categories
     """
-    class Mete:
+    class Meta:
         model = Category
         fields = [
             'name', 'friendly_name',
         ]
-    
-    def __init__(self, *args, **kwargs):
-        super().__init__(*args, **kwargs)
 
 
 class ProductForm(forms.ModelForm):

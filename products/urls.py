@@ -9,4 +9,7 @@ urlpatterns = [
     path('addcontent/<int:product_id>/', views.add_product_content, name='add_product_content'),
     path('edit/<int:product_id>/', views.edit_product, name='edit_product'),
     path('delete/<int:product_id>/', views.delete_product, name='delete_product'),
+    path('add/category/', views.add_category, name='add_category'),
+    path('edit/category/<int:category_id>/', views.edit_category, name='edit_category'),
+    path('delete/category/<int:category_id>/', views.delete_category, name='delete_category'),
 ]
