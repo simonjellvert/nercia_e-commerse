@@ -89,10 +89,6 @@ def product_management(request):
     products = Product.objects.all()
     categories = Category.objects.all()
 
-    if request.method == 'POST':
-        if 'add_product' in request.POST:
-            return redirect('add_product')
-
     template = 'products/product_management.html'
     context = {
         'products': products,
@@ -237,6 +233,7 @@ def edit_category(request, category_id):
     """
     Edit category
     """
+    print("Category ID:", category_id)
     if not request.user.is_superuser:
         messages.error(request, 'Sorry, only store owners can do that.')
         return redirect(reverse('home'))
