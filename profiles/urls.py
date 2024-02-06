@@ -1,7 +1,7 @@
 from django.urls import path
 from . import views
 from allauth.account.views import SignupView
-from .forms import CustomSignupForm
+from .forms import CustomSignupForm, DeleteAccountForm
 
 urlpatterns = [
     path('', views.profile, name='profile'),

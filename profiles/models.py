@@ -82,6 +82,19 @@ def create_or_update_user_profile(sender, instance, created, **kwargs):
     Create or update the user profile
     """
     if created:
-        UserProfile.objects.create(user=instance)
-    instance.userprofile.save()
-
+        UserProfile.objects.create(
+            user=instance,
+            phone_number='',
+            company_name='',
+            org_num='',
+            street_address1='',
+            street_address2='',
+            postcode='',
+            city='',
+            country='',
+            invoice_email='',
+        )
+    else:
+        if hasattr(instance, 'userprofile'):
+            user_profile = instance.userprofile
+            user_profile.save()

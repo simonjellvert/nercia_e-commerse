@@ -233,7 +233,6 @@ def edit_category(request, category_id):
     """
     Edit category
     """
-    print("Category ID:", category_id)
     if not request.user.is_superuser:
         messages.error(request, 'Sorry, only store owners can do that.')
         return redirect(reverse('home'))

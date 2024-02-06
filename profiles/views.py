@@ -1,10 +1,12 @@
-from django.shortcuts import render, redirect, get_object_or_404
+from django.shortcuts import render, reverse, redirect, get_object_or_404
 from django.contrib.auth.decorators import login_required
+from django.contrib.auth import authenticate, login, logout
 from django.contrib import messages
 
 from allauth.account.views import SignupView
 
 from .forms import CustomSignupForm, UserProfileForm, DeleteAccountForm
+from .models import UserProfile
 from checkout.models import Order
 
 
@@ -15,6 +17,7 @@ class CustomSignUpView(SignupView):
 @login_required
 def profile(request):
     user_profile = request.user.userprofile
+    print(user_profile.id)
     orders = user_profile.orders.all()
 
     initial_data = {
@@ -76,7 +79,7 @@ def delete_profile(request, user_profile_id):
         messages.error(request, 'Sorry, you are not allowed to go here.')
         return redirect(reverse('home'))
 
-    user_profile = get_object_or_404(UserProfile, pk=user_profile_id)
+    user_profile = UserProfile.objects.get(pk=user_profile_id)
 
     if request.method == 'POST':
         form = DeleteAccountForm(request.POST)
@@ -84,18 +87,16 @@ def delete_profile(request, user_profile_id):
         if form.is_valid():
             password = form.cleaned_data['password']
 
-            # Check if the provided password is correct
-            user = authenticate(username=request.user.username, password=password)
+            user = authenticate(email=request.user.email, password=password)
 
             if user is not None:
-                # Password is correct, proceed with deletion
                 user_profile.delete()
+                user_profile.logout()
                 messages.success(request, 'Account deleted!')
                 return redirect(reverse('home'))
             else:
-                # Password is incorrect, display an error message
                 messages.error(request, 'Incorrect password. Account not deleted.')
     else:
         form = DeleteAccountForm()
 
-    return render(request, 'profile.html', {'user_profile': user_profile, 'form': form})
+    return render(request, 'profiles/delete_profile.html', {'user_profile': user_profile, 'form': form})
