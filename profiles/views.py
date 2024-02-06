@@ -4,8 +4,7 @@ from django.contrib import messages
 
 from allauth.account.views import SignupView
 
-from .forms import CustomSignupForm
-from .forms import UserProfileForm
+from .forms import CustomSignupForm, UserProfileForm, DeleteAccountForm
 from checkout.models import Order
 
 
@@ -69,3 +68,34 @@ def order_history(request, order_number):
     }
 
     return render(request, template, context)
+
+@login_required
+def delete_profile(request, user_profile_id):
+    """ Function to delete profile """
+    if not request.user.is_authenticated:
+        messages.error(request, 'Sorry, you are not allowed to go here.')
+        return redirect(reverse('home'))
+
+    user_profile = get_object_or_404(UserProfile, pk=user_profile_id)
+
+    if request.method == 'POST':
+        form = DeleteAccountForm(request.POST)
+
+        if form.is_valid():
+            password = form.cleaned_data['password']
+
+            # Check if the provided password is correct
+            user = authenticate(username=request.user.username, password=password)
+
+            if user is not None:
+                # Password is correct, proceed with deletion
+                user_profile.delete()
+                messages.success(request, 'Account deleted!')
+                return redirect(reverse('home'))
+            else:
+                # Password is incorrect, display an error message
+                messages.error(request, 'Incorrect password. Account not deleted.')
+    else:
+        form = DeleteAccountForm()
+
+    return render(request, 'profile.html', {'user_profile': user_profile, 'form': form})
