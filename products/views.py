@@ -250,7 +250,7 @@ def edit_category(request, category_id):
                 request, 'Failed to update category. Please ensure the form is valid.')
     else:
         form = CategoryForm(instance=category)
-        messages.info(request, f'You are editing {category.friendly_name}')
+        messages.info(request, f'You are editing the category "{category.friendly_name}"')
 
     template = 'products/edit_category.html'
     context = {

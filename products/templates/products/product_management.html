@@ -12,42 +12,43 @@
 <hr class="custom-hr-pr-detail">
 <div class="container">
     <div class="row">
-        <div class="col-12 col-md-6">
+        <div class="col-12 col-md-6 mb-5">
+            <div class="row make-list">
+                <h2>Products</h2>
+            </div>
             <div class="row">
                 <span class="btn btn-primary rounded-0">
-                    <a href="{% url 'add_product' %}">Add product</a>
+                    <a href="{% url 'add_product' %}" class="text-decoration-none text-white">Add product</a>
                 </span>
             </div>
             <hr>
             <div class="row">
                 <ul>
                     {% for product in products %}
-                        <div class="row">
-                            <li>{{ product.name }}</li>
-                        </div>
-                        <div class="row mb-3 mt-0">
-                            <a href="{% url 'edit_product' product_id=product.id %}">Edit description</a> |
-                            <a href="{% url 'add_product_content' product_id=product.id %}">Edit content</a> | 
-                            <a href="#" data-toggle="modal" data-target="#deleteProductModal{{ product.id }}" class="text-danger">Delete</a>
-                        </div>
+                        <li><strong>{{ product.name }}</strong></li>
+                        <a href="{% url 'edit_product' product_id=product.id %}">Edit description</a> |
+                        <a href="{% url 'add_product_content' product_id=product.id %}">Edit content</a> | 
+                        <a href="#" data-toggle="modal" data-target="#deleteProductModal{{ product.id }}" class="text-danger">Delete</a>
                     {% endfor %}
                 </ul>
             </div>
         </div>
         <div class="col-12 col-md-6">
             <div class="row">
+                <h2>Categories</h2>
+            </div>
+            <div class="row">
                 <span class="btn btn-primary rounded-0">
-                    <a href="{% url 'add_category' %}">Add category</a>
+                    <a href="{% url 'add_category' %}" class="text-decoration-none text-white">Add category</a>
                 </span>
             </div>
             <hr>
             <div class="row">
                 <ul>
                     {% for category in categories %}
-                        <li>{{ category.friendly_name }} -
-                            <a href="{% url 'edit_category' category_id=category.id %}">Edit category</a> |
-                            <a href="#" data-toggle="modal" data-target="#deleteCategoryModal{{ category.id }}" class="text-danger">Delete</a>
-                        </li>
+                        <li><strong>{{ category.friendly_name }}</strong></li>
+                        <a href="{% url 'edit_category' category_id=category.id %}">Edit category</a> |
+                        <a href="#" data-toggle="modal" data-target="#deleteCategoryModal{{ category.id }}" class="text-danger">Delete</a>
                     {% endfor %}
                 </ul>
             </div>
