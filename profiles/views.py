@@ -72,6 +72,7 @@ def order_history(request, order_number):
 
     return render(request, template, context)
 
+# View for deleting profile set up, for future development
 @login_required
 def delete_profile(request, user_profile_id):
     """ Function to delete profile """
@@ -98,5 +99,11 @@ def delete_profile(request, user_profile_id):
                 messages.error(request, 'Incorrect password. Account not deleted.')
     else:
         form = DeleteAccountForm()
+    
+    template = 'profiles/delete_profile.html'
+    context = {
+        'user_profile': user_profile,
+        'form': form,
+    }
 
-    return render(request, 'profiles/delete_profile.html', {'user_profile': user_profile, 'form': form})
+    return render(request, context, template)

@@ -24,14 +24,14 @@
                     <p>
                         If so, you need to confirm that by entering your password
                     </p>
-                    <form class="mt-3" action="{% url 'delete_profile' user_profile_id=user_profile.id %}" method="POST" id="profile-update-form">
+                    <form class="mt-3" action="{% url 'delete_profile' user_profile.id %}" method="POST">
                         {% csrf_token %}
                         {{ form | crispy }}
                     <hr>
                         <span class="btn btn-primary rounded-0">
                             <a href="{% url 'profile' %}">Cancel</a>
                         </span>
-                        <button type="submit" name="profile-update-form" class="btn btn-danger rounded-0">Delete</button>
+                        <button type="submit" class="btn btn-danger rounded-0">Delete</button>
                     </form>
                 </div>
             </div>
