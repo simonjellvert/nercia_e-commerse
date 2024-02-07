@@ -51,6 +51,11 @@ class ProductContentForm(forms.ModelForm):
     class Meta:
         model = ProductContent
         fields = ['day', 'title', 'purpose', 'topics']
+    
+    def __init__(self, *args, **kwargs):
+        super(ProductContentForm, self).__init__(*args, **kwargs)
+
+        self.fields['topics'].widget.attrs['placeholder'] = "'This is an example of how to add many topics and create a list', '...and so on',"
 
 ProductContentFormSet = inlineformset_factory(
     Product,
