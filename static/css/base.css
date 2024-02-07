@@ -37,18 +37,13 @@ label {
 .logotype {
     max-height: 35px;
     height: auto;
-    margin-left: 156px;
 }
 
 .navbar {
     background-color: #fff;
-    margin: 15px 0 15px 0;
+    margin: 15px 5rem 15px 5rem;
     z-index: 1000;
     padding: 0;
-}
-
-.header {
-    margin-right: 156px;
 }
 
 .navbar-toggler-wrapper {
@@ -730,10 +725,6 @@ li {
 
     .base-navbar {
         padding: 0;
-    }
-
-    .navbar-toggler-icon {
-        margin-right: 30px;
     }
 
     .navbar-light .navbar-nav .nav-link {
