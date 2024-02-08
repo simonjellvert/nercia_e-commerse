@@ -37,7 +37,6 @@ def all_products(request):
                 products = products.filter(queries)
             
             if not products.exists():
-                # Redirect to the main products page if there are no search results
                 return redirect(reverse('products'))
 
             product_queries = Q(name__icontains=query) | Q(description__icontains=query)

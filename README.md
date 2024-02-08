@@ -58,6 +58,7 @@ This webshop is for new and old customers of Nercia and should exist to simplify
 | [#9](https://github.com/simonjellvert/nercia_e-commerse/issues/9) | As a **site user** I can **receive an email confirmation after registration** so that I can **verify that my account was successfully created** |
 | [#10](https://github.com/simonjellvert/nercia_e-commerse/issues/10) | As a **site user** I can **update or edit my account** so that I can **edit my information** |
 | [#11](https://github.com/simonjellvert/nercia_e-commerse/issues/11) | As a **site user** I can **delete my account** so that I can **remove it if I'm not longer using it** |
+| [#24](https://github.com/simonjellvert/nercia_e-commerse/issues/24) | As a ***site user** I can **subscribe to newsletters** so that I can **hear about new products and other relevant information regarding company training.** |
 
 #### Bag
 
@@ -81,6 +82,7 @@ This webshop is for new and old customers of Nercia and should exist to simplify
 | [#20](https://github.com/simonjellvert/nercia_e-commerse/issues/20) | As a **admin** I can **add, edit and delete categories** so that I can **keep them up to date** |
 | [#21](https://github.com/simonjellvert/nercia_e-commerse/issues/21) | As a **admin** I can **add, edit and delete products** so that I can **make sure the products are up to date** |
 | [#22](https://github.com/simonjellvert/nercia_e-commerse/issues/22) | As a **admin** I can **review customers orders** so that I can **add them to the CRM** |
+| [#23](https://github.com/simonjellvert/nercia_e-commerse/issues/23) | As a **administrator** I can **send newsletters to those users that subscribes** so that **they can receive information about new products and other relevant information** |
 
 ---
 

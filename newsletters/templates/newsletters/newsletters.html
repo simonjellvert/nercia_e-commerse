@@ -1,0 +1,63 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block content %}
+<div class="container-fluid container-product-header mt-5">
+    <div>
+        <h1 class="page-header">
+            Newsletters
+        </h1>
+    </div>
+</div>
+<hr class="custom-hr-pr-detail">
+<div class="col-12">
+    <div>
+        <div class="row">
+            <a href="{% url 'create_newsletter' %}" class="btn btn-primary rounded-0">Create new</a>
+        </div>
+        <div class="row">
+            <div class="col-12 col-md-4">
+                <form method="get" action="{% url 'newsletters' %}">
+                    <label for="newsletter_category">Filter by Category:</label>
+                    <select name="newsletter_category" id="newsletter_category">
+                        <option value="">All</option>
+                        <option value="general">General</option>
+                        <option value="promotions">Promotions</option>
+                        <option value="product_updates">Product Updates</option>
+                    </select>
+                    <button type="submit" class="btn btn-primary rounded-0">Filter</button>
+                </form>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-12 col-md-8">
+                <table class="table table-sm table-borderless">
+                    <thead>
+                        <tr>
+                            <th>Created</th>
+                            <th>Title</th>
+                            <th>Category</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for newsletter in newsletters %}
+                            <tr>
+                                <td>
+                                    {{ newsletter.created_at }} <br>
+                                </td>
+                                <td>
+                                    {{ newsletter.title }}
+                                </td>
+                                <td>
+                                    {{ newsletter.newsletter_category }}</td>
+                                </td>
+                            </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock %}

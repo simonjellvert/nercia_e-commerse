@@ -5,6 +5,8 @@ from django.db.models.signals import post_save
 from django.dispatch import receiver
 from django_countries.fields import CountryField
 
+from newsletters.models import Newsletter
+
 
 class CustomUserManager(BaseUserManager):
     """
@@ -71,7 +73,7 @@ class UserProfile(models.Model):
     city = models.CharField(max_length=40, null=False, blank=False)
     country = CountryField(blank_label='Country', null=False, blank=False)
     invoice_email = models.EmailField(max_length=254, null=True, blank=True)
-
+    newsletter_subscription = models.BooleanField(default=False, null=False, blank=False)
     def __str__(self):
         return self.user.email
 

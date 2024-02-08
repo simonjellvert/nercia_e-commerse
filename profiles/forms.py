@@ -13,6 +13,13 @@ class CustomSignupForm(SignupForm):
 
 
 class UserProfileForm(forms.ModelForm):
+    newsletter_subscription = forms.BooleanField(
+        label='Subscribe to Newsletter',
+        required=False,
+        initial=True,
+        widget=forms.CheckboxInput(attrs={'class': 'stripe-style-input'}),
+    )
+    
     class Meta:
         model = UserProfile
         fields = [
@@ -27,7 +34,8 @@ class UserProfileForm(forms.ModelForm):
             'postcode',
             'city',
             'country',
-            'invoice_email'
+            'invoice_email',
+            'newsletter_subscription',
         ]
 
     def __init__(self, *args, **kwargs):
@@ -45,22 +53,21 @@ class UserProfileForm(forms.ModelForm):
             'city': 'City',
             'country': 'Country',
             'invoice_email': 'Invoice Email',
+            'newsletter_subscription': 'Subscribe to Newsletter',
         }
 
         for field in self.fields:
-            if 'class' in self.fields[field].widget.attrs:
-                del self.fields[field].widget.attrs['class']
-
-            if self.fields[field].required:
+            if field == 'newsletter_subscription':
+                self.fields[field].widget.attrs['class'] = 'stripe-style-input'
+            elif self.fields[field].required:
                 placeholder = f'{placeholders[field]} *'
+                self.fields[field].widget.attrs['placeholder'] = placeholder
+                self.fields[field].widget.attrs['class'] = 'stripe-style-input'
+                self.fields[field].label = False
             else:
-                placeholder = placeholders[field]
-
-            # Set placeholder and class separately
-            self.fields[field].widget.attrs['placeholder'] = placeholder
-            self.fields[field].widget.attrs['class'] = 'stripe-style-input'
-            self.fields[field].label = False
-
+                self.fields[field].widget.attrs['placeholder'] = placeholders[field]
+                self.fields[field].widget.attrs['class'] = 'stripe-style-input'
+                self.fields[field].label = False
 
 # Form for delete profile with password authentication setup for future development
 class DeleteAccountForm(forms.Form):
