@@ -366,6 +366,12 @@ button.form-control:hover {
     border-radius: 0;
 }
 
+/* ------------------------ Contact Page */
+
+.google-map {
+    width: 100%;
+}
+
 
 
 /* ------------------------ Allauth */
@@ -816,6 +822,10 @@ li {
 
     .search-nav {
         padding: 15px 30px 0 30px;
+    }
+
+    .google-map {
+        height: 200px;
     }
 
 }
