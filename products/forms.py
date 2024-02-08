@@ -44,6 +44,7 @@ class ProductForm(forms.ModelForm):
         for field_name, field in self.fields.items():
             field.widget.attrs['class'] = 'border-black rounded-0'
 
+
 class ProductContentForm(forms.ModelForm):
     """
     Form for adding product content to the product
