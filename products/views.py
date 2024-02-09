@@ -79,7 +79,8 @@ def product_detail(request, product_id):
 @staff_member_required
 def product_management(request):
     """
-    A view for administrators to either add new product or edit or delete excisting prodducts
+    A view for administrators to either add new 
+    product or edit or delete excisting prodducts
     """
     if not request.user.is_superuser:
         messages.error(request, 'Sorry, only store owners can do that.')
@@ -99,9 +100,7 @@ def product_management(request):
 
 @staff_member_required
 def add_product(request):
-    """
-    Add a new product
-    """
+    """Add a new product"""
     if not request.user.is_superuser:
         messages.error(request, 'Sorry, only store owners can do that.')
         return redirect(reverse('home'))
