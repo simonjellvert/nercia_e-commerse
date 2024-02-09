@@ -257,7 +257,6 @@ When user signs up, a new profile is created.
 | user          | user          | OneToOneField | User, on_delete=models.CASCADE, related_name='profile', verbose_name='User' |
 | first_name    | first_name    | CharField    | max_length=50, blank=True, null=True, verbose_name='First name' |
 | last_name     | last_name     | CharField    | max_length=50, blank=True, null=True, verbose_name='Last name' |
-| birthday      | birthday      | DateField    | blank=True, null=True, verbose_name='Birthday' |
 | avatar        | avatar        | CloudinaryField | blank=True, null=True, verbose_name='Avatar' |
 | subscription | subscription | BooleanField | default=False, verbose_name='Subscription' |
 | role          | role          | ForeignKey   | Role, default=1, on_delete=models.SET_NULL, null=True, verbose_name='Role' |
