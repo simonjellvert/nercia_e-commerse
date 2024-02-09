@@ -12,6 +12,7 @@ from django.core.mail import send_mail
 from django.template.loader import render_to_string
 
 from profiles.models import UserProfile
+from profiles.forms import UserProfileForm
 from products.models import Product
 from .forms import CheckoutForm
 from .models import Order, OrderLineItem
@@ -39,6 +40,7 @@ def checkout(request):
     """
     Function to handle invoice or card payment
     """
+    print("Checkout view called")
     stripe_public_key = settings.STRIPE_PUBLIC_KEY
     stripe_secret_key = settings.STRIPE_SECRET_KEY
 
@@ -57,6 +59,8 @@ def checkout(request):
         amount=round(grand_total * 100),
         currency=settings.STRIPE_CURRENCY,
     )
+
+    print(intent)
 
     if request.method == 'POST':
         order_form = CheckoutForm(request.POST)

@@ -68,6 +68,7 @@ class UserProfileForm(forms.ModelForm):
                 self.fields[field].widget.attrs['placeholder'] = placeholders[field]
                 self.fields[field].widget.attrs['class'] = 'stripe-style-input'
                 self.fields[field].label = False
+    
 
 # Form for delete profile with password authentication setup for future development
 class DeleteAccountForm(forms.Form):
