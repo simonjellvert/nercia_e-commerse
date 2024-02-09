@@ -18,7 +18,7 @@ def newsletters(request):
     if 'newsletter_category' in request.GET:
         category = request.GET['newsletter_category']
         if category:
-            newsletters_list = newsletters_list.filter(category__name=category)
+            newsletters_list = newsletters_list.filter(newsletter_category=category)
 
     template = 'newsletters/newsletters.html'
     context = {
