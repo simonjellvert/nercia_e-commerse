@@ -4,17 +4,17 @@
 {% block extra_title %}{{ product.name }}{% endblock %}
 
 {% block content %}
-<div class="container-fluid container-product-header mt-5">
-    <div>
+<div class="container-fluid p-0 mt-5">
+    <div class="header-container">
         <h1 class="page-header">
             {{ product.name }}
         </h1>
     </div>
 </div>
 <hr class="custom-hr-pr-detail">
-<div class="container-fluid container-fluid-detail">
-    <div class="row-100 d-flex justify-content-center align-items-start">
-        <div class="col-lg-6 col-12 content-col mb-5">
+<div class="container-fluid p-0">
+    <div>
+        <div class="col-lg-6 col-12 content-col mb-5 pl-0">
             <div class="mb-5">
                 <p class="product-description">{{ product.description }}</p>
             </div>

@@ -1,0 +1,1 @@
+web: gunicorn nercia_webshop.wsgi:application

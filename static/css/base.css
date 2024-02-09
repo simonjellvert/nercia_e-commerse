@@ -103,6 +103,10 @@ i.fa-chevron-down {
     font-family: 'Ubuntu', sans-serif;
 }
 
+.header-container {
+    margin: 0 5rem 0 5rem;
+}
+
 /* ------------------------ Index page */
 
 .center {
@@ -270,7 +274,6 @@ button.form-control:hover {
 
 .page-header {
     font-size: 39px;
-    margin-left: 156px;
 }
 
 
