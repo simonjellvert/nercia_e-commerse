@@ -50,6 +50,9 @@ def checkout(request):
 
     user_profile = request.user.userprofile
 
+    print(f"Grand Total: {grand_total}")
+    print(f"Amount (rounded): {round(grand_total * 100)}")
+
     intent = stripe.PaymentIntent.create(
         amount=round(grand_total * 100),
         currency=settings.STRIPE_CURRENCY,

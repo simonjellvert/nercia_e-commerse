@@ -16,8 +16,11 @@ class CustomSignUpView(SignupView):
 
 @login_required
 def profile(request):
-    user_profile = request.user.userprofile
-    print(user_profile.id)
+    try:
+        user_profile = request.user.userprofile
+    except UserProfile.DoesNotExist:
+        user_profile, created = UserProfile.objects.get_or_create(user=request.user)
+
     orders = user_profile.orders.all()
 
     initial_data = {
