@@ -36,6 +36,7 @@ DEBUG = os.environ.get("DEBUG") == "True"
 ALLOWED_HOSTS = [
     '8000-simonjellve-nerciaecomm-bcydczqm2g4.ws-eu108.gitpod.io',
     'nercia-webshop.herokuapp.com',
+    'nercia-webshop-d857b5ee4d1a.herokuapp.com/',
 ]
 
 
