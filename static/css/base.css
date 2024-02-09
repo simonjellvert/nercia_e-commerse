@@ -26,6 +26,10 @@ a {
     font-family: 'Ubuntu', sans-serif;
 }
 
+a:hover {
+    text-decoration: none;
+}
+
 label {
     font-family: 'Ubuntu', sans-serif;
     font-weight: 100;
@@ -144,6 +148,7 @@ i.fa-chevron-down {
 }
 
 .circle {
+    font-weight: 100;
     width: 150px;
     height: 150px;
     background-color: rgb(157, 34, 53);
@@ -251,6 +256,10 @@ button.form-control:hover {
 .category-link {
     text-decoration: none;
     color: #000;
+}
+
+.search-nav {
+    margin: 0;
 }
 
 /* ------------------------ Product Detail */
@@ -386,8 +395,8 @@ button.form-control:hover {
 }
 
 .contact-info {
-    text-align: center; /* Center align the content */
-    padding: 15px; /* Add some padding for space around the content */
+    text-align: center;
+    padding: 15px;
 }
 
 .contact-detail {

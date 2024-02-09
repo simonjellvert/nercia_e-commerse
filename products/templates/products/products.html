@@ -59,6 +59,9 @@
                                 </div>
                             </div>
                         </form>
+                        {% if search_terms and not products %}
+                            <p>No matching products found for '{{ search_terms }}'.</p>
+                        {% endif %}
                         <hr>
                         <h3 class="text-left category-header">
                             Choose by category
