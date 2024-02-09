@@ -52,7 +52,7 @@ def profile(request):
         user_profile = request.user.userprofile
         profile_form = UserProfileForm(instance=user_profile)
 
-    return render(request, 'profiles/profile.html', {'profile_form': profile_form, 'orders': orders,})
+    return render(request, 'profiles/profile.html', {'profile_form': profile_form, 'orders': orders, 'user_profile': user_profile})
 
 
 def order_history(request, order_number):
@@ -79,10 +79,6 @@ def order_history(request, order_number):
 @login_required
 def delete_profile(request, user_profile_id):
     """ Function to delete profile """
-    if not request.user.is_authenticated:
-        messages.error(request, 'Sorry, you are not allowed to go here.')
-        return redirect(reverse('home'))
-
     user_profile = UserProfile.objects.get(pk=user_profile_id)
 
     if request.method == 'POST':
@@ -94,19 +90,23 @@ def delete_profile(request, user_profile_id):
             user = authenticate(email=request.user.email, password=password)
 
             if user is not None:
-                user_profile.delete()
-                user_profile.logout()
-                messages.success(request, 'Account deleted!')
-                return redirect(reverse('home'))
+                # Check if the user to be deleted is the currently logged-in user
+                if user.id == user_profile.user.id:
+                    user_profile.user.delete()
+                    logout(request)
+                    messages.success(request, 'Account deleted successfully!')
+                    return redirect(reverse('home'))
+                else:
+                    messages.error(request, 'You can only delete your own account.')
             else:
                 messages.error(request, 'Incorrect password. Account not deleted.')
     else:
         form = DeleteAccountForm()
-    
+
     template = 'profiles/delete_profile.html'
     context = {
         'user_profile': user_profile,
         'form': form,
     }
 
-    return render(request, context, template)
+    return render(request, template, context)
