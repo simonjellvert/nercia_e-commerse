@@ -372,6 +372,34 @@ button.form-control:hover {
     width: 100%;
 }
 
+.card-div {
+    width: 300px;
+    height: auto;
+}
+
+.contact-card {
+    height: auto;
+}
+
+.custom-card-body {
+    border: none;
+}
+
+.contact-info {
+    text-align: center; /* Center align the content */
+    padding: 15px; /* Add some padding for space around the content */
+}
+
+.contact-detail {
+    display: flex;
+    align-items: center;
+    margin-bottom: 5px;
+}
+
+.contact-detail i {
+    margin-right: 5px;
+}
+
 
 
 /* ------------------------ Allauth */

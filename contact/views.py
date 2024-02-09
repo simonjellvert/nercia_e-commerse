@@ -1,5 +1,6 @@
-from django.shortcuts import render
+from django.shortcuts import render, get_object_or_404, redirect, reverse
 from django.contrib.admin.views.decorators import staff_member_required
+from django.contrib import messages
 
 from .forms import ContactForm
 from .models import Contact
@@ -32,7 +33,7 @@ def add_contact(request):
     else:
         form = ContactForm()
 
-    template = 'contact/contact.html'
+    template = 'contact/add_contact.html'
     context = {
         'form': form,
     }
@@ -54,7 +55,7 @@ def edit_contact(request, contact_id):
         if form.is_valid():
             form.save()
             messages.success(request, 'Successfully updated contact!')
-            return redirect(reverse('contact', args=[contact.id]))
+            return redirect('contact')
         else:
             messages.error(
                 request, 'Failed to update contact. Please ensure the form is valid.')
@@ -62,7 +63,7 @@ def edit_contact(request, contact_id):
         form = ContactForm(instance=contact)
         messages.info(request, f'You are editing {contact.name}')
 
-    template = 'contact/contact.html'
+    template = 'contact/edit_contact.html'
     context = {
         'form': form,
         'contact': contact,
