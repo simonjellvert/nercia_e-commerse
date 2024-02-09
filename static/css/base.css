@@ -461,6 +461,8 @@ button.form-control:hover {
 
 main.content {
     flex: 1;
+    min-height: 80vh;
+    margin: 15px 5rem;
 }
 
 /* ------------------------ Footer */
@@ -608,6 +610,11 @@ li {
 
     a {
         font-size: 1rem;
+    }
+
+    main.content {
+        margin: 15px;
+        padding: 15px;
     }
 
     .base-navbar {

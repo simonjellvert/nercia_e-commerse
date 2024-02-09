@@ -29,6 +29,7 @@
                         {{ profile_form.last_name|as_crispy_field }}
                         {{ profile_form.email|as_crispy_field }}
                         {{ profile_form.phone_number|as_crispy_field }}
+                    <a href="{% url 'account_change_password' %}" aria-label="Go to change password page">Change your password here</a>
                     <hr>
                     <p class="text-muted">
                         Company Information

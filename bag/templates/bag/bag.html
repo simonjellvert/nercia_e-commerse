@@ -5,134 +5,115 @@
 {% block extra_title %} | Shopping Bag{% endblock %}
 
 {% block content %}
-<div class="container-fluid welcome mb-5">
-    <div class="row w-100 d-flex justify-content-center align-items-center">
+<div class="container-fluid welcome mb-3 p-0">
+    <div class="row">
         <h1>Your Cart</h1>
-        <hr>
+    </div>
+    <hr>
+    <div class="row">
         {% if bag_items %}
-            <div class="col-lg-6">
-                <h3>Products</h3>
+            <div class="col-12 col-lg-6 p-0 mb-5">
+                <h3 class="mb-3">Products</h3>
                 <div>
                     {% for item in bag_items %}
-                        <div class="row">
-                            <div class="col-3">
-                                <img src="{{ item.product.image.url }}" alt="{{ product.alt_atr }}" style="width: 150px;">
+                        <div class="row mb-2">
+                            <div class="col-12 col-sm-4">
+                                <p>{{ item.product }}</p>
                             </div>
-                            <div class="col-9">
-                                <h4>{{ item.product }}</h4>
-                                <p>Start date</p>
-                                <div class="row">
-                                    <div class="col">
-                                        <form class="form update-form" method="POST" action="{% url 'edit_bag' item.item_id %}">
-                                            {% csrf_token %}
-                                            <div class="form-group">
-                                                <div class="input-group">
-                                                    <div class="input-group-prepend">
-                                                        <button class="decrement-qty btn btn-sm btn-black rounded-0" 
-                                                            data-item_id="{{ item.item_id }}" id="decrement-qty_{{ item.item_id }}">
-                                                            <span>
-                                                                <i class="fas fa-minus fa-sm"></i>
-                                                            </span>
-                                                        </button>
-                                                    </div>
-                                                    <input class="form-control form-control-sm qty_input" type="number"
-                                                        name="quantity" value="{{ item.quantity }}" min="1" max="99"
-                                                        data-item_id="{{ item.item_id }}"
-                                                        id="id_qty_{{ item.item_id }}">
-                                                    <div class="input-group-append">
-                                                        <button class="increment-qty btn btn-sm btn-black rounded-0"
-                                                            data-item_id="{{ item.item_id }}" id="increment-qty_{{ item.item_id }}">
-                                                            <span>
-                                                                <i class="fas fa-plus fa-sm"></i>
-                                                            </span>
-                                                        </button>
-                                                    </div>
-                                                </div>
+                            <div class="col-8 col-sm-4">
+                                <form class="form update-form" method="POST" action="{% url 'edit_bag' item.item_id %}">
+                                    {% csrf_token %}
+                                    <div class="form-group">
+                                        <div class="input-group">
+                                            <div class="input-group-prepend">
+                                                <button class="decrement-qty btn btn-sm btn-black rounded-0" 
+                                                    data-item_id="{{ item.item_id }}" id="decrement-qty_{{ item.item_id }}">
+                                                    <span>
+                                                        <i class="fas fa-minus fa-sm"></i>
+                                                    </span>
+                                                </button>
                                             </div>
-                                        </form>
-                                        <a class="update-link text-info" aria-label="Update the number of items of the product"><small>Update</small></a>
-                                        <a class="remove-item text-danger float-right" id="remove_{{ item.item_id }}" aria-label="Delete the product from the shopping bag"><small>Remove</small></a>
+                                            <input class="form-control form-control-sm qty_input" type="number"
+                                                name="quantity" value="{{ item.quantity }}" min="1" max="99"
+                                                data-item_id="{{ item.item_id }}"
+                                                id="id_qty_{{ item.item_id }}">
+                                            <div class="input-group-append">
+                                                <button class="increment-qty btn btn-sm btn-black rounded-0"
+                                                    data-item_id="{{ item.item_id }}" id="increment-qty_{{ item.item_id }}">
+                                                    <span>
+                                                        <i class="fas fa-plus fa-sm"></i>
+                                                    </span>
+                                                </button>
+                                            </div>
+                                        </div>
                                     </div>
-                                    <div class="col">${{ item.product.price | calc_subtotal:item.quantity }}</div>
-                                </div>
+                                </form>
+                                <a class="update-link text-info" aria-label="Update the number of items of the product"><small>Update</small></a>
+                                <a class="remove-item text-danger float-right" id="remove_{{ item.item_id }}" aria-label="Delete the product from the shopping bag"><small>Remove</small></a>
+                            </div>
+                            <div class="col-4 col-sm-2 text-left">
+                                <p>${{ item.product.price | calc_subtotal:item.quantity }}</p>
                             </div>
                         </div>
                     {% endfor %}
                 </div>
             </div>
-            <div class="col-lg-4">
+
+            <div class="col-lg-6 p-0">
                 <h3>Order summary</h3>
                 <div class="row">
-                    <div class="col">Bag Total</div>
-                    <div class="col">${{ total|floatformat:2 }}</div>
-                </div>
-                {% if promo_code %}
-                    <div class="row">
-                        <div class="col">Discount</div>
-                        <div class="col">${{ total_discount }}</div>
+                    <div class="col">
+                        <p>Bag Total</p>
                     </div>
-                {% else %}
-                    <div class="row">
-                        <div class="col">Discount</div>
-                        <div class="col">$0.00</div>
-                    </div>
-                {% endif %}
-                <hr>
-                <div class="row">
-                    <div class="col">Grand Total (excl. VAT)</div>
-                    <div class="col">{{ grand_total|floatformat:2 }}</div>
-                </div>
-                <div class="row">
-                    <div class="col">VAT</div>
-                    <div class="col">${{ tax|floatformat:2 }}</div>
-                </div>
-                <div class="row">
-                    <div class="col-6">
-                        <a href="{% url 'products' %}">Keep shopping</a>
-                    </div>
-                    <div class="col-6">
-                        <a href="{% url 'checkout' %}">Checkout</a>
+                    <div class="col">
+                        <p>${{ total|floatformat:2 }}</p>
                     </div>
                 </div>
                 <hr>
-                <!-- Bootstrap 4 dropdown input field for promocode -->
-                <div class="promo-code row mx-0 mb-3 border-bottom">
-                    <div class="col-12">
-                        <div class="row">
-                            <button class="btn btn-link promo-open-btn" type="button" data-toggle="collapse" data-target="#collapsePromoInput" aria-expanded="true" aria-controls="collapsePromoInput">
-                                <h4>Do you have a promo code?</h4>
-                                <i class="fa-solid fa-chevron-down"></i>
-                            </button>
-                        </div>
-                        <div class="promo-form collapse show">
-                            <form action="" method="">
-                                <div class="row">
-                                    <div class="col-12">
-                                        <input type="hidden" value="Enter your code here">
-                                        <div class="col-12">
-                                            <button type="submit" aria-label>Apply</button>
-                                        </div>
-                                    </div>
-                                </div>
-                            </form>
-                        </div>
+                <div class="row">
+                    <div class="col">
+                        <p>VAT</p>
+                    </div>
+                    <div class="col">
+                        <p>${{ tax|floatformat:2 }}</p>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col">
+                        <p>Grand Total (excl. VAT)</p>
+                    </div>
+                    <div class="col">
+                        <p>{{ grand_total|floatformat:2 }}</p>
+                    </div>
+                </div>
+                <hr>
+                <div class="row">
+                    <div class="col-6">
+                        <span class="btn btn-primary rounded-0">
+                            <a href="{% url 'products' %}" class="text-white" aria-label="Go back to shopping page">Keep shopping</a>
+                        </span>
+                    </div>
+                    <div class="col-6">
+                        <span class="btn btn-success rounded-0">
+                            <a href="{% url 'checkout' %}" class="text-white" aria-label="Go the the checkout page">Checkout</a>
+                        </span>
                     </div>
                 </div>
             </div>
+
         {% else %}
-            <div>
-                <h2>Your bag is empty</h4>
-                <a href="{% url 'products' %}" class="btn-btn-outline-black rounded-0 btn-lg" aria-label="Go back to shopping page">
-                    <span class="icon">
-                        <i class="fas fa-chevron-left"></i>
-                    </span>
-                    <span>Back to products</span>
+            <div class="col-12 col-lg-6 mt-5 p-0">
+                <h2 class="mb-3">Your bag is empty</h2>
+                <span class="btn btn-primary rounded-0">
+                    <a href="{% url 'products' %}" class="text-white" aria-label="Go back to products page">Back to products</a>
+                </span>
                 </a>
             </div>
         {% endif %}
     </div>
 </div>
 {% endblock %}
+
 
 {% block postloadjs %}
 {{ block.super }}
