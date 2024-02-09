@@ -1,0 +1,29 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block extra_title %} | Shop{% endblock %}
+
+{% block content %}
+<div class="container-fluid container-products">
+    <div class="row">
+        <div class="col-12 p-0">
+            <img src="{% static 'img/background_img/background_products.png' %}" alt="Skydiver falling from the air"
+                class="background-products mb-5">
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-12 mb-3 mt-5 d-flex flex-column align-items-center text-center">
+            <h1 class="mb-3">
+                OPS!
+            </h1>
+            <p class="products-header-p mb-3">
+                We are sorry, but there seems to be some issues with the internal server right now...
+            </p>
+            <span class="btn btn-primary rounded-0">
+                <a href="{% url 'home' %}" aria-label="Go back to home page"><i class="fa-solid fa-chevron-left mr-2"></i>Go Back</a>
+            </span>
+        </div>
+    </div>
+</div>
+
+{% endblock %}
