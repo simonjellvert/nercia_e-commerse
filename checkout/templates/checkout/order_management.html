@@ -32,7 +32,7 @@
                     <tr>
                         <td>
                             {{ order.order_number }} <br>
-                            <a href="#" data-toggle="modal" data-target="#deleteOrderModal{{ order.id }}">Delete</a>
+                            <a href="#" data-toggle="modal" data-target="#deleteOrderModal{{ order.id }}" aria-label="Opens the order deletion confirmation">Delete</a>
                         </td>
                         <td>{{ order.user_profile.company_name }}</td>
                         <td>{{ order.created }}</td>

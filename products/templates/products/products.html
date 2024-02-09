@@ -48,7 +48,7 @@
                         </h3>
                         <form method="GET" action="{% url 'products' %}">
                             <div class="input-group w-100">
-                                <input class="form-control border border-black rounded-0" type="text" name="q"
+                                <input class="form-control border border-black rounded-0" style="height: auto;" type="text" name="q"
                                     placeholder="e.g Leadership">
                                 <div class="input-group-append">
                                     <button class="form-control btn border rounded-0" type="submit">
@@ -69,7 +69,7 @@
                         <ul class="list-unstyled">
                             {% for category in categories %}
                                 <div class="category-item" data-categories="{{ category.pk }}">
-                                    <a href="{% url 'products' %}?category={{ category.name }}" class="category-link">
+                                    <a href="{% url 'products' %}?category={{ category.name }}" class="category-link" aria-label="Search for {{ category.name }}">
                                         <label class="d-flex align-items-center" for="category-{{ category.name }}">
                                             <input class="category-text mr-2 category-checkbox" type="checkbox" id="category-{{ category.name }}" name="category"
                                                 value="{{ category.name }}">{{ category.friendly_name }}
@@ -88,14 +88,16 @@
             <section>
                 <div class="row">
                     {% for product in products %}
-                    <div class="col-xl-4 col-lg-6 col-md-6 p-2 w-100 product-item" data-categories="{{ product.category.all|join:',' }}">
-                            <a href="{% url 'product_detail' product.id %}" class="card-hover">
+                        <div class="col-xl-4 col-lg-6 col-md-6 p-2 w-100 product-item" data-categories="{{ product.category.all|join:',' }}">
+                            <a href="{% url 'product_detail' product.id %}" class="card-hover" aria-label="Read more about {{ product.name }}">
                                 <div class="card rounded-0">
-                                    {% if product.image %}
-                                        <img src="{{ product.image.url }}" class="card-img-top rounded-0" alt="{{ product.alt_atr }}">
-                                    {% else %}
-                                        <img src="{{ MEDIA_URL }}no_image.jpg" class="card-img-top" alt="No image">
-                                    {% endif %}
+                                    <div class="card-img-container">
+                                        {% if product.image %}
+                                            <img src="{{ product.image.url }}" class="card-img-top rounded-0" alt="{{ product.alt_atr }}">
+                                        {% else %}
+                                            <img src="{% static 'img/broken_image/no_image.jpg' %}" class="card-img-top" alt="The image is broken or missing">
+                                        {% endif %}
+                                    </div>
                                     <div class="card-body border-top-4">
                                         <h5 class="card-title">{{ product.name }}</h5>
                                         <p class="card-text">{{ product.description_short }}</p>

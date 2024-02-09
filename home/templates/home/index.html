@@ -13,7 +13,7 @@
                         You can also create your own account to be able to save billing information and keep track of
                         previous bookings.
                     </p>
-                    <a href="{% url 'products' %}" class="shop-now-link">
+                    <a href="{% url 'products' %}" class="shop-now-link" aria-label="Go to shopping page">
                         <span>
                             <strong>
                                 Search and shop your trainings <i class="fas fa-arrow-right"></i>
@@ -35,13 +35,13 @@
         <!-- Circle 1 -->
         <div class="col-12 col-md-4 d-flex justify-content-center align-items-center circle-padding">
             {% if user.is_authenticated %}
-                <a href="">
+                <a href="{% url 'profile' %}" aria-label="Go to profile page">
                     <div class=" circle circle-1">
                         Go to profile                       
                     </div>
                 </a>
             {% else %}
-                <a href="">
+                <a href="{% url 'signup_url' %}" aria-label="Go to sign up page">
                     <div class=" circle circle-1">
                         Create account
                     </div>
@@ -51,7 +51,7 @@
 
         <!-- Circle 2 -->
         <div class="col-12 col-md-4 d-flex justify-content-center align-items-center circle-padding">
-            <a href="{% url 'products' %}">
+            <a href="{% url 'products' %}" aria-label="Go to shopping page">
                 <div class="circle">
                     Shop trainings
                 </div>
@@ -60,7 +60,7 @@
 
         <!-- Circle 3 -->
         <div class="col-12 col-md-4 d-flex flex-column justify-content-center align-items-center circle-padding">
-            <a href="{% url 'contact' %}">
+            <a href="{% url 'contact' %}" aria-label="Go to contact page">
                 <div class="circle circle-3">
                     Contact
                 </div>

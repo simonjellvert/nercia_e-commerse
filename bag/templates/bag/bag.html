@@ -50,8 +50,8 @@
                                                 </div>
                                             </div>
                                         </form>
-                                        <a class="update-link text-info"><small>Update</small></a>
-                                        <a class="remove-item text-danger float-right" id="remove_{{ item.item_id }}"><small>Remove</small></a>
+                                        <a class="update-link text-info" aria-label="Update the number of items of the product"><small>Update</small></a>
+                                        <a class="remove-item text-danger float-right" id="remove_{{ item.item_id }}" aria-label="Delete the product from the shopping bag"><small>Remove</small></a>
                                     </div>
                                     <div class="col">${{ item.product.price | calc_subtotal:item.quantity }}</div>
                                 </div>
@@ -122,7 +122,7 @@
         {% else %}
             <div>
                 <h2>Your bag is empty</h4>
-                <a href="{% url 'products' %}" class="btn-btn-outline-black rounded-0 btn-lg">
+                <a href="{% url 'products' %}" class="btn-btn-outline-black rounded-0 btn-lg" aria-label="Go back to shopping page">
                     <span class="icon">
                         <i class="fas fa-chevron-left"></i>
                     </span>

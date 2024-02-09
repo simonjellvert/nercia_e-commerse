@@ -22,7 +22,7 @@
                 <h2 class="product-content-header">Program Content</h2>
                 {% if request.user.is_authenticated %}
                     {% if request.user.is_superuser %}
-                        <a href="{% url 'add_product_content' product_id=product.id %}">Edit Content</a>
+                        <a href="{% url 'add_product_content' product_id=product.id %}" aria-label="Go to add product content page">Edit Content</a>
                     {% endif %}
                 {% endif %}
                 {% for product_content in product_contents %}
@@ -41,8 +41,8 @@
         <div class="col-lg-3 col-12 detail-col mb-5">
             {% if request.user.is_authenticated %}
                 {% if request.user.is_superuser %}
-                    <a href="{% url 'edit_product' product.id %}">Edit description</a>
-                    <a href="#" data-toggle="modal" data-target="#deleteProductModal" class="text-danger">Delete</a>
+                    <a href="{% url 'edit_product' product.id %}" aria-label="Go to edit product page">Edit description</a>
+                    <a href="#" data-toggle="modal" data-target="#deleteProductModal" class="text-danger" aria-label="Open up the delete product confirmation">Delete</a>
                 {% endif %}
             {% endif %}
             
@@ -86,7 +86,7 @@
                     </div>
 
                     <div class="col-12">
-                        <a href="{% url 'products' %}" class="btn btn-outline-black rounded-0 mt-5">
+                        <a href="{% url 'products' %}" class="btn btn-outline-black rounded-0 mt-5" aria-label="Go back to products page">
                             <span class="icon">
                                 <i class="fas fa-chevron-left"></i>
                             </span>
@@ -116,7 +116,7 @@
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
-                <a href="{% url 'delete_product' product_id=product.id %}" class="btn btn-danger">Delete</a>
+                <a href="{% url 'delete_product' product_id=product.id %}" class="btn btn-danger" aria-label="Delete the product">Delete</a>
             </div>
         </div>
     </div>

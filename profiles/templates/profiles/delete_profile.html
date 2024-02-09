@@ -19,19 +19,18 @@
                 </div>
             </div>
             <div class="row">
-                <div class="col-12 col-lg-6">
+                <div class="col-12 col-lg-6 mt-3">
                     <p>
                         Are you sure you want to delete your profile?
                     </p>
                     <p>
                         If so, you need to confirm that by entering your password
                     </p>
-                    <form class="mt-3" action="{% url 'delete_profile' user_profile.id %}" method="POST">
+                    <form class="mb-5" action="{% url 'delete_profile' user_profile.id %}" method="POST">
                         {% csrf_token %}
                         {{ form | crispy }}
-                    <hr>
                         <span class="btn btn-primary rounded-0">
-                            <a href="{% url 'profile' %}">Cancel</a>
+                            <a href="{% url 'profile' %}" class="text-white" aria-label="Go back to my profile page">Cancel</a>
                         </span>
                         <button type="submit" class="btn btn-danger rounded-0">Delete</button>
                     </form>

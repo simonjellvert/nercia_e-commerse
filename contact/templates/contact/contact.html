@@ -25,7 +25,7 @@
             {% if request.user.is_authenticated %}
                 {% if request.user.is_superuser %}
                     <span class="btn btn-primary rounded-0">
-                        <a href="{% url 'add_contact' %}" class="text-white text-decoration-none">Add Contact</a>
+                        <a href="{% url 'add_contact' %}" class="text-white text-decoration-none" aria-label="Go to add a new contact page">Add Contact</a>
                     </span>
                 {% endif %}
             {% endif %}
@@ -53,8 +53,8 @@
                         {% if request.user.is_authenticated %}
                             {% if request.user.is_superuser %}
                                 <div>
-                                    <a href="{% url 'edit_contact' contact_id=contact.id %}" class="text-primary">Edit</a>
-                                    <a href="{% url 'delete_contact' contact_id=contact.id %}" class="text-danger" data-toggle="modal" data-target="#deleteContactModal{{ contact.id }}" data-contact-id="{{ contact.id }}">Delete</a>
+                                    <a href="{% url 'edit_contact' contact_id=contact.id %}" class="text-primary" aria-label="Go to edit contact page">Edit</a>
+                                    <a href="{% url 'delete_contact' contact_id=contact.id %}" class="text-danger" data-toggle="modal" data-target="#deleteContactModal{{ contact.id }}" data-contact-id="{{ contact.id }}" aria-label="Open up delete confirmation">Delete</a>
                                     <div class="modal fade" id="deleteContactModal{{ contact.id }}" tabindex="-1" role="dialog" aria-labelledby="deleteContactModalLabel{{ contact.id }}" aria-hidden="true">
                                         <div class="modal-dialog" role="document">
                                             <div class="modal-content">
@@ -69,7 +69,7 @@
                                                 </div>
                                                 <div class="modal-footer">
                                                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
-                                                    <a href="{% url 'delete_contact' contact_id=contact.id %}" class="btn btn-danger">Delete</a>
+                                                    <a href="{% url 'delete_contact' contact_id=contact.id %}" class="btn btn-danger" aria-label="Delete contact">Delete</a>
                                                 </div>
                                             </div>
                                         </div>
