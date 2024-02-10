@@ -9,7 +9,6 @@ from django.core.exceptions import ValidationError
 
 from products.models import Product
 from profiles.models import UserProfile
-from bag.models import PromoCode
 from bag.contexts import bag_contents
 
 
@@ -40,7 +39,7 @@ class Order(models.Model):
     
     def update_total(self):
         """
-        Update order_total, grand_total based on line items and promo code
+        Update order_total and grand_total
         """
         lineitem_total_sum = self.lineitems.aggregate(Sum('lineitem_total'))['lineitem_total__sum'] or Decimal('0.00')
         self.order_total = lineitem_total_sum
