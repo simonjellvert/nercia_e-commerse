@@ -107,7 +107,6 @@
                 <span class="btn btn-primary rounded-0">
                     <a href="{% url 'products' %}" class="text-white" aria-label="Go back to products page">Back to products</a>
                 </span>
-                </a>
             </div>
         {% endif %}
     </div>
@@ -124,7 +123,7 @@
     $('.update-link').click(function(e) {
         var form = $(this).prev('.update-form');
         form.submit();
-    })
+    });
 
     // Remove item and reload on click
     $('.remove-item').click(function(e) {
@@ -137,6 +136,6 @@
         .done(function() {
             location.reload();
         });
-    })
+    });
 </script>
 {% endblock %}

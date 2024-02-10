@@ -20,9 +20,7 @@
             <div class="row">
                 <div class="col-12 col-lg-6 order-lg-last">
                     <div class="col overview-col">
-                        <legend>
-                            <h3>Overview</h3>
-                        </legend>
+                        <h3>Overview</h3>
                         {% for item in bag_items %}
                             <div class="row">
                                 <div class="col">
@@ -72,9 +70,7 @@
                     <form class="mt-3" action="{% url 'checkout' %}" method="POST" id="payment-form">
                         {% csrf_token %}
                         <fieldset class="mb-5">
-                            <legend>
-                                <h3>Purchaser</h3>
-                            </legend>
+                            <h3>Purchaser</h3>
                             <div class="field-wrapper">
                                 <input type="text" class="form-group text-muted readonly" value="{{ user_profile.first_name|default_if_none:'' }}" placeholder="First Name">
                             </div>
@@ -89,9 +85,7 @@
                             </div>
                         </fieldset>
                         <fieldset class="mb-3">
-                            <legend>
-                                <h3>Payment</h3>
-                            </legend>
+                            <h3>Payment</h3>
                             <div>
                                 {% for option_value, option_label in order_form.payment_option.field.choices %}
                                     <div class="form-check form-check-inline ">
@@ -102,9 +96,7 @@
                             </div>
             
                             <div id="invoice-fields" class="mt-5" style="display: none;">
-                                <legend>
-                                    <h3>Billing Address</h3>
-                                </legend>
+                                <h3>Billing Address</h3>
                                 <div class="row">
                                     <p class="pl-3">You need to fill out all required information to be able to submit your order. <br>
                                         If you want to update you billing information, you can do so in your <a href="{% url 'profile' %}">profile</a>.</p>
@@ -147,9 +139,9 @@
                                 <div class="mb-3 text-danger" id="card-errors" role="alert"></div>
                             </div>
                         </fieldset>
-                        <button class="btn btn-secondary rounded-0">
+                        <span class="btn btn-secondary rounded-0">
                             <a href="{% url 'view_bag' %}" class="text-white" aria-label="Go back to shopping bag"><i class="fas fa-chevron-left"></i>Edit bag</a>
-                        </button>
+                        </span>
                         <button id="complete-order-button" class="btn btn-primary rounded-0" disabled>Complete order</button>
                     </form>
                 </div>
@@ -239,8 +231,6 @@
                 // Prevent the default form submission
                 event.preventDefault();
 
-                console.log('complete-order-button handler');
-
                 // Validate the form fields based on the payment option
                 if (isUserProfileFormFilled()) {
                     // If the payment option is 'card', confirm the card payment first
@@ -252,9 +242,7 @@
                                 card: card,
                             }
                         }).then(function(result) {
-                            console.log('Confirm card payment result:', result);
                             if (result.error) {
-                                console.error('Error confirming card payment:', result.error);
                                 var errorDiv = document.getElementById('card-errors');
                                 var html = `
                                     <span class="icon" role="alert">
@@ -265,9 +253,7 @@
                                 card.update({ 'disabled': false });
                                 $('#complete-order-button').attr('disabled', false);
                             } else {
-                                console.log('PaymentIntent status:', result.paymentIntent.status);
                                 if (result.paymentIntent.status === 'succeeded') {
-                                    console.log('Payment succeeded. Submitting the form.');
                                     document.getElementById('payment-form').submit();
                                 }
                             }

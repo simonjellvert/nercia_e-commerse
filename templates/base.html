@@ -1,17 +1,17 @@
-{% load static %}
-
 <!DOCTYPE html>
 <html lang="en">
 
 <head>
+    {% load static %}
     {% block meta %}
-    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
-    <meta name="description" content="This website is an e-commerce website for a business to have their online presence, and the ability for immediate shopping. This online store has trainings in leadership, working environment, IT, marketing and sales, maintenance and electronics and more." />
-    <meta name="keywords" content="nercia, leadership training, IT courses, marketing and sales workshops, maintenance skills, working environment programs, electronics training, shopping, online shopping, online shop, shopping online, trainings available, content, duration, price, perks, grow, personality, group leader, team leader, coorinator, personal leadership, leadership responsibility, leadership ladder, coaching leadership, skills, development, company trainings, knowledge, electrical installer, Microsoft excel, MS project, employees, organisation, quality, environmental, ISO, sales, key account management, strategic sales" />
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"/>
+    <meta name="description" content="This website is an e-commerce website for a business to have their online presence, and the ability for immediate shopping. This online store has trainings in leadership, working environment, IT, marketing and sales, maintenance and electronics and more."/>
+    <meta name="keywords" content="nercia, leadership training, IT courses, marketing and sales workshops, maintenance skills, working environment programs, electronics training, shopping, online shopping, online shop, shopping online, trainings available, content, duration, price, perks, grow, personality, group leader, team leader, coorinator, personal leadership, leadership responsibility, leadership ladder, coaching leadership, skills, development, company trainings, knowledge, electrical installer, Microsoft excel, MS project, employees, organisation, quality, environmental, ISO, sales, key account management, strategic sales"/>
     <!-- Favicon -->
     <link rel="icon" type="image/png" sizes="32x32" href="{% static 'img/favicon/favicon-32x32.png' %}">
+    <!-- X-UA-Compatible -->
+    <meta http-equiv="X-UA-Compatible" content="ie=edge"/>
     {% endblock %}
 
     {% block extra_meta %}
@@ -154,7 +154,7 @@
                             <h4>Latest News</h4>
                         </div>
                     </section>
-                    <section class="news-content-footer"></section>
+                    <section class="news-content-footer">
                         <div class="row text-left text-padding">
                             <ul>
                                 <li>
@@ -188,7 +188,7 @@
                             <h4>Follow Us</h4>
                         </div>
                     </section>
-                    <section class="social-content-footer"></section>
+                    <div class="social-content-footer"></div>
                         <div class="row text-left text-padding">
                             <a href="https://www.facebook.com/Nercia.se/" target="_blank"><i class="fa-brands fa-facebook-f p-1" class="remove-decoration" aria-label="Go to Facebook page"></i></a>
                             <a href="https://www.tiktok.com/@nercia1992?lang=sv-SE" target="_blank"><i class="fa-brands fa-tiktok p-1" class="remove-decoration" aria-label="Go to TikTok page"></i></a>
@@ -238,7 +238,7 @@
     {% endif %}
 
     {% block postloadjs %} 
-    <script type="text/javascript">
+    <script>
         $(document).ready(function() {
             $('.toast').toast('show');
             
