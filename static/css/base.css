@@ -5,6 +5,7 @@ body {
     flex-direction: column;
     min-height: 100vh;
     margin: 0;
+    overflow-x: hidden;
 }
 
 h1,
@@ -489,6 +490,10 @@ button.form-control:hover {
 .allauth-form-inner-content button:hover,
 .allauth-form-inner-intent input[type="submit"]:hover {
     background-color: #0299e5;
+}
+
+.allauth-height {
+    min-height: 400px;
 }
 
 /* ------------------------ Wrapper */
