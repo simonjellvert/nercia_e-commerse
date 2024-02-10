@@ -52,9 +52,6 @@ def checkout(request):
 
     user_profile = request.user.userprofile
 
-    print(f"Grand Total: {grand_total}")
-    print(f"Amount (rounded): {round(grand_total * 100)}")
-
     intent = stripe.PaymentIntent.create(
         amount=round(grand_total * 100),
         currency=settings.STRIPE_CURRENCY,
@@ -144,14 +141,14 @@ def checkout(request):
                         
                         bag_items = bag_context['bag_items']
 
-                    messages.success(request, 'Invoice payment processed successfully.')
+                    messages.success(request, 'Invoice payment processed successfully!')
                     return redirect('checkout_success', order_number=order.order_number)
 
                 else:
                     messages.error(request, 'Invalid payment method selected.')
                     return redirect('checkout')
         else:
-            messages.error(request, 'There are errors in your form. Please correct them and try again.')
+            messages.error(request, 'You need to fill out all fields to be able to proceed.')
             return redirect('checkout')
     else:
         order_form = CheckoutForm()

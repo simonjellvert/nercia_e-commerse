@@ -1,4 +1,3 @@
-console.log("Stripe JavaScript loaded");
 var stripePublicKey = JSON.parse(document.getElementById('id_stripe_public_key').textContent);
 var clientSecret = JSON.parse(document.getElementById('id_client_secret').textContent);
 var stripe = Stripe(stripePublicKey);
@@ -10,7 +9,7 @@ var style = {
         fontSmoothing: 'antialiased',
         fontSize: '16px',
         '::placeholder': {
-            color: '#aab7c4'
+            color: '#787f87'
         }
     },
     invalid: {
@@ -41,7 +40,6 @@ card.addEventListener('change', function (event) {
 var form = document.getElementById('payment-form');
 
 form.addEventListener('submit', function(ev) {
-    console.log("Form submit event listener activated");
 
     ev.preventDefault();
     card.update({ 'disabled': true });
@@ -52,9 +50,7 @@ form.addEventListener('submit', function(ev) {
             card: card,
         }
     }).then(function(result) {
-        console.log('Confirm card payment result:', result);
         if (result.error) {
-            console.error('Error confirming card payment:', result.error);
             var errorDiv = document.getElementById('card-errors');
             var html = `
                 <span class="icon" role="alert">
@@ -65,9 +61,7 @@ form.addEventListener('submit', function(ev) {
             card.update({ 'disabled': false });
             $('#complete-order-button').attr('disabled', false);
         } else {
-            console.log('PaymentIntent status:', result.paymentIntent.status);
             if (result.paymentIntent.status === 'succeeded') {
-                console.log('Payment succeeded. Submitting the form.');
                 form.submit();
             }
         }

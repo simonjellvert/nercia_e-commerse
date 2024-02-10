@@ -5,33 +5,51 @@ select option {
 
 select:invalid,
 select option[value=""] {
-    color: #aab7c4 !important;
+    color: #8f9194 !important;
 }
 
 .StripeElement,
 .stripe-style-input {
-  box-sizing: border-box;
-  height: 40px;
-  padding: 10px 12px;
-  border: 1px solid transparent;
-  border-radius: 0px;
-  background-color: white;
-  box-shadow: 0 1px 3px 0 #e6ebf1;
-  -webkit-transition: box-shadow 150ms ease;
-  transition: box-shadow 150ms ease;
+    box-sizing: border-box;
+    height: 40px;
+    padding: 10px 12px;
+    border: 1px solid transparent;
+    border-radius: 0px;
+    background-color: white;
+    box-shadow: 0 1px 3px 0 #e6ebf1;
+    -webkit-transition: box-shadow 150ms ease;
+    transition: box-shadow 150ms ease;
 }
 
 .StripeElement--focus,
 .stripe-style-input:focus,
 .stripe-style-input:active {
-  box-shadow: 0 1px 3px 0 #cfd7df;
+    box-shadow: 0 1px 3px 0 #cfd7df;
 }
 
 .StripeElement--webkit-autofill {
-  background-color: #fefde5 !important;
+    background-color: #fefde5 !important;
 }
 
 .stripe-style-input::placeholder {
     color: #aab7c4;
 }
 
+.field-wrapper input.form-group {
+    font-family: 'Ubuntu', sans-serif;
+    width: 250px;
+    border: 1px solid #dde0e2;
+    border-radius: 0;
+    padding: 8px;
+    margin-bottom: 10px;
+}
+
+#invoice-ref::placeholder {
+    color: #000;
+}
+
+.overview-col {
+    background-color: #f2f3f5;
+    border-radius: 20px;
+    padding: 20px;
+}

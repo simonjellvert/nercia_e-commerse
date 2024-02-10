@@ -72,7 +72,7 @@ class UserProfile(models.Model):
     postcode = models.CharField(max_length=20, null=False, blank=False)
     city = models.CharField(max_length=40, null=False, blank=False)
     country = CountryField(blank_label='Country', null=False, blank=False)
-    invoice_email = models.EmailField(max_length=254, null=True, blank=True)
+    invoice_email = models.EmailField(max_length=254, null=False, blank=False)
     newsletter_subscription = models.BooleanField(default=False, null=False, blank=False)
     def __str__(self):
         return self.user.email
