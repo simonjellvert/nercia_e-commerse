@@ -55,9 +55,17 @@
                     <p>{{ product.duration }}</p>
                 </div>
             </div>
-            <h5>Perks</h5>
+            <div class="row">
+                <div class="col-6">
+                    <p>Location</p>
+                </div>
+                <div class="col-6">
+                    <p>{{ product.online_onsite|title }}</p>
+                </div>
+            </div>
+            <p><strong>Perks</strong></p>
             <p>{{ product.perks }}</p>
-            <h5>Price</h5>
+            <p><strong>Price</strong></p>
             <p>${{ product.price }}</p>
             <form class="form" action="{% url 'add_to_bag' product.id %}" method="POST">
                 {% csrf_token %}

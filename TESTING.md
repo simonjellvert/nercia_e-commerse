@@ -6,76 +6,139 @@ Testing has been done manually throughout the development. Testing has been done
 
 Testing has been done on different devices to ensure there are no issues.
 
+### Visitor / Logged in user
 
 | Page    | User Actions           | Expected Results | Y/N | Comments    |
 |-------------|------------------------|------------------|------|-------------|
-| Sign Up     |                        |                  |      |             |
-| 1           | Click on Sign Up button | Redirection to Sign Up page | Y |          |
-| 2           | Click on the Login link in the form | Redirection to Login page | Y |          |
-| 3           | Enter valid email 2 times | Field will only accept email address format | Y |          |
-| 4           | Enter valid password 2 times | Field will only accept password format | Y |          |
-| Log In      |                        |                  |      |             |
-| 1           | Click on Log In button | Redirection to Log In page | Y |          |
-| 2           | Click on the Sign Up link in the form | Redirection to Sign Up page | Y |          |
-| 3           | Enter valid email | Field will only accept email address format | Y |          |
-| 4           | Enter valid password | Field will only accept password format | Y |          |
-| 5           | Click on Log In button | Redirects user to blank In page | Y |          |
-| Navigation  |                        |                  |      |             |
-| 1           | Click on the logo | Redirection to home page | Y |          |
-| 2           | Click Store | Redirection to Store page | Y |          |
-| 3           | Click wishlist button | Redirection to wishlist page | Y |          |
-| 4           | Click bag button | Redirection to bag page | Y |          |
-| Admin Navigation |                        |                  |      |             |
-| 1           | Click Personnel dashboard | Dropdown menu opens | Y |          |
-| 2           | Click on Promo | Redirection to Promo page | Y |          |
-| 3           | Click on Emails | Redirection to create email page | Y |          |
-| 4           | Click Categories | Redirection to Categories page | Y |          |
-| 5           | Click Brands | Redirection to Brands page | Y |          |
-| Store |                        |                  |      |             |
-| 1 | Type in search bar | Search results are displayed | Y |          |
-| 2  | Select a category | Products are displayed | Y |          |
-| Product Details |                        |                  |      |             |
-| 1 | Click on left or right carousel | Carousel will change | Y | If there is only 1 image, there will be no arrow to click |
-| 2 | Click on heart button | Product is added to wishlist and message will appear to notify user | Y | If user is logged out, the user will see a message to login and the click will be ignored |
-| Profile |                        |                  |      |             |
-| 1 | Click on the edit button | User will be redirected to the edit profile page | Y | |
-| 2 | Click on the add address button | User will be redirected to the add address page | Y | |
-| Edit Profile |                        |                  |      |             |
-| 1 | Click on the edit button | User will see a pop up window to upload an avatar | Y | |
-| 2 | Click on the upload button | User will see a pop up window to upload an avatar | Y | |
-| Delete Account |                        |                  |      |             |
-| 1 | Click on the Delete button | User will see a dropdown menu with the confirmation message | Y | |
-| 2 | Click Yes button in the dropdown menu | User will be redirected to the home page and the message will appear to notify user | Y | |
-| My Orders |                        |                  |      |             |
-| 1 | Click on the order card | User will be redirected to the order page | Y | |
-| Bag |                        |                  |      |             |
-| 1 | Click on ready to purchase button | the page will smoothly scroll to the bottom of the page | Y | |
-| 2 | Click on the product's name | User will be redirected to the product page | Y | |
-| Checkout |                        |                  |      |             |
-| 1 | Type in the Full name | Full name is changed | Y | If user has filled out the profile fully, the filled will be filled automatically |
-| 2 | Type in the email | Email is changed | Y | |
-| Checkout Success |                        |                  |      |             |
-| 1 | Click on the View my orders button | User will be redirected to the My Orders page | Y | |
-| Personnel Categories |                        |                  |      |             |
-| 1 | Click on the add category button | User will be redirected to the add category page | Y | |
-| 2 | Click on the edit button | User will be redirected to the edit category page | Y | |
-| Personnel Add Category |                        |                  |      | Access only to administrators           |
-| 1 | Type in the category name | Category name is changed | Y | |
-| 2 | Check the category status | Category status is changed | Y | |
-| Personnel Edit Category |                        |                  |      | Access only to administrators           |
-| 1 | Render the category name | Category name is changed | Y | |
-| 2 | Check the category status | Category status is changed | Y | |
-| Personnel Delete Category |                        |                  |      | Access only to administrators           |
-| 1 | Click on the cancel button | Changes will not be confirmed and the admin will be redirected to the categories page | Y | |
-| Personnel Products |                        |                  |      | |
-| 1 | Type in the product type name | Product type name is changed | Y | |
-| Personnel Add Producuts |                        |                  |      | |
-| 1 | Type in the product type name | Product type name is changed | Y | |
-| Personnel Edit Products |                        |                  |      | |
-| 1 | Type in the product type name | Product type name is changed | Y | |
-| Personnel Delete Products |                        |                  |      | |
-| 1 | Type in the product type name | Product type name is changed | Y | |
-| Personnel Order Management |                        |                  |      | |
-| 1 | Type in the product type name | Product type name is changed | Y | |
-| Personnel Newsletters |                        |                  |      | |
-| 1 | Type in the product type name | Product type name is changed | Y | |
+| Header      |                        |                  |      |             |
+| 1 | Click logo | Redirects to home page | Y | - |
+| 2 | Click navbar links | Redirects to correct address | Y | Made sure they work correctly depending on authenticated user or not |
+| 3 | Bag link updates | Bag link updates with bag total amount | Y | - |
+| Footer | | | | | |
+| 1 | Click links | Redirects to correct address | Y | - |
+| 2 | Footer is responsive | Divides into column correctly depending on screen size | Y | - |
+| Home page | | | | |
+| 1 | Page is responsive | Adapt to different sizes | Y | - |
+| 2 | Click link | Redirects to correct address | Y | Made sure they work correctly depending on authenticated user or not |
+| Contact page | | | | |
+| 1 | Click map | Opens up google maps to show directions | Y/N | Works fine on computer, not on mobile - future development |
+| 2 | Page responsive | Adapts to different screen sizes | Y | - |
+| Products | | | | |
+| 1 | Page is responsive | Adapats to different screen sizes | Y | - |
+| 2| Search for product | Should display matching results | Y | No error message if no matches - fututre development |
+| 3 | Filter category | Should display matching results | Y | - |
+| Product detail | | | | |
+| 1 | Page is responsive | Adapt to different screen sizes | Y | - |
+| 2 | Click links | Redirect to correct address | Y | - |
+| 3 | Add product to bag | Should update bag and navbar | Y | - |
+| 4 | Quantity picker | Should update bag with correct quantity | Y | - |
+| Bag page | | | | | |
+| 1 | Edit quantity | Should update bag with correct quantity and amount | Y | - |
+| 2 | Remove quantity | Should delete product from bag and update amount | Y | - |
+| 3 | Click link | Redirects to correct address | Y | If user not authenticated and clicks Checkout - redirects to sign in page |
+| 4 | Page is responsive | Adapts to different screen sizes | Y | - |
+| Checkout page | | | | |
+| 1 | Confirm button disabled | Button should be disabled until form is valid | Y | - |
+| 2 | Choose payment method | Displays relevant form | Y | - |
+| 3 | Invalid form invoice | Throws error | Y | Not for Invoice referens, future development |
+| 4 | Invalid form card | Throws error | Y | - |
+| 5 | Valid payment | Redirects to checkout success page | Y | - |
+| 6 | Valid payment | Send confirmation email | Y | - |
+| 7 | Page is responsive | Adapts to different screen sizes | Y | - |
+| Checkout success page | | | | |
+| 1 | Displays reciept | with correct amount | Y | - |
+| 2 | Displays payment method | Correct method displays | Y | If invoice the address if fetched from user profile |
+| 3 | Displays products | Correct products and quantities | Y | - |
+| 4 | Page is responsive | Adapts to different screen sizes | Y | - |
+| Sign Up | | | | |
+| 1 | Click on Sign Up button | Redirection to Sign Up page | Y |          |
+| 2 | Click on the Login link in the form | Redirection to Login page | Y |          |
+| 3 | Enter valid email | Field will only accept email address format | Y | - |
+| 4 | Enter valid password 2 times | Field will only accept password format | Y | - |
+| 5 | Redirects user if form is valid | Redirected to confirm Email adress | Y | - |
+| Log In | | | | |
+| 1 | Click on Log In button | Redirection to Log In page | Y | - |
+| 2 | Click on the Sign Up link in the form | Redirection to Sign Up page | Y | - |
+| 3 | Enter valid email | Field will only accept email address format | Y | - |
+| 4 | Enter valid password | Field will only accept password format | Y | - |
+| 5 | Click on Log In button | Redirects user to profile page | Y | - |
+| Log Out | | | | |
+| 1 | Click log out link | Redirect to log out confirmation page | Y | - |
+| 2 | Confirming log out | Redirects to home page | Y | - |
+| Profiles page | | | | |
+| 1 | Clicks links | Redirects to correct address | Y | - |
+| 2 | Fill out form | Throws error if invalid | Y | - |
+| 3 | Save valid form | Success message and profile updated | Y | - |
+| 4 | Clicks order number in order history | Redirects to success page | Y | - |
+| 5 | Click delete account button | Redirects to delete account confirmation page | Y | - |
+| 6 | Page is responsive | Adapts to different screen sizes | Y | - |
+| Delete account confirmation page | | | | |
+| 1 | Enter password form | Deletes account | Y | - |
+
+### Logged in administrator
+
+Home page, products page, Profile page, Bag page, Checkout page and Checkout success page has the same functionality for an administrator as for a regular visitor/logged in user, those pages needs no further testing.
+
+| Page    | User Actions           | Expected Results | Y/N | Comments    |
+|-------------|------------------------|------------------|------|-------------|
+| Product Details page | | | | |
+| 1 | Clicks edit content | Redirected to edit content page | Y | Fields: Day, title, purpose, topics |
+| 2 | Clicks edit description | Redirects to edit description page | Y | Fields: description, description_short, image, duration, perks, online_onsite, and price |
+| 3 | Clicks delete | Triggers modal for confirmation | Y | - |
+| 4 | Page is responsive | Adapts to different screen sizes | Y | - |
+| Products Management page | | | | |
+| 1 | Clicks links | Redirects to relevant address | Y | - |
+| 2 | Page is responsive | Adapts to different screen sizes | Y | - |
+| Product description page | | | | |
+| 1 | Submit invalid form | Throws an error | Y | - |
+| 2 | Submit valid form | Redirects to product content page | Y | - |
+| Products content page | | | | |
+| 2 | Submits valid form | Redirects to correct address | Y | - |
+| 3 | Clicks add day button | Adds another form to fill out | Y | - |
+| Order Management | | | | |
+| 1 | Displays orders | With relevant information | Y | - |
+| 2 | Clicks delete button | Triggers modal for order deletion | Y | Can only delete orders with invoice payment|
+| 3 | Deletes order paid with card | Should throw an error | N | Bug - Future development |
+| 4 | Page responsive | Adapts to different screen sizes | N | Not as I would like it, but administrators (finance) wont access this page with their phone (future development) |
+| Newsletters | | | | |
+| 1 | Filter by category | Displays relevant previous newsletters | Y | - |
+| 2 | Clicks link | Redirects to relevant addresses | Y | - |
+| 3 | Sends newsletters | Sends to users emails | Y | Only those who subscribes for the newsletter |
+| 4 | Page is responsive | Adapts to different screen sizes | Y | - |
+| Contact page | | | | |
+| 1 | Clicks Add contact | Redirects to add contact page | Y | - |
+| 2 | Submit invalid form | Throws error | Y | - |
+| 3 | Submits valid form | Redirects to contact page | Y | - |
+| Toasts messages | | | | |
+| 1 | Displays top right corner | With user actions | Y | Bug - Message for redirecting user to sign when try to enter checkout as a not logged in user is not displaying (future development) |
+| 2 | Message disappears automatically | After 3 seconds | Y | - |
+
+## Testing User Stories
+
+| ID | User Story  | Requirement met Y/N    | Image    |
+|----|-------------|------------------------|----------|
+| 1 | As a site user I can view a list of products so that I can select and add those I need for myself or my employees in the shippoing bag | Y | IMAGE HERE |
+| 2 | As a site user I can see the program of the training I'm interested in so that I can understand what to expect of the training | Y | IMAGE HERE |
+| 3 | As a site user I can search and filter trainings in different subjects, or by name or by description so that easily find what I'm looking for | Y | IMAGE HERE |
+| 4 | As a site user I can view my shopping bag so that I can double check if i forgot something | Y | IMAGE HERE |
+| 5 | As a site user I can check the order history so that I can go back and see when myself or an employee attended the training | Y | IMAGE HERE |
+| 6 | As a site user I can register an account so that I can have a personal page to store my information and purchases | Y | IMAGE HERE |
+| 7 | As a site user I can login and logout so that I can access my personal information | Y | IMAGE HERE |
+| 8 | As a site user I can recover my password so that I can recover my account | IMAGE HERE |
+| 9 | As a site user I can receive an email confirmation after registration so that I can verify that my account was successfully created | Y | IMAGE HERE |
+| 10 | As a site user I can update or edit my account so that I can edit my information | Y | IMAGE HERE |
+| 11 | As a site user I can delete my account so that I can remove it if I'm not longer using it | Y | IMAGE HERE |
+| 12 | As a site user I can edit /update quantity of the product I've added so that I don't select the wrong number of products | Y | IMAGE HERE |
+| 13 | As a site user I can delete a product from the shopping bag if I accidentally added the wrong product | Y | IMAGE HERE |
+| 14 | As a site user I can add name and email of the participant on each training so that I can make sure they get an invite to the training | N | Future development |
+| 15 | As a site user I can save my billing information so that I can reuse it without entering it again the next time | Y | IMAGE HERE |
+| 16 | As a site user I can see the total cost of my shopping bag so that I make sure i don't go over budget | Y | IMAGE HERE |
+| 17 | As a site user I can choose if I want to pay with card or bill so that I can make sure my payment is going to be handled the way I want it to | Y | IMAGE HERE |
+| 18 | As a site user I can receive a order confirmation efter checkout so that I can see what i bought | Y | IMAGE HERE |
+| 19 | As a site user I can receive a email confirmation after checkout so that I can get proof of my purchase | Y | IMAGE HERE |
+| 20 | As a admin I can add, edit and delete categories so that I can keep them up to date | Y | IMAGE HERE |
+| 21 | As a admin I can add, edit and delete products so that I can make sure the products are up to date | Y | IMAGE HERE |
+| 22 | As a admin I can review customers orders so that I can add them to the CRM | Y | IMAGE HERE |
+| 23 | As a administrator I can send newsletters to those users that subscribes so that they can receive information about new products and other relevant information | Y | IMAGE HERE |
+| 24 | As a user I can subscribe to newsletters so that I can hear about new products and other relevant information regarding company training. | Y | IMAGE HERE |
+

@@ -47,6 +47,17 @@ a:hover {
     text-decoration: none;
 }
 
+span a {
+    font-weight: 100;
+    font-size: 14.5px;
+}
+
+.btn-primary,
+.btn-danger,
+.btn-secondary {
+    font-size: 14.5px;
+}
+
 label {
     font-family: 'Ubuntu', sans-serif;
     font-weight: 100;

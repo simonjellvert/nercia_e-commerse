@@ -5,7 +5,7 @@
 {% block extra_title %} | Shopping Bag{% endblock %}
 
 {% block content %}
-<div class="bag-container mb-3">
+<div class="bag-container mt-5 mb-3">
     <div class="row px-3 remove-margin">
         <h1>Your Cart</h1>
     </div>
@@ -48,7 +48,7 @@
                                         </div>
                                     </div>
                                 </form>
-                                <a class="update-link text-info" aria-label="Update the number of items of the product"><small>Update</small></a>
+                                <a class="update-link text-primary" aria-label="Update the number of items of the product"><small>Update</small></a>
                                 <a class="remove-item text-danger float-right" id="remove_{{ item.item_id }}" aria-label="Delete the product from the shopping bag"><small>Remove</small></a>
                             </div>
                             <div class="col-4 col-sm-2 text-left">
@@ -83,7 +83,7 @@
                         <p>Grand Total (excl. VAT)</p>
                     </div>
                     <div class="col">
-                        <p>{{ grand_total|floatformat:2 }}</p>
+                        <p>${{ grand_total|floatformat:2 }}</p>
                     </div>
                 </div>
                 <hr>
