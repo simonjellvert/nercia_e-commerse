@@ -3,9 +3,7 @@ from .models import Newsletter
 
 
 class NewsletterForm(forms.ModelForm):
-    """
-    Form for sending out lewsletters to newsletter subscribers
-    """
+    """ Form for sending out lewsletters to newsletter subscribers """
     class Meta:
         model = Newsletter
         fields = [

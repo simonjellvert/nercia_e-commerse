@@ -7,9 +7,7 @@ from products.models import Product
 
 
 def bag_contents(request):
-    """
-    A context processor to use bag information across all templates
-    """
+    """  A context processor to use bag information across all templates """
     bag_items = []
     total = Decimal(0)
     product_count = 0
@@ -18,7 +16,6 @@ def bag_contents(request):
 
     for item_id, item_data in bag.items():
         if isinstance(item_data, int):
-            # Handle the case where item_data is an integer
             product = get_object_or_404(Product, pk=item_id)
             order_total = item_data * product.price
             grand_total += order_total
@@ -27,11 +24,10 @@ def bag_contents(request):
                 'item_id': item_id,
                 'quantity': item_data,
                 'product': product,
-                'item_total': order_total,  # Set order_total here
+                'item_total': order_total,
             })
-            total += order_total  # Accumulate order_total in total
+            total += order_total
         else:
-            # Handle the case where item_data is a dictionary
             product = get_object_or_404(Product, pk=item_id)
             order_total = item_data['quantity'] * product.price
             grand_total += order_total
@@ -40,12 +36,12 @@ def bag_contents(request):
                 'item_id': item_id,
                 'quantity': item_data['quantity'],
                 'product': product,
-                'item_total': order_total,  # Set order_total here
+                'item_total': order_total,
             })
-            total += order_total  # Accumulate order_total in total
+            total += order_total
 
     tax = Decimal(total) * Decimal(0.25)
-    grand_total += tax  # Update grand_total by adding tax
+    grand_total += tax
 
     context = {
         'bag_items': bag_items,

@@ -39,33 +39,36 @@ class CheckoutForm(forms.ModelForm):
                 self.fields[field].widget.attrs['placeholder'] = placeholder
                 self.fields[field].widget.attrs['class'] = 'stripe-style-input'
                 self.fields[field].label = False
-    
+
     def get_payment_options(self):
-        """
-        Logic to fetch payment option dynamically
-        """
+        """ Logic to fetch payment option dynamically """
         return [
             ('invoice', 'Invoice'),
             ('card', 'Card'),
         ]
-    
+
     def clean(self):
+        """ 
+        Ensures invoice_ref is submitted when checking out using invoice
+        """
         cleaned_data = super().clean()
         payment_option = cleaned_data.get('payment_option')
         invoice_ref = cleaned_data.get('invoice_ref')
 
         if payment_option == 'invoice' and not invoice_ref:
-            self.add_error('invoice_ref', 'This field is required for invoice payments.')
+            self.add_error(
+                'invoice_ref', 'This field is required for invoice payments.'
+            )
 
         return cleaned_data
 
     def save(self, commit=True):
+        """ Overrides the save method """
         order = super().save(commit=False)
 
         if not order.order_number:
             order.order_number = order._generate_order_number()
 
-        # Update order with the user profile
         order.user_profile = user.user.profile
         order.invoice_ref = self.cleaned_data.get('invoice_ref')
 

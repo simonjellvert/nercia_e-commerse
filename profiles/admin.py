@@ -4,12 +4,16 @@ from .models import CustomUser, UserProfile
 
 
 class UserProfileInline(admin.StackedInline):
+    """ Sets up admin panel for user emails """
     model = UserProfile
 
 
 class CustomUserAdmin(UserAdmin):
+    """ Sets up admin panel for user profile info """
     model = CustomUser
-    list_display = ('email', 'first_name', 'last_name', 'is_staff', 'is_active',)
+    list_display = (
+        'email', 'first_name', 'last_name', 'is_staff', 'is_active',
+    )
     list_filter = ('email', 'is_staff', 'is_active',)
     fieldsets = (
         (None, {'fields': ('email', 'password')}),
@@ -19,11 +23,14 @@ class CustomUserAdmin(UserAdmin):
     add_fieldsets = (
         (None, {
             'classes': ('wide',),
-            'fields': ('email', 'password1', 'password2', 'is_staff', 'is_active'),
+            'fields': (
+                'email', 'password1', 'password2', 'is_staff', 'is_active'
+            ),
         }),
     )
     search_fields = ('email',)
     ordering = ('email',)
+
 
 admin.site.register(CustomUser, CustomUserAdmin)
 admin.site.register(UserProfile)

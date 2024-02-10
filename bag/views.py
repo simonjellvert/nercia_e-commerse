@@ -1,17 +1,18 @@
-from django.shortcuts import render, redirect, reverse, HttpResponse, get_object_or_404
+from django.shortcuts import (
+    render, redirect, reverse, HttpResponse, get_object_or_404
+)
 from django.contrib import messages
 
 from products.models import Product
 
 
 def view_bag(request):
-    """
-    A view to return the shopping bag
-    """
+    """ A view to return the shopping bag """
 
     return render(request, 'bag/bag.html')
 
 def add_to_bag(request, item_id):
+    """ View for adding items to bag """
     product = get_object_or_404(Product, pk=item_id)
     quantity = int(request.POST.get('quantity', 1))
     redirect_url = request.POST.get('redirect_url')
@@ -19,7 +20,9 @@ def add_to_bag(request, item_id):
 
     if item_id in bag:
         bag[item_id]['quantity'] += quantity
-        messages.success(request, f'Updated {product.name} quantity to {bag[item_id]["quantity"]}')
+        messages.success(
+            request,
+            f'Updated {product.name} quantity to {bag[item_id]["quantity"]}')
     else:
         bag[item_id] = {'quantity': quantity}
         messages.success(request, f'Added {product.name} to your bag')
@@ -28,9 +31,7 @@ def add_to_bag(request, item_id):
     return redirect(redirect_url)
 
 def edit_bag(request, item_id):
-    """
-    A view to edit quantity of a product in the bag
-    """
+    """ A view to edit quantity of a product in the bag """
     product = get_object_or_404(Product, pk=item_id)
     quantity = int(request.POST.get('quantity'))
     bag = request.session.get('bag', {})
@@ -40,7 +41,9 @@ def edit_bag(request, item_id):
             bag[item_id] = quantity
         else:
             bag[item_id]['quantity'] = quantity
-        messages.success(request, f'Updated {product.name} quantity to {quantity}')
+        messages.success(
+            request,
+            f'Updated {product.name} quantity to {quantity}')
     else:
         messages.error(request, f'Error updating {product.name} quantity')
 
@@ -48,9 +51,7 @@ def edit_bag(request, item_id):
     return redirect(reverse('view_bag'))
 
 def delete_item(request, item_id):
-    """
-    A view to delete item of a product to the bag
-    """
+    """ A view to delete item of a product to the bag """
     product = get_object_or_404(Product, pk=item_id)
     bag = request.session.get('bag', {})
 

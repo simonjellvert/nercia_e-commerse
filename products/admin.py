@@ -26,7 +26,7 @@ class ProductContentAdmin(admin.ModelAdmin):
         'title',
         'day',
     )
-    
+
     ordering = ('product',)
 
 

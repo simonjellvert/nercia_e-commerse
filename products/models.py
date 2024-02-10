@@ -2,7 +2,7 @@ from django.db import models
 
 
 class Category(models.Model):
-
+    """ Model for products categories """
     class Meta:
         verbose_name_plural = 'Categories'
 
@@ -17,7 +17,7 @@ class Category(models.Model):
 
 
 class Product(models.Model):
-
+    """ Model for products description """
     COMBINED = 'combined'
     ONSITE = 'onsite'
     ONLINE = 'online'
@@ -51,6 +51,7 @@ class Product(models.Model):
 
 
 class ProductContent(models.Model):
+    """ Model for products content """
     product = models.ForeignKey(
         'Product', null=True, blank=True, on_delete=models.SET_NULL
     )

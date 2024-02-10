@@ -6,20 +6,21 @@ from .models import UserProfile
 
 
 class CustomSignupForm(SignupForm):
-
+    """ Removes username from signup """
     def __init__(self, *args, **kwargs):
         super(CustomSignupForm, self).__init__(*args, **kwargs)
         del self.fields['username']
 
 
 class UserProfileForm(forms.ModelForm):
+    """ Sets up user profile form """
     newsletter_subscription = forms.BooleanField(
         label='Subscribe to Newsletter',
         required=False,
         initial=True,
         widget=forms.CheckboxInput(attrs={'class': 'stripe-style-input'}),
     )
-    
+
     class Meta:
         model = UserProfile
         fields = [
@@ -65,11 +66,14 @@ class UserProfileForm(forms.ModelForm):
                 self.fields[field].widget.attrs['class'] = 'stripe-style-input'
                 self.fields[field].label = False
             else:
-                self.fields[field].widget.attrs['placeholder'] = placeholders[field]
+                self.fields[field].widget.attrs['placeholder'] = \
+                    placeholders[field]
                 self.fields[field].widget.attrs['class'] = 'stripe-style-input'
                 self.fields[field].label = False
-    
 
-# Form for delete profile with password authentication setup for future development
+
 class DeleteAccountForm(forms.Form):
-    password = forms.CharField(widget=forms.PasswordInput(attrs={'class': 'form-control'}))
+    """ Form for confirm account deleting using password """
+    password = forms.CharField(
+        widget=forms.PasswordInput(attrs={'class': 'form-control'})
+    )

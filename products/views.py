@@ -6,15 +6,15 @@ from django.contrib.auth.decorators import login_required
 from django.contrib.admin.views.decorators import staff_member_required
 
 from .models import Product, ProductContent, Category
-from .forms import ProductForm, ProductContentForm, ProductContentFormSet, CategoryForm
+from .forms import (
+    ProductForm, ProductContentForm, ProductContentFormSet, CategoryForm
+)
 
 import json
 
 
 def all_products(request):
-    """
-    A view to return products page
-    """
+    """ A view to return products page """
 
     products = Product.objects.all()
     product_contents = ProductContent.objects.all()
@@ -25,22 +25,32 @@ def all_products(request):
         category_name = request.GET['category']
         if category_name:
             products = products.filter(category__name=category_name)
-            product_contents = product_contents.filter(product__category__name=category_name)
+            product_contents = product_contents.filter(
+                product__category__name=category_name
+            )
 
     if request.GET:
         if 'q' in request.GET:
             query = request.GET['q']
             if not query:
-                messages.error(request, "You didn't enter any search criteria!")
+                messages.error(
+                    request, "You didn't enter any search criteria!"
+                )
             else:
-                queries = Q(name__icontains=query) | Q(description__icontains=query)
+                queries = Q(name__icontains=query) | \
+                        Q(description__icontains=query)
                 products = products.filter(queries)
-            
+
             if not products.exists():
                 return redirect(reverse('products'))
 
-            product_queries = Q(name__icontains=query) | Q(description__icontains=query)
-            content_queries = Q(title__icontains=query) | Q(topics__icontains=query)
+            product_queries = Q(
+                name__icontains=query
+            ) | Q(
+                description__icontains=query
+            )
+            content_queries = Q(title__icontains=query) | \
+                Q(topics__icontains=query)
 
             products = products.filter(product_queries)
             product_contents = product_contents.filter(content_queries)
@@ -56,9 +66,7 @@ def all_products(request):
 
 
 def product_detail(request, product_id):
-    """
-    A view to return details about a product
-    """
+    """ A view to return details about a product """
 
     product = get_object_or_404(Product, pk=product_id)
     product_contents = ProductContent.objects.filter(product=product)
@@ -67,7 +75,9 @@ def product_detail(request, product_id):
         topics = product_content.topics
         if isinstance(topics, str):
             # Split the string and strip quotes and brackets
-            product_content.topics = [topic.strip(" '[]") for topic in topics.split(',')]
+            product_content.topics = [
+                topic.strip(" '[]") for topic in topics.split(',')
+            ]
 
     context = {
         'product': product,
@@ -76,10 +86,11 @@ def product_detail(request, product_id):
 
     return render(request, 'products/product_detail.html', context)
 
+
 @staff_member_required
 def product_management(request):
     """
-    A view for administrators to either add new 
+    A view for administrators to either add new
     product or edit or delete excisting prodducts
     """
     if not request.user.is_superuser:
@@ -100,7 +111,7 @@ def product_management(request):
 
 @staff_member_required
 def add_product(request):
-    """Add a new product"""
+    """ Add a new product """
     if not request.user.is_superuser:
         messages.error(request, 'Sorry, only store owners can do that.')
         return redirect(reverse('home'))
@@ -108,10 +119,16 @@ def add_product(request):
         form = ProductForm(request.POST, request.FILES)
         if form.is_valid():
             product = form.save()
-            messages.success(request, f'You successfully added {product.name} to the store!')
+            messages.success(
+                request,
+                f'You successfully added {product.name} to the store!'
+            )
             return redirect('add_product_content', product_id=product.id)
         else:
-            messages.error(request, 'Something went wrong, check if form is valid!')
+            messages.error(
+                request,
+                'Something went wrong, check if form is valid!'
+            )
     else:
         form = ProductForm()
 
@@ -122,18 +139,19 @@ def add_product(request):
 
     return render(request, template, context)
 
+
 @staff_member_required
 def add_product_content(request, product_id):
-    """
-    Add product content to product, from ProgramContent model
-    """
+    """ Add product content to product, from ProgramContent model """
     if not request.user.is_superuser:
         messages.error(request, 'Sorry, only store owners can do that.')
         return redirect(reverse('home'))
     product = Product.objects.get(id=product_id)
 
     if request.method == 'POST':
-        formset = ProductContentFormSet(request.POST, instance=product, prefix='product_content')
+        formset = ProductContentFormSet(
+            request.POST, instance=product, prefix='product_content'
+        )
 
         if formset.is_valid():
             formset.save()
@@ -147,7 +165,9 @@ def add_product_content(request, product_id):
         else:
             messages.error(request, 'Form is not valid.')
     else:
-        formset = ProductContentFormSet(instance=product, prefix='product_content')
+        formset = ProductContentFormSet(
+            instance=product, prefix='product_content'
+        )
 
     template = 'products/add_product_content.html'
     context = {
@@ -157,15 +177,14 @@ def add_product_content(request, product_id):
 
     return render(request, template, context)
 
+
 @staff_member_required
 def edit_product(request, product_id):
-    """
-    Edit product info from Product model
-    """
+    """ Edit product info from Product model """
     if not request.user.is_superuser:
         messages.error(request, 'Sorry, only store owners can do that.')
         return redirect(reverse('home'))
-    
+
     product = get_object_or_404(Product, pk=product_id)
     if request.method == 'POST':
         form = ProductForm(request.POST, request.FILES, instance=product)
@@ -175,7 +194,8 @@ def edit_product(request, product_id):
             return redirect(reverse('product_detail', args=[product.id]))
         else:
             messages.error(
-                request, 'Failed to update product. Please ensure the form is valid.')
+                request,
+                'Failed to update product. Please ensure the form is valid.')
     else:
         form = ProductForm(instance=product)
         messages.info(request, f'You are editing {product.name}')
@@ -187,6 +207,7 @@ def edit_product(request, product_id):
     }
 
     return render(request, template, context)
+
 
 @staff_member_required
 def delete_product(request, product_id):
@@ -200,11 +221,10 @@ def delete_product(request, product_id):
     messages.success(request, 'Product deleted!')
     return redirect(reverse('product_management'))
 
+
 @staff_member_required
 def add_category(request):
-    """
-    Add a new category
-    """
+    """ Add a new category to the store """
     if not request.user.is_superuser:
         messages.error(request, 'Sorry, only store owners can do that.')
         return redirect(reverse('home'))
@@ -212,10 +232,16 @@ def add_category(request):
         form = CategoryForm(request.POST)
         if form.is_valid():
             category = form.save()
-            messages.success(request, f'You successfully added category {category.friendly_name}!')
+            messages.success(
+                request,
+                f'You successfully added category {category.friendly_name}!'
+            )
             return redirect('product_management')
         else:
-            messages.error(request, 'Something went wrong, check if form is valid!')
+            messages.error(
+                request,
+                'Something went wrong, check if form is valid!'
+            )
     else:
         form = CategoryForm()
 
@@ -226,15 +252,14 @@ def add_category(request):
 
     return render(request, template, context)
 
+
 @staff_member_required
 def edit_category(request, category_id):
-    """
-    Edit category
-    """
+    """ Edit category in the store """
     if not request.user.is_superuser:
         messages.error(request, 'Sorry, only store owners can do that.')
         return redirect(reverse('home'))
-    
+
     category = get_object_or_404(Category, pk=category_id)
     if request.method == 'POST':
         form = CategoryForm(request.POST, instance=category)
@@ -244,10 +269,14 @@ def edit_category(request, category_id):
             return redirect(reverse('product_management'))
         else:
             messages.error(
-                request, 'Failed to update category. Please ensure the form is valid.')
+                request,
+                'Failed to update category. Please ensure the form is valid.')
     else:
         form = CategoryForm(instance=category)
-        messages.info(request, f'You are editing the category "{category.friendly_name}"')
+        messages.info(
+            request,
+            f'You are editing the category "{category.friendly_name}"'
+        )
 
     template = 'products/edit_category.html'
     context = {
@@ -256,6 +285,7 @@ def edit_category(request, category_id):
     }
 
     return render(request, template, context)
+
 
 @staff_member_required
 def delete_category(request, category_id):

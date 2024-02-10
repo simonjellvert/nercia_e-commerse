@@ -7,18 +7,15 @@ from .models import Contact
 
 
 def contact(request):
-    """
-    A view to return contact page
-    """
+    """ A view to return contact page """
     contacts = Contact.objects.all()
-    
+
     return render(request, 'contact/contact.html', {'contacts': contacts})
+
 
 @staff_member_required
 def add_contact(request):
-    """
-    Add contact view
-    """
+    """ Add contact view """
     if not request.user.is_superuser:
         messages.error(request, 'Sorry, only store owners can do that.')
         return redirect(reverse('home'))
@@ -26,10 +23,16 @@ def add_contact(request):
         form = ContactForm(request.POST, request.FILES)
         if form.is_valid():
             contact = form.save()
-            messages.success(request, f'You successfully added {contact.name}!')
+            messages.success(
+                request,
+                f'You successfully added {contact.name}!'
+            )
             return redirect('contact')
         else:
-            messages.error(request, 'Something went wrong, check if form is valid!')
+            messages.error(
+                request,
+                'Something went wrong, check if form is valid!'
+            )
     else:
         form = ContactForm()
 
@@ -40,15 +43,14 @@ def add_contact(request):
 
     return render(request, template, context)
 
+
 @staff_member_required
 def edit_contact(request, contact_id):
-    """
-    Edit contact view
-    """
+    """ Edit contact view """
     if not request.user.is_superuser:
         messages.error(request, 'Sorry, only store owners can do that.')
         return redirect(reverse('home'))
-    
+
     contact = get_object_or_404(Contact, pk=contact_id)
     if request.method == 'POST':
         form = ContactForm(request.POST, request.FILES, instance=contact)
@@ -58,7 +60,9 @@ def edit_contact(request, contact_id):
             return redirect('contact')
         else:
             messages.error(
-                request, 'Failed to update contact. Please ensure the form is valid.')
+                request,
+                'Failed to update contact. Please ensure the form is valid.'
+            )
     else:
         form = ContactForm(instance=contact)
         messages.info(request, f'You are editing {contact.name}')
@@ -71,11 +75,10 @@ def edit_contact(request, contact_id):
 
     return render(request, template, context)
 
+
 @staff_member_required
 def delete_contact(request, contact_id):
-    """
-    Delete a contact
-    """
+    """ Delete a contact """
     if not request.user.is_superuser:
         messages.error(request, 'Sorry, only store owners can do that.')
         return redirect(reverse('home'))

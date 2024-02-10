@@ -2,7 +2,13 @@ from decimal import Decimal
 
 import stripe
 
-from django.shortcuts import render, reverse, redirect, get_object_or_404, HttpResponse
+from django.shortcuts import (
+    render,
+    reverse,
+    redirect,
+    get_object_or_404,
+    HttpResponse
+)
 from django.contrib import messages
 from django.conf import settings
 from django.contrib.auth.decorators import login_required
@@ -21,6 +27,7 @@ from bag.contexts import bag_contents
 
 @require_POST
 def cache_checkout_data(request):
+    """ Function for caching the checkout data """
     try:
         pid = request.POST.get('client_secret').split('_secret')[0]
         stripe.api_key = settings.STRIPE_SECRET_KEY
@@ -33,14 +40,13 @@ def cache_checkout_data(request):
             processed right now. Please try again later.')
         return HttpResponse(content=e, status=400)
 
+
 stripe.api_key = settings.STRIPE_SECRET_KEY
+
 
 @login_required
 def checkout(request):
-    """
-    Function to handle invoice or card payment
-    """
-    print("Checkout view called")
+    """ Function to handle invoice or card payment """
     stripe_public_key = settings.STRIPE_PUBLIC_KEY
     stripe_secret_key = settings.STRIPE_SECRET_KEY
 
@@ -58,7 +64,6 @@ def checkout(request):
     )
 
     if request.method == 'POST':
-        print('post request received')
         order_form = CheckoutForm(request.POST)
         payment_method = request.POST.get('payment_option')
 
@@ -100,7 +105,9 @@ def checkout(request):
                         'checkout_success', order_number=order.order_number)
                 else:
                     messages.error(
-                        request, 'Your card payment was not successful, double-check your info!')
+                        request,
+                        'Your card payment was not successful, '
+                        'double-check your info!')
                     return redirect('checkout')
 
             elif payment_method == 'invoice':
@@ -143,7 +150,7 @@ def checkout(request):
                             lineitem_total=lineitem_total,
                         )
                         order_line_item.save()
-                        
+
                         bag_items = bag_context['bag_items']
 
                     return redirect(
@@ -180,15 +187,13 @@ def checkout(request):
 
 
 def checkout_success(request, order_number):
-    """
-    Handle successful checkouts
-    """
+    """ Handle successful checkouts """
     order = get_object_or_404(Order, order_number=order_number)
     if request.user.is_authenticated:
         profile = UserProfile.objects.get(user=request.user)
         order.user_profile = profile
         order.save()
-    
+
     _send_confirmation_email(order)
 
     messages.success(request, f'Order successfully processed! \
@@ -210,11 +215,10 @@ def checkout_success(request, order_number):
 
     return render(request, template, context)
 
+
 @staff_member_required
 def order_management(request):
-    """
-    Administrator view to handle customers order
-    """
+    """ Administrator view to handle customers order """
     if not request.user.is_superuser:
         messages.error(request, 'Sorry, only store owners can do that.')
         return redirect(reverse('home'))
@@ -228,15 +232,14 @@ def order_management(request):
 
     return render(request, template, context)
 
+
 @staff_member_required
 def delete_order(request, order_id):
-    """
-    Administrator view to delete an order
-    """
+    """ Administrator view to delete an order """
     if not request.user.is_superuser:
         messages.error(request, 'Sorry, only store owners can do that.')
         return redirect(reverse('home'))
-    
+
     order = get_object_or_404(Order, id=order_id)
 
     if order.payment_option == Order.INVOICE:
@@ -247,7 +250,9 @@ def delete_order(request, order_id):
             f'Order {order.order_number} has been deleted.')
     else:
         order_deleted = False
-        messages.error(request, 'You can only delete orders with the payment method invoice.')
+        messages.error(
+            request,
+            'You can only delete orders with the payment method invoice.')
 
     template = 'checkout/order_management.html'
     context = {
@@ -256,9 +261,11 @@ def delete_order(request, order_id):
 
     return redirect(reverse('order_management'))
 
+
 def _send_confirmation_email(order):
     """
-    Function to send a confirmation email when the user submit succsessfull order
+    Function to send a confirmation email
+    when the user submit succsessfull order
     """
     cust_email = order.user_profile.email
     subject = render_to_string(
@@ -267,10 +274,10 @@ def _send_confirmation_email(order):
     body = render_to_string(
         'checkout/confirmation_emails/confirmation_email_body.txt',
         {'order': order, 'contact_email': settings.DEFAULT_FROM_EMAIL})
-    
+
     send_mail(
         subject,
         body,
         settings.DEFAULT_FROM_EMAIL,
         [cust_email]
-    )   
+    )

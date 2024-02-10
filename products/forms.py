@@ -6,9 +6,7 @@ from .models import Product, Category, ProductContent
 
 
 class CategoryForm(forms.ModelForm):
-    """
-    Form for adding categories
-    """
+    """ Form for adding categories """
     class Meta:
         model = Category
         fields = [
@@ -17,9 +15,7 @@ class CategoryForm(forms.ModelForm):
 
 
 class ProductForm(forms.ModelForm):
-    """
-    Form for adding products
-    """
+    """ Form for adding products """
     categories = Category.objects.all()
     friendly_names = [(c.id, c.get_friendly_name()) for c in categories]
 
@@ -32,7 +28,7 @@ class ProductForm(forms.ModelForm):
         model = Product
         fields = [
             'name', 'description_short',
-            'description', 
+            'description',
             'category',
             'price', 'duration', 'perks',
             'image', 'alt_atr', 'online_onsite',
@@ -45,17 +41,18 @@ class ProductForm(forms.ModelForm):
 
 
 class ProductContentForm(forms.ModelForm):
-    """
-    Form for adding product content to the product
-    """
+    """ Form for adding product content to the product """
     class Meta:
         model = ProductContent
         fields = ['day', 'title', 'purpose', 'topics']
-    
+
     def __init__(self, *args, **kwargs):
         super(ProductContentForm, self).__init__(*args, **kwargs)
 
-        self.fields['topics'].widget.attrs['placeholder'] = "'This is an example of how to add many topics and create a list', '...and so on',"
+        self.fields['topics'].widget.attrs['placeholder'] = (
+            "'This is an example of how to add many topics and create a list',"
+            " '...and so on',")
+
 
 ProductContentFormSet = inlineformset_factory(
     Product,

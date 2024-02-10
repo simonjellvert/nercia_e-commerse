@@ -41,9 +41,7 @@ class CustomUserManager(BaseUserManager):
 
 
 class CustomUser(AbstractUser):
-    """
-    Custom signup form to remove username and use email as 'username'
-    """
+    """ Custom signup form to remove username and use email as 'username' """
     email = models.EmailField(_('email address'), unique=True)
 
     USERNAME_FIELD = 'email'
@@ -53,9 +51,7 @@ class CustomUser(AbstractUser):
 
 
 class UserProfile(models.Model):
-    """
-    User profile model
-    """
+    """ User profile model """
     user = models.OneToOneField(
         CustomUser,
         on_delete=models.CASCADE,
@@ -73,16 +69,17 @@ class UserProfile(models.Model):
     city = models.CharField(max_length=40, null=False, blank=False)
     country = CountryField(blank_label='Country', null=False, blank=False)
     invoice_email = models.EmailField(max_length=254, null=False, blank=False)
-    newsletter_subscription = models.BooleanField(default=False, null=False, blank=False)
+    newsletter_subscription = models.BooleanField(
+        default=False, null=False, blank=False
+    )
+
     def __str__(self):
         return self.user.email
 
 
 @receiver(post_save, sender=CustomUser)
 def create_or_update_user_profile(sender, instance, created, **kwargs):
-    """
-    Create or update the user profile
-    """
+    """ Create or update the user profile """
     if created:
         UserProfile.objects.create(
             user=instance,

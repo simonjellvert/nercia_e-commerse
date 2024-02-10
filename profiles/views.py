@@ -11,15 +11,19 @@ from checkout.models import Order
 
 
 class CustomSignUpView(SignupView):
+    """ Sets up custom signup view """
     form_class = CustomSignupForm
 
 
 @login_required
 def profile(request):
+    """ A view for profile page """
     try:
         user_profile = request.user.userprofile
     except UserProfile.DoesNotExist:
-        user_profile, created = UserProfile.objects.get_or_create(user=request.user)
+        user_profile, created = UserProfile.objects.get_or_create(
+            user=request.user
+        )
 
     orders = user_profile.orders.all()
 
@@ -45,17 +49,31 @@ def profile(request):
             profile_form = UserProfileForm(request.POST, instance=user_profile)
             if profile_form.is_valid():
                 profile_form.save()
-                messages.success(request, 'Your profile was successfully updated!')
+                messages.success(
+                    request,
+                    'Your profile was successfully updated!'
+                )
             else:
-                messages.error(request, 'Ops, something went wrong with your profile, check your details.')
+                messages.error(
+                    request,
+                    'Ops, something went wrong with your profile, '
+                    'check your details.')
 
         user_profile = request.user.userprofile
         profile_form = UserProfileForm(instance=user_profile)
 
-    return render(request, 'profiles/profile.html', {'profile_form': profile_form, 'orders': orders, 'user_profile': user_profile})
+    return render(
+        request,
+        'profiles/profile.html', {
+            'profile_form': profile_form,
+            'orders': orders,
+            'user_profile': user_profile
+        }
+    )
 
 
 def order_history(request, order_number):
+    """ View for viewing order hostiry """
     order = get_object_or_404(Order, order_number=order_number)
     user_profile = request.user.userprofile
     bag_items = order.lineitems.all()
@@ -75,7 +93,7 @@ def order_history(request, order_number):
 
     return render(request, template, context)
 
-# View for deleting profile set up, for future development
+
 @login_required
 def delete_profile(request, user_profile_id):
     """ Function to delete profile """
@@ -90,16 +108,22 @@ def delete_profile(request, user_profile_id):
             user = authenticate(email=request.user.email, password=password)
 
             if user is not None:
-                # Check if the user to be deleted is the currently logged-in user
+                # Check if the user to be deleted is the logged-in user
                 if user.id == user_profile.user.id:
                     user_profile.user.delete()
                     logout(request)
                     messages.success(request, 'Account deleted successfully!')
                     return redirect(reverse('home'))
                 else:
-                    messages.error(request, 'You can only delete your own account.')
+                    messages.error(
+                        request,
+                        'You can only delete your own account.'
+                    )
             else:
-                messages.error(request, 'Incorrect password. Account not deleted.')
+                messages.error(
+                    request,
+                    'Incorrect password. Account not deleted.'
+                )
     else:
         form = DeleteAccountForm()
 
