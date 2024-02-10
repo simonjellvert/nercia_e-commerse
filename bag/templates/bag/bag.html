@@ -5,12 +5,12 @@
 {% block extra_title %} | Shopping Bag{% endblock %}
 
 {% block content %}
-<div class="container-fluid welcome mb-3 p-0">
-    <div class="row">
+<div class="bag-container mb-3">
+    <div class="row px-3 remove-margin">
         <h1>Your Cart</h1>
     </div>
     <hr>
-    <div class="row">
+    <div class="row px-3 remove-margin">
         {% if bag_items %}
             <div class="col-12 col-lg-6 p-0 mb-5">
                 <h3 class="mb-3">Products</h3>
@@ -103,7 +103,7 @@
 
         {% else %}
             <div class="col-12 col-lg-6 mt-5 p-0">
-                <h2 class="mb-3">Your bag is empty</h2>
+                <h2 class="mb-3">Seems like your bag is empty...</h2>
                 <span class="btn btn-primary rounded-0">
                     <a href="{% url 'products' %}" class="text-white" aria-label="Go back to products page">Back to products</a>
                 </span>

@@ -17,9 +17,24 @@ h6 {
     color: #353535;
 }
 
+button {
+    font-family: 'Ubuntu', sans-serif;
+    font-weight: 100;
+}
+
 h4 {
     font-size: 14px;
     color: #fff;
+}
+
+td {
+    font-family: 'Ubuntu', sans-serif;
+    font-size: 12px;
+    font-weight: 100;
+}
+
+th {
+    font-family: 'Ubuntu', sans-serif;
 }
 
 p,
@@ -259,7 +274,7 @@ button.form-control:hover {
 }
 
 .card-img-container {
-    height: 300px;
+    height: 200px;
     overflow: hidden;
 }
 
@@ -279,6 +294,10 @@ button.form-control:hover {
 }
 
 /* ------------------------ Product Detail */
+
+.container-content {
+    margin: 0 5rem;
+}
 
 .container-product-header {
     padding: 0;
@@ -315,9 +334,14 @@ button.form-control:hover {
 
 .detail-col {
     margin-left: 30px;
+    height: 450px;
     background-color: #f2f3f5;
     border-radius: 20px;
     padding: 20px;
+}
+
+.detail-col h5 {
+    font-size: 15px;
 }
 
 .detail-header {
@@ -349,7 +373,17 @@ button.form-control:hover {
     background-color: #0299e5;
 }
 
+/* ------------------------ Product Management */
+
+.product-management {
+    margin: 15px 5rem;
+}
+
 /* ------------------------ Bag */
+
+.bag-container {
+    margin: 0 5rem;
+}
 
 .update-link,
 .remove-item {
@@ -425,9 +459,13 @@ button.form-control:hover {
     margin-right: 5px;
 }
 
-
-
 /* ------------------------ Allauth */
+
+.allauth-container {
+    margin: 0 3rem;
+    display: flex;
+    justify-content: center;
+}
 
 .allauth-form-inner-content button,
 .allauth-form-inner-intent input[type="submit"] {
@@ -462,7 +500,6 @@ button.form-control:hover {
 main.content {
     flex: 1;
     min-height: 80vh;
-    margin: 15px 5rem;
 }
 
 /* ------------------------ Footer */
@@ -588,8 +625,7 @@ li {
         margin-right: 30px;
     }
 
-    .logotype,
-    .page-header {
+    .logotype {
         margin-left: 30px;
     }
 
@@ -612,7 +648,22 @@ li {
         font-size: 1rem;
     }
 
-    main.content {
+    .product-detail-container {
+        margin: 15px;
+        padding: 15px;
+    }
+
+    .remove-margin {
+        margin-right: 0;
+        margin-left: 0;
+    }
+
+    .bag-container {
+        margin: 15px;
+        padding: 15px;
+    }
+
+    .container-content {
         margin: 15px;
         padding: 15px;
     }
@@ -627,10 +678,6 @@ li {
 
     .navbar-toggler {
         margin-right: 30px;
-    }
-
-    .container-fluid {
-        margin-top: 30px;
     }
 
     .container-cards {
@@ -769,6 +816,11 @@ li {
     .message-container {
         right: 30px;
     }
+
+    .header-container {
+        margin: 0;
+    }
+    
 }
 
 /* ------------------------ Media querie medium screens */
@@ -888,6 +940,10 @@ li {
 
     .footer-container {
         padding-left: 15px;
+    }
+
+    .product-management {
+        margin: 15px;
     }
 
 }

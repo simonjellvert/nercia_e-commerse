@@ -4,33 +4,34 @@
 {% block extra_title %} | Add Content{% endblock %}
 
 {% block content %}
-<div class="container-fluid container-product-header mt-5">
-    <div>
-        <h1 class="page-header">
-            Product Management
-        </h1>
+<div class="product-management mb-5">
+    <div class="mt-5">
+        <div>
+            <h1 class="page-header">
+                Product Management
+            </h1>
+        </div>
+    </div>
+    <hr class="custom-hr-pr-detail">
+    <div class="col-12 col-md-6">
+        <div class="row">
+            <h4>
+                Add a new product
+            </h4>
+        </div>
+        <div class="row">
+            <form action="{% url 'add_product_content' product_id=product_id %}" method="POST">
+                {% csrf_token %}
+                <div id="formset-container">
+                    {{ formset.management_form }}
+                    {% for form in formset reversed %}
+                        {{ form | crispy }}
+                    {% endfor %}
+                    <button type="submit" class="btn btn-secondary rounded-0" name="add_day" value="add_day">Add day</button>
+                    <button type="submit" class="btn btn-primary rounded-0">Save</button>
+                </div>
+            </form>
+        </div>
     </div>
 </div>
-<hr class="custom-hr-pr-detail">
-<div class="col-12 col-md-6">
-    <div class="row">
-        <h4>
-            Add a new product
-        </h4>
-    </div>
-    <div class="row">
-        <form action="{% url 'add_product_content' product_id=product_id %}" method="POST">
-            {% csrf_token %}
-            <div id="formset-container">
-                {{ formset.management_form }}
-                {% for form in formset reversed %}
-                    {{ form | crispy }}
-                {% endfor %}
-                <button type="submit" class="btn btn-secondary rounded-0" name="add_day" value="add_day">Add day</button>
-                <button type="submit" class="btn btn-primary rounded-0">Save</button>
-            </div>
-        </form>
-    </div>
-</div>
-
 {% endblock %}

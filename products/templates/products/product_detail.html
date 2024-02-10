@@ -4,7 +4,7 @@
 {% block extra_title %} | {{ product.name }}{% endblock %}
 
 {% block content %}
-<div class="container-fluid p-0 mt-5">
+<div class="container-fluid product-detail-container p-0 mt-5">
     <div class="header-container">
         <h1 class="page-header">
             {{ product.name }}
@@ -12,9 +12,9 @@
     </div>
 </div>
 <hr class="custom-hr-pr-detail">
-<div class="container-fluid p-0">
-    <div>
-        <div class="col-lg-6 col-12 content-col mb-5 pl-0">
+<div class="container-content p-0">
+    <div class="row">
+        <div class="col-lg-8 col-12 content-col mb-5">
             <div class="mb-5">
                 <p class="product-description">{{ product.description }}</p>
             </div>
@@ -38,7 +38,7 @@
                 {% endfor %}
             </div>
         </div>
-        <div class="col-lg-3 col-12 detail-col mb-5">
+        <div class="col-lg-4 col-12 detail-col mb-5 mx-auto">
             {% if request.user.is_authenticated %}
                 {% if request.user.is_superuser %}
                     <a href="{% url 'edit_product' product.id %}" aria-label="Go to edit product page">Edit description</a>
@@ -48,12 +48,16 @@
             
             <h3 class="detail-header">Training Information</h3>
             <div class="row">
-                <div class="col-6">Duration</div>
-                <div class="col-6">{{ product.duration }}</div>
+                <div class="col-6">
+                    <p>Duration</p>
+                </div>
+                <div class="col-6">
+                    <p>{{ product.duration }}</p>
+                </div>
             </div>
-            <h4>Perks</h4>
+            <h5>Perks</h5>
             <p>{{ product.perks }}</p>
-            <h4>Price</h4>
+            <h5>Price</h5>
             <p>{{ product.price }}</p>
             <form class="form" action="{% url 'add_to_bag' product.id %}" method="POST">
                 {% csrf_token %}
@@ -84,17 +88,17 @@
                             </div>
                         </div>
                     </div>
-
-                    <div class="col-12">
-                        <a href="{% url 'products' %}" class="btn btn-outline-black rounded-0 mt-5" aria-label="Go back to products page">
-                            <span class="icon">
-                                <i class="fas fa-chevron-left"></i>
+                    <div class="row">
+                        <div class="col-12 mt-3">
+                            <span class="btn btn-secondary rounded-0">
+                                <a href="{% url 'products' %}" class="text-white" aria-label="Go back to products page">
+                                    Keep Shopping
+                                </a>
                             </span>
-                            <span class="text-uppercase">Keep Shopping</span>
-                        </a>
-                        <input type="submit" class="btn btn-black rounded-0 text-uppercase mt-5" value="Add to Bag">
+                            <button type="submit" class="btn btn-primary rounded-0">Add to bag</button>
+                        </div>
+                        <input type="hidden" name="redirect_url" value="{{ request.path }}">
                     </div>
-                    <input type="hidden" name="redirect_url" value="{{ request.path }}">
                 </div>
             </form>
         </div>

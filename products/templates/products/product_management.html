@@ -6,24 +6,23 @@
 {% block content %}
 <div class="container-fluid container-product-header mt-5">
     <div>
-        <h1 class="page-header">
+        <h1 class="ml-5 pl-3">
             Product Management
         </h1>
     </div>
 </div>
 <hr class="custom-hr-pr-detail">
-<div class="container">
+<div class="container product-management mt-5">
     <div class="row">
         <div class="col-12 col-md-6 mb-5">
-            <div class="row make-list">
+            <div class="row">
                 <h2>Products</h2>
             </div>
-            <div class="row">
+            <div class="row mb-5">
                 <span class="btn btn-primary rounded-0">
                     <a href="{% url 'add_product' %}" class="text-decoration-none text-white" aria-label="Go to add products page">Add product</a>
                 </span>
             </div>
-            <hr>
             <div class="row">
                 <ul>
                     {% for product in products %}
@@ -42,12 +41,11 @@
             <div class="row">
                 <h2>Categories</h2>
             </div>
-            <div class="row">
+            <div class="row mb-5">
                 <span class="btn btn-primary rounded-0">
                     <a href="{% url 'add_category' %}" class="text-decoration-none text-white" aria-label="Go to add category page">Add category</a>
                 </span>
             </div>
-            <hr>
             <div class="row">
                 <ul>
                     {% for category in categories %}

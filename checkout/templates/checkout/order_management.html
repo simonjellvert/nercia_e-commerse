@@ -4,7 +4,7 @@
 {% block extra_title %} | Order Management{% endblock %}
 
 {% block content %}
-<div class="container-fluid container-product-header mt-5">
+<div class="product-management mt-5">
     <div>
         <h1 class="page-header">
             Order Management
@@ -32,7 +32,7 @@
                     <tr>
                         <td>
                             {{ order.order_number }} <br>
-                            <a href="#" data-toggle="modal" data-target="#deleteOrderModal{{ order.id }}" aria-label="Opens the order deletion confirmation">Delete</a>
+                            <a href="#" data-toggle="modal" data-target="#deleteOrderModal{{ order.id }}" aria-label="Opens the order deletion confirmation" style="font-size: 12px;">Delete</a>
                         </td>
                         <td>{{ order.user_profile.company_name }}</td>
                         <td>{{ order.created }}</td>
