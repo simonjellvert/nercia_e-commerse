@@ -9,7 +9,7 @@
 {% block extra_title %} | Order Receipt{% endblock %}
 
 {% block content %}
-    <div class="container-fluid">
+    <div class="container-fluid mt-5">
         <div class="container">
             <div class="row">
                 <div class="col">
@@ -17,15 +17,15 @@
                     <hr>
                 </div>
             </div>
-            <div class="col-12 col-md-8">
-                <div class="row">
+            <div class="col-12 col-md-8 mb-5">
+                <div class="row p-2">
                     <h3>Receipt</h3>
                 </div>
-                <div class="row">
+                <div class="row p-2">
                     <p>A order confirmation has been sent to your email</p>
                 </div>
                 <div class="row">
-                    <div class="col-6">
+                    <div class="col-6 pl-2">
                         <p><strong>Order Number:</strong></p>
                     </div>
                     <div class="col-6">
@@ -33,7 +33,7 @@
                     </div>
                 </div>
                 <div class="row">
-                    <div class="col-6">
+                    <div class="col-6 pl-2">
                         <p><strong>Order Total:</strong></p>
                     </div>
                     <div class="col-6">
@@ -41,7 +41,7 @@
                     </div>
                 </div>
                 <div class="row">
-                    <div class="col-6">
+                    <div class="col-6 pl-2">
                         <p><strong>Tax:</strong></p>
                     </div>
                     <div class="col-6">
@@ -49,7 +49,7 @@
                     </div>
                 </div>
                 <div class="row">
-                    <div class="col-6">
+                    <div class="col-6 pl-2">
                         <p><strong>Grand Total:</strong></p>
                     </div>
                     <div class="col-6">
@@ -57,7 +57,7 @@
                     </div>
                 </div>
                 <div class="row">
-                    <div class="col-6">
+                    <div class="col-6 pl-2">
                         <p><strong>Payment Option:</strong></p>
                     </div>
                     <div class="col-6">
@@ -65,66 +65,66 @@
                     </div>
                 </div>
                 {% if order.payment_option == 'invoice' %}
-                    <div class="row">
+                    <div class="row p-2">
                         <p><strong>Invoice address</strong></p>
                     </div>
                     <div class="row">
-                        <div class="col-12">
+                        <div class="col-12 pl-2">
                             <p class="mb-0">{{ order.user_profile.company_name }}</p>
                         </div>
                     </div>
                     <div class="row">
-                        <div class="col-12">
+                        <div class="col-12 pl-2">
                             <p class="mb-0">{{ order.user_profile.org_num }}</p>
                         </div>
                     </div>
                     <div class="row">
-                        <div class="col-12">
+                        <div class="col-12 pl-2">
                             <p class="mb-0">{{ order.user_profile.street_address1 }}</p>
                         </div>
                     </div>
                     {% if user_profile.streetaddress2 %}
                     <div class="row">
-                        <div class="col-12">
+                        <div class="col-12 pl-2">
                             <p class="mb-0">{{ order.user_profile.street_address2 }}</p>
                         </div>
                     </div>
                     {% endif %}
                     <div class="row">
-                        <div class="col-12">
+                        <div class="col-12 pl-2">
                             <p class="mb-0">{{ order.user_profile.postcode }}</p>
                         </div>
                     </div>
                     <div class="row">
-                        <div class="col-12">
+                        <div class="col-12 pl-2">
                             <p class="mb-0">{{ order.user_profile.city }}</p>
                         </div>
                     </div>
                     <div class="row">
-                        <div class="col-12">
+                        <div class="col-12 pl-2">
                             <p>{{ order.user_profile.country }}</p>
                         </div>
                     </div>
                     <div class="row">
-                        <div class="col-12">
+                        <div class="col-12 pl-2">
                             <p class="mb-0">Invoice Email: {{ order.user_profile.invoice_email }}</p>
                         </div>
                     </div>
                     <div class="row">
-                        <div class="col-12">
+                        <div class="col-12 pl-2">
                             <p class="mb-0">Order Referens: {{ order.invoice_ref }}</p>
                         </div>
                     </div>
                 {% endif %}
                     <hr>
                     <div class="row">
-                        <div class="col-6">
+                        <div class="col-6 p-2">
                             <p><strong>Products:</strong></p>
                         </div>
                     </div>
                 {% for item in bag_items %}
                     <div class="row">
-                        <div class="col-6">
+                        <div class="col-6 pl-2">
                             <p>{{ item.product }}</p>
                         </div>
                         <div class="col-6">

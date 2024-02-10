@@ -57,9 +57,8 @@ def checkout(request):
         currency=settings.STRIPE_CURRENCY,
     )
 
-    print(intent)
-
     if request.method == 'POST':
+        print('post request received')
         order_form = CheckoutForm(request.POST)
         payment_method = request.POST.get('payment_option')
 
@@ -79,7 +78,9 @@ def checkout(request):
                     try:
                         product = Product.objects.get(id=item_id)
                     except Product.DoesNotExist:
-                        messages.error(request, f'Product with ID {item_id} does not exist.')
+                        messages.error(
+                            request,
+                            f'Product with ID {item_id} does not exist.')
                         return redirect('checkout')
 
                     quantity = item_data['quantity']
@@ -95,10 +96,11 @@ def checkout(request):
 
                     bag_items = bag_context['bag_items']
 
-                    messages.success(request, 'Your card payment was successful!')
-                    return redirect('checkout_success', order_number=order.order_number)
+                    return redirect(
+                        'checkout_success', order_number=order.order_number)
                 else:
-                    messages.error(request, 'Your card payment was not successful, double-check your info!')
+                    messages.error(
+                        request, 'Your card payment was not successful, double-check your info!')
                     return redirect('checkout')
 
             elif payment_method == 'invoice':
@@ -108,7 +110,8 @@ def checkout(request):
                     invoice_ref = order_form.cleaned_data.get('invoice_ref')
 
                     if not invoice_ref:
-                        messages.error(request, 'Please enter the invoice reference.')
+                        messages.error(
+                            request, 'Please enter the invoice reference.')
                         return redirect('checkout')
 
                     order = Order.objects.create(
@@ -125,7 +128,9 @@ def checkout(request):
                         try:
                             product = Product.objects.get(id=item_id)
                         except Product.DoesNotExist:
-                            messages.error(request, f'Product with ID {item_id} does not exist.')
+                            messages.error(
+                                request,
+                                f'Product with ID {item_id} does not exist.')
                             return redirect('checkout')
 
                         quantity = item_data['quantity']
@@ -141,14 +146,16 @@ def checkout(request):
                         
                         bag_items = bag_context['bag_items']
 
-                    messages.success(request, 'Invoice payment processed successfully!')
-                    return redirect('checkout_success', order_number=order.order_number)
+                    return redirect(
+                        'checkout_success', order_number=order.order_number)
 
                 else:
                     messages.error(request, 'Invalid payment method selected.')
                     return redirect('checkout')
         else:
-            messages.error(request, 'You need to fill out all fields to be able to proceed.')
+            messages.error(
+                request,
+                'You need to fill out all fields to be able to proceed.')
             return redirect('checkout')
     else:
         order_form = CheckoutForm()
@@ -235,7 +242,9 @@ def delete_order(request, order_id):
     if order.payment_option == Order.INVOICE:
         order.delete()
         order_deleted = True
-        messages.success(request, f'Order {order.order_number} has been deleted.')
+        messages.success(
+            request,
+            f'Order {order.order_number} has been deleted.')
     else:
         order_deleted = False
         messages.error(request, 'You can only delete orders with the payment method invoice.')

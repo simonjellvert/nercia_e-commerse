@@ -107,7 +107,7 @@
                                 </legend>
                                 <div class="row">
                                     <p class="pl-3">You need to fill out all required information to be able to submit your order. <br>
-                                        If you want to update you billing information, you can do that in your <a href="{% url 'profile' %}">profile</a>.</p>
+                                        If you want to update you billing information, you can do so in your <a href="{% url 'profile' %}">profile</a>.</p>
                                 </div>
                                 <div class="field-wrapper">
                                     <input type="text" class="form-group text-muted readonly" value="{{ user_profile.company_name|default_if_none:'' }}" placeholder="Company*" readonly>
@@ -156,6 +156,133 @@
             </div>
         </div>
     </div>
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            // Function to check if UserProfileForm is filled out
+            function isUserProfileFormFilled() {
+                var paymentOption = document.querySelector('input[name="{{ order_form.payment_option.name }}"]:checked');
+                var invoiceRef = document.getElementById('id_invoice_ref');
+
+                if (!paymentOption) {
+                    return false; // Disable the button by default
+                }
+
+                if (paymentOption.value === 'invoice') {
+                    var requiredFields = [
+                        "{{ user_profile.company_name|default_if_none:'' }}",
+                        "{{ user_profile.org_num|default_if_none:'' }}",
+                        "{{ user_profile.street_address1|default_if_none:'' }}",
+                        "{{ user_profile.postcode|default_if_none:'' }}",
+                        "{{ user_profile.city|default_if_none:'' }}",
+                        "{{ user_profile.country|default_if_none:'' }}",
+                        "{{ user_profile.invoice_email|default_if_none:'' }}",
+                    ];
+
+                    return requiredFields.every(field => field.trim() !== 'None' && field.trim() !== '');
+                }
+
+                // Enable the button for card payment or other options
+                return true;
+            }
+
+            // Function to update button state based on UserProfileForm
+            function updateButtonState() {
+                var completeOrderButton = document.getElementById('complete-order-button');
+                completeOrderButton.disabled = !isUserProfileFormFilled();
+            }
+
+            // Add event listeners for input events for each input field
+            var fields = [
+                'company_name',
+                'org_num',
+                'street_address1',
+                'postcode',
+                'city',
+                'country',
+                'invoice_email',
+                'invoice_ref',
+            ];
+
+            fields.forEach(function (fieldName) {
+                var field = document.getElementById('id_' + fieldName);
+                if (field) {
+                    field.addEventListener('input', updateButtonState);
+                }
+            });
+
+            // Additional event listener for the payment option checkboxes
+            document.querySelectorAll('input[name="{{ order_form.payment_option.name }}"]').forEach(function (checkbox) {
+                checkbox.addEventListener('change', function () {
+                    var invoiceFields = document.getElementById('invoice-fields');
+                    var cardFields = document.getElementById('card-fields');
+
+                    // Uncheck other checkboxes when one is checked
+                    document.querySelectorAll('input[name="{{ order_form.payment_option.name }}"]').forEach(function (otherCheckbox) {
+                        otherCheckbox.checked = (otherCheckbox === checkbox) && checkbox.checked;
+                    });
+
+                    if (checkbox.value === 'invoice') {
+                        invoiceFields.style.display = checkbox.checked ? 'block' : 'none';
+                        cardFields.style.display = 'none';
+                    } else if (checkbox.value === 'card') {
+                        invoiceFields.style.display = 'none';
+                        cardFields.style.display = checkbox.checked ? 'block' : 'none';
+                    }
+                    updateButtonState(); // Call the function to update the button state
+                });
+            });
+
+            // Initial call to set the button state when the page loads
+            updateButtonState();
+
+            document.getElementById('complete-order-button').addEventListener('click', function (event) {
+                // Prevent the default form submission
+                event.preventDefault();
+
+                console.log('complete-order-button handler');
+
+                // Validate the form fields based on the payment option
+                if (isUserProfileFormFilled()) {
+                    // If the payment option is 'card', confirm the card payment first
+                    var paymentOption = document.querySelector('input[name="{{ order_form.payment_option.name }}"]:checked');
+                    if (paymentOption && paymentOption.value === 'card') {
+                        // Proceed only if the card payment is successful
+                        stripe.confirmCardPayment(clientSecret, {
+                            payment_method: {
+                                card: card,
+                            }
+                        }).then(function(result) {
+                            console.log('Confirm card payment result:', result);
+                            if (result.error) {
+                                console.error('Error confirming card payment:', result.error);
+                                var errorDiv = document.getElementById('card-errors');
+                                var html = `
+                                    <span class="icon" role="alert">
+                                        <i class="fas fa-times"></i>
+                                    </span>
+                                    <span>${result.error.message}</span>`;
+                                $(errorDiv).html(html);
+                                card.update({ 'disabled': false });
+                                $('#complete-order-button').attr('disabled', false);
+                            } else {
+                                console.log('PaymentIntent status:', result.paymentIntent.status);
+                                if (result.paymentIntent.status === 'succeeded') {
+                                    console.log('Payment succeeded. Submitting the form.');
+                                    document.getElementById('payment-form').submit();
+                                }
+                            }
+                        });
+                    } else {
+                        // If the payment option is not 'card', proceed with submitting the main checkout form
+                        document.getElementById('payment-form').submit();
+                    }
+                } else {
+                    // If the form is not valid, display an error message or take appropriate action
+                    alert('Please fill out all required fields.');
+                }
+            });
+        });
+    </script>
 {% endblock %}
 
 {% block postloadjs %}
@@ -163,85 +290,4 @@
 {{ stripe_public_key|json_script:"id_stripe_public_key" }}
 {{ client_secret|json_script:"id_client_secret" }}
 <script src="{% static 'checkout/js/stripe_elements.js' %}"></script>
-<script>
-    document.addEventListener('DOMContentLoaded', function () {
-        // Function to check if UserProfileForm is filled out
-        function isUserProfileFormFilled() {
-            var paymentOption = document.querySelector('input[name="{{ order_form.payment_option.name }}"]:checked');
-            var invoiceRef = document.getElementById('id_invoice_ref');
-
-            if (!paymentOption) {
-                return false; // Disable the button by default
-            }
-
-            if (paymentOption.value === 'invoice') {
-                var requiredFields = [
-                    "{{ user_profile.company_name|default_if_none:'' }}",
-                    "{{ user_profile.org_num|default_if_none:'' }}",
-                    "{{ user_profile.street_address1|default_if_none:'' }}",
-                    "{{ user_profile.postcode|default_if_none:'' }}",
-                    "{{ user_profile.city|default_if_none:'' }}",
-                    "{{ user_profile.country|default_if_none:'' }}",
-                    "{{ user_profile.invoice_email|default_if_none:'' }}",
-                ];
-
-                return requiredFields.every(field => field.trim() !== 'None' && field.trim() !== '');
-            }
-
-            // Enable the button for card payment or other options
-            return true;
-        }
-
-        // Function to update button state based on UserProfileForm
-        function updateButtonState() {
-            var completeOrderButton = document.getElementById('complete-order-button');
-            completeOrderButton.disabled = !isUserProfileFormFilled();
-        }
-
-        // Add event listeners for input events for each input field
-        var fields = [
-            'company_name',
-            'org_num',
-            'street_address1',
-            'postcode',
-            'city',
-            'country',
-            'invoice_email',
-            'invoice_ref',
-        ];
-
-        fields.forEach(function (fieldName) {
-            var field = document.getElementById('id_' + fieldName);
-            if (field) {
-                field.addEventListener('input', updateButtonState);
-            }
-        });
-
-        // Additional event listener for the payment option checkboxes
-        document.querySelectorAll('input[name="{{ order_form.payment_option.name }}"]').forEach(function (checkbox) {
-            checkbox.addEventListener('change', function () {
-                var invoiceFields = document.getElementById('invoice-fields');
-                var cardFields = document.getElementById('card-fields');
-
-                // Uncheck other checkboxes when one is checked
-                document.querySelectorAll('input[name="{{ order_form.payment_option.name }}"]').forEach(function (otherCheckbox) {
-                    otherCheckbox.checked = (otherCheckbox === checkbox) && checkbox.checked;
-                });
-
-                if (checkbox.value === 'invoice') {
-                    invoiceFields.style.display = checkbox.checked ? 'block' : 'none';
-                    cardFields.style.display = 'none';
-                } else if (checkbox.value === 'card') {
-                    invoiceFields.style.display = 'none';
-                    cardFields.style.display = checkbox.checked ? 'block' : 'none';
-                }
-                updateButtonState(); // Call the function to update the button state
-            });
-        });
-
-        // Initial call to set the button state when the page loads
-        updateButtonState();
-    });
-
-</script>
 {% endblock %}
