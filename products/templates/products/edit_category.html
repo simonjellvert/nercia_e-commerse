@@ -6,6 +6,7 @@
 {% block content %}
 <div class="product-management mb-5">
     <div class="container-fluid container-product-header mt-5">
+        <!-- Page header -->
         <div>
             <h1 class="page-header">
                 Product Management
@@ -20,6 +21,7 @@
             </h4>
         </div>
         <div class="row">
+            <!-- Form for editing a category -->
             <form action="{% url 'edit_category' category_id=category.id %}" method="POST" class="mb-5" enctype="multipart/form-data">
                 {% csrf_token %}
                 {{ form | crispy }}

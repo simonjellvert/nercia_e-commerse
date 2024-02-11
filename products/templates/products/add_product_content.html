@@ -6,6 +6,7 @@
 {% block content %}
 <div class="product-management mb-5">
     <div class="mt-5">
+        <!-- Page header -->
         <div>
             <h1 class="page-header">
                 Product Management
@@ -20,6 +21,7 @@
             </h4>
         </div>
         <div class="row">
+            <!-- Form for adding product content -->
             <form action="{% url 'add_product_content' product_id=product_id %}" method="POST">
                 {% csrf_token %}
                 <div id="formset-container">

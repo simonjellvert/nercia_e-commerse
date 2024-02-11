@@ -11,6 +11,7 @@
 {% block content %}
     <div class="container-fluid">
         <div class="container mt-5">
+            <!-- Page header -->
             <div class="row">
                 <div class="col">
                     <h1>Checkout</h1>
@@ -18,6 +19,7 @@
                 </div>
             </div>
             <div class="row">
+                <!-- Displays overview of items in the bag -->
                 <div class="col-12 col-lg-6 order-lg-last">
                     <div class="col overview-col">
                         <h3>Overview</h3>
@@ -63,12 +65,11 @@
                         </div>
                     </div>
                 </div>
+                <!-- Payment form -->
                 <div class="col-12 col-lg-6 order-lg-first mb-5">
-                    <div>
-
-                    </div>
                     <form class="mt-3" action="{% url 'checkout' %}" method="POST" id="payment-form">
                         {% csrf_token %}
+                        <!-- Displays user profile information and billing address -->
                         <fieldset class="mb-5">
                             <h3>Purchaser</h3>
                             <div class="field-wrapper">
@@ -85,6 +86,7 @@
                             </div>
                         </fieldset>
                         <fieldset class="mb-3">
+                            <!-- Checkboxes for payment method -->
                             <h3>Payment</h3>
                             <div>
                                 {% for option_value, option_label in order_form.payment_option.field.choices %}
@@ -148,6 +150,7 @@
             </div>
         </div>
     </div>
+    <!-- Script that handles checkboxes and enable/disable order confirmation button -->
     <script>
         document.addEventListener('DOMContentLoaded', function () {
             // Function to check if UserProfileForm is filled out
@@ -172,17 +175,14 @@
 
                     return requiredFields.every(field => field.trim() !== 'None' && field.trim() !== '');
                 }
-
                 // Enable the button for card payment or other options
                 return true;
             }
-
             // Function to update button state based on UserProfileForm
             function updateButtonState() {
                 var completeOrderButton = document.getElementById('complete-order-button');
                 completeOrderButton.disabled = !isUserProfileFormFilled();
             }
-
             // Add event listeners for input events for each input field
             var fields = [
                 'company_name',
@@ -194,25 +194,21 @@
                 'invoice_email',
                 'invoice_ref',
             ];
-
             fields.forEach(function (fieldName) {
                 var field = document.getElementById('id_' + fieldName);
                 if (field) {
                     field.addEventListener('input', updateButtonState);
                 }
             });
-
             // Additional event listener for the payment option checkboxes
             document.querySelectorAll('input[name="{{ order_form.payment_option.name }}"]').forEach(function (checkbox) {
                 checkbox.addEventListener('change', function () {
                     var invoiceFields = document.getElementById('invoice-fields');
                     var cardFields = document.getElementById('card-fields');
-
                     // Uncheck other checkboxes when one is checked
                     document.querySelectorAll('input[name="{{ order_form.payment_option.name }}"]').forEach(function (otherCheckbox) {
                         otherCheckbox.checked = (otherCheckbox === checkbox) && checkbox.checked;
                     });
-
                     if (checkbox.value === 'invoice') {
                         invoiceFields.style.display = checkbox.checked ? 'block' : 'none';
                         cardFields.style.display = 'none';
@@ -223,14 +219,11 @@
                     updateButtonState(); // Call the function to update the button state
                 });
             });
-
             // Initial call to set the button state when the page loads
             updateButtonState();
-
             document.getElementById('complete-order-button').addEventListener('click', function (event) {
                 // Prevent the default form submission
                 event.preventDefault();
-
                 // Validate the form fields based on the payment option
                 if (isUserProfileFormFilled()) {
                     // If the payment option is 'card', confirm the card payment first
@@ -263,7 +256,7 @@
                         document.getElementById('payment-form').submit();
                     }
                 } else {
-                    // If the form is not valid, display an error message or take appropriate action
+                    // If the form is not valid, display an error message
                     alert('Please fill out all required fields.');
                 }
             });
@@ -275,5 +268,6 @@
 {{ block.super }}
 {{ stripe_public_key|json_script:"id_stripe_public_key" }}
 {{ client_secret|json_script:"id_client_secret" }}
+<!-- Script that handles Stripe (card) payment -->
 <script src="{% static 'checkout/js/stripe_elements.js' %}"></script>
 {% endblock %}

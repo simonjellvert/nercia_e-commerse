@@ -6,10 +6,12 @@
 
 {% block content %}
 <div class="bag-container mt-5 mb-3">
+    <!-- Page header -->
     <div class="row px-3 remove-margin">
         <h1>Your Cart</h1>
     </div>
     <hr>
+    <!-- Displays products added to the bag -->
     <div class="row px-3 remove-margin">
         {% if bag_items %}
             <div class="col-12 col-lg-6 p-0 mb-5">
@@ -21,6 +23,7 @@
                                 <p>{{ item.product }}</p>
                             </div>
                             <div class="col-8 col-sm-4">
+                                <!-- Form for updating qty in the bag -->
                                 <form class="form update-form" method="POST" action="{% url 'edit_bag' item.item_id %}">
                                     {% csrf_token %}
                                     <div class="form-group">
@@ -48,6 +51,7 @@
                                         </div>
                                     </div>
                                 </form>
+                                <!-- Buttons for update/remove products -->
                                 <a class="update-link text-primary" aria-label="Update the number of items of the product"><small>Update</small></a>
                                 <a class="remove-item text-danger float-right" id="remove_{{ item.item_id }}" aria-label="Delete the product from the shopping bag"><small>Remove</small></a>
                             </div>
@@ -58,7 +62,7 @@
                     {% endfor %}
                 </div>
             </div>
-
+            <!-- Displays order summary based on bag -->
             <div class="col-lg-5 col-xl-4 mx-auto order-summary">
                 <h3>Order summary</h3>
                 <div class="row">
@@ -87,6 +91,7 @@
                     </div>
                 </div>
                 <hr>
+                <!-- Buttons for checkout or keep shopping -->
                 <div class="row">
                     <div class="col-6">
                         <span class="btn btn-primary rounded-0">
@@ -100,8 +105,8 @@
                     </div>
                 </div>
             </div>
-
         {% else %}
+        <!-- If bag is empty, displays a message and button to send back to products page -->
             <div class="col-12 col-lg-6 mt-5 p-0">
                 <h2 class="mb-3">Seems like your bag is empty...</h2>
                 <span class="btn btn-primary rounded-0">
@@ -114,10 +119,10 @@
 {% endblock %}
 
 
+<!-- Script that handles update or removal of products in the bag -->
 {% block postloadjs %}
 {{ block.super }}
 {% include 'products/includes/quantity_input_script.html' %}
-
 <script>
     // Update quantity on click
     $('.update-link').click(function(e) {

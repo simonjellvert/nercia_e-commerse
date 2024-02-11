@@ -26,6 +26,7 @@
                     <p>
                         If so, you need to confirm that by entering your password
                     </p>
+                    <!-- Form for delete password with password confirmation -->
                     <form class="mb-5" action="{% url 'delete_profile' user_profile.id %}" method="POST">
                         {% csrf_token %}
                         {{ form | crispy }}

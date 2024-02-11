@@ -6,6 +6,7 @@
 {% block content %}
 <div class="product-management mb-5">
     <div class="mt-5">
+        <!-- Page header -->
         <div>
             <h1 class="page-header">
                 Product Management
@@ -20,6 +21,7 @@
             </h4>
         </div>
         <div class="row">
+            <!-- Form for editing a product -->
             <form action="{% url 'edit_product' product_id=product.id %}" method="POST">
                 {% csrf_token %}
                 <div id="form-container">

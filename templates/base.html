@@ -52,6 +52,7 @@
 </head>
 
 <body>
+    <!-- Header and navigation -->
     <header>
         <nav class="navbar base-navbar navbar-expand-lg navbar-light">
             <a class="navbar-brand" href="{% url 'home' %}" aria-label="Go to home page">
@@ -120,11 +121,12 @@
             </div>
         </nav>
     </header>
+    <!-- Main content -->
     <main class="content">
         {% block content %}
         {% endblock %}
     </main>
-
+    <!-- Footer -->
     <footer>
         <div class="container-fluid footer-container d-flex justify-content-center align-items-center">
             <div class="row footer-content mx-0">

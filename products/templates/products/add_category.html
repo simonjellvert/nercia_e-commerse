@@ -6,11 +6,10 @@
 {% block content %}
 <div class="product-management mb-5">
     <div class="container-fluid container-product-header mt-5">
-        <div>
-            <h1 class="page-header">
-                Product Management
-            </h1>
-        </div>
+        <!-- Page header -->
+        <h1 class="page-header">
+            Product Management
+        </h1>
     </div>
     <hr class="custom-hr-pr-detail">
     <div class="col-12 col-md-6">
@@ -20,6 +19,7 @@
             </h4>
         </div>
         <div class="row">
+            <!-- Form for adding a category -->
             <form action="{% url 'add_category' %}" method="POST" class="mb-5" enctype="multipart/form-data">
                 {% csrf_token %}
                 {{ form | crispy }}
