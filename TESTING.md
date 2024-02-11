@@ -226,6 +226,14 @@ product_content.topics = [
 
 - Testing done in [W3C Jigsaw](https://jigsaw.w3.org/css-validator/#validate_by_uri).
 
-- Pass with 1 warning I don't want to change.
+- PASS with 1 warning I don't want to change.
 
-- [Full CSS Calidation Report]()
+- [Full CSS Validation report]()
+
+### Python Validation
+
+- Testing done in [CI Python Linter](https://pep8ci.herokuapp.com/).
+
+- PASS with no errors.
+
+- [Full Python Validation report]()
