@@ -258,4 +258,8 @@ Haven't dug in to that at the time (future devlopment).
 
 12. Additional code for refined add files button
 I've added html and javascript for a refined file adder in the products and contact forms, but it gave me a broken image in the preview. Due to time pressure I removed it and added it to future feature/development list.
+
+13. Testing 404 and 500 page
+The files did not load. Ran it locally to check for messages in the temrinal, turned out there was a typo in the folder containing the templates.
+
 ---
