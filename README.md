@@ -132,15 +132,33 @@ When a order has been placed and is valid with participants information (email, 
 #### Link up booking/orders to finance program
 When a order has been made and the payment option is invoice the necessary info will automatically be uploaded to the finance program so the finance administrators donät have to do extra work.
 
+#### Link up orders directly to CRM system
+The orders should automatically be loaded into the CRM database so a salesman can handle incoming orders.
+
 #### Order cancellation
 When a order has been placed the user should be able to cancel it and all information about the order will be deleted.
+
+#### Add attendee
+The user should be able to add attendees to each product/training.
+
+#### Google map
+Tidy up the map on contacts page, missing functionality in the version.
+
+#### Cancel card payments
+Implement easy handling for canceling a customers card payment.
+
+#### Resonsive orde management page
+In this version the order management is responsive but it doesent look good even though an administrator of this particular page is not likely going to handle orders from the phone or tablet. But for future development that feature is on to do.
+
+#### Obvious redirecting (checkout)
+In this version a user that is not authenticated is not able to enter the checkout page, instead it is redirected to the sign up page - but without any messages. It's a bug that should be fixed in the upcoming versions.
 
 ---
 
 ## Technologies used
 - ### Languages:
     
-    + **Python 3.8.5**: the primary language used to develop the server-side of the website.
+    + **Python 3.12.1**: the primary language used to develop the server-side of the website.
     + **JavaScript**: the primary language used to develop interactive components of the website.
     + **HTML**: the markup language used to create the website.
     + **CSS**: the styling language used to style the website.
@@ -191,39 +209,31 @@ Please refer to the [FEATURES.md](FEATURES.md) file for all test-related documen
 
 The website follows Nercia's graphical profile which is set up for the all graphical materials to be eye-catching and user friendly.
 
-#### Color Scheme
+<!-- #### Color Scheme
 
 Text here
 
-Link here
+Link here -->
 
 #### Typography
 
 The fonts used for this website are following Nercias graphical profile: ["Ubuntu"](https://fonts.google.com/specimen/Ubuntu?preview.text=Welcome!&query=ubuntu).
 
-#### Images
+<!-- #### Images
 
 Text here
 
-Image here
+Image here -->
 
 ---
 
-## Agile Methodology
+<!-- ## Agile Methodology
 
 #### GitHub Project Management
 
 Text here
 
-Image here
-
----
-
-## Flowchart
-
-Text here
-
-Image here
+Image here -->
 
 ---
 
@@ -236,9 +246,11 @@ Image here
 
 ### Entity-Relationship Diagram
 
-![ERD](documentation/my_project_visualized.png)
+The structure of building the model is from the ERD below. The flowchart has been updated since the structure has been updated during the development process.
 
-### Data Modeling
+<!-- ![ERD]() -->
+
+<!-- ### Data Modeling
 
 #### Role Model
 | Name          | Database Key  | Field Type    | Validation |
@@ -436,7 +448,7 @@ When the user signs up, a new wishlist is created.
 | requested_attributes_values | requested_attributes_values | ManyToManyField | ProductAttributeValue, related_name="requested_attributes_values", through="RequestedAttributesValues", verbose_name='Requested attributes values' |
 | requested_quantity | requested_quantity | PositiveIntegerField | verbose_name='Requested quantity' |
 | created_at    | created_at    | DateTimeField | auto_now_add=True, verbose_name='Created at' |
-| answer_sent    | answer_sent    | BooleanField | default=False, verbose_name='Answer send' |
+| answer_sent    | answer_sent    | BooleanField | default=False, verbose_name='Answer send' | -->
 
 ---
 
@@ -448,16 +460,16 @@ Please refer to the [TESTING.md](TESTING.md) file for all test-related documenta
 
 ## Deployment and Payment setup
 
-- The app was deployed to [Render](https://render.com/).
+- The app was deployed to [Heroku](https://www.heroku.com/).
 - The database was deployed to [ElephantSQL](https://www.elephantsql.com/).
 
-- The app can be reached by the [link](https://wowder.onrender.com).
+<!-- - The app can be reached by the [link](). -->
 
 
 Please refer to the [DEPLOYMENT.md](DEPLOYMENT.md) file for all deployment and payment-related documentation.
 
 ---
-
+<!--
 ## Credits
 
 - [GitHub](https://github.com/) for giving the idea of the project's design.
@@ -507,5 +519,5 @@ Please refer to the [DEPLOYMENT.md](DEPLOYMENT.md) file for all deployment and p
 
 - [Tim Nelson](https://github.com/TravelTimN) was a great supporter of another bold idea of mine for this project. Tim guided me through the development of the project and helped me to learn a lot of new things by challenging me to do something new.
 - [Aleksei Konovalov](https://github.com/lexach91), my husband and coding partner, assisted me greatly in product values js selection control implementation and helped me to stay sane.
-- [Very Academy Youtube Channel](https://www.youtube.com/c/veryacademy) provided great insight on the implementation of the database with multi-values products, precise explanations of the stripe API, and many other things! This Youtube channel has plenty of brilliant tutorials that shed light on Django's most curious and useful aspects.
+- [Very Academy Youtube Channel](https://www.youtube.com/c/veryacademy) provided great insight on the implementation of the database with multi-values products, precise explanations of the stripe API, and many other things! This Youtube channel has plenty of brilliant tutorials that shed light on Django's most curious and useful aspects. -->
 

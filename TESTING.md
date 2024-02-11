@@ -144,6 +144,46 @@ Home page, products page, Profile page, Bag page, Checkout page and Checkout suc
 
 ---
 
+## Validation
+
+### HTML Validation
+
+### CSS Validation
+
+##### base.css
+
+- Testing done in [W3C Jigsaw](https://jigsaw.w3.org/css-validator/#validate_by_uri).
+
+- Pass with 4 warnings I don't want to change.
+
+- [Full CSS Calidation Report]()
+
+##### checkout.css
+
+- Testing done in [W3C Jigsaw](https://jigsaw.w3.org/css-validator/#validate_by_uri).
+
+- PASS with 1 warning I don't want to change.
+
+- [Full CSS Validation report]()
+
+### Python Validation
+
+- Testing done in [CI Python Linter](https://pep8ci.herokuapp.com/).
+
+- PASS with no errors.
+
+- [Full Python Validation report]()
+
+### JavaScript Validation
+
+- Testing done in [JSHint](https://jshint.com/)
+
+- PASS with no errors.
+
+- [Full JavaScript Validation]()
+
+---
+
 ## Stripe
 
 I did not have time to implement webhooks for my project, though I have created the code I have nbot prioritized testing it. Implementing webhooks is for future development.
@@ -159,9 +199,8 @@ IMAGE HERE
 ---
 
 ## Bugs
-
-Unfortunately due to working on two different computers I'm not able to provide screenshots of the output of the bug, since those are stored locally on the computer I don't have access to when writing and submitting this project. 
-Below is al list of bugs and the relevant code.
+ 
+Below is a list of bugs and the relevant code.
 
 1. Setting up real Emails
 When deploying the project to Heroku and testing the real Emails it would throw a "OSError: [Errno 101] Network is unreachable" error. This was due to a compatibility issue with the version of python I'm running (version 3.12). To fix the issue i added a 'runtime.txt' and the line: ```python-3.9.18```. With that the deployed version on Heroku will recognize that as my version of python and the real Email worked.
@@ -207,33 +246,3 @@ product_content.topics = [
 ```
 
 ---
-
-## Validation
-
-### HTML Validation
-
-### CSS Validation
-
-##### base.css
-
-- Testing done in [W3C Jigsaw](https://jigsaw.w3.org/css-validator/#validate_by_uri).
-
-- Pass with 4 warnings I don't want to change.
-
-- [Full CSS Calidation Report]()
-
-##### checkout.css
-
-- Testing done in [W3C Jigsaw](https://jigsaw.w3.org/css-validator/#validate_by_uri).
-
-- PASS with 1 warning I don't want to change.
-
-- [Full CSS Validation report]()
-
-### Python Validation
-
-- Testing done in [CI Python Linter](https://pep8ci.herokuapp.com/).
-
-- PASS with no errors.
-
-- [Full Python Validation report]()
