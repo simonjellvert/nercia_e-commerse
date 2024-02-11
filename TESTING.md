@@ -4,7 +4,7 @@
 
 Testing has been done manually throughout the development. Testing has been done according to the criterias below and until the desired result was achieved.
 
-Testing has been done on different devices to ensure there are no issues.
+Testing has been done on different devices to ensure there are no issues. Testing has also been done by employees at Nercia.
 
 ### Visitor / Logged in user
 
@@ -142,3 +142,90 @@ Home page, products page, Profile page, Bag page, Checkout page and Checkout suc
 | 23 | As a administrator I can send newsletters to those users that subscribes so that they can receive information about new products and other relevant information | Y | IMAGE HERE |
 | 24 | As a user I can subscribe to newsletters so that I can hear about new products and other relevant information regarding company training. | Y | IMAGE HERE |
 
+---
+
+## Stripe
+
+I did not have time to implement webhooks for my project, though I have created the code I have nbot prioritized testing it. Implementing webhooks is for future development.
+
+Since I choose to give the user two options on payment method and wanted it to be a obvious for the user what to do when chosing either option i implemented some javascript that listens to the users behaviour and render the relevant form accordingly to payment method i ran into some problems with the connection to Stripe. After lots of manual testing, debugging and help from tutor support at Code Instititue we figured out that the javascript that handles the payment methods didn't call the javascript that handles the submission of a card payment. When modifiying the javascript the card payment is successfull. 
+
+IMAGE HERE
+
+The card payment is successfull and works correctly, allthough I have a bug with payments created in Stripe as soon as the user enters the checkout page. Since the user is able to choose to pay with invoice I qould like the payment to be connected to Stripe by an event listener when the user choose card payment - future development.
+
+IMAGE HERE
+
+---
+
+## Bugs
+
+Unfortunately due to working on two different computers I'm not able to provide screenshots of the output of the bug, since those are stored locally on the computer I don't have access to when writing and submitting this project. 
+Below is al list of bugs and the relevant code.
+
+1. Setting up real Emails
+When deploying the project to Heroku and testing the real Emails it would throw a "OSError: [Errno 101] Network is unreachable" error. This was due to a compatibility issue with the version of python I'm running (version 3.12). To fix the issue i added a 'runtime.txt' and the line: ```python-3.9.18```. With that the deployed version on Heroku will recognize that as my version of python and the real Email worked.
+
+2. Deploying to Heroku
+When I deployed my project to Heroku I received an error in the Heroku build log saying "ERROR: Cannot install -r requirements.txt (line 3) and urllib3==2.0.7 because these package versions have conflicting dependencies.". To fix this I edited my requirements.txt file from this: ```urllib==2.0.7``` to: ```urllib```.
+
+3. Form not rendering
+On my contact form in my add contact function for administrators I could not get the form rendered in a Bootstrap 4 modal. Could not fix that, so I had to change approach and separate the form from in another template to make the form render correctly.
+
+4. Images on products page
+On the products page I wanted the images to be equaly sized so that the cards would appear the same over all cards. I fixed that by adding this the my css:
+```
+.card-img-container {
+    height: 200px;
+    overflow: hidden;
+}
+
+.card-img-container img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+```
+
+5. Search function on products page
+The search function is working fine when I enter a value that has a match in the products, but when there is no match the page doesent throw an error, which would be a good UX (future devlopment).
+
+6. Initially, the company form was not displaying after submitting the profile update form. Adjusted the view to pass both forms to the template and reordered the HTML to display both forms consistently.
+
+7. Some crispy forms are not working, throwing a AttributeError. Those forms are not fixed but I don't think it will affect the UX in short term but problem should be fixed in long term.
+
+8. Faced a FieldError in the profiles/views.py related to the user_profile field when trying to display a user's profile. The issue was identified as a typo in the view. The correct field name is 'user' instead of 'user_profile'. Adjusted the view accordingly.
+
+9. At first I had two separate apps for 'profiles' and 'companies' which gave me problems handling both forms in the checkout and in the profile. To fix it I deleted the 'companies' app and made the company infformation part of the 'profiles' app.
+
+10. The topics in the product details page
+The topics in the products detail page where displayed as JSON format. to fix it I needed to add this to the view: 
+```
+product_content.topics = [
+    topic.strip(" '[]") for topic in topics.split(' ')
+]
+```
+
+---
+
+## Validation
+
+### HTML Validation
+
+### CSS Validation
+
+##### base.css
+
+- Testing done in [W3C Jigsaw](https://jigsaw.w3.org/css-validator/#validate_by_uri).
+
+- Pass with 4 warnings I don't want to change.
+
+- [Full CSS Calidation Report]()
+
+##### checkout.css
+
+- Testing done in [W3C Jigsaw](https://jigsaw.w3.org/css-validator/#validate_by_uri).
+
+- Pass with 1 warning I don't want to change.
+
+- [Full CSS Calidation Report]()
