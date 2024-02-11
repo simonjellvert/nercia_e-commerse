@@ -153,6 +153,19 @@ In this version the order management is responsive but it doesent look good even
 #### Obvious redirecting (checkout)
 In this version a user that is not authenticated is not able to enter the checkout page, instead it is redirected to the sign up page - but without any messages. It's a bug that should be fixed in the upcoming versions.
 
+#### Google map warning
+The Google Map on contacts page works as I expect it do, but get this warning in the browser console: 
+"Google Maps
+JavaScript API has been leaded directly without leading=async.
+This can result in suboptimal performance. For best-practice leading patterns please see: https://goo.gle/js-api-loading"
+Next version should have solved this warning.
+
+#### Webhooks for payment
+The code is set up but haven't had the time to test it, but will be tested and implemented for next version.
+
+#### Refined file adder
+The button for file adding in products and contacts templates does not look so good and should be refined for better UX.
+
 ---
 
 ## Technologies used
@@ -185,6 +198,8 @@ In this version a user that is not authenticated is not able to enter the checko
     + **Django-crispy-forms**: was used to control the rendering behavior of Django forms.
     + **GitHub**: used to host the website's source code.
     + **CodeAnywhere**: the IDE used to develop the website.
+    + **GitPod**: the alternative IDE used to develop the website.
+    + **Amazon AWS**: host of static files.
     + **Chrome DevTools**: was used to debug the website.
     + **Font Awesome**: was used to create the icons used in the website.
     + **Miro**: was used to make a flowchart for the README file.
@@ -193,7 +208,7 @@ In this version a user that is not authenticated is not able to enter the checko
     + **W3C CSS validator**: was used to validate CSS code for the website.
     + **JShint**: was used to validate JS code for the website.
     + **PEP8**: was used to validate Python code for the website.
-    + **stripe**: was used to create the payment system.
+    + **Stripe**: was used to create the payment system.
     + **Lunapic**: was used to crop and center unsplash images.
     + **Sitemap Generator**: was used to create the sitemap.xml file.
 
