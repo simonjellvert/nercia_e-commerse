@@ -346,10 +346,10 @@ button.form-control:hover {
 
 .detail-col {
     margin-left: 30px;
-    height: 450px;
+    height: 550px;
     background-color: #f2f3f5;
     border-radius: 20px;
-    padding: 20px;
+    padding: 40px;
 }
 
 .detail-col h5 {
@@ -406,6 +406,13 @@ button.form-control:hover {
 .update-link:hover,
 .remove-item:hover {
     text-decoration: none;
+}
+
+.order-summary {
+    background-color: #f2f3f5;
+    border-radius: 20px;
+    height: 400px;
+    padding: 30px;
 }
 
 /* ------------------------ Product Form */
@@ -1013,6 +1020,10 @@ li {
 
     .footer-container {
         margin-top: 0;
+    }
+
+    .bag-container {
+        padding: 0;
     }
 
 }
