@@ -224,11 +224,18 @@ Please refer to the [FEATURES.md](FEATURES.md) file for all test-related documen
 
 The website follows Nercia's graphical profile which is set up for the all graphical materials to be eye-catching and user friendly.
 
-<!-- #### Color Scheme
+#### Color Scheme
 
-Text here
+![Color Scheme](/documentation/design/color_palette.png)
 
-Link here -->
+The colors are from Nercia's graphic profile and is used mainly for backgrounds and buttons.
+- #000000 is used for the background for the footer
+- #007EC1 is the color of the logo
+- #0082D3 is used for on-hovering buttons and links
+- #0299E5 is used for buttons
+- #DADADA is used for hovering effect on dropdown menu in navbar
+- #F2F3F5 is used for highlighting parts in the templates.
+- #FFFFFF is used as the default background
 
 #### Typography
 

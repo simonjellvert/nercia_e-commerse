@@ -95,7 +95,7 @@
                                     <a href="{% url 'newsletters' %}" class="dropdown-item" aria-label="Go to newsletters page">Newsletters</a>
                                 {% endif %}
                                 <a href="{% url 'profile' %}" class="dropdown-item" aria-label="Go to my profile page">My Profile</a>
-                                <a href="{% url 'account_logout' %}" class="dropdown-item" aria-label="Go to log out">Logout</a>
+                                <a href="{% url 'account_logout' %}" class="dropdown-item" aria-label="Go to log out">Sign Out</a>
                             {% else %}
                                 <a href="{% url 'account_signup' %}" class="dropdown-item" aria-label="Go to register page">Register</a>
                                 <a href="{% url 'account_login' %}" class="dropdown-item" aria-label="Go to log in page">Login</a>
@@ -103,7 +103,7 @@
                         </div>
                     </li>
                     <li class="nav-item list-inline-item">
-                        <a class="{% if grand_total %}text-primary font-weight-bold{% else %}text-black{% endif %} nav-link"
+                        <a class="{% if grand_total %}a-nercia-blue font-weight-bold{% else %}text-black{% endif %} nav-link"
                             href="{% url 'view_bag' %}" aria-label="Go to shopping bag page">
                             <div>
                                 <div class="text-left">

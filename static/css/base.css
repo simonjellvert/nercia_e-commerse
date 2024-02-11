@@ -52,7 +52,6 @@ span a {
     font-size: 14.5px;
 }
 
-.btn-primary,
 .btn-danger,
 .btn-secondary {
     font-size: 14.5px;
@@ -63,6 +62,38 @@ label {
     font-weight: 100;
     font-size: 14.5px;
 }
+
+.btn-nercia-blue {
+    background-color: #0082d3;
+    color: #fff;
+    font-weight: 100;
+    font-size: 14.5px;
+    transition: background-color;
+}
+
+.btn-nercia-blue:hover {
+    background-color: #0299E5;
+    color: #fff;
+}
+
+.a-nercia-blue {
+    color: #0082d3;
+    transition: color;
+}
+
+.a-nercia-blue:hover {
+    color: #0299e5;
+}
+
+.nav-item .a-nercia-blue {
+    color: #0082d3 !important;
+}
+
+.nav-item .a-nercia-blue:hover {
+    color: #0299E5 !important;
+}
+
+
 
 /* ------------------------ Navbar */
 

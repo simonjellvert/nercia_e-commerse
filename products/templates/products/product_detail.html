@@ -24,7 +24,7 @@
                 <h2 class="product-content-header">Program Content</h2>
                 {% if request.user.is_authenticated %}
                     {% if request.user.is_superuser %}
-                        <a href="{% url 'add_product_content' product_id=product.id %}" aria-label="Go to add product content page">Edit Content</a>
+                        <a href="{% url 'add_product_content' product_id=product.id %}" class="a-nercia-blue" aria-label="Go to add product content page">Edit Content</a>
                     {% endif %}
                 {% endif %}
                 {% for product_content in product_contents %}
@@ -44,7 +44,7 @@
         <div class="col-lg-4 col-12 detail-col mb-5 mx-auto">
             {% if request.user.is_authenticated %}
                 {% if request.user.is_superuser %}
-                    <a href="{% url 'edit_product' product.id %}" aria-label="Go to edit product page">Edit description</a>
+                    <a href="{% url 'edit_product' product.id %}" class="a-nercia-blue" aria-label="Go to edit product page">Edit description</a>
                     <a href="#" data-toggle="modal" data-target="#deleteProductModal" class="text-danger" aria-label="Open up the delete product confirmation">Delete</a>
                 {% endif %}
             {% endif %}
@@ -107,7 +107,7 @@
                                     Keep Shopping
                                 </a>
                             </span>
-                            <button type="submit" class="btn btn-primary rounded-0">Add to bag</button>
+                            <button type="submit" class="btn btn-nercia-blue rounded-0">Add to bag</button>
                         </div>
                         <input type="hidden" name="redirect_url" value="{{ request.path }}">
                     </div>

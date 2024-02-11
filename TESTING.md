@@ -156,7 +156,7 @@ Home page, products page, Profile page, Bag page, Checkout page and Checkout suc
 
 - Pass with 4 warnings I don't want to change.
 
-- [Full CSS Calidation Report](/documentation/validation/checkout_css_validation.pdf)
+- [Full CSS Calidation Report](/documentation/validation/base_css_validation.pdf)
 
 ##### checkout.css
 
@@ -164,7 +164,7 @@ Home page, products page, Profile page, Bag page, Checkout page and Checkout suc
 
 - PASS with 1 warning I don't want to change.
 
-- [Full CSS Validation report]()
+- [Full CSS Validation report](/documentation/validation/checkout_css_validation.pdf)
 
 ### Python Validation
 
@@ -172,7 +172,7 @@ Home page, products page, Profile page, Bag page, Checkout page and Checkout suc
 
 - PASS with no errors.
 
-- [Full Python Validation report]()
+- [Full Python Validation report](/documentation/validation/python_validation.pdf)
 
 ### JavaScript Validation
 
@@ -180,7 +180,7 @@ Home page, products page, Profile page, Bag page, Checkout page and Checkout suc
 
 - PASS with no errors.
 
-- [Full JavaScript Validation]()
+- [Full JavaScript Validation](/documentation/validation/js_validation.pdf)
 
 ---
 

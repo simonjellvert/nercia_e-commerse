@@ -30,7 +30,7 @@
                     <form class="mb-5" action="{% url 'delete_profile' user_profile.id %}" method="POST">
                         {% csrf_token %}
                         {{ form | crispy }}
-                        <span class="btn btn-primary rounded-0">
+                        <span class="btn btn-nercia-blue rounded-0">
                             <a href="{% url 'profile' %}" class="text-white" aria-label="Go back to my profile page">Cancel</a>
                         </span>
                         <button type="submit" class="btn btn-danger rounded-0">Delete</button>
