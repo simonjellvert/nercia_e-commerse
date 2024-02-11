@@ -6,7 +6,7 @@
 {% block content %}
 <div class="container-fluid container-product-header mt-5">
     <!-- Page header -->
-    <div>
+    <div class="mx-3 mx-sm-5">
         <h1 class="page-header">
             Create newsletter
         </h1>
@@ -14,12 +14,7 @@
 </div>
 <hr class="custom-hr-pr-detail">
 <div class="col-12 col-md-6">
-    <div class="row">
-        <h4>
-            Add a new newsletter
-        </h4>
-    </div>
-    <div class="row">
+    <div class="row mt-3 mx-3 mx-3 mx-sm-5">
         <!-- Form for creating a new newsletter -->
         <form action="{% url 'create_newsletter' %}" method="POST" class="mb-5" enctype="multipart/form-data">
             {% csrf_token %}

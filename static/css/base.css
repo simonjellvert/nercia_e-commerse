@@ -68,7 +68,7 @@ label {
     color: #fff;
     font-weight: 100;
     font-size: 14.5px;
-    transition: background-color;
+    transition: background-color 0.3s ease;
 }
 
 .btn-nercia-blue:hover {
@@ -78,7 +78,7 @@ label {
 
 .a-nercia-blue {
     color: #0082d3;
-    transition: color;
+    transition: color 0.3s ease;
 }
 
 .a-nercia-blue:hover {
@@ -87,6 +87,7 @@ label {
 
 .nav-item .a-nercia-blue {
     color: #0082d3 !important;
+    transition: color 0.3s ease
 }
 
 .nav-item .a-nercia-blue:hover {
