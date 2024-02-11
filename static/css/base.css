@@ -174,8 +174,13 @@ i.fa-chevron-down {
 }
 
 .welcome {
-    padding: 0 60px;
+    padding: 0 30px;
     margin-top: 30px;
+}
+
+.background-div {
+    padding-left: 0;
+    padding-right: 30px;
 }
 
 .background-home {
@@ -554,7 +559,6 @@ button.form-control:hover {
 
 main.content {
     flex: 1;
-    min-height: 80vh;
 }
 
 /* ------------------------ Footer */
@@ -1015,11 +1019,12 @@ li {
     }
 
     .logotype {
-        margin-left: 15px;
+        margin-left: 25px;
     }
 
     .navbar-toggler {
         margin-right: 0;
+        padding-right: 25px;
     }
 
     .info-text-home {
@@ -1034,6 +1039,10 @@ li {
     .welcome {
         padding: 0 15px;
         margin-bottom: 0;
+    }
+
+    .background-div {
+        padding-right: 0;
     }
 
     .circle {

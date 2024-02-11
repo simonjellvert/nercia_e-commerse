@@ -1,10 +1,8 @@
-[Authentication using Email](https://tech.serhatteker.com/post/2020-01/email-as-username-django/) 
-
 # NERCIA WEBSHOP
 
 **Deployed website: [Link to website](https://.herokuapp.com/)**
 
-![Main image](docs/img/...)
+![Main image](/documentation/design/responsive_mockup.png)
 
 ---
 
@@ -95,31 +93,27 @@ It focuses on individual transactions only.
 
 ## Web marketing
 
-Text here
+in order for this webshop to attract visitors, Nercia's marketing department needs to do a good job with web marketing.
 
-1. News letter
+1. Newsletters
 
-Text here
+Newsletters is implemented in the webshop to target visitors that already have an account registered, and maybe allready have made a purchase on the store.
 
-2. Promo codes
+2. [Facebook](https://www.facebook.com/Nercia.se/)
 
-Text here
+Facebook is a great tool for webmarketing, although it's not Nercia's primary social media, since the customer of Nercia is business managers.
 
-3. Facebook
+3. [Instagram](https://www.instagram.com/nercia1992/)
 
-Text here
+Instagram is also a great tool for webmarketing but like Facebook it's not Nercia's primary tool.
 
-4. Instagram
+4. [TikTok](https://www.tiktok.com/@nercia1992?lang=sv-SE)
 
-Text here
+This social media is on try out at Nercia's marketing department to figure out wheter its a good marketing tool or not.
 
-5. TikTok
+5. [LinkedIn](https://www.linkedin.com/company/nercia-utbildning-bemanning/mycompany/)
 
-Text here
-
-6. LinkedIn
-
-Text here
+LinkedIn is the primary marketing tool for Nercia, this is where the target group is and where the target group socialize to get tips and trix to improve their businesses. Nercia's is already doing a great job marketing all their business areas (competence development and competence recruitment). When marketing the trainings under the competence development area it would be easy to link directly to the webshop to make it easier for the interested visitor to place an order. Today, when Nercia is marketing a product on LinkedIn the visitor is facing one or two steps more before there is an accept for a order. This webshop would prevent those those decision makers, who are (often) under a lot of stress or don't have the patience to carry out a few more steps before booking a training, to ignore booking the training.
 
 ---
 
@@ -231,8 +225,8 @@ The website follows Nercia's graphical profile which is set up for the all graph
 The colors are from Nercia's graphic profile and is used mainly for backgrounds and buttons.
 - #000000 is used for the background for the footer
 - #007EC1 is the color of the logo
-- #0082D3 is used for on-hovering buttons and links
-- #0299E5 is used for buttons
+- #0082D3 is used for buttons
+- #0299E5 is used for on-hovering buttons and links
 - #DADADA is used for hovering effect on dropdown menu in navbar
 - #F2F3F5 is used for highlighting parts in the templates.
 - #FFFFFF is used as the default background
@@ -241,21 +235,56 @@ The colors are from Nercia's graphic profile and is used mainly for backgrounds 
 
 The fonts used for this website are following Nercias graphical profile: ["Ubuntu"](https://fonts.google.com/specimen/Ubuntu?preview.text=Welcome!&query=ubuntu).
 
-<!-- #### Images
+#### Images
 
-Text here
+The following images are used as backgrounds for a more pleasent UX.
+Images are hijacked from Nercia's offial website.
 
-Image here -->
++ Home page
+![Home page background](/static/img/background_img/background_home.jpg)
+
++ Products page
+![Products page background](/static/img/background_img/background_products.png)
+
+Product images are taken by Nercia's in-house staff and is used in the same way on the offial website.
+
+![Screenshot of product page](/documentation/design/product_images.png)
 
 ---
 
-<!-- ## Agile Methodology
+## Agile Methodology
 
 #### GitHub Project Management
 
-Text here
+I've used GitHubs project management tools for this project to make sure I don't start working on many different to do's at the same time. It have helped me focus on the mission to complete each user story. Although when I got stuck for a longer time with an issue I jumped back to style or make small adjustments on previously finished user stories just to let my mind re-group.
 
-Image here -->
+For me it has been a very useful tool and I'm not sure I would have had everything under control if I had to work without it.
+
+I divided the user stories into 6 different mini-projects and tried as best as I could to stick to finish one mini-project at a time.
+
++ [Mini-project: Viewing and navigation](https://github.com/users/simonjellvert/projects/6)
+
+![Screenshot of mini-project Viewing and navigation](/documentation/project-management/user_stories_viewing.png)
+
++ [Mini-project: Registration](https://github.com/users/simonjellvert/projects/7)
+
+![Screenshot of mini-project Viewing and navigation](/documentation/project-management/user_stories_registration.png)
+
++ [Mini-project: Bag](https://github.com/users/simonjellvert/projects/9)
+
+![Screenshot of mini-project Viewing and navigation](/documentation/project-management/user_stories_bag.png)
+
++ [Mini-project: Checkout](https://github.com/users/simonjellvert/projects/10)
+
+![Screenshot of mini-project Viewing and navigation](/documentation/project-management/user_stories_checkout.png)
+
++ [Mini-project: After Checkout](https://github.com/users/simonjellvert/projects/11)
+
+![Screenshot of mini-project Viewing and navigation](/documentation/project-management/user_stories_aftercheckout.png)
+
++ [Mini-project: Manager & Admin](https://github.com/users/simonjellvert/projects/13)
+
+![Screenshot of mini-project Viewing and navigation](/documentation/project-management/user_stories_manageradmin.png)
 
 ---
 
@@ -270,207 +299,100 @@ Image here -->
 
 The structure of building the model is from the ERD below. The flowchart has been updated since the structure has been updated during the development process.
 
-<!-- ![ERD]() -->
+![Screenshot of ERD](/documentation/erd/erd.png)
 
-<!-- ### Data Modeling
+### Data Modeling
 
-#### Role Model
-| Name          | Database Key  | Field Type    | Validation |
-| ------------- | ------------- | ------------- | ---------- |
-| name          | name          | CharField    | max_length=50, unique=True, blank=True, null=False, verbose_name='Role name' |
-| description   | description   | TextField    | max_length=500, blank=True, null=True, verbose_name='Role description' |
-
-
-
-#### Profile Model
-
-When user signs up, a new profile is created. 
+#### CustomUser Model
 
 | Name          | Database Key  | Field Type    | Validation |
 | ------------- | ------------- | ------------- | ---------- |
-| user          | user          | OneToOneField | User, on_delete=models.CASCADE, related_name='profile', verbose_name='User' |
-| first_name    | first_name    | CharField    | max_length=50, blank=True, null=True, verbose_name='First name' |
-| last_name     | last_name     | CharField    | max_length=50, blank=True, null=True, verbose_name='Last name' |
-| avatar        | avatar        | CloudinaryField | blank=True, null=True, verbose_name='Avatar' |
-| subscription | subscription | BooleanField | default=False, verbose_name='Subscription' |
-| role          | role          | ForeignKey   | Role, default=1, on_delete=models.SET_NULL, null=True, verbose_name='Role' |
-| created_at    | created_at    | DateTimeField | auto_now_add=True, verbose_name='Created at' |
-| updated_at    | updated_at    | DateTimeField | auto_now=True, verbose_name='Updated at' |
+| email | email | EmailField | _('email address'), unique=True |
 
-**Note:** The role field is set to 1 by default. This is because the user is a customer by default. The role can be changed only from the admin panel. The decision to make it mandatory was made due to the store security reasons. **Only the site admin can change the role of the user in order to prevent unauthorized access.**
-
-#### Address Model
-
-Users are encouraged to create their own addresses and set the default address for the fastest purchase. 
+#### UserProfile Model
 
 | Name          | Database Key  | Field Type    | Validation |
 | ------------- | ------------- | ------------- | ---------- |
-| user          | user          | ForeignKey   | User, on_delete=models.CASCADE, related_name='addresses', verbose_name='User' |
-| country       | country       | CharField    | max_length=50, blank=False, null=False, verbose_name='Country' |
-| county_region | county_region | CharField    | max_length=50, blank=False, null=False, verbose_name='County/region' |
-| city          | city          | CharField    | max_length=50, blank=False, null=False, verbose_name='City' |
-| address_line  | address_line  | CharField    | max_length=150, blank=False, null=False, verbose_name='Address line' |
-| zip_code      | zip_code      | CharField    | max_length=10, blank=False, null=False, verbose_name='Zip code' |
-| phone_number  | phone_number  | CharField    | max_length=15, blank=False, null=False, verbose_name='Phone' |
-| is_primary    | is_primary    | BooleanField | default=False, verbose_name='Is primary' |
-| created_at    | created_at    | DateTimeField | auto_now_add=True, verbose_name='Created at' |
-| updated_at    | updated_at    | DateTimeField | auto_now=True, verbose_name='Updated at' |
-
-#### Wishlist Model
-
-When the user signs up, a new wishlist is created.
-
-| Name          | Database Key  | Field Type    | Validation |
-| ------------- | ------------- | ------------- | ---------- |
-| user          | user          | ForeignKey   | User, on_delete=models.CASCADE, related_name='wishlist', verbose_name='User' |
-| products      | products      | ManyToManyField | Product, blank=True, related_name='wishlist', verbose_name='Products' |
-| created_at    | created_at    | DateTimeField | auto_now_add=True, verbose_name='Created at' |
-
-#### Category Model
-
-| Name          | Database Key  | Field Type    | Validation |
-| ------------- | ------------- | ------------- | ---------- |
-| name          | name          | CharField    | max_length=100, unique=True, blank=False, null=False, verbose_name='Category name' |
-| slug          | slug          | SlugField    | max_length=150, unique=True, blank=False, null=False, verbose_name='Category Slug' |
-| is_active     | is_active     | BooleanField | default=False, verbose_name='Is active' |
-| created_at    | created_at    | DateTimeField | auto_now_add=True, verbose_name='Created at' |
-| updated_at    | updated_at    | DateTimeField | auto_now=True, verbose_name='Updated at' |
-
-#### Tag Model
-
-| Name          | Database Key  | Field Type    | Validation |
-| ------------- | ------------- | ------------- | ---------- |
-| name          | name          | CharField    | max_length=100, unique=True, blank=False, null=False, verbose_name='Tag name' |
-| slug          | slug          | SlugField    | max_length=150, unique=True, blank=False, null=False, verbose_name='Tag Slug' |
-| is_active     | is_active     | BooleanField | default=False, verbose_name='Is active' |
-| created_at    | created_at    | DateTimeField | auto_now_add=True, verbose_name='Created at' |
-| updated_at    | updated_at    | DateTimeField | auto_now=True, verbose_name='Updated at' |
-
-#### Brand Model
-
-| Name          | Database Key  | Field Type    | Validation |
-| ------------- | ------------- | ------------- | ---------- |
-| name          | name          | CharField    | max_length=100, unique=True, blank=False, null=False, verbose_name='Brand name' |
-| slug          | slug          | SlugField    | max_length=150, unique=True, blank=False, null=False, verbose_name='Brand Slug' |
-| description   | description   | TextField    | max_length=500, blank=False, null=False, verbose_name='Brand description' |
-| is_active     | is_active     | BooleanField | default=False, verbose_name='Is active' |
-| created_at    | created_at    | DateTimeField | auto_now_add=True, verbose_name='Created at' |
-| updated_at    | updated_at    | DateTimeField | auto_now=True, verbose_name='Updated at' |
-
+| user | user | OneToOneField | CustomUser, on_delete=models.CASCADE, unique=True |
+| first_name | first_name | CharField | max_length=30 |
+| last_name | last_name | CharField | max_length=30 |
+| email | email | EmailField |  |
+| phone_number | phone_number | CharField | max_length=20, null=False, blank=False |
+| company_name | company_name | CharField | max_length=100, null=False, blank=False |
+| org_num | org_num | CharField | max_length=20, null=False, blank=False |
+| street_address1 | street_address1 | CharField | max_length=80, null=False, blank=False |
+| street_address2 | street_address2 | CharField | max_length=80, null=True, blank=True |
+| postcode | postcode | CharField | max_length=20, null=False, blank=False |
+| city | city | CharField | max_length=40, null=False, blank=False |
+| country | country | CountryField | blank_label='Country', null=False, blank=False |
+| invoice_email | invoice_email | EmailField | max_length=254, null=False, blank=False |
+| newsletter_subscription | newsletter_subscription | BooleanField | default=False, null=False, blank=False |
 
 #### Product Model
 
 | Name          | Database Key  | Field Type    | Validation |
 | ------------- | ------------- | ------------- | ---------- |
-| name          | name          | CharField    | max_length=100, unique=True, blank=False, null=False, verbose_name='Product name' |
-| slug          | slug          | SlugField    | max_length=150, unique=True, blank=False, null=False, verbose_name='Product Slug' |
-| description   | description   | TextField    | max_length=500, blank=False, null=False, verbose_name='Product description' |
-| category      | category      | ForeignKey   | Category, on_delete=models.CASCADE, related_name='products', verbose_name='Category' |
-| tags          | tags          | ManyToManyField | Tag, related_name='products', verbose_name='Tags' |
-| brand         | brand         | ForeignKey   | Brand, on_delete=models.CASCADE, related_name='products', verbose_name='Brand' |
-| is_active     | is_active     | BooleanField | default=False, verbose_name='Is active' |
-| created_at    | created_at    | DateTimeField | auto_now_add=True, verbose_name='Created at' |
-| updated_at    | updated_at    | DateTimeField | auto_now=True, verbose_name='Updated at' |
+| name | name | CharField | max_length=254 |
+| description_short | description_short | TextField | max_length=254 |
+| description | description | TextField | default='Description of the training' |
+| category | category | ManyToManyField | Category, blank=True |
+| price | price | DecimalField | max_digits=8, decimal_places=2 |
+| duration | duration | CharField | max_length=254, null=True, blank=True |
+| perks | perks | CharField | max_length=254, null=True, blank=True |
+| image | image | ImageField | null=True, blank=True |
+| alt_atr | alt_atr | CharField | max_length=254, null=True, blank=True |
+| online_onsite | online_onsite | CharField | max_length=20, choices=ONLINE_ONSITE_CHOICES, default=ONSITE |
+| quantity | quantity | PositiveIntegerField | default=0 |
 
-#### ProductImage Model
-
-| Name          | Database Key  | Field Type    | Validation |
-| ------------- | ------------- | ------------- | ---------- |
-| product       | product       | ForeignKey   | Product, on_delete=models.CASCADE, related_name='images', verbose_name='Product' |
-| image         | image         | CloudinaryField | null=True, blank=True, verbose_name='Image' |
-| alt_text      | alt_text      | CharField    | max_length=300, null=True, blank=True, verbose_name='Alt text' |
-| default_image | default_image | BooleanField | default=False, verbose_name='Default image' |
-| is_active     | is_active     | BooleanField | default=False, verbose_name='Is active' |
-| created_at    | created_at    | DateTimeField | auto_now_add=True, verbose_name='Created at' |
-| updated_at    | updated_at    | DateTimeField | auto_now=True, verbose_name='Updated at' |
-
-#### ProductAttribute Model
+#### ProductContent Model
 
 | Name          | Database Key  | Field Type    | Validation |
 | ------------- | ------------- | ------------- | ---------- |
-| name          | name          | CharField    | max_length=255, unique=True, blank=False, null=False, verbose_name='Attribute name' |
-| description   | description   | TextField    | max_length=500, blank=True, null=True, verbose_name='Attribute description' |
+| product | product | ForeignKey | 'Product', null=True, blank=True, on_delete=models.SET_NULL |
+| day | day | CharField | max_length=254, null=True, blank=True |
+| title | title | CharField | max_length=254, null=True, blank=True |
+| purpose | purpose | TextField | null=True, blank=True |
+| topics | topics | TextField | null=True, blank=True |
 
-#### ProductType Model
-
-| Name          | Database Key  | Field Type    | Validation |
-| ------------- | ------------- | ------------- | ---------- |
-| name          | name          | CharField    | max_length=100, unique=True, blank=False, null=False, verbose_name='Product type name' |
-| slug          | slug          | SlugField    | max_length=150, unique=True, blank=False, null=False, verbose_name='Product type Slug' |
-| product_type_attributes | product_type_attributes | ManyToManyField | ProductAttribute, related_name="product_type_attributes", through="ProductTypeAttribute", verbose_name='Product type attributes' |
-| description   | description   | TextField    | max_length=500, blank=False, null=False, verbose_name='Product type description' |
-
-#### ProductAttributeValue Model
+#### Newsletter Model
 
 | Name          | Database Key  | Field Type    | Validation |
 | ------------- | ------------- | ------------- | ---------- |
-| product_attribute | product_attribute | ForeignKey   | ProductAttribute, on_delete=models.CASCADE, related_name='product_attribute_values', verbose_name='Product attribute' |
-| attribute_value | attribute_value | CharField    | max_length=255, blank=False, null=False, verbose_name='Attribute value' |
+| title | title | CharField | max_length=254, blank=False, null=False |
+| content | content | TextField | blank=False, null=False |
+| newsletter_category | newsletter_category | CharField | max_length=20, choices=NEWSLETTER_CATEGORIES, default='general' |
+| created_at | created_at | DateTimeField | auto_now_add=True |
 
-#### ProductInventory Model
-
-| Name          | Database Key  | Field Type    | Validation |
-| ------------- | ------------- | ------------- | ---------- |
-| sku           | sku           | CharField    | max_length=50, null=False, unique=True, blank=False, verbose_name='Stock Keeping Unit' |
-| upc           | upc           | CharField    | max_length=12, null=False, unique=True, blank=False, verbose_name='Universal Product Code' |
-| product       | product       | ForeignKey   | Product, on_delete=models.CASCADE, related_name='inventory', verbose_name='Product' |
-| product_type  | product_type  | ForeignKey   | ProductType, on_delete=models.CASCADE, related_name='inventory', verbose_name='Product type' |
-| attribute_values | attribute_values | ManyToManyField | ProductAttributeValue, related_name="product_attribute_values", through="ProductAttributeValues", verbose_name='Attribute values' |
-| retail_price  | retail_price  | DecimalField | max_digits=9, decimal_places=2, null=False, blank=False, verbose_name='Retail price' |
-| store_price   | store_price   | DecimalField | max_digits=9, decimal_places=2, null=False, blank=False, verbose_name='Store price' |
-| sale_price    | sale_price    | DecimalField | max_digits=9, decimal_places=2, null=False, blank=False, verbose_name='Sale price' |
-| weight        | weight        | FloatField   | null=False, blank=False, verbose_name='Product weight' |
-| is_active     | is_active     | BooleanField | default=False, verbose_name='Is active' |
-| created_at    | created_at    | DateTimeField | auto_now_add=True, verbose_name='Created at' |
-| updated_at    | updated_at    | DateTimeField | auto_now=True, verbose_name='Updated at' |
-
-#### Stock Model
+#### Contact Model
 
 | Name          | Database Key  | Field Type    | Validation |
 | ------------- | ------------- | ------------- | ---------- |
-| product_inventory | product_inventory | ForeignKey   | ProductInventory, on_delete=models.CASCADE, related_name='stock', verbose_name='Product inventory' |
-| last_checked     | last_checked     | DateTimeField | null=True, blank=True, verbose_name='Last checked' |
-| units_variable   | units_variable   | IntegerField | default=0, null=False, blank=False, verbose_name='Units variable' |
-| units            | units            | IntegerField | default=0, null=False, blank=False, verbose_name='Units current' |
-| units_sold       | units_sold       | IntegerField | default=0, null=False, blank=False, verbose_name='Units sold' |
+| name | name | CharField | max_length=100, null=False, blank=True |
+| email | email | EmailField | null=False, blank=False |
+| phone_number | phone_number | CharField | max_length=20, blank=False, null=False |
+| image | image | ImageField | null=False, blank=False |
 
-#### ProductAttributeValues Model
-
-| Name          | Database Key  | Field Type    | Validation |
-| ------------- | ------------- | ------------- | ---------- |
-| attributevalues | attributevalues | ForeignKey   | ProductAttributeValue, on_delete=models.CASCADE, related_name='productattributevalues', verbose_name='Attribute values' |
-| productinventory | productinventory | ForeignKey   | ProductInventory, on_delete=models.CASCADE, related_name='productattributevalues', verbose_name='Product inventory' |
-
-
-#### ProductTypeAttribute Model
+#### Checkout Model
 
 | Name          | Database Key  | Field Type    | Validation |
 | ------------- | ------------- | ------------- | ---------- |
-| product_attribute | product_attribute | ForeignKey   | ProductAttribute, on_delete=models.CASCADE, related_name='producttypeattribute', verbose_name='Product attribute' |
-| product_type | product_type | ForeignKey   | ProductType, on_delete=models.CASCADE, related_name='producttypeattribute', verbose_name='Product type' |
+| order_number | order_number | CharField | max_length=10, unique=True |
+| user_profile | user_profile | ForeignKey | UserProfile, on_delete=models.CASCADE, related_name='orders' |
+| created | created | DateTimeField | auto_now_add=True |
+| order_total | order_total | DecimalField | max_digits=8, decimal_places=2, null=False, ,blank=False |
+| grand_total | grand_total | DecimalField | max_digits=8, decimal_places=2, null=False, blank=False |
+| tax | tax | DecimalField | max_digits=8, decimal_places=2, null=False, blank=False |
+| payment_option | payment_option | CharField | max_length=20, choices=PAYMENT_OPTIONS, default=INVOICE |
+| invoice_ref | invoice_ref | CharField | max_length=254, null=True, blank=True |
 
-*The decision to implement unique_together model method was made due to the wider coverage of it rather than UniqueConstraint which has been added in Django 4.0.0.
-[Link to Django Documentation](https://docs.djangoproject.com/en/4.0/ref/models/options/#django.db.models.Options.unique_together)*
-
-#### EmailNewsNotification Model
-
-| Name          | Database Key  | Field Type    | Validation |
-| ------------- | ------------- | ------------- | ---------- |
-| email_name    | email_name    | CharField    | max_length=100, null=False, unique=True, blank=False, verbose_name='Email name' |
-| content       | content       | TextField    | null=False, blank=False, verbose_name='Content' |
-| code          | code          | CharField    | max_length=100, null=True, blank=True, verbose_name='Code' |
-| created_at    | created_at    | DateTimeField | auto_now_add=True, verbose_name='Created at' |
-
-#### StockEmailNotification Model
+#### OrderLineItem Model
 
 | Name          | Database Key  | Field Type    | Validation |
 | ------------- | ------------- | ------------- | ---------- |
-| user           | user           | ForeignKey   | User, on_delete=models.CASCADE, verbose_name='Requested user' |
-| requested_product | requested_product | ForeignKey   | Product, on_delete=models.CASCADE, verbose_name='Requested product' |
-| requested_attributes_values | requested_attributes_values | ManyToManyField | ProductAttributeValue, related_name="requested_attributes_values", through="RequestedAttributesValues", verbose_name='Requested attributes values' |
-| requested_quantity | requested_quantity | PositiveIntegerField | verbose_name='Requested quantity' |
-| created_at    | created_at    | DateTimeField | auto_now_add=True, verbose_name='Created at' |
-| answer_sent    | answer_sent    | BooleanField | default=False, verbose_name='Answer send' | -->
+| order | order | ForeignKey | max_length=10, unique=True | Order, null=False, blank=False, on_delete=models.CASCADE, related_name='lineitems' |
+| product | product | ForeignKey | Product, null=False, blank=False, on_delete=models.CASCADE |
+| quantity | quantity | PositiveIntegerField | Product, null=False, blank=False, on_delete=models.CASCADE |
+| lineitem_total | lineitem_total | DecimalField | max_digits=8, decimal_places=2, null=False, blank=False, editable=False |
 
 ---
 
@@ -491,55 +413,40 @@ Please refer to the [TESTING.md](TESTING.md) file for all test-related documenta
 Please refer to the [DEPLOYMENT.md](DEPLOYMENT.md) file for all deployment and payment-related documentation.
 
 ---
-<!--
+
 ## Credits
 
-- [GitHub](https://github.com/) for giving the idea of the project's design.
+- [GitHub](https://github.com/) for the agile project management tool.
 - [Django](https://www.djangoproject.com/) for the framework.
-- [Font awesome](https://fontawesome.com/): for the free access to icons.
-- [Render](https://render.com/): for providing a free hosting.
-- [jQuery](https://jquery.com/): for providing varieties of tools to make standard HTML code look appealing.
-- [jQuery UI](https://jqueryui.com/): for providing varieties of tools to make standard HTML code look appealing.
+- [Font awesome](https://fontawesome.com/): for the icons.
+- [Amazon AWS](https://aws.amazon.com/): for providing a free hosting.
+- [Bootstrap](https://getbootstrap.com/): for providing a simple way to style my HTML templates.
 - [Postgresql](https://www.postgresql.org/): for providing a free database.
-- [geonames](https://www.geonames.org/): for providing a free database on countries, regions, cities.
-- [Multiple Video & Image Upload Plugin - jQuery Miv.js](https://www.jqueryscript.net/form/multi-video-image-upload.html): for providing a free plugin to upload multiple videos and images.
 - [Stripe](https://stripe.com/): for providing a free payment gateway.
-- [htmlcolorcodes.com](https://htmlcolorcodes.com/): for providing a free database on colors.
-- [Very Academy Youtube Channel](https://www.youtube.com/c/veryacademy): for brilliant tutorials, which shed the light on the implementation of database with multi-values products, precise explanations of the stripe API, and many other things!
-- [birme](https://www.birme.net/): for providing free service to center and crop images.
 - [fontawesome](https://fontawesome.com/): for providing free icons.
 - [googlefonts](https://fonts.google.com/): for providing free fonts.
-- [BGJar](https://www.bgjar.com/): for the free access to the background images build tool.
 - [Responsive Viewer](https://chrome.google.com/webstore/detail/responsive-viewer/inmopeiepgfljkpkidclfgbgbmfcennb/related?hl=en): for providing a free platform to test website responsiveness
-- [GoFullPage](https://gofullpage.com/): for allowing to create free full web page screenshots;
 - [Favicon Generator. For real.](https://realfavicongenerator.net/): for providing a free platform to generate favicons.
 - [Sitemap Generator](https://www.xml-sitemaps.com/): for providing a free platform to generate sitemaps.
 - [Coolors](https://coolors.co/): for providing a free platform to generate your own palette.
-- [Elon Musk](https://twitter.com/elonmusk?ref_src=twsrc%5Egoogle%7Ctwcamp%5Eserp%7Ctwgr%5Eauthor): for providing a template for the twitter mock-up page;
-
-### Content and Images
-
-- [unsplash](https://unsplash.com/): for providing a free products' images.
-- [Icons8](https://icons8.com/): for providing free access to amazing icons and illustrations to fill out the store.
-- [unsplash](https://unsplash.com/): for providing free products' images to fill out the store.
-- [chrome developer tools](https://developer.chrome.com/extensions/devtools_inspector): for providing a free platform to test website.
-- [adidas](https://www.adidas.com/): for providing free products' data and images to fill out the store on clothes and shoes.
-- [fashionunited](https://www.fashionunited.com/): for providing content for the newsletter;
-- [dell](https://www.dell.com/): for providing free products' data and images to fill out the store on computers and laptops.
-- [nike](https://www.nike.com/): for providing free products' data and images to fill out the store on clothes and shoes.
-- [artsaber](https://www.artsabers.com/): for providing free products' images to fill out the store on lightsabers data and images.
-- [backwaterreptiles](https://www.backwaterreptiles.com/): for providing free products' images to fill out the store on tarantulas' data and images.
-- [Yum Of China](https://www.yumofchina.com/chinese-beer/): for providing free data on Chinese beer.
-- [lego](https://www.lego.com/): for providing free products' data and images to fill out the store with toys.
-- [maggie](https://www.maggie.com/): for providing free products' data and images to fill out the store with maggie products.
-- [barilla](https://www.barilla.com/): for providing free products' data and images to fill out the store with pasta.
-- [LG electronics](https://www.lg.com/): for providing free products' data and images to fill out the store with electronics.
 
 ---
 
 ## Acknowledgments
 
-- [Tim Nelson](https://github.com/TravelTimN) was a great supporter of another bold idea of mine for this project. Tim guided me through the development of the project and helped me to learn a lot of new things by challenging me to do something new.
-- [Aleksei Konovalov](https://github.com/lexach91), my husband and coding partner, assisted me greatly in product values js selection control implementation and helped me to stay sane.
-- [Very Academy Youtube Channel](https://www.youtube.com/c/veryacademy) provided great insight on the implementation of the database with multi-values products, precise explanations of the stripe API, and many other things! This Youtube channel has plenty of brilliant tutorials that shed light on Django's most curious and useful aspects. -->
+- [Serhat Teker](https://serhatteker.com/) for the guide on how to set up authentication using email instead of username ([Authentication using Email](https://tech.serhatteker.com/post/2020-01/email-as-username-django/))
+- [Juliia Konovalova](https://github.com/IuliiaKonovalova) for great mentoring during the development. Also for sharing the structure of markdown files.
+- John (didn't catch the last name) at CodeInstitute's Tutor Assistance for helping me 'crack the code' when i was stuck with my checkout app!
+- My girlfriend Andrea,for accepting me as an absent boyfriend for the last month + I'll make it up to you!
+
+## Tank you...
+
+...for reading about my work. I hope you enjoyed the website - and maybe you found a training that would help you boost your career!
+
+Have a nice day!
+
+Best regards,
+Simon Jellvert
+
+<!-- [Nercia Webshop]() -->
 
