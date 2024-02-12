@@ -86,14 +86,13 @@ This webshop is for new and old customers of Nercia and should exist to simplify
 
 ## Business Model
 
-The Business Model is B2C, meaning that the company sells products to customers only.
-It focuses on individual transactions only.
+The Business Model is B2B, meaning that the company sells products to company customers only.
 
 ---
 
 ## Web marketing
 
-in order for this webshop to attract visitors, Nercia's marketing department needs to do a good job with web marketing.
+In order for this webshop to attract visitors, Nercia's marketing department needs to do a good job with web marketing.
 
 1. Newsletters
 
@@ -165,6 +164,12 @@ The lighthouse testing shows that the performance is not in the green. I would w
 
 ### Payment created in Stripe when invoice
 The card payment is successfull and works correctly, allthough I have a bug with payments created in Stripe as soon as the user enters the checkout page. Since the user is able to choose to pay with invoice I would like the payment to be connected to Stripe by an event listener when the user choose card payment.
+
+### Google Analytics
+To track users interactions with the webpage
+
+### Facebook pixels
+To track the users activity on the page and learn how to target those visitors on social media platforms.
 
 ---
 

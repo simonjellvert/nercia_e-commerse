@@ -1,9 +1,7 @@
 from django import forms
-from django.forms.models import inlineformset_factory
 
 from .models import Order
-from profiles.forms import UserProfileForm
-from products.models import Product
+
 from profiles.models import UserProfile
 
 

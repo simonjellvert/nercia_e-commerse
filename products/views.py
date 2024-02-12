@@ -4,6 +4,7 @@ from django.contrib import messages
 from django.db.models import Q
 from django.contrib.auth.decorators import login_required
 from django.contrib.admin.views.decorators import staff_member_required
+from django.forms import inlineformset_factory
 
 from .models import Product, ProductContent, Category
 from .forms import (
@@ -157,7 +158,6 @@ def add_product_content(request, product_id):
             formset.save()
 
             if 'add_day' in request.POST:
-                print("Redirecting to add_product_content")
                 return redirect('add_product_content', product_id=product.id)
 
             messages.success(request, 'Product content successfully added!')
@@ -204,6 +204,44 @@ def edit_product(request, product_id):
     context = {
         'form': form,
         'product': product,
+    }
+
+    return render(request, template, context)
+
+
+@staff_member_required
+def edit_product_content(request, product_id):
+    """ Edit product content from ProductContent model """
+    if not request.user.is_superuser:
+        messages.error(request, 'Sorry, only store owners can do that.')
+        return redirect(reverse('home'))
+
+    product = get_object_or_404(Product, pk=product_id)
+
+    ProductContentFormSet = inlineformset_factory(
+        Product, ProductContent, form=ProductContentForm, extra=1, can_delete=True
+    )
+
+    if request.method == 'POST':
+        formset = ProductContentFormSet(
+            request.POST, instance=product, prefix='product_content'
+        )
+        if formset.is_valid():
+            formset.save()
+            messages.success(request, 'Successfully updated product!')
+            return redirect(reverse('product_detail', args=[product.pk]))
+        else:
+            messages.error(
+                request,
+                'Failed to update product. Please ensure the form is valid.'
+            )
+    else:
+        formset = ProductContentFormSet(instance=product)
+
+    template = 'products/edit_product_content.html'
+    context = {
+        'formset': formset,
+        'product_content': product,
     }
 
     return render(request, template, context)

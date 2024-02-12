@@ -29,6 +29,11 @@ urlpatterns = [
         name='edit_product'
     ),
     path(
+        'editcontent/<int:product_id>/',
+        views.edit_product_content,
+        name='edit_product_content'
+    ),
+    path(
         'delete/<int:product_id>/',
         views.delete_product,
         name='delete_product'

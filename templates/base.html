@@ -40,8 +40,6 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.min.js" integrity="sha384-+sLIOodYLS7CIrQpBjl+C7nPvqq+FbNUBDunl/OZv93DB7Ln/533i8e/mZXLi/P+" crossorigin="anonymous"></script>
     <!-- Stripe -->
     <script src="https://js.stripe.com/v3/"></script>
-    <!-- Google Map -->
-    <script async src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAJ8Us1QdTADWpIcDjMzGi622mYprc3FtI&loading=async"></script>
     {% endblock %}
 
     
@@ -131,32 +129,32 @@
         <div class="container-fluid footer-container d-flex justify-content-center align-items-center">
             <div class="row footer-content mx-0">
                 <div class="col-lg-3 col-md-6 col-sm-12">
-                    <section class="logotype-footer footer-column">
+                    <div class="logotype-footer footer-column">
                         <div class="row text-left">
                             <img src="{% static 'img/logotype/nercia_logotype_white.png' %}" alt="Nercia logotype" class="footer-logotype m-0">
                         </div>
-                    </section>
-                    <section class="contact-header-footer">
+                    </div>
+                    <div class="contact-header-footer">
                         <div class="row text-left text-uppercase text-padding">
                             <h4>Contact</h4>
                         </div>
-                    </section>
-                    <section class="contact-content-footer">
+                    </div>
+                    <div class="contact-content-footer">
                         <div class="row text-left text-padding">
                             <p>Phone: <a href="tel:004619206700" class="remove-decoration" aria-label="Call the front desk at Nercia">+4619-20 67 00</a></p>
                         </div>
                         <div class="row text-left text-padding">
                             <p>E-mail: <a href="mailto:info@nercia.se" class="remove-decoration" aria-label="Email the front desk at Nercia">info@nercia.se</a></p>
                         </div>
-                    </section>
+                    </div>
                 </div>
                 <div class="col-lg-3 col-md-6 col-sm-12">
-                    <section class="news-header-footer">
+                    <div class="news-header-footer">
                         <div class="row text-left text-uppercase text-padding">
                             <h4>Latest News</h4>
                         </div>
-                    </section>
-                    <section class="news-content-footer">
+                    </div>
+                    <div class="news-content-footer">
                         <div class="row text-left text-padding">
                             <ul>
                                 <li>
@@ -182,31 +180,30 @@
                                 </li>
                             </ul>
                         </div>
-                    </section>
+                    </div>
                 </div>
                 <div class="col-lg-3 col-md-6 col-sm-12">
-                    <section class="social-header-footer">
+                    <div class="social-header-footer">
                         <div class="row text-left text-uppercase text-padding">
                             <h4>Follow Us</h4>
                         </div>
-                    </section>
-                        <div class="social-content-footer">
-                            <div class="row text-left text-padding">
-                                <a href="https://www.facebook.com/Nercia.se/" target="_blank"><i class="fa-brands fa-facebook-f p-1 remove-decoration" aria-label="Opens Nercias Facebook page in a new tab"></i></a>
-                                <a href="https://www.tiktok.com/@nercia1992?lang=sv-SE" target="_blank"><i class="fa-brands fa-tiktok p-1 remove-decoration" aria-label="Opens Nercias TikTok page in a new tab"></i></a>
-                                <a href="https://www.instagram.com/nercia1992/" target="_blank"><i class="fa-brands fa-instagram p-1 remove-decoration" aria-label="Opens Nercias Instagram page in a new tab"></i></a>
-                                <a href="https://www.linkedin.com/company/4988997/" target="_blank"><i class="fa-brands fa-linkedin-in p-1 remove-decoration" aria-label="Opens Nercias LinkedIn page in a new tab"></i></a>
-                            </div>
+                    </div>
+                    <div class="social-content-footer">
+                        <div class="row text-left text-padding">
+                            <a href="https://www.facebook.com/Nercia.se/" target="_blank"><i class="fa-brands fa-facebook-f p-1 remove-decoration"></i></a>
+                            <a href="https://www.tiktok.com/@nercia1992?lang=sv-SE" target="_blank"><i class="fa-brands fa-tiktok p-1 remove-decoration"></i></a>
+                            <a href="https://www.instagram.com/nercia1992/" target="_blank"><i class="fa-brands fa-instagram p-1 remove-decoration"></i></a>
+                            <a href="https://www.linkedin.com/company/4988997/" target="_blank"><i class="fa-brands fa-linkedin-in p-1 remove-decoration"></i></a>
                         </div>
-                    </section>
+                    </div>
                 </div>
                 <div class="col-lg-3 col-md-6 col-sm-12">
-                    <section class="links-header-footer">
+                    <div class="links-header-footer">
                         <div class="row text-left text-uppercase text-padding">
                             <h4>Links</h4>
                         </div>
-                    </section>
-                    <section class="links-content-footer">
+                    </div>
+                    <div class="links-content-footer">
                         <div class="row text-left text-padding mb-2">
                             <a href="https://auth.nercia.se/auth/realms/nercia/protocol/openid-connect/auth?client_id=security-admin-console&redirect_uri=https%3A%2F%2Fauth.nercia.se%2Fauth%2Fadmin%2Fnercia%2Fconsole%2F&state=f6dc9211-daf1-4b2a-89ac-d10921b0caef&response_mode=fragment&response_type=code&scope=openid&nonce=e9f75215-45c7-462d-87db-96fbefdf281c&code_challenge=CCS17yEgsRSrplmwcgMeQbwRDGqriGwWYhdc62iWfwc&code_challenge_method=S256" target="_blank" class="remove-decoration" aria-label="Log in to training plattform Mitt Nercia, opens in new tab">Login to training platform</a>
                         </div>
@@ -216,7 +213,10 @@
                         <div class="row text-left mb-2 text-padding">
                             <a href="https://nercia.se/bemanning-och-rekrytering/lediga-tjanster/" target="_blank" class="remove-decoration" aria-label="Go to Nercias job openings page, opens in new tab">Job Openings (text in swedish)</a>
                         </div>
-                    </section>
+                        <div class="row text-left mb-2 text-padding">
+                            <a href="https://www.termsfeed.com/live/5571dbcc-d81a-4638-b6e6-08788bfbc9c7" target="_blank" class="remove-decoration" aria-label="Go to Nercias privacy policy, opens in new tab">Privacy Policy</a>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>

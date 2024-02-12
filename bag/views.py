@@ -11,6 +11,7 @@ def view_bag(request):
 
     return render(request, 'bag/bag.html')
 
+
 def add_to_bag(request, item_id):
     """ View for adding items to bag """
     product = get_object_or_404(Product, pk=item_id)
@@ -29,6 +30,7 @@ def add_to_bag(request, item_id):
 
     request.session['bag'] = bag
     return redirect(redirect_url)
+
 
 def edit_bag(request, item_id):
     """ A view to edit quantity of a product in the bag """
@@ -50,6 +52,7 @@ def edit_bag(request, item_id):
     request.session['bag'] = bag
     return redirect(reverse('view_bag'))
 
+
 def delete_item(request, item_id):
     """ A view to delete item of a product to the bag """
     product = get_object_or_404(Product, pk=item_id)
@@ -59,7 +62,7 @@ def delete_item(request, item_id):
         if item_id in bag:
             bag.pop(item_id)
             messages.success(request, f'Deleted {product.name} from your bag')
-        
+
         request.session['bag'] = bag
         return HttpResponse(status=200)
     except Exception as e:

@@ -28,13 +28,13 @@
             <div class="row">
                 <ul>
                     {% for product in products %}
-                        <div class="mb-3">
-                            <li><strong>{{ product.name }}</strong></li>
+                        <li class="mb-3">
+                            <strong>{{ product.name }}</strong><br>
                             <a href="{% url 'edit_product' product_id=product.id %}" class="a-nercia-blue" aria-label="Go to edit product page">Edit description</a> |
-                            <a href="{% url 'add_product_content' product_id=product.id %}" class="a-nercia-blue" aria-label="Go to add product contant page">Edit content</a> | 
+                            <a href="{% url 'add_product_content' product_id=product.id %}" class="a-nercia-blue" aria-label="Go to add product content page">Edit content</a> | 
                             <a href="#" data-toggle="modal" data-target="#deleteProductModal{{ product.id }}" class="text-danger" aria-label="Triggers the delete product confirmation">Delete</a>
-                        <hr>
-                        </div>
+                            <hr>
+                        </li>
                     {% endfor %}
                 </ul>
             </div>
@@ -52,12 +52,12 @@
             <div class="row">
                 <ul>
                     {% for category in categories %}
-                        <div class="mb-3">
-                            <li><strong>{{ category.friendly_name }}</strong></li>
+                        <li class="mb-3">
+                            <strong>{{ category.friendly_name }}</strong><br>
                             <a href="{% url 'edit_category' category_id=category.id %}" class="a-nercia-blue" aria-label="Go to edit category page">Edit category</a> |
                             <a href="#" data-toggle="modal" data-target="#deleteCategoryModal{{ category.id }}" class="text-danger" aria-label="Opens the confirmation for deleting category">Delete</a>
                         <hr>
-                        </div>
+                        </li>
                     {% endfor %}
                 </ul>
             </div>

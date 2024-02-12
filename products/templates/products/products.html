@@ -37,10 +37,8 @@
             <div class="navbar navbar-expand-lg search-nav" style="background-color: #f2f3f5;">
                 <button class="navbar-toggler d-lg-none search-button rounded-0" type="button" data-toggle="collapse" data-target="#collapsible-menu"
                     aria-controls="collapsible-menu" aria-expanded="false" aria-label="Toggle navigation">
-                    <div class="text-center">
-                        <p class="button-text d-inline-block">Search and filter</p>
-                        <i class="fa-solid fa-magnifying-glass d-inline-block float-none"></i>
-                    </div>
+                    <i class="fa-solid fa-magnifying-glass d-inline-block float-none"></i>
+                    Search and filter
                 </button>
                 <div class="collapse navbar-collapse m-0" id="collapsible-menu">
                     <section class="w-100">
@@ -69,14 +67,16 @@
                         </h3>
                         <ul class="list-unstyled">
                             {% for category in categories %}
-                                <div class="category-item" data-categories="{{ category.pk }}">
-                                    <a href="{% url 'products' %}?category={{ category.name }}" class="category-link" aria-label="Search for {{ category.name }}">
-                                        <label class="d-flex align-items-center" for="category-{{ category.name }}">
-                                            <input class="category-text mr-2 category-checkbox" type="checkbox" id="category-{{ category.name }}" name="category"
-                                                value="{{ category.name }}">{{ category.friendly_name }}
+                                <li>
+                                    <div class="category-item d-flex align-items-center" data-categories="{{ category.pk }}">
+                                        <input class="category-text mr-2 category-checkbox" type="checkbox" id="category-{{ category.name }}" name="category" value="{{ category.name }}">
+                                        <label class="mb-0" for="category-{{ category.name }}">
+                                            <a href="{% url 'products' %}?category={{ category.name }}" class="category-link" aria-label="Search for {{ category.name }}">
+                                                {{ category.friendly_name }}
+                                            </a>
                                         </label>
-                                    </a>
-                                </div>
+                                    </div>
+                                </li>
                             {% endfor %}
                         </ul>
                         <hr>
