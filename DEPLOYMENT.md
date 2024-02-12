@@ -2,7 +2,7 @@
 
 <br/>
 
-**[Link to Deployed Site](https://levelup-loot-vt.herokuapp.com/)**
+**[Link to Deployed Site](https://nercia-webshop-d857b5ee4d1a.herokuapp.com/)**
 
 ---
 ## **Deployment Steps**

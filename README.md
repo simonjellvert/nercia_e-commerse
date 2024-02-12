@@ -1,6 +1,6 @@
 # NERCIA WEBSHOP
 
-**Deployed website: [Link to website](https://.herokuapp.com/)**
+**Deployed website: [Link to website](https://nercia-webshop-d857b5ee4d1a.herokuapp.com/)**
 
 ![Main image](/documentation/design/responsive_mockup.png)
 
@@ -419,7 +419,7 @@ Please refer to the [TESTING.md](TESTING.md) file for all test-related documenta
 - The database was deployed to [ElephantSQL](https://www.elephantsql.com/).
 - Static files hosted at [Amazon AWS](https://aws.amazon.com/)
 
-<!-- - The app can be reached by the [link](). -->
+- The app can be reached by this [link](https://nercia-webshop-d857b5ee4d1a.herokuapp.com/).
 
 Please refer to the [DEPLOYMENT.md](DEPLOYMENT.md) file for all deployment and payment-related documentation.
 
@@ -459,5 +459,5 @@ Have a nice day!
 Best regards,
 Simon Jellvert
 
-<!-- [Nercia Webshop]() -->
+[Nercia Webshop](https://nercia-webshop-d857b5ee4d1a.herokuapp.com/)
 
