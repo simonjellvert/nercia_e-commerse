@@ -58,9 +58,9 @@
                         <ul>
                             {% for order in orders %}
                                 <li>
-                                    Order Number: <a href="{% url 'order_history' order_number=order.order_number %}" class="a-nercia-blue" aria-label="Go to order specifics">{{ order.order_number }}</a><br>
-                                    Date: {{ order.created }}<br>
-                                    Total: ${{ order.grand_total }}<br>
+                                    <p>Order Number:</p> <a href="{% url 'order_history' order_number=order.order_number %}" class="a-nercia-blue" aria-label="Go to order specifics">{{ order.order_number }}</a><br>
+                                    <p>Date: {{ order.created }}</p><br>
+                                    <p>Total: ${{ order.grand_total }}</p><br>
                                 </li>
                             {% endfor %}
                         </ul>

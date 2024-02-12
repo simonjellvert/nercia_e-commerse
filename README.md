@@ -221,7 +221,7 @@ To track the users activity on the page and learn how to target those visitors o
 
 ## Features
 
-Please refer to the [FEATURES.md](FEATURES.md) file for all test-related documentation.
+Please refer to the [FEATURES.md](FEATURES.md) file for a list of the features included in the version.
 
 ---
 
