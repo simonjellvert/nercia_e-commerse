@@ -24,7 +24,7 @@
                 <h2 class="product-content-header">Program Content</h2>
                 {% if request.user.is_authenticated %}
                     {% if request.user.is_superuser %}
-                        <a href="{% url 'edit_product_content' product.id %}" class="a-nercia-blue" aria-label="Go to add product content page">Edit Content</a>
+                        <a href="{% url 'add_product_content' product_id=product.id %}" class="a-nercia-blue" aria-label="Go to add product content page">Edit Content</a>
                     {% endif %}
                 {% endif %}
                 {% for product_content in product_contents %}

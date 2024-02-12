@@ -1,5 +1,6 @@
 {% extends "base.html" %}
 {% load static %}
+{% load crispy_forms_tags %}
 
 {% block extra_title %} | Add Content{% endblock %}
 
@@ -26,8 +27,8 @@
                 {% csrf_token %}
                 <div id="formset-container">
                     {{ formset.management_form }}
-                    {% for form in formset.forms reversed %}
-                        {{ form | crispy }}
+                    {% for form in formset.forms %}
+                        {% crispy form %}
                     {% endfor %}
                     <button type="submit" class="btn btn-secondary rounded-0" name="add_day" value="add_day">Add day</button>
                     <button type="submit" class="btn btn-nercia-blue rounded-0">Save</button>

@@ -210,44 +210,6 @@ def edit_product(request, product_id):
 
 
 @staff_member_required
-def edit_product_content(request, product_id):
-    """ Edit product content from ProductContent model """
-    if not request.user.is_superuser:
-        messages.error(request, 'Sorry, only store owners can do that.')
-        return redirect(reverse('home'))
-
-    product = get_object_or_404(Product, pk=product_id)
-
-    ProductContentFormSet = inlineformset_factory(
-        Product, ProductContent, form=ProductContentForm, extra=1, can_delete=True
-    )
-
-    if request.method == 'POST':
-        formset = ProductContentFormSet(
-            request.POST, instance=product, prefix='product_content'
-        )
-        if formset.is_valid():
-            formset.save()
-            messages.success(request, 'Successfully updated product!')
-            return redirect(reverse('product_detail', args=[product.pk]))
-        else:
-            messages.error(
-                request,
-                'Failed to update product. Please ensure the form is valid.'
-            )
-    else:
-        formset = ProductContentFormSet(instance=product)
-
-    template = 'products/edit_product_content.html'
-    context = {
-        'formset': formset,
-        'product_content': product,
-    }
-
-    return render(request, template, context)
-
-
-@staff_member_required
 def delete_product(request, product_id):
     """ Delete a product from the store """
     if not request.user.is_superuser:
