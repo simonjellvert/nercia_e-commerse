@@ -148,6 +148,16 @@ Home page, products page, Profile page, Bag page, Checkout page and Checkout suc
 
 ### HTML Validation
 
+- Testing done in [W3C Markup Validation](https://validator.w3.org/)
+
+- PASS: All pass except one template
+
+- ERROR: On profile.html the validator is giving me the error below. The error is located within the crispy form. I've tried to modify the forms.py to solve the problem but has not been successfull. Error is noted in the report.
+
+![Screenshot of html validation error](/documentation/validation/error.png)
+
+- [Full HTML Validation report](/documentation/validation/html_validation.pdf)
+
 ### CSS Validation
 
 ##### base.css
@@ -156,7 +166,7 @@ Home page, products page, Profile page, Bag page, Checkout page and Checkout suc
 
 - Pass with 4 warnings I don't want to change.
 
-- [Full CSS Calidation Report](/documentation/validation/base_css_validation.pdf)
+- [Full CSS Validation Report](/documentation/validation/base_css_validation.pdf)
 
 ##### checkout.css
 
