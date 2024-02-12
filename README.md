@@ -160,6 +160,12 @@ The code is set up but haven't had the time to test it, but will be tested and i
 #### Refined file adder
 The button for file adding in products and contacts templates does not look so good and should be refined for better UX.
 
+#### Improve performance
+The lighthouse testing shows that the performance is not in the green. I would want to take a closer look at that for the next version to enhance UX.
+
+### Payment created in Stripe when invoice
+The card payment is successfull and works correctly, allthough I have a bug with payments created in Stripe as soon as the user enters the checkout page. Since the user is able to choose to pay with invoice I would like the payment to be connected to Stripe by an event listener when the user choose card payment.
+
 ---
 
 ## Technologies used
@@ -406,9 +412,9 @@ Please refer to the [TESTING.md](TESTING.md) file for all test-related documenta
 
 - The app was deployed to [Heroku](https://www.heroku.com/).
 - The database was deployed to [ElephantSQL](https://www.elephantsql.com/).
+- Static files hosted at [Amazon AWS](https://aws.amazon.com/)
 
 <!-- - The app can be reached by the [link](). -->
-
 
 Please refer to the [DEPLOYMENT.md](DEPLOYMENT.md) file for all deployment and payment-related documentation.
 

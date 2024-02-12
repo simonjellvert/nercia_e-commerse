@@ -182,6 +182,14 @@ Home page, products page, Profile page, Bag page, Checkout page and Checkout suc
 
 - [Full JavaScript Validation](/documentation/validation/js_validation.pdf)
 
+### Lighthouse Validation
+
+- Testing done in Chrome DevTools Lighthouse
+
+- Performance not quite as good as I would hope. Modifications listed in future development.
+
+![Screenshot of Lighthouse report](/documentation/validation/lighthouse_report.png)
+
 ---
 
 ## Stripe
@@ -190,11 +198,11 @@ I did not have time to implement webhooks for my project, though I have created 
 
 Since I choose to give the user two options on payment method and wanted it to be a obvious for the user what to do when chosing either option i implemented some javascript that listens to the users behaviour and render the relevant form accordingly to payment method i ran into some problems with the connection to Stripe. After lots of manual testing, debugging and help from tutor support at Code Instititue we figured out that the javascript that handles the payment methods didn't call the javascript that handles the submission of a card payment. When modifiying the javascript the card payment is successfull. 
 
-IMAGE HERE
+![Screenshot of processed Stripe payment](/documentation/validation/stripe.png)
 
-The card payment is successfull and works correctly, allthough I have a bug with payments created in Stripe as soon as the user enters the checkout page. Since the user is able to choose to pay with invoice I qould like the payment to be connected to Stripe by an event listener when the user choose card payment - future development.
+The card payment is successfull and works correctly, allthough I have a bug with payments created in Stripe as soon as the user enters the checkout page. Since the user is able to choose to pay with invoice I would like the payment to be connected to Stripe by an event listener when the user choose card payment - future development.
 
-IMAGE HERE
+![Screenshot of bug in code related to Stripe](/documentation/validation/bug_stripe.png)
 
 ---
 
@@ -261,5 +269,8 @@ I've added html and javascript for a refined file adder in the products and cont
 
 13. Testing 404 and 500 page
 The files did not load. Ran it locally to check for messages in the temrinal, turned out there was a typo in the folder containing the templates.
+
+14. Card payment
+The card payment is successfull and works correctly, allthough I have a bug with payments created in Stripe as soon as the user enters the checkout page. Since the user is able to choose to pay with invoice I would like the payment to be connected to Stripe by an event listener when the user choose card payment - future development.
 
 ---
